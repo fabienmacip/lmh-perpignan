@@ -40,6 +40,10 @@ class Partenaire
         return $this->univers;
     }
 
+    public function getUniversArray(){
+        return explode(",",$this->univers);
+    }
+
     public function getActif()
     {
         return $this->actif;

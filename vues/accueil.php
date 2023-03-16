@@ -9,15 +9,16 @@ $diane = "<div class='et-diane'>DIANE LESPIGNANAISE</div>";
 
 ob_start();
 ?>
-<div class="container">
-  <div class="row">
+<div class="container m-1 max-width-100vw">
+  <div class="row max-width-100percent">
     
     <?php foreach ($universs as $univers): ?>
-      <div class="col-12 col-lg-6 col-xl-4">
+      <div class="col-12 col-sm-6 col-lg-4">
+        <div class="univers-sticker p-1">
           <?php
             $universActuelId = $univers->getId();
             $partenairesDeLUnivers = array_filter($partenaires, function($el) use ($universActuelId) {
-              return $el->getUnivers() == $universActuelId;
+              return in_array($universActuelId,$el->getUniversArray());
             });
   
             foreach ($partenairesDeLUnivers as $partenaire): 
@@ -27,6 +28,7 @@ ob_start();
           </div>
           
           <?php endforeach; ?>
+            </div>
         </div>
       <?php endforeach; ?>
 
