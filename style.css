@@ -1,0 +1,165 @@
+.aumoinsun {
+  font-weight: bold;
+}
+
+.listeDesSpes {
+  font-weight: 500;
+}
+
+.img-petit {
+  width: 30px;
+}
+
+.sous-carte {
+  background-color:rgb(224, 224, 224);
+}
+
+.agent-bonne-specialite {
+  color: blue;
+}
+
+.inactif {
+  background-color: grey !important;
+  border: 0;
+}
+
+.inactif-force {
+  background-color: grey !important;
+  border: 0;
+}
+
+.plus-minus-circle {
+  width: 2rem;
+  
+}
+
+/* ****************** ETIQUETTES ************************** */
+
+#tableEtiquettes, #tableEtiquettes span, #tableEtiquettes br, #tableEtiquettes td, #tableEtiquettes tr{
+  margin: 0;
+  padding: 0;
+}
+
+/* .marg0, .pad0{
+  margin: 0;
+  padding: 0;
+}
+
+br{
+  margin: 0;
+  padding: 0;
+}
+ */
+#tableEtiquettes{
+  font-weight: 700;
+  text-align: center;
+  width: 100%;
+  font-family: verdana, arial;
+  border-collapse: unset;
+}
+  
+.police-blanche{
+  color: rgba(255,255,255,1);
+  opacity: 0;
+}
+
+  #tableEtiquettes tr{
+  
+  }
+  
+  #tableEtiquettes td{
+  padding: 0.3cm 0;
+  margin: 0;
+  border: 0;
+  
+  }
+  
+  #printbutton, #et-button{
+      width: 100px;
+      margin: 1rem auto 1rem auto;
+      background-color: rgba(38,174,144,1);
+      color: white;
+      text-align: center;
+      letter-spacing: 0.5px;
+      padding: 5px;
+      cursor: pointer;
+      border: 1px solid rgba(38,174,144,1);
+      box-shadow: 0 2px 6px 0 rgba(0,0,0,0.24),0 7px 10px 0 rgba(0,0,0,0.19);
+  
+      border-radius: 5px;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      -ms-border-radius: 5px;
+      -o-border-radius: 5px;
+  
+      transition-duration: 0.4s;
+  }
+  
+  #printbutton:hover, #et-button:hover {
+      background-color: #F0F0F0;
+      color: black;
+      width: 110px;
+      border-color: rgba(38,174,144,0.7);
+      font-weight: 700;
+      letter-spacing: 0.7px;
+      
+    }
+  
+  .et-diane {
+    font-weight: 700;
+    font-size: 0.4cm;
+    line-height: 0.8cm;
+  }
+  
+  .et-nom{
+    font-size: 0.4cm;
+    line-height: 0.8cm;
+  }
+  
+  .et-animal{
+    font-size: 0.6cm;
+    font-weight: 700;
+    line-height: 0.6cm;
+  }
+  
+  .et-date{
+    font-size: 0.4cm;
+    line-height: 0.6cm;
+  }
+
+@media print {
+
+  *{
+    margin: 0;
+    padding: 0;
+  }
+    
+  body{
+    font-family: verdana, arial;
+  }
+
+  body{
+    margin: 0;
+    padding: 0;
+    border-box: none;
+    border: 0;
+  }
+
+  .et-table, .et-button{
+    border: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  #tableEtiquettes tr{
+    height: 3.38cm;
+    page-break-inside: avoid; 
+    page-break-after: auto;
+  }
+
+
+  button, nav, header, footer{
+    display: none;
+  }
+
+}
