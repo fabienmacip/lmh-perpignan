@@ -4,6 +4,7 @@
 
 // Fin du chargement de la page.
 $(document).ready(() => {
+  //$('.hide-partenaires').hide()
 let pageMission ='';
 /*   if (pageMission = document.getElementById('form-create-mission'))  {
       // ########### PLANQUES ##############
@@ -17,7 +18,7 @@ let pageMission ='';
 
       // On affecte la liste des agents dans une variable en JS
       let listeAgents = [];
-      // On les trie selon la spécialité, afin d'obliger à choisir au moins un agent de la même
+8      // On les trie selon la spécialité, afin d'obliger à choisir au moins un agent de la même
       // spécialité que la mission
       let listeSpecialitesDesAgents = [];
       $('#listeAgents div input[type=checkbox]').each(function(){
@@ -63,7 +64,7 @@ let pageMission ='';
         //majListeAgents($('#cible'+this.value).val(),$('#paysCible'+this.value).val(), listeAgents);
         majListeAgents(listeCibles, listeAgents);
       });
-8
+
       // Activer le bouton de validation du formulaire de création d'agent quand on a choisi au moins
       // un agent de la bonne spécialité
       $('#form-create-mission #listeAgents div input[type=checkbox]').on('click', function() {
@@ -129,6 +130,13 @@ function handleClickPrint(){
 
 
 // ##############  UNIVERS  ###################
+
+function switchUnivers(num){
+  $('.univers-to-switch').toggle()
+  $('#univers-'+num).toggle()
+  $('.show-partenaires-'+num).toggle()
+}
+
 
 // Affiche le formulaire de modification de l'univers
 function displayUpdateUnivers(id, nom, surnom){

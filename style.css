@@ -42,15 +42,25 @@
   max-width: 100%;
 }
 /* ********** UNIVERS ************ */
+#tout-afficher{
+  display: none;
+}
+
+
 .univers-sticker{
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  max-width: 100%;
+  min-height: 250px;
   margin: 5px;
-  
   border: 1px solid #777;
   border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
+}
+
+/* ****************** PARTENAIRES ************************** */
+.hide-partenaires{
+  display: none;
 }
 
 /* ****************** ETIQUETTES ************************** */

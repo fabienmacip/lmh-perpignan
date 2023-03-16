@@ -7,6 +7,7 @@ class Univers
     private $id;
     private $nom;
     private $surnom;
+    private $image;
     private $actif;
     
     public function afficher($id)
@@ -40,5 +41,9 @@ class Univers
         return $this->surnom;
     }
 
+    public function getImage()
+    {
+        return $this->image;
+    }
 
 }
