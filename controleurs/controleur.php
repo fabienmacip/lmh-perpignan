@@ -85,37 +85,37 @@ class Controleur {
     }
 
 
-    // ANIMAL - CRUD
+    // PARTENAIRE - CRUD
 
-    public function listerAnimal()
+    public function listerPartenaire()
     {
-        $animals = new Animals($this->pdo);
-        $animals = $animals->listerAnimal();
-        require_once('vues/liste-animal.php');
+        $partenaires = new Partenaires($this->pdo);
+        $partenaires = $partenaires->lister();
+        require_once('vues/liste-partenaire.php');
     }
 
-    public function createAnimal($nom)
+    public function createPartenaire($nom, $univers)
     {
-        $animals = new Animals($this->pdo);
-        $animalToCreate = $animals->createAnimal($nom);
-        $animals = $animals->listerAnimal();
-        require_once('vues/liste-animal.php');
+        $partenaires = new Partenaires($this->pdo);
+        $partenaireToCreate = $partenaires->create($nom, $univers);
+        $partenaires = $partenaires->lister();
+        require_once('vues/liste-partenaire.php');
     }
 
-    public function updateAnimal($id, $nom)
+    public function updatePartenaire($id, $nom, $univers)
     {
-        $animals = new Animals($this->pdo);
-        $animalToUpdate = $animals->updateAnimal($id, $nom);
-        $animals = $animals->listerAnimal();
-        require_once('vues/liste-animal.php');
+        $partenaires = new Partenaires($this->pdo);
+        $partenaireToUpdate = $partenaires->update($id, $nom, $univers);
+        $partenaires = $partenaires->lister();
+        require_once('vues/liste-partenaire.php');
     }
 
-    public function deleteAnimal($id,$nom)
+    public function deletePartenaire($id,$nom)
     {
-        $animals = new Animals($this->pdo);
-        $animalToDelete = $animals->deleteAnimal($id, $nom);
-        $animals = $animals->listerAnimal();
-        require_once('vues/liste-animal.php');
+        $partenaires = new Partenaires($this->pdo);
+        $partenaireToDelete = $partenaires->delete($id, $nom);
+        $partenaires = $partenaires->lister();
+        require_once('vues/liste-partenaire.php');
     }
 
 // DATE - CRUD

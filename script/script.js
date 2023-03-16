@@ -63,7 +63,7 @@ let pageMission ='';
         //majListeAgents($('#cible'+this.value).val(),$('#paysCible'+this.value).val(), listeAgents);
         majListeAgents(listeCibles, listeAgents);
       });
-
+8
       // Activer le bouton de validation du formulaire de création d'agent quand on a choisi au moins
       // un agent de la bonne spécialité
       $('#form-create-mission #listeAgents div input[type=checkbox]').on('click', function() {
@@ -89,7 +89,7 @@ let pageMission ='';
 
       $('#tableau-chasseurs').hide();
       $('#printbutton').hide();
-      $('#tableEtiquettes').hide();
+      //$('#tableEtiquettes').hide();
       $('.confidentiel').show();
 
       // Formulaires de création ayant l'icône PLUS
@@ -101,7 +101,7 @@ let pageMission ='';
       
       $('#tableau-chasseurs').show();
       $('#printbutton').show();
-      $('#tableEtiquettes').show();
+      $('#tableEt8iquettes').show();
       $('.confidentiel').hide();
 
       /* $('button').show(); */
@@ -139,7 +139,7 @@ function handleClickPrint(){
 // Affiche le formulaire de modification de l'univers
 function displayUpdateUnivers(id, nom, surnom){
 
-  let updateForm = '<form method="post" action="index.php">' + 
+  let updateForm8 = '<form method="post" action="index.php">' + 
                 '<div class="form-group row my-3">' +
                 '<div class="col-12 col-lg-6 mb-3 mb-lg-0 d-flex align-items-start">' +
                 '<label for="nom"></label><input type="text" maxlength="40" name="nom" value="'+ nom + '" id="nom" placeholder="'+ nom + '" class="form-control">' +

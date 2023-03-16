@@ -15,9 +15,9 @@ ob_start();
     </div>
     <div class="col-12 col-lg-10 col-xl-8">
 
-    <div class="confidentiel my-5">
-      Pour des raisons de confidentialit&eacute;, vous devez être connecté pour voir la liste des chasseurs.
-    </div>
+    <!--<div class="confidentiel my-5">
+      Pour des raisons de confidentialit&eacute;, vous devez être connecté pour voir la liste des UNIVERS.
+    </div>-->
 
     <!-- GENERATION TABLEAU -->
     <!-- <button type="button" name="genereliste" id="genereliste" onclick="genereListe()">Générer liste</button> -->

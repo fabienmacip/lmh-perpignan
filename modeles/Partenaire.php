@@ -1,27 +1,28 @@
 <?php
 
-class Animal
+class Partenaire
 {
     use Modele;
 
     private $id;
     private $nom;
+    private $univers;
     private $actif;
     
-    public function afficherAnimal($id)
+    public function afficher($id)
     {
         if (!is_null($this->pdo)) {
-            $stmt = $this->pdo->prepare('SELECT * FROM animaux WHERE id = ?');
+            $stmt = $this->pdo->prepare('SELECT * FROM partenaire WHERE id = ?');
         }
-        $animal = null;
+        $tuple = null;
         if ($stmt->execute([$id])) {
-            $animal = $stmt->fetchObject('Animal',[$this->pdo]);
-            if (!is_object($animal)) {
-                $animal = null;
+            $tuple = $stmt->fetchObject('Partenaire',[$this->pdo]);
+            if (!is_object($tuple)) {
+                $tuple = null;
             }
         }
         $stmt->closeCursor();
-        return $animal;
+        return $tuple;
     }
 
     public function getId()
@@ -32,6 +33,11 @@ class Animal
     public function getNom()
     {
         return $this->nom;
+    }
+
+    public function getUnivers()
+    {
+        return $this->univers;
     }
 
     public function getActif()
