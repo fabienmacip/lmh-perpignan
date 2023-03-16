@@ -87,9 +87,6 @@ let pageMission ='';
 
       $('.add-link').hide();
 
-      $('#tableau-chasseurs').hide();
-      $('#printbutton').hide();
-      //$('#tableEtiquettes').hide();
       $('.confidentiel').show();
 
       // Formulaires de création ayant l'icône PLUS
@@ -99,9 +96,6 @@ let pageMission ='';
     } else {
       $('form').show();
       
-      $('#tableau-chasseurs').show();
-      $('#printbutton').show();
-      $('#tableEt8iquettes').show();
       $('.confidentiel').hide();
 
       /* $('button').show(); */
@@ -184,12 +178,15 @@ function confirmeSuppressionUnivers(id,nom){
 // ##############  PARTENAIRE  ###################
 
 // Affiche le formulaire de modification du partenaire
-function displayUpdatePartenaire(id, nom, surnom){
+function displayUpdatePartenaire(id, nom, univers){
 
   let updateForm = '<form method="post" action="index.php">' + 
                 '<div class="form-group row my-3">' +
                 '<div class="col-12 col-lg-6 mb-3 mb-lg-0 d-flex align-items-start">' +
                 '<label for="nom"></label><input type="text" maxlength="40" name="nom" value="'+ nom + '" id="nom" placeholder="'+ nom + '" class="form-control">' +
+                '</div>' +
+                '<div class="col-12 col-lg-6 mb-3 mb-lg-0 d-flex align-items-start">' +
+                '<label for="univers"></label><input type="text" maxlength="20" name="univers" value="'+ univers + '" id="univers" placeholder="'+ univers + '" class="form-control">' +
                 '</div>' +
                 '<div class="col-12 col-lg-6 d-fle4x justify-content-around align-items-start mt-2"><input type="hidden" name="idPartenaireToUpdate" id="idPartenaireToUpdate" value="' + id + '">' +
                 '<input type="hidden" name="action" id="action" value="updatePartenaire">' +
@@ -201,7 +198,7 @@ function displayUpdatePartenaire(id, nom, surnom){
 
   //let codeAConserver = $(`#tr${id}`);
   let codeAConserver = $('#tr'+id);
-  $('#tr'+id).replaceWith("<tr id='tr"+id+"'><td colspan='4'>" + updateForm + "</td></tr>");
+  $('#tr'+id).replaceWith("<tr id='tr"+id+"'><td colspan='5'>" + updateForm + "</td></tr>");
 
   // On frise tous les autres boutons "Modifier"
   $('.updatePartenaire').prop('disabled',true);

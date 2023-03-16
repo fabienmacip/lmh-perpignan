@@ -79,10 +79,10 @@ elseif (isset($_POST['page']) && 'universs' === $_POST['page'] && isset($_POST['
 // PARTENAIRE - CRUD
 // PARTENAIRE - CREATE
 elseif (isset($_POST['page']) && 'partenaires' === $_POST['page'] && isset($_POST['action']) && 'createPartenaire' === $_POST['action'] && isset($_POST['nom'])) {
-    $controleur->createPartenaire($_POST['nom']);
+    $controleur->createPartenaire($_POST['nom'], $_POST['univers']);
 // PARTENAIRE - UPDATE
 } elseif (isset($_POST['page']) && 'partenaires' === $_POST['page'] && isset($_POST['action']) && 'updatePartenaire' === $_POST['action'] && isset($_POST['nom'])) {
-    $controleur->updatePartenaire($_POST['idPartenaireToUpdate'],$_POST['nom']);
+    $controleur->updatePartenaire($_POST['idPartenaireToUpdate'],$_POST['nom'],$_POST['univers']);
 // PARTENAIRE - DELETE
 } elseif (isset($_GET['page']) && 'partenaires' === $_GET['page'] && isset($_GET['action']) && 'delete' === $_GET['action'] && isset($_GET['id']) && isset($_GET['nom'])) {
     $controleur->deletePartenaire($_GET['id'],$_GET['nom']);

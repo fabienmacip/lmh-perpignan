@@ -91,14 +91,17 @@ ob_start();
                             </td>
                             <td>
                                 <!--<a href="pays.php?action=edit&id=--><?php //$pays->getId() ?><!--" class="link-secondary">-->
-                                <button type="button" id="updatePartenaire<?= $partenaire->getId() ?>" class="updatePartenaire btn-primary inactif-force" 
-                                    onclick=displayUpdatePartenaire(<?php echo $partenaire->getId().",'".str_replace(" ","&nbsp;",$partenaire->getNom())."'" ?>)
+                                <button type="button" id="updatePartenaire<?= $partenaire->getId() ?>" class="updatePartenaire btn-primary" 
+                                    onclick=displayUpdatePartenaire(<?php echo $partenaire->getId().",'"
+                                    .str_replace(" ","&nbsp;",$partenaire->getNom())."','"
+                                    .str_replace(" ","&nbsp;",$partenaire->getUnivers()).
+                                    "'" ?>)
                                     >
                                     Modifier
                                 </button>
                             </td>
                             <td>
-                                <button type="submit" class="btn-primary inactif-force" onclick=confirmeSuppressionPartenaire(<?php echo $partenaire->getId().',"'.str_replace(" ","&nbsp;",$partenaire->getNom()).'"' ?>)4>
+                                <button type="submit" class="btn-primary" onclick=confirmeSuppressionPartenaire(<?php echo $partenaire->getId().',"'.str_replace(" ","&nbsp;",$partenaire->getNom()).'"' ?>)>
                                     Supprimer
                                 </button>
                                 </form>
