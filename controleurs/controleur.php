@@ -6,10 +6,10 @@ class Controleur {
 
     public function afficherMissions()
     {
-        $payss = new Payss($this->pdo);
-        $payss = $payss->listerPays();
+        $universs = new Universs($this->pdo);
+        $universs = $universs->lister();
         $pdo = $this->pdo;
-        require_once('vues/liste-pays.php');
+        require_once('vues/liste-univers.php');
     }
 
     public function connexion() {
@@ -42,8 +42,8 @@ class Controleur {
 
     public function accueil()
     {
-        $payss = new Payss($this->pdo);
-        $payss = $payss->listerPays();
+        $universs = new Universs($this->pdo);
+        $universs = $universs->lister();
         $animals = new Animals($this->pdo);
         $animals = $animals->listerAnimal();
         $dates = new MyDates($this->pdo);
@@ -51,37 +51,37 @@ class Controleur {
         require_once('vues/accueil.php');
     }
     
-    // PAYS - CRUD
+    // UNIVERS - CRUD
 
-    public function listerPays()
+    public function listerUnivers()
     {
-        $payss = new Payss($this->pdo);
-        $payss = $payss->listerPays();
-        require_once('vues/liste-pays.php');
+        $universs = new Universs($this->pdo);
+        $universs = $universs->lister();
+        require_once('vues/liste-univers.php');
     }
 
-    public function createPays($nom, $prenom)
+    public function createUnivers($nom, $surnom)
     {
-        $payss = new Payss($this->pdo);
-        $paysToCreate = $payss->createPays($nom, $prenom);
-        $payss = $payss->listerPays();
-        require_once('vues/liste-pays.php');
+        $universs = new Universs($this->pdo);
+        $universToCreate = $universs->create($nom, $surnom);
+        $universs = $universs->lister();
+        require_once('vues/liste-univers.php');
     }
 
-    public function updatePays($id, $nom, $prenom)
+    public function updateUnivers($id, $nom, $surnom)
     {
-        $payss = new Payss($this->pdo);
-        $paysToUpdate = $payss->updatePays($id, $nom, $prenom);
-        $payss = $payss->listerPays();
-        require_once('vues/liste-pays.php');
+        $universs = new Universs($this->pdo);
+        $universToUpdate = $universs->update($id, $nom, $surnom);
+        $universs = $universs->lister();
+        require_once('vues/liste-univers.php');
     }
 
-    public function deletePays($id,$nom)
+    public function deleteUnivers($id,$nom)
     {
-        $payss = new Payss($this->pdo);
-        $paysToDelete = $payss->deletePays($id, $nom);
-        $payss = $payss->listerPays();
-        require_once('vues/liste-pays.php');
+        $universs = new Universs($this->pdo);
+        $universToDelete = $universs->delete($id, $nom);
+        $universs = $universs->lister();
+        require_once('vues/liste-univers.php');
     }
 
 

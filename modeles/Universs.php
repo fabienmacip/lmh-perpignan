@@ -1,6 +1,6 @@
 <?php
 
-class Universss
+class Universs
 {
     use Modele;
 
@@ -12,9 +12,10 @@ class Universss
         }
         $tuples = [];
         while ($tuple = $stmt->fetchObject('Univers', [$this->pdo])) {
-            $tuyples[] = $tuple;
+            $tuples[] = $tuple;
         }
         $stmt->closeCursor();
+
         return $tuples;
     }
 
@@ -91,7 +92,7 @@ class Universss
 
 
     // DELETE
-    //Supprime 1 pays de la BDD.
+    //Supprime 1 tuple de la BDD.
     public function delete($id, $nom)
     {
         if (!is_null($this->pdo)) {

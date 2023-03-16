@@ -134,22 +134,22 @@ function handleClickPrint(){
 }
 
 
-// ##############  PAYS/CHASSEUR  ###################
+// ##############  UNIVERS  ###################
 
-// Affiche le formulaire de modification du pays
-function displayUpdatePays(id, nom, prenom){
+// Affiche le formulaire de modification de l'univers
+function displayUpdateUnivers(id, nom, surnom){
 
   let updateForm = '<form method="post" action="index.php">' + 
                 '<div class="form-group row my-3">' +
                 '<div class="col-12 col-lg-6 mb-3 mb-lg-0 d-flex align-items-start">' +
-                '<label for="nom"></label><input type="text" maxlength="50" name="nom" value="'+ nom + '" id="nom" placeholder="'+ nom + '" class="form-control">' +
+                '<label for="nom"></label><input type="text" maxlength="40" name="nom" value="'+ nom + '" id="nom" placeholder="'+ nom + '" class="form-control">' +
                 '</div>' +
                 '<div class="col-12 col-lg-6 mb-3 mb-lg-0 d-flex align-items-start">' +
-                '<label for="prenom"></label><input type="text" maxlength="50" name="prenom" value="'+ prenom + '" id="prenom" placeholder="'+ prenom + '" class="form-control">' +
+                '<label for="surnom"></label><input type="text" maxlength="40" name="surnom" value="'+ surnom + '" id="surnom" placeholder="'+ surnom + '" class="form-control">' +
                 '</div>' +
-                '<div class="col-12 col-lg-6 d-flex justify-content-around align-items-start mt-2"><input type="hidden" name="idPaysToUpdate" id="idPaysToUpdate" value="' + id + '">' +
-                '<input type="hidden" name="action" id="action" value="updatePays">' +
-                '<input type="hidden" name="page" id="page" value="payss">' +
+                '<div class="col-12 col-lg-6 d-flex justify-content-around align-items-start mt-2"><input type="hidden" name="idUniversToUpdate" id="idUniversToUpdate" value="' + id + '">' +
+                '<input type="hidden" name="action" id="action" value="updateUnivers">' +
+                '<input type="hidden" name="page" id="page" value="universs">' +
                 '<button type="reset" class="btn btn-primary">Reset</button>' +
                 '<button type="button" id="annuler" class="btn btn-primary">Annuler</button>' +
                 '<button type="submit" class="btn btn-primary">Envoyer</button></div></div>' +
@@ -160,20 +160,20 @@ function displayUpdatePays(id, nom, prenom){
   $('#tr'+id).replaceWith("<tr id='tr"+id+"'><td colspan='5'>" + updateForm + "</td></tr>");
 
   // On frise tous les autres boutons "Modifier"
-  $('.updatePays').prop('disabled',true);
-
+  $('.updateUnivers').prop('disabled',true);
+8
 
   // Si on clique sur ANNULER, on ré-affiche la ligne normale -> codeAConserver
   $( "#annuler" ).click(function() {
     $('#tr'+id).replaceWith(codeAConserver);
-    $('.updatePays').prop('disabled',false);
+    $('.updateUnivers').prop('disabled',false);
   });
 }
 
-// Confirme suppression d'un Pays
-function confirmeSuppressionPays(id,nom){
+// Confirme suppression d'un Univers
+function confirmeSuppressionUnivers(id,nom){
   
-  let lien = "index.php?page=payss&action=delete&id=" + id + "&nom="+ nom;
+  let lien = "index.php?page=universs&action=delete&id=" + id + "&nom="+ nom;
 
   if(confirm("Supprimer " + nom + " ?")){
     window.location.href = lien;

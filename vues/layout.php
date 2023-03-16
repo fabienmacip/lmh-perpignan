@@ -37,7 +37,7 @@
 <input type="hidden" id=isAdmin value="<?= $isAdmin ?>">
 
 <header>
-    <h1 class="text-center my-2">DIANE LESPIGNAISE - Etiquettes</h1>
+    <h1 class="text-center my-2">LA MAISON DE L'HABITAT - PERPIGNAN</h1>
 </header>
 <section>
     <nav class="navbar navbar-light bg-light navbar-expand-lg" style="--bs-scroll-height: 10rem;">
@@ -55,7 +55,7 @@
 
 
                 <li class="nav-item"><a href="index.php?page=accueil" class="nav-link">Accueil</a></li>
-                <li class="nav-item"><a href="index.php?page=payss" class="nav-link">Chasseurs</a></li>
+                <li class="nav-item"><a href="index.php?page=universs" class="nav-link">Univers</a></li>
                 <li class="nav-item"><a href="index.php?page=dates" class="nav-link">Dates</a></li>
                 <li class="nav-item"><a href="index.php?page=animals" class="nav-link">Animaux</a></li>
                 

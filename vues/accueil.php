@@ -25,7 +25,7 @@ ob_start();
     <table id="tableEtiquettes" class="et-table">
     <tbody>
       <!-- Rappel : pays = chasseur -->
-      <?php foreach ($payss as $pays): ?>
+      <?php foreach ($universs as $univers): ?>
         <?php
            foreach ($animals as $animal): 
         
@@ -35,17 +35,17 @@ ob_start();
               <tr>
                 <td>
                   <?= $diane ?>
-                  <div class='et-nom'><?= $pays->getNom() ?> <?= $pays->getPrenom() ?></div>
+                  <div class='et-nom'><?= $univers->getNom() ?> <?= $univers->getSurnom() ?></div>
                   <div class='et-animal'><?= $animal->getNom() ?></div>
                   <div class='et-date <?= $animal->getPolice() ?>'><?= $date->getDateLong() ?></div>
                 </td>
                 <td>
                   <?= $diane ?>
-                  <div class='et-nom'><?= $pays->getNom() ?> <?= $pays->getPrenom() ?></div>
+                  <div class='et-nom'><?= $univers->getNom() ?> <?= $univers->getSurnom() ?></div>
                   <div class='et-animal'><?= $animal->getNom() ?></div>
                   <div class='et-date <?= $animal->getPolice() ?>'><?= $date->getDateLong() ?></div>
                 </td>
-              </tr>
+                </tr>
 
               <?php endforeach; 
               } elseif($animal->getNom() === "LIEVRE") {
@@ -54,13 +54,13 @@ ob_start();
               <tr>
                 <td>
                   <?= $diane ?>
-                  <div class='et-nom'><?= $pays->getNom() ?> <?= $pays->getPrenom() ?></div>
+                  <div class='et-nom'><?= $univers->getNom() ?> <?= $univers->getSurnom() ?></div>
                   <div class='et-animal'>LIEVRE</div>
                   <div class='et-date police-blanche'>X</div>
                 </td>
                 <td>
                   <?= $diane ?>
-                  <div class='et-nom'><?= $pays->getNom() ?> <?= $pays->getPrenom() ?></div>
+                  <div class='et-nom'><?= $univers->getNom() ?> <?= $univers->getSurnom() ?></div>
                   <div class='et-animal'>LIEVRE</div>
                   <div class='et-date police-blanche'>X</div>
                 </td>

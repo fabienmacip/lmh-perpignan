@@ -16,8 +16,8 @@ require_once('modeles/ConnectMe.php');
 
 require_once('controleurs/controleur.php');
 require_once('modeles/Modele.php');
-require_once('modeles/Pays.php');
-require_once('modeles/Payss.php');
+require_once('modeles/Univers.php');
+require_once('modeles/Universs.php');
 require_once('modeles/Animal.php');
 require_once('modeles/Animals.php');
 require_once('modeles/MyDate.php');
@@ -61,19 +61,19 @@ if(isset($_GET['page']) && 'connexion' === $_GET['page']) {
 } else if (isset($_GET['page']) && 'deconnexion' === $_GET['page']) {
     $controleur->deconnexion();
 
-}// CHASSEUR - CRUD
-// CHASSEUR - CREATE
-elseif (isset($_POST['page']) && 'payss' === $_POST['page'] && isset($_POST['action']) && 'createPays' === $_POST['action'] && isset($_POST['nom']) && isset($_POST['prenom'])) {
-    $controleur->createPays($_POST['nom'],$_POST['prenom']);
-// CHASSEUR - UPDATE
-} elseif (isset($_POST['page']) && 'payss' === $_POST['page'] && isset($_POST['action']) && 'updatePays' === $_POST['action'] && isset($_POST['nom']) && isset($_POST['prenom'])) {
-    $controleur->updatePays($_POST['idPaysToUpdate'],$_POST['nom'],$_POST['prenom']);
-// CHASSEUR - DELETE
-} elseif (isset($_GET['page']) && 'payss' === $_GET['page'] && isset($_GET['action']) && 'delete' === $_GET['action'] && isset($_GET['id']) && isset($_GET['nom'])) {
-    $controleur->deletePays($_GET['id'],$_GET['nom']);
-// CHASSEUR - READ
-} elseif (isset($_GET['page']) && 'payss' === $_GET['page'] && !isset($_GET['action'])) {
-    $controleur->listerPays();
+}// UNIVERS - CRUD
+// UNIVERS - CREATE
+elseif (isset($_POST['page']) && 'universs' === $_POST['page'] && isset($_POST['action']) && 'createUnivers' === $_POST['action'] && isset($_POST['nom']) && isset($_POST['surnom'])) {
+    $controleur->createUnivers($_POST['nom'],$_POST['surnom']);
+// UNIVERS - UPDATE
+} elseif (isset($_POST['page']) && 'universs' === $_POST['page'] && isset($_POST['action']) && 'updateUnivers' === $_POST['action'] && isset($_POST['nom']) && isset($_POST['surnom'])) {
+    $controleur->updateUnivers($_POST['idUniversToUpdate'],$_POST['nom'],$_POST['surnom']);
+// UNIVERS - DELETE
+} elseif (isset($_GET['page']) && 'universs' === $_GET['page'] && isset($_GET['action']) && 'delete' === $_GET['action'] && isset($_GET['id']) && isset($_GET['nom'])) {
+    $controleur->deleteUnivers($_GET['id'],$_GET['nom']);
+// UNIVERS - READ
+} elseif (isset($_GET['page']) && 'universs' === $_GET['page'] && !isset($_GET['action'])) {
+    $controleur->listerUnivers();
 }
 
 // ANIMAL - CRUD
