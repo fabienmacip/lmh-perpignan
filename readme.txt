@@ -10,8 +10,7 @@ Dans la BDD, créer la table.
 Dans Modèles, ajouter les 2 classes.
 Dans index.php, modifier le CRUD.
 Dans controleur.php, modifier le CRUD.
-Dans VUES, modifier "vues-monentite.php".
+Dans VUES, modifier "liste-monentite.php".
 Dans SCRIPTS, modifier displayUpdateEntite et confirmeSuppressionEntite.
 
 
-liste-partenaire.php ligne 94

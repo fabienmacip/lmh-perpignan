@@ -181,19 +181,19 @@ function confirmeSuppressionUnivers(id,nom){
   } 
 }
 
-// ##############  ANIMAL  ###################
+// ##############  PARTENAIRE  ###################
 
-// Affiche le formulaire de modification de l'animal
-function displayUpdateAnimal(id, nom){
+// Affiche le formulaire de modification du partenaire
+function displayUpdatePartenaire(id, nom, surnom){
 
   let updateForm = '<form method="post" action="index.php">' + 
                 '<div class="form-group row my-3">' +
                 '<div class="col-12 col-lg-6 mb-3 mb-lg-0 d-flex align-items-start">' +
-                '<label for="nom"></label><input type="text" maxlength="50" name="nom" value="'+ nom + '" id="nom" placeholder="'+ nom + '" class="form-control">' +
+                '<label for="nom"></label><input type="text" maxlength="40" name="nom" value="'+ nom + '" id="nom" placeholder="'+ nom + '" class="form-control">' +
                 '</div>' +
-                '<div class="col-12 col-lg-6 d-flex justify-content-around align-items-start mt-2"><input type="hidden" name="idAnimalToUpdate" id="idAnimalToUpdate" value="' + id + '">' +
-                '<input type="hidden" name="action" id="action" value="updateAnimal">' +
-                '<input type="hidden" name="page" id="page" value="animals">' +
+                '<div class="col-12 col-lg-6 d-fle4x justify-content-around align-items-start mt-2"><input type="hidden" name="idPartenaireToUpdate" id="idPartenaireToUpdate" value="' + id + '">' +
+                '<input type="hidden" name="action" id="action" value="updatePartenaire">' +
+                '<input type="hidden" name="page" id="page" value="partenaires">' +
                 '<button type="reset" class="btn btn-primary">Reset</button>' +
                 '<button type="button" id="annuler" class="btn btn-primary">Annuler</button>' +
                 '<button type="submit" class="btn btn-primary">Envoyer</button></div></div>' +
@@ -204,20 +204,20 @@ function displayUpdateAnimal(id, nom){
   $('#tr'+id).replaceWith("<tr id='tr"+id+"'><td colspan='4'>" + updateForm + "</td></tr>");
 
   // On frise tous les autres boutons "Modifier"
-  $('.updateAnimal').prop('disabled',true);
+  $('.updatePartenaire').prop('disabled',true);
 
 
   // Si on clique sur ANNULER, on ré-affiche la ligne normale -> codeAConserver
   $( "#annuler" ).click(function() {
     $('#tr'+id).replaceWith(codeAConserver);
-    $('.updateAnimal').prop('disabled',false);
+    $('.updatePartenaire').prop('disabled',false);
   });
 }
 
-// Confirme suppression d'un Animal
-function confirmeSuppressionAnimal(id,nom){
+// Confirme suppression d'un PARTENAIRE
+function confirmeSuppressionPartenaire(id,nom){
   
-  let lien = "index.php?page=animals&action=delete&id=" + id + "&nom="+ nom;
+  let lien = "index.php?page=partenaires&action=delete&id=" + id + "&nom="+ nom;
 
   if(confirm("Supprimer " + nom + " ?")){
     window.location.href = lien;

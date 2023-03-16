@@ -44,8 +44,8 @@ class Controleur {
     {
         $universs = new Universs($this->pdo);
         $universs = $universs->lister();
-        $animals = new Animals($this->pdo);
-        $animals = $animals->listerAnimal();
+        $partenaires = new Partenaires($this->pdo);
+        $partenaires = $partenaires->lister();
         $dates = new MyDates($this->pdo);
         $dates = $dates->listerDate();
         require_once('vues/accueil.php');
