@@ -24,6 +24,12 @@
     <?php }
     ?>
 
+<link rel="shortcut icon" type="image/x-icon" href="img/icon/favicon.ico">
+<link rel="icon" type="image/png" sizes="192x192" href="img/icon/android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="img/icon/android-chrome-512x512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="img/icon/apple-touch-icon-180x180.png">
+
+
 </head>
 <body id="body">
 

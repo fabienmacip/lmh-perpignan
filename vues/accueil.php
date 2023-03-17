@@ -1,5 +1,5 @@
 <?php
-$titre = 'Accueil';
+$titre = 'La Maison de l\'Habitat by La Centrale de Financement - Accueil';
 
 $diane = "<div class='et-diane'>DIANE LESPIGNANAISE</div>";
 
@@ -24,20 +24,34 @@ ob_start();
             <?= $univers->getSurnom() ?>
           </div>
         </div>
+      </div><!--FIN UNIVERS -->
           <?php
             $universActuelId = $univers->getId();
             $partenairesDeLUnivers = array_filter($partenaires, function($el) use ($universActuelId) {
               return in_array($universActuelId,$el->getUniversArray());
             });
-  
+            
             foreach ($partenairesDeLUnivers as $partenaire): 
           ?>
-          <div class="show-partenaires-<?= $universActuelId ?> hide-partenaires">
-            <?= $univers->getNom() ?> -> <?= $partenaire->getNom() ?>
+          <div 
+            id="partenaire-<?= $partenaire->getId() ?> "
+            class="show-partenaires-<?= $universActuelId ?> hide-partenaires col-12 col-sm-6 col-lg-4 "
+            onclick=""  
+          >
+            <div 
+              class="partenaire-sticker p-1"
+              style="background-image: url(img/partenaire/<?= $partenaire->getImage() ?>)"
+            >
+              <h3>
+                <?= $partenaire->getNom() ?>
+              </h3>
+              <div>
+                <?= $partenaire->getNom() ?>
+              </div>
+            </div>
           </div>
           
           <?php endforeach; ?>
-        </div>
       <?php endforeach; ?>
 
   </div>

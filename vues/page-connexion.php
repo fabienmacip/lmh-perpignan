@@ -14,7 +14,7 @@ require_once('modeles/ConnectMe.php');
 
 ////////////////////////////////////////////////////////////////
 
-$titre = 'Liste des types de planques';
+$titre = 'La Maison de l\'Habitat by La Centrale de Financement - Liste des types de planques';
 ob_start();
 ?>
 

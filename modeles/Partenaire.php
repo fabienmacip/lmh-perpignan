@@ -7,6 +7,7 @@ class Partenaire
     private $id;
     private $nom;
     private $univers;
+    private $image;
     private $actif;
     
     public function afficher($id)
@@ -42,6 +43,10 @@ class Partenaire
 
     public function getUniversArray(){
         return explode(",",$this->univers);
+    }
+
+    public function getImage(){
+        return $this->image;
     }
 
     public function getActif()

@@ -1,5 +1,5 @@
 <?php
-$titre = 'Liste des partenaires';
+$titre = 'La Maison de l\'Habitat by La Centrale de Financement - Liste des partenaires';
 ob_start();
 ?>
 <div class="container">

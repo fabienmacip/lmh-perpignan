@@ -1,5 +1,5 @@
 <?php
-$titre = 'Liste des univers';
+$titre = 'La Maison de l\'Habitat by La Centrale de Financement - Liste des univers';
 ob_start();
 ?>
 <div class="container">

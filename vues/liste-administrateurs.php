@@ -1,5 +1,5 @@
 <?php
-$titre = 'Liste des administrateurs';
+$titre = 'La Maison de l\'Habitat by La Centrale de Financement - Liste des administrateurs';
 ob_start();
 ?>
 <div class="container">
