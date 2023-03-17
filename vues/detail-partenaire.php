@@ -5,11 +5,12 @@ ob_start();
 <div class="container">
   <div class="row">
     <div class="col-0 col-lg-1 col-xl-2">
+    <a href="index.php?page=accueil&backtounivers=<?= $univers ?>" class="nav-link"><<< Accueil</a><br><br>
         <?= $partenaire->getId() ?><br><br>
         <?= $partenaire->getNom() ?><br><br>
         <?= $partenaire->getDescriptionBreve() ?><br><br>
         <?= $partenaire->getImage() ?><br><br>
-        <?= $univers ?>
+        
     </div>
   </div>
 </div>

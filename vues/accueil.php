@@ -21,11 +21,18 @@ ob_start();
     <span id="croix-close-partenaire" onclick=closePartenaireDetail()>--X--</span>    
     </div>
 
+
+
     <?php foreach ($universs as $univers): ?>
       <div 
       id="univers-<?= $univers->getId() ?>"
       class="col-12 col-sm-6 col-lg-4 univers-to-switch" 
       onclick=switchUnivers(<?= $univers->getId() ?>) 
+      <?php
+        if($backToUnivers != 0 && $backToUnivers != $univers->getId()){ ?>
+          style="display: none"
+        <?php }
+      ?>
       >
         <div class="univers-sticker p-1" style="background-image: url(img/univers/<?= $univers->getImage() ?>)">
           <div>
@@ -48,7 +55,12 @@ ob_start();
             id="partenaire-<?= $partenaire->getId() ?>"
             class="show-partenaires-<?= $universActuelId ?> hide-partenaires col-12 col-sm-6 col-lg-4"
             onclick='window.location.href="index.php?page=partenaire&id=<?= $partenaire->getId() ?>&univers=<?= $univers->getId() ?>"'
-          >
+            <?php
+              if($backToUnivers != 0 && $backToUnivers == $universActuelId){ ?>
+                style="display: block"
+              <?php }
+            ?>
+            >
             <div 
               class="partenaire-sticker p-1"
               style="background-image: url(img/partenaire/<?= $partenaire->getImage() ?>)"
@@ -69,8 +81,6 @@ ob_start();
 
   </div>
 </div>
-
-
 
 <?php
 $contenu = ob_get_clean();

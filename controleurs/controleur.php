@@ -40,7 +40,7 @@ class Controleur {
 
     // ACCUEIL
 
-    public function accueil()
+    public function accueil($backToUnivers = 0)
     {
         $universs = new Universs($this->pdo);
         $universs = $universs->lister();
@@ -48,6 +48,7 @@ class Controleur {
         $partenaires = $partenaires->lister();
         $dates = new MyDates($this->pdo);
         $dates = $dates->listerDate();
+        $backToUnivers = $backToUnivers;
         require_once('vues/accueil.php');
     }
     

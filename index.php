@@ -127,6 +127,10 @@ elseif (isset($_GET['page']) && 'partenaire' === $_GET['page'] && isset($_GET['i
     $controleur->affichePartenaire($_GET['id'], $_GET['univers']);
 }
 else {
-    $controleur->accueil();
+    if(isset($_GET['backtounivers'])){
+        $controleur->accueil($_GET['backtounivers']);
+    } else {
+        $controleur->accueil();
+    }
 }
 
