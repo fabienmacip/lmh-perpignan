@@ -121,6 +121,10 @@ elseif (isset($_POST['page']) && 'administrateurs' === $_POST['page'] && isset($
 // ADMINISTRATEURS - READ
 } elseif (isset($_GET['page']) && 'administrateurs' === $_GET['page']) {
     $controleur->listerAdministrateurs();
+} 
+
+elseif (isset($_GET['page']) && 'partenaire' === $_GET['page'] && isset($_GET['id']) && isset($_GET['univers'])) {
+    $controleur->affichePartenaire($_GET['id'], $_GET['univers']);
 }
 else {
     $controleur->accueil();

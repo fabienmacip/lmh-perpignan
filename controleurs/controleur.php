@@ -118,6 +118,16 @@ class Controleur {
         require_once('vues/liste-partenaire.php');
     }
 
+// PAGE D'UN PARTENAIRE
+
+public function affichePartenaire($id, $univers)
+{
+    $partenaire = new Partenaire($this->pdo);
+    $partenaire = $partenaire->afficher($id);
+    $univers = $univers;
+    require_once('vues/detail-partenaire.php');   
+}
+
 // DATE - CRUD
 
 public function listerDate()

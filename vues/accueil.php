@@ -17,7 +17,7 @@ ob_start();
       class="col-12 p-1"
       
     > 
-    <div id="partenaire-detail-texte">TEST</div>
+    <div id="partenaire-detail-texte"></div>
     <span id="croix-close-partenaire" onclick=closePartenaireDetail()>--X--</span>    
     </div>
 
@@ -47,7 +47,7 @@ ob_start();
           <div 
             id="partenaire-<?= $partenaire->getId() ?>"
             class="show-partenaires-<?= $universActuelId ?> hide-partenaires col-12 col-sm-6 col-lg-4"
-            onclick=displayPartenaireDetail(<?= $partenaire->getId() ?>)  
+            onclick='window.location.href="index.php?page=partenaire&id=<?= $partenaire->getId() ?>&univers=<?= $univers->getId() ?>"'
           >
             <div 
               class="partenaire-sticker p-1"
