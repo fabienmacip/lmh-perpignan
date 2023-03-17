@@ -63,7 +63,7 @@
                 <li class="nav-item"><a href="index.php?page=accueil" class="nav-link">Accueil</a></li>
                 <li class="nav-item"><a href="index.php?page=universs" class="nav-link">Univers</a></li>
                 <li class="nav-item"><a href="index.php?page=partenaires" class="nav-link">Partenaires</a></li>
-                <li class="nav-item"><a href="index.php?page=dates" class="nav-link">Dates</a></li>
+                <!--<li class="nav-item"><a href="index.php?page=partenaire" class="nav-link">Partenaire</a></li>-->
                 
                 <?php 
                 if(!isset($_SESSION['admin']) || $_SESSION['admin'] !== 1) { ?>

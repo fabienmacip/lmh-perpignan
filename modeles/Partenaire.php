@@ -8,6 +8,7 @@ class Partenaire
     private $nom;
     private $univers;
     private $image;
+    private $description;
     private $actif;
     
     public function afficher($id)
@@ -47,6 +48,11 @@ class Partenaire
 
     public function getImage(){
         return $this->image;
+    }
+
+    public function getDescriptionBreve(){
+        return "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias id qui architecto repudiandae...";
+        //return $this->description;
     }
 
     public function getActif()

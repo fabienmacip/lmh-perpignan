@@ -56,10 +56,36 @@
   margin: 5px;
   border: 1px solid #777;
   border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+.univers-sticker>div{
+  background-color: rgba(38,174,144,0.7);
+  display: flex;
+  flex-flow: column;
+  padding: 1rem;
+  margin-top: 10%;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
 }
 
 /* ****************** PARTENAIRES ************************** */
 .hide-partenaires{
+  display: none;
+}
+
+#croix-close-partenaire{
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+#partenaire-detail{
   display: none;
 }
 
@@ -72,6 +98,24 @@
   margin: 5px;
   border: 1px solid #777;
   border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+.partenaire-sticker>div{
+  background-color: rgba(174, 115, 38, 0.7);
+  display: flex;
+  flex-flow: column;
+  padding: 1rem;
+  margin-top: 5%;
+  color: white;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
 }
 
 /* ****************** ETIQUETTES ************************** */

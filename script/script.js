@@ -230,6 +230,16 @@ function confirmeSuppressionPartenaire(id,nom){
   } 
 }
 
+function displayPartenaireDetail(detail){
+  $('#partenaire-detail').show()
+  $('#partenaire-detail-texte').html("coucou")
+  console.log($('#partenaire-detail').html())
+
+}
+
+function closePartenaireDetail(){
+  $('#partenaire-detail').hide()
+}
 
 // ##############  DATE  ###################
 

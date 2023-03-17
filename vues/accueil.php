@@ -12,6 +12,15 @@ ob_start();
 <div class="container m-0 mt-3 max-width-100vw">
   <div class="row max-width-100percent">
     
+    <div 
+      id="partenaire-detail" 
+      class="col-12 p-1"
+      
+    > 
+    <div id="partenaire-detail-texte">TEST</div>
+    <span id="croix-close-partenaire" onclick=closePartenaireDetail()>--X--</span>    
+    </div>
+
     <?php foreach ($universs as $univers): ?>
       <div 
       id="univers-<?= $univers->getId() ?>"
@@ -19,9 +28,11 @@ ob_start();
       onclick=switchUnivers(<?= $univers->getId() ?>) 
       >
         <div class="univers-sticker p-1" style="background-image: url(img/univers/<?= $univers->getImage() ?>)">
-          <h2><?= $univers->getNom() ?></h2>
           <div>
-            <?= $univers->getSurnom() ?>
+            <h2><?= $univers->getNom() ?></h2>
+            <div>
+              <?= $univers->getSurnom() ?>
+            </div>
           </div>
         </div>
       </div><!--FIN UNIVERS -->
@@ -34,20 +45,22 @@ ob_start();
             foreach ($partenairesDeLUnivers as $partenaire): 
           ?>
           <div 
-            id="partenaire-<?= $partenaire->getId() ?> "
-            class="show-partenaires-<?= $universActuelId ?> hide-partenaires col-12 col-sm-6 col-lg-4 "
-            onclick=""  
+            id="partenaire-<?= $partenaire->getId() ?>"
+            class="show-partenaires-<?= $universActuelId ?> hide-partenaires col-12 col-sm-6 col-lg-4"
+            onclick=displayPartenaireDetail(<?= $partenaire->getId() ?>)  
           >
             <div 
               class="partenaire-sticker p-1"
               style="background-image: url(img/partenaire/<?= $partenaire->getImage() ?>)"
             >
-              <h3>
-                <?= $partenaire->getNom() ?>
-              </h3>
               <div>
-                <?= $partenaire->getNom() ?>
-              </div>
+                <h3>
+                    <?= $partenaire->getNom() ?>
+                  </h3>
+                  <div>
+                    <?= $partenaire->getDescriptionBreve() ?>
+                  </div>
+              </div>  
             </div>
           </div>
           
