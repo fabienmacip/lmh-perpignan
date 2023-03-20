@@ -19,6 +19,19 @@ class Universs
         return $tuples;
     }
 
+    public function listerOrderById()
+    {
+        if (!is_null($this->pdo)) {
+            $stmt = $this->pdo->query('SELECT * FROM univers ORDER BY id');
+        }
+        $tuples = [];
+        while ($tuple = $stmt->fetchObject('Univers', [$this->pdo])) {
+            $tuples[] = $tuple;
+        }
+        $stmt->closeCursor();
+
+        return $tuples;
+    }
     // READ pour listes déroulantes
     public function listerJson()
     {

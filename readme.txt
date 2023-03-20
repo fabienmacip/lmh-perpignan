@@ -1,8 +1,14 @@
-Dans cette appli, copiée de SPY, l'entité PAYS correspond à la table de BDD "Chasseurs".
+TODO
+
+Afficher les partenaires non-actifs si on est connecté
+Afficher que les partenaires actifs si on n'est pas connecté
+
+Formulaire "Devenir partenaire"
+
+Page PARTENAIRE, UNIVERS, ADMINISTRATEUR : afficher uniquement si connecté.
 
 
-  <tr><td><?= $diane ?><br/><span class='et-nom'><?= $pays->getNom() ?> <?= $pays->getPrenom() ?></span><br/><span class='et-animal'><?= $animal->getNom() ?></span><br/><span class='et-date'><?= $date->getDateLong() ?></span></td>
-  <td><?= $diane ?><br/><span class='et-nom'><?= $pays->getNom() ?> <?= $pays->getPrenom() ?></span><br/><span class='et-animal'><?= $animal->getNom() ?></span><br/><span class='et-date'><?= $date->getDateLong() ?></span></td></tr>
+
 
 
 --- Modif/Ajout entité ---

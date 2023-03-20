@@ -50,13 +50,15 @@ class Partenaires
 
 
     // CREATE
-    public function create($nom, $univers) {
+    public function create($nom, $univers, $actif = 1, $mail = '', $telephone = '') {
         if (!is_null($this->pdo)) {
             try {
                 // Requête mysql pour insérer des données
-                $sql = "INSERT INTO partenaire (nom, univers) VALUES (:nom, :univers)";
+                $aInserer = array(":nom"=>$nom, "mail"=>$mail, "telephone"=>$telephone, "univers"=>$univers, "actif"=>$actif);
+                if($actif != 1) { $actif = 0; }
+                $sql = "INSERT INTO partenaire (nom, mail, telephone, univers, actif) VALUES (:nom, :mail, :telephone, :univers, :actif)";
                 $res = $this->pdo->prepare($sql);
-                $exec = $res->execute(array(":nom"=>$nom, "univers"=>$univers));
+                $exec = $res->execute($aInserer);
                 if($exec){
                     $tupleCreated = "Le partenaire <b>".strtoupper($nom)."</b> a bien été ajouté.";
                 }
@@ -70,13 +72,19 @@ class Partenaires
     }
 
     // UPDATE
-    public function update($id,$nom,$univers) {
+    public function update($id,$nom,$univers, $mail = '', $telephone = '', $actif = '') {
         if (!is_null($this->pdo)) {
             try {
                 // Requête mysql pour insérer des données
-                $sql = "UPDATE partenaire SET nom = (:nom), univers = (:univers) WHERE id = (:id)";
+                $aInserer = array(":nom"=>$nom, ":mail"=>$mail, "telephone"=>$telephone, ":univers"=>$univers, ":id"=>$id);
+                if($actif == 1 || $actif != '') {
+                    array_push($aInserer, $actif);
+                    $sql = "UPDATE partenaire SET nom = (:nom), mail = (:mail), telephone = (:telephone), univers = (:univers), actif = (:actif) WHERE id = (:id)";
+                } else {
+                    $sql = "UPDATE partenaire SET nom = (:nom), mail = (:mail), telephone = (:telephone), univers = (:univers) WHERE id = (:id)";
+                }
                 $res = $this->pdo->prepare($sql);
-                $exec = $res->execute(array(":nom"=>$nom, ":univers"=>$univers, ":id"=>$id));
+                $exec = $res->execute($aInserer);
                 if($exec){
                     $tupleUpdated = "Le partenaire <b>".strtoupper($nom)."</b> a bien été modifié.";
                 }

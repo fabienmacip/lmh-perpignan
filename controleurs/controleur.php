@@ -92,22 +92,28 @@ class Controleur {
     {
         $partenaires = new Partenaires($this->pdo);
         $partenaires = $partenaires->lister();
+        $universs = new Universs($this->pdo);
+        $universs = $universs ->listerOrderById();
         require_once('vues/liste-partenaire.php');
     }
 
-    public function createPartenaire($nom, $univers)
+    public function createPartenaire($nom, $univers, $actif, $mail, $telephone)
     {
         $partenaires = new Partenaires($this->pdo);
-        $partenaireToCreate = $partenaires->create($nom, $univers);
+        $partenaireToCreate = $partenaires->create($nom, $univers, $actif, $mail, $telephone);
         $partenaires = $partenaires->lister();
+        $universs = new Universs($this->pdo);
+        $universs = $universs ->listerOrderById();
         require_once('vues/liste-partenaire.php');
     }
 
-    public function updatePartenaire($id, $nom, $univers)
+    public function updatePartenaire($id, $nom, $univers, $mail, $telephone, $actif = '')
     {
         $partenaires = new Partenaires($this->pdo);
-        $partenaireToUpdate = $partenaires->update($id, $nom, $univers);
+        $partenaireToUpdate = $partenaires->update($id, $nom, $univers, $mail, $telephone, $actif);
         $partenaires = $partenaires->lister();
+        $universs = new Universs($this->pdo);
+        $universs = $universs ->listerOrderById();
         require_once('vues/liste-partenaire.php');
     }
 
@@ -116,6 +122,8 @@ class Controleur {
         $partenaires = new Partenaires($this->pdo);
         $partenaireToDelete = $partenaires->delete($id, $nom);
         $partenaires = $partenaires->lister();
+        $universs = new Universs($this->pdo);
+        $universs = $universs ->listerOrderById();
         require_once('vues/liste-partenaire.php');
     }
 
@@ -128,6 +136,13 @@ public function affichePartenaire($id, $univers)
     $univers = $univers;
     require_once('vues/detail-partenaire.php');   
 }
+
+// DEVENIR PARTENAIRE
+public function devenirPartenaire()
+{
+    require_once('vues/devenir-partenaire.php');
+}
+
 
 // DATE - CRUD
 

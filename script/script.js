@@ -186,7 +186,7 @@ function confirmeSuppressionUnivers(id,nom){
 // ##############  PARTENAIRE  ###################
 
 // Affiche le formulaire de modification du partenaire
-function displayUpdatePartenaire(id, nom, univers){
+function displayUpdatePartenaire(id, nom, mail = '', telephone = '', univers){
 
   let updateForm = '<form method="post" action="index.php">' + 
                 '<div class="form-group row my-3">' +
@@ -194,9 +194,15 @@ function displayUpdatePartenaire(id, nom, univers){
                 '<label for="nom"></label><input type="text" maxlength="40" name="nom" value="'+ nom + '" id="nom" placeholder="'+ nom + '" class="form-control">' +
                 '</div>' +
                 '<div class="col-12 col-lg-6 mb-3 mb-lg-0 d-flex align-items-start">' +
+                '<label for="mail"></label><input type="mail" maxlength="40" name="mail" value="'+ mail + '" id="mail" placeholder="'+ mail + '" class="form-control">' +
+                '</div>' +
+                '<div class="col-12 col-lg-6 mb-3 mb-lg-0 d-flex align-items-start">' +
+                '<label for="telephone"></label><input type="text" maxlength="15" name="telephone" value="'+ telephone + '" id="telephone" placeholder="'+ telephone + '" class="form-control">' +
+                '</div>' +
+                '<div class="col-12 col-lg-6 mb-3 mb-lg-0 d-flex align-items-start">' +
                 '<label for="univers"></label><input type="text" maxlength="20" name="univers" value="'+ univers + '" id="univers" placeholder="'+ univers + '" class="form-control">' +
                 '</div>' +
-                '<div class="col-12 col-lg-6 d-fle4x justify-content-around align-items-start mt-2"><input type="hidden" name="idPartenaireToUpdate" id="idPartenaireToUpdate" value="' + id + '">' +
+                '<div class="col-12 col-lg-6 d-flex justify-content-around align-items-start mt-2"><input type="hidden" name="idPartenaireToUpdate" id="idPartenaireToUpdate" value="' + id + '">' +
                 '<input type="hidden" name="action" id="action" value="updatePartenaire">' +
                 '<input type="hidden" name="page" id="page" value="partenaires">' +
                 '<button type="reset" class="btn btn-primary">Reset</button>' +
@@ -206,7 +212,7 @@ function displayUpdatePartenaire(id, nom, univers){
 
   //let codeAConserver = $(`#tr${id}`);
   let codeAConserver = $('#tr'+id);
-  $('#tr'+id).replaceWith("<tr id='tr"+id+"'><td colspan='5'>" + updateForm + "</td></tr>");
+  $('#tr'+id).replaceWith("<tr id='tr"+id+"'><td colspan='7'>" + updateForm + "</td></tr>");
 
   // On frise tous les autres boutons "Modifier"
   $('.updatePartenaire').prop('disabled',true);

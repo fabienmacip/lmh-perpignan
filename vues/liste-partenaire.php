@@ -43,9 +43,14 @@ ob_start();
                     <!-- <label for="nom">Nom du pays</label> -->
                     <!-- <label for="nom">Nom de famille</label> -->
                     <input type="text" name="nom" class="form-control" maxlength="40" id="nom" placeholder="Saisissez le nom du partenaire">
+                    <input type="mail" name="mail" class="form-control" maxlength="40" id="mail" placeholder="Saisissez le mail du partenaire">
+                    <input type="text" name="telephone" class="form-control" maxlength="15" id="telephone" placeholder="Saisissez le tél. du partenaire">
+                    <input type="text" name="univers" class="form-control" maxlength="15" id="univers" placeholder="Saisissez les univers, séparés par des virgules et sans espaces">
                 </div>
                 <div class="form-group mb-2">
-                <!-- <div class="col-12 col-md-4 mt-3 mt-md-0"> -->
+                    <!-- <div class="col-12 col-md-4 mt-3 mt-md-0"> -->
+                    <input type="hidden" name="actif" id="actif" value="1">
+                    <!--<input type="hidden" name="univers" id="univers" value="">-->
                     <input type="hidden" name="action" id="action" value="createPartenaire">
                     <input type="hidden" name="page" id="page" value="partenaires">
                     <button type="reset" class="btn btn-primary">Reset</button>
@@ -57,6 +62,12 @@ ob_start();
         
         <!-- ******************** FIN FORM AJOUT PARTENAIRE ************************* -->
 
+    <div>
+        Univers : <br>
+        <?php foreach($universs as $univers): ?>
+        <?= $univers->getId() ?>. <?= $univers->getNom() ?>
+        <?php endforeach; ?>
+    </div>
 
     <div class="table-responsive">
         
@@ -65,7 +76,9 @@ ob_start();
             <thead class="table-dark">
                   <tr>
                       <th width="10%">N°</th>
-                      <th width="35%">Nom</th>
+                      <th width="15%">Nom</th>
+                      <th width="10%">Mail</th>
+                      <th width="10%">Téléphone</th>
                       <th width="15%">Univers</th>
                       <th width="20%"></th>
                       <th width="20%"></th>
@@ -87,6 +100,12 @@ ob_start();
                                 <?= $partenaire->getNom() ?>
                             </td>
                             <td>
+                                <?= $partenaire->getMail() ?>
+                            </td>
+                            <td>
+                                <?= $partenaire->getTelephone() ?>
+                            </td>
+                            <td>
                                 <?= $partenaire->getUnivers() ?>
                             </td>
                             <td>
@@ -94,6 +113,8 @@ ob_start();
                                 <button type="button" id="updatePartenaire<?= $partenaire->getId() ?>" class="updatePartenaire btn-primary" 
                                     onclick=displayUpdatePartenaire(<?php echo $partenaire->getId().",'"
                                     .str_replace(" ","&nbsp;",$partenaire->getNom())."','"
+                                    .str_replace(" ","&nbsp;",$partenaire->getMail())."','"
+                                    .str_replace(" ","&nbsp;",$partenaire->getTelephone())."','"
                                     .str_replace(" ","&nbsp;",$partenaire->getUnivers()).
                                     "'" ?>)
                                     >
