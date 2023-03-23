@@ -3,11 +3,9 @@ TODO
 Afficher les partenaires non-actifs si on est connecté
 Afficher que les partenaires actifs si on n'est pas connecté
 
-Formulaire "Devenir partenaire"
-
 Page PARTENAIRE, UNIVERS, ADMINISTRATEUR : afficher uniquement si connecté.
 
-
+Comptage des clics
 
 
 
