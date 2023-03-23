@@ -104,9 +104,6 @@ let pageMission ='';
       $('.inactif-force').prop('disabled',true);
       $('#les-admins #tr1 [type=button]').prop('disabled',true).css('background-color','grey').css('border-color','grey');
     }
-    
-
-
 
 
 }) // FIN DU document.READY
@@ -128,6 +125,10 @@ function handleClickPrint(){
   return window.print();
 }
 
+
+function lienFormDevenirPartenaire(){
+  $('input#nom').focus()
+}
 
 // ##############  UNIVERS  ###################
 
@@ -163,7 +164,7 @@ function displayUpdateUnivers(id, nom, surnom){
 
   // On frise tous les autres boutons "Modifier"
   $('.updateUnivers').prop('disabled',true);
-8
+
 
   // Si on clique sur ANNULER, on ré-affiche la ligne normale -> codeAConserver
   $( "#annuler" ).click(function() {

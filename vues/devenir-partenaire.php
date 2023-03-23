@@ -4,16 +4,33 @@ ob_start();
 ?>
 <div class="container">
     <div class="row">
-      <div class="col-0 col-lg-1 col-xl-2">
-          DEVENIR PARTENAIRE
+      <div class="col-12 col-lg-6 col-xl-6">
+          <a href="#form-create-devenir-partenaire" id="lien-form-devenir-partenaire" onclick="lienFormDevenirPartenaire()">DEVENIR PARTENAIRE</a>
+          <p>
+            <h3>
+                Pourquoi adhérer ?
+            </h3>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis totam corporis laborum, similique quaerat fugit facere sapiente amet rerum nobis tenetur sit incidunt, sed natus quos reiciendis commodi eveniet vero!
+          </p>
+          <p>
+            <h3>Mise à disposition de salle de réunion.</h3>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum fuga molestiae inventore distinctio excepturi ex molestias ratione accusamus, possimus veritatis.
+          </p>
+          <p>
+            <h3>Mise à disposition de 2 bureaux</h3>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi aspernatur dolore harum facere omnis impedit non laboriosam accusamus ut dolorem!
+          </p>
+          <p>
+            <h3>Référencement produit & entreprise.</h3>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium voluptatem quo laudantium, vel consequatur officiis cum natus fugit nisi non incidunt quas, aperiam, harum qui error ab! Quia, pariatur vitae?
+          </p>
           <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, hic consequuntur! Voluptatum mollitia odit enim iste inventore delectus maxime in voluptate quibusdam. Consequatur perspiciatis aliquid nihil et voluptate necessitatibus consequuntur illo quam deserunt quis est a veniam, nobis iste commodi quo harum recusandae reiciendis quaerat, vero aperiam? Autem, excepturi reiciendis!
           </p>
+          <a href="#form-create-devenir-partenaire" id="lien-form-devenir-partenaire" onclick="lienFormDevenirPartenaire()">DEVENIR PARTENAIRE</a>
       
       </div>
-    <div class="col-0 col-lg-1 col-xl-2">
-    </div>
-    <div class="col-12 col-lg-10 col-xl-8">
+    <div class="col-12 col-lg-6 col-xl-6">
 
         <!-- ######################## DEBUT FORM CANDIDATURE PARTENAIRE #################### -->
         

@@ -88,7 +88,7 @@ elseif (isset($_POST['page']) && 'partenaires' === $_POST['page'] && isset($_POS
     $controleur->deletePartenaire($_GET['id'],$_GET['nom']);
 // PARTENAIRE - READ
 } elseif (isset($_GET['page']) && 'partenaires' === $_GET['page'] && !isset($_GET['action'])) {
-    $controleur->listerPartenaire();
+    $controleur->listerPartenaire($_GET['actif']);
 }
 
 // DATE - CRUD
@@ -129,6 +129,9 @@ elseif (isset($_GET['page']) && 'partenaire' === $_GET['page'] && isset($_GET['i
 
 elseif (isset($_GET['page']) && 'devenir-partenaire' === $_GET['page']){
     $controleur->devenirPartenaire();
+}
+elseif (isset($_POST['page']) && 'devenir-partenaire' === $_POST['page'] && isset($_POST['action']) && 'createDevenirPartenaire' === $_POST['action']){
+    $controleur->devenirPartenaireCreation($_POST['nom'], '', 0, $_POST['mail'], $_POST['telephone']);
 }
 else {
     if(isset($_GET['backtounivers'])){

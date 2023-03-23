@@ -88,10 +88,10 @@ class Controleur {
 
     // PARTENAIRE - CRUD
 
-    public function listerPartenaire()
+    public function listerPartenaire($actif = 1)
     {
         $partenaires = new Partenaires($this->pdo);
-        $partenaires = $partenaires->lister();
+        $partenaires = $partenaires->lister($actif);
         $universs = new Universs($this->pdo);
         $universs = $universs ->listerOrderById();
         require_once('vues/liste-partenaire.php');
@@ -140,6 +140,12 @@ public function affichePartenaire($id, $univers)
 // DEVENIR PARTENAIRE
 public function devenirPartenaire()
 {
+    require_once('vues/devenir-partenaire.php');
+}
+
+public function devenirPartenaireCreation($nom, $univers, $actif, $mail, $telephone){
+    $partenaires = new Partenaires($this->pdo);
+    $partenaireToCreate = $partenaires->create($nom, $univers, $actif, $mail, $telephone);
     require_once('vues/devenir-partenaire.php');
 }
 

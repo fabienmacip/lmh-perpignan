@@ -5,10 +5,16 @@ class Partenaires
     use Modele;
 
     // READ
-    public function lister()
+    public function lister($actif = 1)
     {
+        if($actif == 2){
+            $actif = '';
+        }
+        else {
+            $actif = 'WHERE actif ='.$actif.' ';
+        }
         if (!is_null($this->pdo)) {
-            $stmt = $this->pdo->query('SELECT * FROM partenaire ORDER BY nom');
+            $stmt = $this->pdo->query('SELECT * FROM partenaire '.$actif.' ORDER BY nom');
         }
         $tuples = [];
         while ($tuple = $stmt->fetchObject('Partenaire', [$this->pdo])) {

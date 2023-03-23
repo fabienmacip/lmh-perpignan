@@ -6,11 +6,20 @@ ob_start();
   <div class="row">
     <div class="col-0 col-lg-1 col-xl-2">
     <a href="index.php?page=accueil&backtounivers=<?= $univers ?>" class="nav-link"><<< Accueil</a><br><br>
-        <?= $partenaire->getId() ?><br><br>
-        <?= $partenaire->getNom() ?><br><br>
-        <?= $partenaire->getDescriptionBreve() ?><br><br>
-        <?= $partenaire->getImage() ?><br><br>
-        
+    </div>
+
+    <div>
+      <img 
+        src="img/partenaire/<?= $partenaire->getImage() ?>" 
+        alt="<?= $partenaire->getImage() ?>"
+        class="partenaire-logo"
+      /><br><br>
+    </div>
+    <div>
+      <b>Identifiant :</b> <?= $partenaire->getId() ?><br><br>
+      <b>Nom :</b> <?= $partenaire->getNom() ?><br><br>
+      <b>Description courte :</b> <?= $partenaire->getDescriptionBreve() ?><br><br>
+      <b>Description complète :</b> <?= $partenaire->getDescription() ?><br><br>
     </div>
   </div>
 </div>

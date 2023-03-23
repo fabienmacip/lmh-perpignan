@@ -62,6 +62,10 @@ class Partenaire
         return $this->image;
     }
 
+    public function getDescription(){
+        return $this->description;
+    }
+    
     public function getDescriptionBreve(){
         return "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias id qui architecto repudiandae...";
         //return $this->description;
@@ -71,6 +75,7 @@ class Partenaire
     {
         return $this->actif;
     }
+
 
     public function getPolice() {
         return $this->actif == 0 ? "police-blanche" : "";
