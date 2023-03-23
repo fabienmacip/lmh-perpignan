@@ -86,6 +86,9 @@ elseif (isset($_POST['page']) && 'partenaires' === $_POST['page'] && isset($_POS
 // PARTENAIRE - DELETE
 } elseif (isset($_GET['page']) && 'partenaires' === $_GET['page'] && isset($_GET['action']) && 'delete' === $_GET['action'] && isset($_GET['id']) && isset($_GET['nom'])) {
     $controleur->deletePartenaire($_GET['id'],$_GET['nom']);
+// PARTENAIRE - TOGGLE ACTIF/INACTIF
+} elseif (isset($_GET['page']) && 'partenaires' === $_GET['page'] && isset($_GET['action']) && 'toggleactif' === $_GET['action'] && isset($_GET['id']) && isset($_GET['nom']) && isset($_GET['activation'])) {
+    $controleur->toggleActifPartenaire($_GET['id'],$_GET['nom'],$_GET['activation']);
 // PARTENAIRE - READ
 } elseif (isset($_GET['page']) && 'partenaires' === $_GET['page'] && !isset($_GET['action'])) {
     $controleur->listerPartenaire($_GET['actif']);

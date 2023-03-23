@@ -104,6 +104,35 @@ class Partenaires
     }
 
 
+    public function toggleActif($id,$nom,$actif)
+    {
+        if (!is_null($this->pdo)) {
+            try {
+                if($actif == 0){
+                    $actif = 1;
+                } else {
+                    $actif = 0;
+                }
+                // Requête mysql pour insérer des données
+                $aInserer = array(":actif"=>$actif, ":id"=>$id);
+                    $sql = "UPDATE partenaire SET actif = (:actif) WHERE id = (:id)";
+                
+                $res = $this->pdo->prepare($sql);
+                $exec = $res->execute($aInserer);
+                if($exec){
+                    $msgActif = $actif == 0 ? 'désactivé' : 'activé';
+                    $tupleUpdated = "Le partenaire <b>".strtoupper($nom)."</b> a bien été ".$msgActif.".";
+                }
+            }
+            catch(Exception $e) {
+                
+                $tupleUpdated = "Le partenaire <b>".$nom."</b> n'a pas pu être modifié.<br/><br/>".$e;
+            }
+        }
+        
+        return $tupleUpdated;
+    }
+
     // DELETE2
     //Supprime 1 pays de la BDD.
     public function delete($id, $nom)

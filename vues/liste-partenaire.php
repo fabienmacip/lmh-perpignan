@@ -9,6 +9,13 @@ ob_start();
     <div class="col-12 col-lg-10 col-xl-8">
 
     <?php
+        if(isset($partenairesToggle)) {?>
+        <div class="partenaire-updated"><?= $partenairesToggle ?></div>
+        <?php
+        }
+    ?>
+
+    <?php
         if(isset($partenaireToDelete)) {?>
         <div class="partenaire-deleted"><?= $partenaireToDelete ?></div>
         <?php
@@ -80,8 +87,8 @@ ob_start();
                       <th width="10%">Mail</th>
                       <th width="10%">Téléphone</th>
                       <th width="15%">Univers</th>
-                      <th width="20%"></th>
-                      <th width="20%"></th>
+                      <th width="10%"></th>
+                      <th width="30%"></th>
                     </tr>
                 </thead>
               
@@ -109,6 +116,19 @@ ob_start();
                                 <?= $partenaire->getUnivers() ?>
                             </td>
                             <td>
+                            <form method="post" action="index.php" id="form-toggle-actif-partenaire<?= $partenaire->getId() ?>">
+                            <button 
+                                    type="button" 
+                                    id="toggleActifPartenaire<?= $partenaire->getId() ?>" 
+                                    class="updatepartenaire btn-primary"
+                                    onclick=confirmeTogglePartenaire(<?php echo $partenaire->getId().',"'.str_replace(" ","&nbsp;",$partenaire->getNom()).'",'.$partenaire->getActif() ?>)
+                                    >
+                                    <?php if($partenaire->getActif() == 1){ $libelActif = 'Désactiver';} else { $libelActif = 'Activer';} ?>
+                                    <?= $libelActif ?>
+                                </button>    
+                            </form>
+                            </td>
+                                <td>
                                 <!--<a href="pays.php?action=edit&id=--><?php //$pays->getId() ?><!--" class="link-secondary">-->
                                 <button type="button" id="updatePartenaire<?= $partenaire->getId() ?>" class="updatePartenaire btn-primary" 
                                     onclick=displayUpdatePartenaire(<?php echo $partenaire->getId().",'"
@@ -120,9 +140,8 @@ ob_start();
                                     >
                                     Modifier
                                 </button>
-                            </td>
-                            <td>
-                                <button type="submit" class="btn-primary" onclick=confirmeSuppressionPartenaire(<?php echo $partenaire->getId().',"'.str_replace(" ","&nbsp;",$partenaire->getNom()).'"' ?>)>
+                                <button type="submit" class="btn-primary" 
+                                onclick=confirmeSuppressionPartenaire(<?php echo $partenaire->getId().',"'.str_replace(" ","&nbsp;",$partenaire->getNom()).'"' ?>)>
                                     Supprimer
                                 </button>
                                 </form>

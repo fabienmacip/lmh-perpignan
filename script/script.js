@@ -237,6 +237,18 @@ function confirmeSuppressionPartenaire(id,nom){
   } 
 }
 
+function confirmeTogglePartenaire(id, nom, actif){
+  let lien = "index.php?page=partenaires&actif="+actif+"&action=toggleactif&id=" + id + "&nom="+ nom + "&activation=" + actif;
+
+  let libelleActif = actif == 0 ? 'Activer' : 'Désactiver'
+
+  if(confirm(libelleActif + " " + nom + " ?")){
+    window.location.href = lien;
+      
+  } 
+
+}
+
 function displayPartenaireDetail(detail){
   $('#partenaire-detail').show()
   $('#partenaire-detail-texte').html("coucou")

@@ -127,6 +127,18 @@ class Controleur {
         require_once('vues/liste-partenaire.php');
     }
 
+    public function toggleActifPartenaire($id,$nom,$actif)
+    {
+        $partenairesToggle = new Partenaires($this->pdo);
+        $partenairesToggle = $partenairesToggle->toggleActif($id,$nom,$actif);
+        //$actif = intval($actif);
+        $partenaires = new Partenaires($this->pdo);
+        $partenaires = $partenaires->lister($actif);
+        $universs = new Universs($this->pdo);
+        $universs = $universs ->listerOrderById();
+        require_once('vues/liste-partenaire.php');
+    }
+
 // PAGE D'UN PARTENAIRE
 
 public function affichePartenaire($id, $univers)
