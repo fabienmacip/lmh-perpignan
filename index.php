@@ -136,6 +136,11 @@ elseif (isset($_GET['page']) && 'devenir-partenaire' === $_GET['page']){
 elseif (isset($_POST['page']) && 'devenir-partenaire' === $_POST['page'] && isset($_POST['action']) && 'createDevenirPartenaire' === $_POST['action']){
     $controleur->devenirPartenaireCreation($_POST['nom'], '', 0, $_POST['mail'], $_POST['telephone']);
 }
+
+elseif (isset($_GET['page']) && 'reserver' === $_GET['page']){
+    $controleur->pageReserver();
+}
+
 else {
     if(isset($_GET['backtounivers'])){
         $controleur->accueil($_GET['backtounivers']);

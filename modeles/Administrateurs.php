@@ -18,6 +18,23 @@ class Administrateurs
         return $liste;
     }
 
+    public function listerId($id)
+    {
+        if (!is_null($this->pdo)) {
+            //$stmt = $this->pdo->query('SELECT * FROM administrateur WHERE id = :id');
+            $sql = 'SELECT * FROM administrateur WHERE id = :id';
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute(['id' => $id]);
+        }
+        $liste = [];
+        while ($element = $stmt->fetchObject('Administrateur',[$this->pdo])) {
+            $liste[] = $element;
+        }
+        $stmt->closeCursor();
+        return $liste;
+    }
+
+
     // CREATE
     public function create($nom, $prenom, $mail, $mot_de_passe) {
         if (!is_null($this->pdo)) {
@@ -100,7 +117,12 @@ class Administrateurs
         }
         $reponse = $stmt->fetchObject('Administrateur',[$this->pdo]);
         
-        return ($reponse && password_verify($password, $reponse->getMotDePasse()));
+        //return ($reponse && password_verify($password, $reponse->getMotDePasse()));
+        if(($reponse && password_verify($password, $reponse->getMotDePasse()))){
+            $_SESSION['partenaire'] = $reponse->getPartenaire();
+            $_SESSION['admin'] = $reponse->getRole();
+            return $reponse->getId();
+        }
         
     }
 }

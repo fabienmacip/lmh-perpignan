@@ -27,12 +27,13 @@ class Controleur {
     public function verifConnexion($mail,$password) {
         $admin = new Administrateurs($this->pdo);
         $messageConnexion = "";
-        if($admin->verifConnexion($mail,$password)) {
-            $_SESSION['admin'] = 1;
+        //if($admin->verifConnexion($mail,$password)) {
+            if($admin->verifConnexion($mail,$password) > 0) {
+            //$_SESSION['admin'] = 1;
             /* $this->afficherMissions(); */
             $this->accueil();
         } else {
-            $_SESSION['admin'] = 0;
+            session_destroy();
             $messageConnexion = "Identifiant ou mot de passe erroné(s).";
             require_once('vues/page-connexion.php');
         }
@@ -195,7 +196,12 @@ public function deleteDate($id,$date)
     require_once('vues/liste-date.php');
 }
 
+// RESERVER
 
+public function pageReserver()
+{
+    require_once('vues/page-reserver.php');
+}
 
 // ADMINISTRATEUR - CRUD
 

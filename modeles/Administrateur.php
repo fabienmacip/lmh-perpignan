@@ -10,6 +10,7 @@ class Administrateur
     private $mail;
     private $date_creation;
     private $mot_de_passe;
+    private $partenaire;
     
     public function afficher($id)
     {
@@ -57,5 +58,19 @@ class Administrateur
         return $this->mot_de_passe;
     }
 
+    public function getPartenaire()
+    {
+        return $this->partenaire;
+    }
 
+    public function getRole()
+    {
+        $role = 0;
+        if($this->getPartenaire() == 0) {
+            $role = 1;
+        } else {
+            $role = 2;
+        }
+        return $role;
+    }
 }
