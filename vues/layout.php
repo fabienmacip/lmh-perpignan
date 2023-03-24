@@ -89,6 +89,11 @@
                 } else { ?>
                     <li class="nav-item"><a href="index.php?page=reserver" class="nav-link">Réserver</a></li>
                     <?php
+                    if(isset($_SESSION['admin']) && $_SESSION['admin'] == 2){?>
+                        <li class="nav-item"><a href="index.php?page=chngmdppart" class="nav-link">Mot de passe</a></li>
+                    <?php
+                    }
+                    
                     if(isset($_SESSION['admin']) && $_SESSION['admin'] == 1){
                     ?>
                     <li class="nav-item"><a href="index.php?page=universs" class="nav-link">Univers</a></li>

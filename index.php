@@ -141,6 +141,10 @@ elseif (isset($_GET['page']) && 'reserver' === $_GET['page']){
     $controleur->pageReserver();
 }
 
+elseif (isset($_GET['page']) && 'chngmdppart' === $_GET['page']){
+    $controleur->pageChangeMdpPartenaire();
+}
+
 else {
     if(isset($_GET['backtounivers'])){
         $controleur->accueil($_GET['backtounivers']);

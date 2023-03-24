@@ -203,6 +203,12 @@ public function pageReserver()
     require_once('vues/page-reserver.php');
 }
 
+// MOT de PASSE PARTENAIRE
+public function pageChangeMdpPartenaire()
+{
+    require_once('vues/page-mdp-partenaire.php');
+}
+
 // ADMINISTRATEUR - CRUD
 
     public function listerAdministrateurs()

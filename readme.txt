@@ -2,9 +2,8 @@ TODO
 
 Comptage des clics
 
-saisie mot de passe partenaire
+saisie mot de passe partenaire : page dédiée
 
-Afficher menu réservation SI CONNECTE -> $_S2
 Réservation salles / bureaux.
 Page Tarifs ???
 
