@@ -59,6 +59,7 @@ class Partenaires
     public function create($nom, $univers, $actif = 1, $mail = '', $telephone = '') {
         if (!is_null($this->pdo)) {
             try {
+                $univers = str_replace(' ', '', $univers);
                 // Requête mysql pour insérer des données
                 $aInserer = array(":nom"=>$nom, "mail"=>$mail, "telephone"=>$telephone, "univers"=>$univers, "actif"=>$actif);
                 if($actif != 1) { $actif = 0; }
@@ -81,6 +82,7 @@ class Partenaires
     public function update($id,$nom,$univers, $mail = '', $telephone = '', $actif = '') {
         if (!is_null($this->pdo)) {
             try {
+                $univers = str_replace(' ', '', $univers);
                 // Requête mysql pour insérer des données
                 $aInserer = array(":nom"=>$nom, ":mail"=>$mail, "telephone"=>$telephone, ":univers"=>$univers, ":id"=>$id);
                 if($actif == 1 || $actif != '') {

@@ -59,18 +59,23 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-
+<?php 
+    $menuGestion = '';
+    if(isset($_SESSION['admin']) && $_SESSION['admin'] === '1'){
+        $menuGestion = '';
+    }
+?>
                 <li class="nav-item"><a href="index.php?page=accueil" class="nav-link">Accueil</a></li>
                 <li class="nav-item"><a href="index.php?page=devenir-partenaire" class="nav-link">Devenir Partenaire</a></li>
-                <li class="nav-item"><a href="index.php?page=universs" class="nav-link">Univers</a></li>
-                <li class="nav-item"><a href="index.php?page=partenaires&actif=1" class="nav-link">Partenaires activés</a></li>
-                <li class="nav-item"><a href="index.php?page=partenaires&actif=0" class="nav-link">Partenaires non-actifs</a></li>
                 
                 <?php 
                 if(!isset($_SESSION['admin']) || $_SESSION['admin'] !== 1) { ?>
                     <li class="nav-item"><a href="index.php?page=connexion" class="nav-link">Se connecter</a></li>
-                <?php
+                    <?php
                 } else { ?>
+                    <li class="nav-item"><a href="index.php?page=universs" class="nav-link">Univers</a></li>
+                    <li class="nav-item"><a href="index.php?page=partenaires&actif=1" class="nav-link">Partenaires activés</a></li>
+                    <li class="nav-item"><a href="index.php?page=partenaires&actif=0" class="nav-link">Partenaires non-actifs</a></li>
                     <li class="nav-item"><a href="index.php?page=administrateurs" class="nav-link">Administrateurs</a></li>
                     <li class="nav-item"><a href="index.php?page=deconnexion" class="nav-link">D&eacute;connexion</a></li>
                 <?php

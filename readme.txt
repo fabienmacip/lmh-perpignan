@@ -1,12 +1,9 @@
 TODO
 
-Afficher les partenaires non-actifs si on est connecté
-Afficher que les partenaires actifs si on n'est pas connecté
-
-Page PARTENAIRE, UNIVERS, ADMINISTRATEUR : afficher uniquement si connecté.
-
 Comptage des clics
 
+Réservation salles / bureaux.
+Page Tarifs ???
 
 
 --- Modif/Ajout entité ---

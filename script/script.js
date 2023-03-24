@@ -77,6 +77,7 @@ let pageMission ='';
     // Si on n'est pas ADMIN connecté, alors on n'accède pas aux formulaires de CRUD.
     if($('#isAdmin').val() != 1) {
       $('form').hide(); 
+      $('#form-create-devenir-partenaire').show();
       /* $('button').hide(); */
       $('button ').prop('disabled',true);
       $('button').addClass('inactif');
@@ -213,7 +214,7 @@ function displayUpdatePartenaire(id, nom, mail = '', telephone = '', univers){
 
   //let codeAConserver = $(`#tr${id}`);
   let codeAConserver = $('#tr'+id);
-  $('#tr'+id).replaceWith("<tr id='tr"+id+"'><td colspan='7'>" + updateForm + "</td></tr>");
+  $('#tr'+id).replaceWith("<tr id='tr"+id+"'><td colspan='6'>" + updateForm + "</td></tr>");
 
   // On frise tous les autres boutons "Modifier"
   $('.updatePartenaire').prop('disabled',true);
