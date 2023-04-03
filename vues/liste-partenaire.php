@@ -56,7 +56,7 @@ ob_start();
                 </div>
                 <div class="form-group mb-2">
                     <!-- <div class="col-12 col-md-4 mt-3 mt-md-0"> -->
-                    <input type="hidden" name="actif" id="actif" value="1">
+                    <input type="hidden" name="actif" id="actif" value="0">
                     <!--<input type="hidden" name="univers" id="univers" value="">-->
                     <input type="hidden" name="action" id="action" value="createPartenaire">
                     <input type="hidden" name="page" id="page" value="partenaires">

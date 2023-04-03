@@ -47,8 +47,8 @@ class Controleur {
         $universs = $universs->lister();
         $partenaires = new Partenaires($this->pdo);
         $partenaires = $partenaires->lister();
-        $dates = new MyDates($this->pdo);
-        $dates = $dates->listerDate();
+        /* $dates = new MyDates($this->pdo);
+        $dates = $dates->listerDate(); */
         $backToUnivers = $backToUnivers;
         require_once('vues/accueil.php');
     }

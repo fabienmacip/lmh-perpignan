@@ -121,6 +121,19 @@ window.addEventListener('beforeprint', (event) => {
   });
 });
 
+function seepass() {
+  if($('#password').prop("type") == "text"){
+    $('#password').attr("type", "password"); 
+    $('#seepass').removeClass('fa-eye-slash');
+    $('#seepass').addClass('fa-eye');
+  } else {
+    $('#password').attr("type", "text");
+    $('#seepass').addClass('fa-eye-slash');
+    $('#seepass').removeClass('fa-eye');
+
+  }
+}
+
 
 function handleClickPrint(){
   return window.print();

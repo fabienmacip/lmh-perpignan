@@ -20,9 +20,9 @@ require_once('modeles/Univers.php');
 require_once('modeles/Universs.php');
 require_once('modeles/Partenaire.php');
 require_once('modeles/Partenaires.php');
-require_once('modeles/MyDate.php');
+/* require_once('modeles/MyDate.php');
 require_once('modeles/MyDates.php');
-require_once('modeles/Administrateur.php');
+ */require_once('modeles/Administrateur.php');
 require_once('modeles/Administrateurs.php');
 
 /* $LISTE_PAYS = "index.php?page=payss";

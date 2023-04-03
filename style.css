@@ -41,6 +41,35 @@
 .max-width-100percent{
   max-width: 100%;
 }
+
+#connexion-pass {
+  height: 130px;
+}
+
+#connexion-pass {
+  position: relative;
+}
+
+#form-connexion #password {
+  position: absolute;
+  top: 30px;
+  padding-right: 40px;
+}
+
+#seepass {
+  position: absolute;
+  top: 40px;
+  right: 20px;
+  cursor: pointer;
+}
+
+
+#passwordHelpInline {
+  position: absolute;
+  top: 65px;
+  left: 5px;
+}
+
 /* ********** UNIVERS ************ */
 #tout-afficher{
   display: none;
@@ -55,6 +84,7 @@
   min-height: 250px;
   margin: 5px;
   border: 1px solid #777;
+  cursor: pointer;
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -76,6 +106,24 @@
 }
 
 /* ****************** PARTENAIRES ************************** */
+.partenaire-sticker, .univers-sticker {
+  box-shadow: 2px 2px 5px 2px rgba(0,0,0,0.44);
+  transition: transform 0.5s, box-shadow 0.5s ;
+  -webkit-transition: transform 0.5s, box-shadow 0.5s ;
+  -moz-transition: transform 0.5s, box-shadow 0.5s ;
+  -ms-transition: transform 0.5s, box-shadow 0.5s ;
+  -o-transition: transform 0.5s, box-shadow 0.5s ;
+}
+
+.partenaire-sticker:hover,.univers-sticker:hover {
+  box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.44);
+  transform: scale(1.03);
+  -webkit-transform: scale(1.03);
+  -moz-transform: scale(1.03);
+  -ms-transform: scale(1.03);
+  -o-transform: scale(1.03);
+}
+
 .hide-partenaires{
   display: none;
 }
@@ -97,12 +145,14 @@
   min-height: 250px;
   margin: 5px;
   border: 1px solid #777;
+  cursor: pointer;
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
 }
+
 
 .partenaire-sticker>div{
   background-color: rgba(174, 115, 38, 0.7);

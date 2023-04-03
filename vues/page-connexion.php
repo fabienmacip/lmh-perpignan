@@ -35,9 +35,10 @@ ob_start();
       <span id="emailHelpInline" class="form-text">Adresse mail, maximum 50 caract&egrave;res.</span>
     </div>
 
-    <div class="mb3 pb-4 col-10 mx-auto">
+    <div class="mb3 pb-4 col-10 mx-auto" id="connexion-pass">
       <label for="password" class="form-label">Mot de passe</label>
       <input type="password" name="password" minlength="8" maxlength="40" id="password" placeholder="Saisissez votre mot de passe" class="form-control">
+      <i id="seepass" onclick="seepass()" class="fa-solid fa-eye"></i>
       <span id="passwordHelpInline" class="form-text">Entre 8 et 40 caract&egrave;res.</span>
     </div>
 
