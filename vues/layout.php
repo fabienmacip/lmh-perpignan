@@ -57,14 +57,15 @@
 ?>
 
 <input type="hidden" id=isAdmin value="<?= $isAdmin ?>">
+<input type="hidden" id=isPartenaire value="<?= $isPartenaire ?>">
 
 <header>
     <h1 class="text-center my-2">LA MAISON DE L'HABITAT - PERPIGNAN</h1>
 
 <?php 
 
-if(isset($_SESSION['prenom']) && isset($_SESSION['nom'])) {
-    echo "<i>".$_SESSION['prenom']." ".$_SESSION['nom']."</i>";
+if(isset($_SESSION['prenom']) && isset($_SESSION['nom']) && isset($_SESSION['role-libelle']) && (!empty($_SESSION['role-libelle']))) {
+    echo "<i>".$_SESSION['prenom']." ".$_SESSION['nom']." - <b>".$_SESSION['role-libelle']."</b></i>";
 }
 
 ?>
@@ -102,8 +103,8 @@ if(isset($_SESSION['prenom']) && isset($_SESSION['nom'])) {
                 } else { ?>
                     <li class="nav-item"><a href="index.php?page=reserver" class="nav-link">Réserver</a></li>
                     <?php
-                    if(isset($_SESSION['role']) && $_SESSION['role'] == 2){?>
-                        <li class="nav-item"><a href="index.php?page=chngmdppart" class="nav-link">Mot de passe</a></li>
+                    if(isset($_SESSION['role']) && $_SESSION['role'] == 2 && isset($_SESSION['idadminpart'])){?>
+                        <li class="nav-item"><a href="index.php?page=adminpartenaire&idadminpart=<?=$_SESSION['idadminpart']?>" class="nav-link">Mon compte</a></li>
                     <?php
                     }
                     

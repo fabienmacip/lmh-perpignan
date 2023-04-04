@@ -6,7 +6,7 @@ $diane = "<div class='et-diane'>DIANE LESPIGNANAISE</div>";
 
 ob_start();
 ?>
-<?= var_dump($_SESSION) ?>
+
 
 <div class="container m-0 mt-3 max-width-100vw">
   <div class="row max-width-100percent">

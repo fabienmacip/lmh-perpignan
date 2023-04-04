@@ -79,7 +79,7 @@ let pageMission ='';
       $('form').hide(); 
       $('#form-create-devenir-partenaire').show();
       /* $('button').hide(); */
-      $('button ').prop('disabled',true);
+      $('button').prop('disabled',true);
       $('button').addClass('inactif');
       $('#form-connexion').show();
       /* $('.btn-connexion').show(); */
@@ -91,10 +91,8 @@ let pageMission ='';
 
       $('.confidentiel').show();
 
-      // Formulaires de création ayant l'icône PLUS
-/*       $('#pre-form-create-mission').hide();
-      $('#pre-form-create-personne').hide();
-      $('#pre-form-create-planque').hide(); */
+
+
     } else {
       $('form').show();
       
@@ -106,11 +104,19 @@ let pageMission ='';
       $('#les-admins #tr1 [type=button]').prop('disabled',true).css('background-color','grey').css('border-color','grey');
     }
 
+    // MAIS, si on est partenaire, on doit pouvoir modifier ses données de connexion.
+    if($('#isPartenaire').val() == 1) {
+      console.log("isPartenaire---");
+      $('#form-modif-admin-partenaire').show();
+      //$('#form-modif-admin-partenaire [type=button]').prop('disabled',false).removeClass('inactif');
+      $('#form-modif-admin-partenaire-btn button').removeClass('inactif').prop('disabled',false);
+    }
+
 
 }) // FIN DU document.READY
 
 //  ##############  Impression étiquettes  ###################
-window.addEventListener('beforeprint', (event) => {
+/* window.addEventListener('beforeprint', (event) => {
   let body = document.getElementById("body");
   let savebody = document.getElementById("body").innerHTML;
   let tableau = document.getElementById("tableEtiquettes");
@@ -119,7 +125,7 @@ window.addEventListener('beforeprint', (event) => {
     body.innerHTML = savebody;
    
   });
-});
+}); */
 
 function seepass() {
   if($('#password').prop("type") == "text"){

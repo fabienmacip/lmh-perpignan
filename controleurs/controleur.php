@@ -23,6 +23,8 @@ class Controleur {
         $_SESSION['partenaire'] = -1;
         $_SESSION['nom'] = "";
         $_SESSION['prenom'] = "";
+        $_SESSION['role-libelle'] = '';
+        $_SESSION['idadminpart'] = '';
         session_destroy();
         
         $this->afficherMissions();
@@ -208,10 +210,25 @@ public function pageReserver()
 }
 
 // MOT de PASSE PARTENAIRE
-public function pageChangeMdpPartenaire()
+public function pageAdminPartenaire($id)
 {
-    require_once('vues/page-mdp-partenaire.php');
+    $administrateurs = new Administrateurs($this->pdo);
+    $administrateurs = $administrateurs->listerId($id);
+    require_once('vues/page-admin-partenaire.php');
 }
+
+// PARTENAIRE - Partie Admin (directement modifiée par le partenaire lui-même)
+public function updateAdminPartenaire($id,$nom, $prenom, $mail, $mot_de_passe)
+{
+    $administrateurs = new Administrateurs($this->pdo);
+    $partenaireAdminToUpdate = $administrateurs->update($id,$nom, $prenom, $mail, $mot_de_passe);
+    $administrateurs = $administrateurs->listerId($id);
+    $_SESSION['prenom'] = $prenom;
+    $_SESSION['nom'] = $nom;
+    $_SESSION['mail'] = $mail;
+    require_once('vues/page-admin-partenaire.php');
+}
+
 
 // ADMINISTRATEUR - CRUD
 

@@ -20,6 +20,7 @@ class Administrateurs
 
     public function listerId($id)
     {
+        $id = intval($id);
         if (!is_null($this->pdo)) {
             //$stmt = $this->pdo->query('SELECT * FROM administrateur WHERE id = :id');
             $sql = 'SELECT * FROM administrateur WHERE id = :id';
@@ -123,6 +124,11 @@ class Administrateurs
             $_SESSION['role'] = $reponse->getRole();
             if($reponse->getRole() == 1) {
                 $_SESSION['admin'] = $reponse->getId();
+                $_SESSION['role-libelle'] = 'Administrateur';
+            }
+            else {
+                $_SESSION['role-libelle'] = 'Partenaire';
+                $_SESSION['idadminpart'] = $reponse->getId();
             }
             $_SESSION['nom'] = $reponse->getNom();
             $_SESSION['prenom'] = $reponse->getPrenom();

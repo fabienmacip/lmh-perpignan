@@ -118,7 +118,10 @@ elseif (isset($_POST['page']) && 'administrateurs' === $_POST['page'] && isset($
 // ADMINISTRATEURS - UPDATE
 } elseif (isset($_POST['page']) && 'administrateurs' === $_POST['page'] && isset($_POST['action']) && 'update' === $_POST['action'] && isset($_POST['nom']) && isset($_POST['prenom'])) {
     $controleur->updateAdministrateur($_POST['idAdministrateurToUpdate'],$_POST['nom'],$_POST['prenom'],$_POST['mail'],$_POST['mot_de_passe']);
-// ADMINISTRATEURS - DELETE
+// PARTENAIRE (partie Administrateur : nom, prénom, mail, mot de passe) - UPDATE
+} elseif (isset($_POST['page']) && 'admin-partenaire' === $_POST['page'] && isset($_POST['action']) && 'update' === $_POST['action'] && isset($_POST['nom']) && isset($_POST['prenom'])) {
+    $controleur->updateAdminPartenaire($_POST['idpartenaireadmintoupdate'],$_POST['nom'],$_POST['prenom'],$_POST['mail'],$_POST['mot_de_passe']);
+    // ADMINISTRATEURS - DELETE
 } elseif (isset($_GET['page']) && 'administrateurs' === $_GET['page'] && isset($_GET['action']) && 'delete' === $_GET['action'] && isset($_GET['id']) && isset($_GET['nom']) && isset($_GET['prenom'])) {
     $controleur->deleteAdministrateur($_GET['id'],$_GET['nom'],$_GET['prenom']);
 // ADMINISTRATEURS - READ
@@ -141,8 +144,8 @@ elseif (isset($_GET['page']) && 'reserver' === $_GET['page']){
     $controleur->pageReserver();
 }
 
-elseif (isset($_GET['page']) && 'chngmdppart' === $_GET['page']){
-    $controleur->pageChangeMdpPartenaire();
+elseif (isset($_GET['page']) && 'adminpartenaire' === $_GET['page'] && isset($_GET['idadminpart'])){
+    $controleur->pageAdminPartenaire($_GET['idadminpart']);
 }
 
 else {
