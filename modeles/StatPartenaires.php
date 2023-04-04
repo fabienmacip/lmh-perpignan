@@ -37,10 +37,13 @@ class StatPartenaires
     public function listerTout()
     {
         if (!is_null($this->pdo)) {
-            $stmt = $this->pdo->query('SELECT * FROM statpartenaire');
+            $stmt = $this->pdo->query('SELECT PART.id as id, PART.nom as nom, STAT.date as date, STAT.total as total 
+                                       FROM `statpartenaire` as STAT, `partenaire` as PART 
+                                       WHERE STAT.partenaire = PART.id 
+                                       ORDER BY PART.nom, STAT.date DESC');
         }
         $dates = [];
-        while ($date = $stmt->fetchObject('StatPartenaire', [$this->pdo])) {
+        while ($date = $stmt->fetchObject('StatPartenaireDetail', [$this->pdo])) {
             $dates[] = $date;
         }
         $stmt->closeCursor();

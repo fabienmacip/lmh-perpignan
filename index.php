@@ -21,6 +21,7 @@ require_once('modeles/Universs.php');
 require_once('modeles/Partenaire.php');
 require_once('modeles/Partenaires.php');
 require_once('modeles/StatPartenaire.php');
+require_once('modeles/StatPartenaireDetail.php');
 require_once('modeles/StatPartenaires.php');
 /* require_once('modeles/MyDate.php');
 require_once('modeles/MyDates.php');

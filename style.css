@@ -10,6 +10,57 @@
   border-color: grey;
 }
 
+#statspartenaires {
+  display: flex;
+  flex-flow: column;
+  margin-top: 20px;
+}
+
+.statrow {
+  display: flex;
+  flex-flow: row;
+  gap: 5px;
+  border-bottom: 0.1px solid gray;
+}
+
+.statrow:nth-child(even):not(:first-child) {
+  background-color: #eee;
+}
+
+.statrowfirst {
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+
+.statid {
+  flex: 1;
+  padding-left: 10px;
+}
+
+.statnom {
+  flex: 4;
+}
+
+.statdate {
+  flex: 3;
+  text-overflow: clip;
+}
+
+
+@media screen and (max-width : 560px) {
+  .statdate pre {
+    word-spacing: -3px;
+  }
+  .stattotal {
+    flex: 1;
+  }
+}
+
+
+.stattotal {
+  flex: 2;
+}
 
 .listeDesSpes {
   font-weight: 500;
