@@ -5,9 +5,9 @@ ob_start();
 
 
 <?php
-  if(isset($statPartenaireToCreate)) {
+  /* if(isset($statPartenaireToCreate)) {
     echo $statPartenaireToCreate;
-  }
+  } */
 ?>
 
 

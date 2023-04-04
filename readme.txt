@@ -1,5 +1,7 @@
 TODO
 
+SELECT * FROM `statpartenaire` AS stat, `partenaire` AS part WHERE stat.partenaire = part.id
+
 Comptage des clics
 
 Réservation salles / bureaux.

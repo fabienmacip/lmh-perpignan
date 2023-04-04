@@ -33,6 +33,22 @@ class StatPartenaires
     }
 
 
+    // READ
+    public function listerTout()
+    {
+        if (!is_null($this->pdo)) {
+            $stmt = $this->pdo->query('SELECT * FROM statpartenaire');
+        }
+        $dates = [];
+        while ($date = $stmt->fetchObject('StatPartenaire', [$this->pdo])) {
+            $dates[] = $date;
+        }
+        $stmt->closeCursor();
+        return $dates;
+    }
+
+
+
     // CREATE
     public function create($partenaire) {
         if (!is_null($this->pdo)) {
@@ -40,12 +56,37 @@ class StatPartenaires
 
             try {
 
-                
+                $stmt = $this->pdo->prepare('SELECT * FROM statpartenaire WHERE partenaire = ? AND date= ?');
+                $tuple = null;
+                if ($stmt->execute([$partenaire, $date])) {
+                    $tuple = $stmt->fetchObject('StatPartenaire',[$this->pdo]);
+                    // Si pas encore de ligne pour cette DATE et ce PARTENAIRE => CREATE
+                    if (!is_object($tuple)) {
+                        $tuple = null;
+                        $sql = "INSERT INTO statpartenaire (date, partenaire, total) VALUES (:date, :partenaire, 1)";
+                        $res = $this->pdo->prepare($sql);
+                        $exec = $res->execute(array("date"=>$date, "partenaire"=>$partenaire));
+                    }
+                    // Sinon, UPDATE
+                    else {
+                        $nbClics = $tuple->getTotal();
+                        $id = $tuple->getId();
+                        $nbClics++;
+                        $sql = "UPDATE statpartenaire SET total = (:total) WHERE id = (:id)";
+                        $res = $this->pdo->prepare($sql);
+                        $exec = $res->execute(array("total"=>$nbClics, ":id"=>$id));
+                    }
+                }
+                $stmt->closeCursor();
+                // Si une ligne existe déjà pour cette date et ce partenaire, on UPDATE
+/*                 if(!is_null($tuple)) {
+                } 
+ */                // Sinon, on CREATE
+/*                 else {
+ */                    // Requête mysql pour insérer des données
+/*                 }
+ */               
 
-                // Requête mysql pour insérer des données
-                $sql = "INSERT INTO statpartenaire (date, partenaire) VALUES (:date, :partenaire)";
-                $res = $this->pdo->prepare($sql);
-                $exec = $res->execute(array("date"=>$date, "partenaire"=>$partenaire));
                 if($exec){
                     $tupleCreated = "La stat <b>".strtoupper($date)."</b> du partenaire <b>".$partenaire."</b> a bien été ajoutée.";
                 }
@@ -59,13 +100,13 @@ class StatPartenaires
     }
 
     // UPDATE
-    public function update($id,$date,$partenaire) {
+    public function update($id,$date,$partenaire,$total) {
         if (!is_null($this->pdo)) {
             try {
                 // Requête mysql pour insérer des données
-                $sql = "UPDATE statpartenaire SET date = (:date) WHERE id = (:id)";
+                $sql = "UPDATE statpartenaire SET date = (:date), total = (:total) WHERE id = (:id)";
                 $res = $this->pdo->prepare($sql);
-                $exec = $res->execute(array(":date"=>$date, ":id"=>$id));
+                $exec = $res->execute(array(":date"=>$date, "total"=>$total, ":id"=>$id));
                 if($exec){
                     $tupleUpdated = "La stat <b>".strtoupper($date)."</b> du partenaire <b>".$partenaire."</b> a bien été modifiée.";
                 }

@@ -7,7 +7,8 @@ class StatPartenaire
     private $id;
     private $date;
     private $partenaire;
-    
+    private $total;
+
     public function afficherUn($id)
     {
         if (!is_null($this->pdo)) {
@@ -37,6 +38,11 @@ class StatPartenaire
     public function getPartenaire()
     {
         return $this->partenaire;
+    }
+
+    public function getTotal()
+    {
+        return $this->total;
     }
 
     private function jourSemaine($jour){

@@ -269,6 +269,9 @@ public function updateAdminPartenaire($id,$nom, $prenom, $mail, $mot_de_passe)
 // STATS
     public function pageStats()
     {
+        $statPartenaires = new StatPartenaires($this->pdo);
+        $statPartenaires = $statPartenaires->listerTout();
+
         require_once('vues/page-stats.php');
     }
 
