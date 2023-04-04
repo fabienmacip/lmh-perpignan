@@ -353,6 +353,10 @@ br{
   display: none;
 }
 
+#nav-ul li:not(:last-child) {
+  border-right: 0.1px solid #d6d6d6;
+}
+
 @media screen and (max-width: 991px){
   #update-partenaire-table button {
     font-size: 0.8rem;
@@ -382,8 +386,19 @@ br{
   #logo2-div {
     display: flex;
   }
+
+  #nav-ul li:not(:last-child) {
+    border-right: none;
+  }
+
+  .navbar-toggler {
+    margin-top: 10px;
+  }
 }
 
+#bonjour {
+  margin-top: 10px;
+}
 
 @media print {
 

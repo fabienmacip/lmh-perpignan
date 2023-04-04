@@ -91,7 +91,9 @@ let pageMission ='';
 
       $('.confidentiel').show();
 
-
+      $('#form-create-devenir-partenaire').show();
+      $('#form-create-devenir-partenaire [type=reset]').prop('disabled',false).removeClass('inactif');
+      $('#form-create-devenir-partenaire [type=submit]').prop('disabled',false).removeClass('inactif');
 
     } else {
       $('form').show();

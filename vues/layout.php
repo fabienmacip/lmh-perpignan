@@ -80,7 +80,7 @@
 
             <!-- <ul class="navbar-nav navbar-nav-scroll"> -->
             <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul id="nav-ul" class="navbar-nav me-auto mb-2 mb-lg-0">
 
 <?php 
     $menuGestion = '';
@@ -148,9 +148,9 @@
     <?php 
 
         if(isset($_SESSION['prenom']) && isset($_SESSION['nom']) && isset($_SESSION['role-libelle']) && (!empty($_SESSION['role-libelle']))) {
-            echo "<span id='bonjour'><i>".$_SESSION['prenom']." ".$_SESSION['nom']." - <b>".$_SESSION['role-libelle']."</b></i></span>";
+            echo "<div id='bonjour'><i>".$_SESSION['prenom']." ".$_SESSION['nom']." - <b>".$_SESSION['role-libelle']."</b></i></div>";
         } else {
-            echo "<span id='bonjour'></span>";
+            echo "<div id='bonjour'></div>";
         }
 
     ?>
