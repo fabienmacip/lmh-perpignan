@@ -20,6 +20,8 @@ require_once('modeles/Univers.php');
 require_once('modeles/Universs.php');
 require_once('modeles/Partenaire.php');
 require_once('modeles/Partenaires.php');
+require_once('modeles/StatPartenaire.php');
+require_once('modeles/StatPartenaires.php');
 /* require_once('modeles/MyDate.php');
 require_once('modeles/MyDates.php');
  */require_once('modeles/Administrateur.php');
@@ -146,6 +148,10 @@ elseif (isset($_GET['page']) && 'reserver' === $_GET['page']){
 
 elseif (isset($_GET['page']) && 'adminpartenaire' === $_GET['page'] && isset($_GET['idadminpart'])){
     $controleur->pageAdminPartenaire($_GET['idadminpart']);
+}
+
+elseif (isset($_GET['page']) && 'stats' === $_GET['page']) {
+    $controleur->pageStats();
 }
 
 else {

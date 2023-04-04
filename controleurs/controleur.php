@@ -27,7 +27,7 @@ class Controleur {
         $_SESSION['idadminpart'] = '';
         session_destroy();
         
-        $this->afficherMissions();
+        $this->accueil();
     }
 
     public function verifConnexion($mail,$password) {
@@ -150,6 +150,9 @@ class Controleur {
 
 public function affichePartenaire($id, $univers)
 {
+    $statPartenaire = new StatPartenaires($this->pdo);
+    $statPartenaireToCreate = $statPartenaire->create(intval($id));
+
     $partenaire = new Partenaire($this->pdo);
     $partenaire = $partenaire->afficher($id);
     $univers = $univers;
@@ -261,6 +264,12 @@ public function updateAdminPartenaire($id,$nom, $prenom, $mail, $mot_de_passe)
         $administrateurToDelete = $administrateurs->delete($id, $nom, $prenom);
         $administrateurs = $administrateurs->lister();
         require_once('vues/liste-administrateurs.php');
+    }
+
+// STATS
+    public function pageStats()
+    {
+        require_once('vues/page-stats.php');
     }
 
 }

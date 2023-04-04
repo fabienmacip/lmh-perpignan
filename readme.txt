@@ -2,8 +2,6 @@ TODO
 
 Comptage des clics
 
-saisie mot de passe partenaire : page dédiée
-
 Réservation salles / bureaux.
 Page Tarifs ???
 

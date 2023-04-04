@@ -103,16 +103,19 @@ if(isset($_SESSION['prenom']) && isset($_SESSION['nom']) && isset($_SESSION['rol
                 } else { ?>
                     <li class="nav-item"><a href="index.php?page=reserver" class="nav-link">Réserver</a></li>
                     <?php
+                    // Si la personne connectée est un PARTENAIRE
                     if(isset($_SESSION['role']) && $_SESSION['role'] == 2 && isset($_SESSION['idadminpart'])){?>
                         <li class="nav-item"><a href="index.php?page=adminpartenaire&idadminpart=<?=$_SESSION['idadminpart']?>" class="nav-link">Mon compte</a></li>
                     <?php
                     }
                     
+                    // Si la personne connectée est un ADMINISTRATEUR
                     if(isset($_SESSION['role']) && $_SESSION['role'] == 1){
                     ?>
                     <li class="nav-item"><a href="index.php?page=universs" class="nav-link">Univers</a></li>
                     <li class="nav-item"><a href="index.php?page=partenaires&actif=1" class="nav-link">Partenaires activés</a></li>
                     <li class="nav-item"><a href="index.php?page=partenaires&actif=0" class="nav-link">Partenaires non-actifs</a></li>
+                    <li class="nav-item"><a href="index.php?page=stats" class="nav-link">Stats</a></li>
                     <li class="nav-item"><a href="index.php?page=administrateurs" class="nav-link">Administrateurs</a></li>
                     
                     <?php
