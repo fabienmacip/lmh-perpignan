@@ -60,17 +60,13 @@
 <input type="hidden" id=isPartenaire value="<?= $isPartenaire ?>">
 
 <header>
-    <h1 class="text-center my-2">LA MAISON DE L'HABITAT - PERPIGNAN</h1>
-
-<?php 
-
-if(isset($_SESSION['prenom']) && isset($_SESSION['nom']) && isset($_SESSION['role-libelle']) && (!empty($_SESSION['role-libelle']))) {
-    echo "<i>".$_SESSION['prenom']." ".$_SESSION['nom']." - <b>".$_SESSION['role-libelle']."</b></i>";
-}
-
-?>
-
-
+    <img 
+        id="logo" 
+        class="logo-large-screen" 
+        src="img/logo/logo_lmh_perpignan.png" 
+        alt="La maison de l'habitat (by La Centrale de Financement) - Perpignan"
+    >
+    <!-- <h1 class="text-center my-2">LA MAISON DE L'HABITAT - PERPIGNAN</h1> -->
 </header>
 <section>
     <nav class="navbar navbar-light bg-light navbar-expand-lg" style="--bs-scroll-height: 10rem;">
@@ -136,10 +132,29 @@ if(isset($_SESSION['prenom']) && isset($_SESSION['nom']) && isset($_SESSION['rol
 
             </ul>
             <!-- ADDED -->
-            </div>
-            <!-- FIN ADDED -->
-      </div>
+        </div>
+        <!-- FIN ADDED -->
+    </div>
+    <div id="logo2-div">
+        <img 
+          id="logo2" 
+          class="logo-little-screen" 
+          src="img/logo/logo_lmh_perpignan.png" 
+          alt="La maison de l'habitat (by La Centrale de Financement) - Perpignan"
+        >
+    </div>
+
     </nav>
+    <?php 
+
+        if(isset($_SESSION['prenom']) && isset($_SESSION['nom']) && isset($_SESSION['role-libelle']) && (!empty($_SESSION['role-libelle']))) {
+            echo "<span id='bonjour'><i>".$_SESSION['prenom']." ".$_SESSION['nom']." - <b>".$_SESSION['role-libelle']."</b></i></span>";
+        } else {
+            echo "<span id='bonjour'></span>";
+        }
+
+    ?>
+
     <?= $contenu ?>
 </section>
 </main>

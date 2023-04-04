@@ -1,3 +1,17 @@
+header {
+  display: flex;
+  flex-flow: column;
+}
+
+#logo {
+  max-width: 200px;
+}
+
+#logo2 {
+  max-width: 150px;
+}
+
+
 .aumoinsun {
   font-weight: bold;
 }
@@ -335,10 +349,38 @@ br{
     line-height: 0.6cm;
   }
 
+#logo2-div {
+  display: none;
+}
+
 @media screen and (max-width: 991px){
   #update-partenaire-table button {
     font-size: 0.8rem;
     margin: 5px auto;
+  }
+
+  #logo {
+    display: none;
+  }
+
+  nav {
+    flex-direction: row;
+  }
+
+  .navbar {
+    align-items: flex-start;
+  }
+
+  nav .container-fluid {
+    flex: 4;
+  }
+
+  #logo2-div {
+    flex: 1;
+  }
+
+  #logo2-div {
+    display: flex;
   }
 }
 
