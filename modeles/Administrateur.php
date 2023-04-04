@@ -63,6 +63,11 @@ class Administrateur
         return $this->partenaire;
     }
 
+
+    // ROLES 
+    // 1 : Admin
+    // 2: Partenaire
+    // SUPERADMIN : Role 1 + IdAdmin 1
     public function getRole()
     {
         $role = 0;

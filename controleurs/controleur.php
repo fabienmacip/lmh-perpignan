@@ -19,6 +19,10 @@ class Controleur {
     public function deconnexion() {
         // Procédure de deconnexion
         $_SESSION['admin'] = 0;
+        $_SESSION['role'] = 0;
+        $_SESSION['partenaire'] = -1;
+        $_SESSION['nom'] = "";
+        $_SESSION['prenom'] = "";
         session_destroy();
         
         $this->afficherMissions();

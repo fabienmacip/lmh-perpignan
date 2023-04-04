@@ -37,13 +37,13 @@
 <body id="body">
 
 <?php
-    if(isset($_SESSION['admin']) && $_SESSION['admin'] == 1) {
+    if(isset($_SESSION['role']) && $_SESSION['role'] == 1) {
         $isAdmin = 1;
     } else {
         $isAdmin = 0;
     }
 
-    if(isset($_SESSION['admin']) && $_SESSION['admin'] == 2) {
+    if(isset($_SESSION['role']) && $_SESSION['role'] == 2) {
         $isPartenaire = 1;
         if(isset($_SESSION['partenaire']) && $_SESSION['partenaire'] > 0) {
             $idPartenaire = $_SESSION['partenaire'];
@@ -60,6 +60,16 @@
 
 <header>
     <h1 class="text-center my-2">LA MAISON DE L'HABITAT - PERPIGNAN</h1>
+
+<?php 
+
+if(isset($_SESSION['prenom']) && isset($_SESSION['nom'])) {
+    echo "<i>".$_SESSION['prenom']." ".$_SESSION['nom']."</i>";
+}
+
+?>
+
+
 </header>
 <section>
     <nav class="navbar navbar-light bg-light navbar-expand-lg" style="--bs-scroll-height: 10rem;">
@@ -77,7 +87,7 @@
 
 <?php 
     $menuGestion = '';
-    if(isset($_SESSION['admin']) && $_SESSION['admin'] == 1){
+    if(isset($_SESSION['role']) && $_SESSION['role'] == 1){
         $menuGestion = '';
     }
 ?>
@@ -86,18 +96,18 @@
                                
                 
                 <?php 
-                if(!isset($_SESSION['admin']) || $_SESSION['admin'] < 1) { ?>
+                if(!isset($_SESSION['role']) || $_SESSION['role'] < 1) { ?>
                     <li class="nav-item"><a href="index.php?page=connexion" class="nav-link">Se connecter</a></li>
                     <?php
                 } else { ?>
                     <li class="nav-item"><a href="index.php?page=reserver" class="nav-link">Réserver</a></li>
                     <?php
-                    if(isset($_SESSION['admin']) && $_SESSION['admin'] == 2){?>
+                    if(isset($_SESSION['role']) && $_SESSION['role'] == 2){?>
                         <li class="nav-item"><a href="index.php?page=chngmdppart" class="nav-link">Mot de passe</a></li>
                     <?php
                     }
                     
-                    if(isset($_SESSION['admin']) && $_SESSION['admin'] == 1){
+                    if(isset($_SESSION['role']) && $_SESSION['role'] == 1){
                     ?>
                     <li class="nav-item"><a href="index.php?page=universs" class="nav-link">Univers</a></li>
                     <li class="nav-item"><a href="index.php?page=partenaires&actif=1" class="nav-link">Partenaires activés</a></li>
@@ -106,7 +116,7 @@
                     
                     <?php
                     }
-                    if(isset($_SESSION['admin']) && $_SESSION['admin'] >= 1){
+                    if(isset($_SESSION['role']) && $_SESSION['role'] >= 1){
                     ?>
                         <li class="nav-item"><a href="index.php?page=deconnexion" class="nav-link">D&eacute;connexion</a></li>
 

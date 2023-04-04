@@ -73,15 +73,30 @@ ob_start();
                                 <?php //$administrateur->getMotDePasse() ?>
                             <!-- </td> -->
                             <td>
-                                <button type="button" id="updateAdministrateur<?= $administrateur->getId() ?>" class="updateAdministrateur btn-primary" 
+                                <button type="button" id="updateAdministrateur<?= $administrateur->getId() ?>" 
+                            <?php if($administrateur->getPartenaire() == 0 && isset($_SESSION['admin']) && $_SESSION['admin'] != $administrateur->getId() && $_SESSION['admin'] != 1) { ?>
+                                class="btn-primary no-pointer" disabled="true" 
+                            <?php
+                            } else { ?>
+                                class="updateAdministrateur btn-primary" 
                                 onclick=displayUpdateAdministrateur(<?php echo $administrateur->getId().",'".str_replace(" ","&nbsp;",$administrateur->getNom())."','".str_replace(" ","&nbsp;",$administrateur->getPrenom())."','".str_replace(" ","&nbsp;",$administrateur->getMail())."'" ?>)
+                            <?php } ?>
+                                
                                 >
                                   Modifier
                                 </button>
                             </td>
                             <td>
-                                 <button type="button" class="btn-primary" 
-                                         onclick=confirmeSuppressionAdministrateur(<?php echo $administrateur->getId().",'".str_replace(" ","&nbsp;",$administrateur->getNom())."','".str_replace(" ","&nbsp;",$administrateur->getPrenom())."'" ?>)>
+                                 <button type="button" 
+                                 <?php if($administrateur->getPartenaire() == 0 && isset($_SESSION['admin']) && $_SESSION['admin'] != $administrateur->getId() && $_SESSION['admin'] != 1) { ?>
+                                class="btn-primary no-pointer" disabled="true" 
+                            <?php
+                            } else { ?>
+                                 class="btn-primary" 
+                                 onclick=confirmeSuppressionAdministrateur(<?php echo $administrateur->getId().",'".str_replace(" ","&nbsp;",$administrateur->getNom())."','".str_replace(" ","&nbsp;",$administrateur->getPrenom())."'" ?>)
+                                 <?php } ?>
+
+                                 >
                                    Supprimer
                                  </button>
                             </td>                      

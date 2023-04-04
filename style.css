@@ -2,6 +2,15 @@
   font-weight: bold;
 }
 
+.no-pointer,
+.no-pointer:hover,
+.no-pointer:active {
+  cursor: default;
+  background-color: grey;
+  border-color: grey;
+}
+
+
 .listeDesSpes {
   font-weight: 500;
 }

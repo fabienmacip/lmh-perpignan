@@ -120,7 +120,12 @@ class Administrateurs
         //return ($reponse && password_verify($password, $reponse->getMotDePasse()));
         if(($reponse && password_verify($password, $reponse->getMotDePasse()))){
             $_SESSION['partenaire'] = $reponse->getPartenaire();
-            $_SESSION['admin'] = $reponse->getRole();
+            $_SESSION['role'] = $reponse->getRole();
+            if($reponse->getRole() == 1) {
+                $_SESSION['admin'] = $reponse->getId();
+            }
+            $_SESSION['nom'] = $reponse->getNom();
+            $_SESSION['prenom'] = $reponse->getPrenom();
             return $reponse->getId();
         }
         
