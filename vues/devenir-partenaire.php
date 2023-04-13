@@ -6,7 +6,7 @@ ob_start();
     <div class="row">
       <div class="col-12 col-lg-6 col-xl-6">
       <?php if(!isset($_SESSION['partenaire'])) { ?>
-          <a href="#form-create-devenir-partenaire" id="lien-form-devenir-partenaire" onclick="lienFormDevenirPartenaire()">DEVENIR PARTENAIRE</a>
+          <a href="#form-create-devenir-partenaire" id="lien-form-devenir-partenaire-up" onclick="lienFormDevenirPartenaire()">DEVENIR PARTENAIRE</a>
       <?php } ?>
           <p>
             <h3>
@@ -31,7 +31,7 @@ ob_start();
           </p>
       
           <?php if(!isset($_SESSION['partenaire'])) { ?>
-          <a href="#form-create-devenir-partenaire" id="lien-form-devenir-partenaire" onclick="lienFormDevenirPartenaire()">DEVENIR PARTENAIRE</a>
+          <a href="#form-create-devenir-partenaire" id="lien-form-devenir-partenaire-down" onclick="lienFormDevenirPartenaire()">DEVENIR PARTENAIRE</a>
       <?php } ?>
 
       </div>

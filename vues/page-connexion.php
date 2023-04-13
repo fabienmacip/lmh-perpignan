@@ -18,7 +18,7 @@ $titre = 'La Maison de l\'Habitat by La Centrale de Financement - Liste des type
 ob_start();
 ?>
 
-<div class="mx-auto col-4 text-center">
+<div class="mx-auto col-12 col-sm-10 col-md-6 col-xl-4  text-center">
   <?php 
   if(isset($messageConnexion) && $messageConnexion !== '') {?>
     <div class="text-danger"><?= $messageConnexion ?></div> 
