@@ -42,7 +42,7 @@ ob_start();
 
           <!-- ######################## DEBUT FORM CANDIDATURE PARTENAIRE #################### -->
           
-          <form method="post" action="index.php" id="form-create-devenir-partenaire" class="mt-3 rounded py-3 px-1 bg-info">
+          <form method="post" action="index.php" id="form-create-devenir-partenaire" class="mt-3 rounded py-3 px-1 bg-info lcf-form">
               <h4>Devenir partenaire</h4>    
               <div class="row">
                   <!-- <div class="col-12 col-md-12"> -->
@@ -57,8 +57,8 @@ ob_start();
                   <!-- <div class="col-12 col-md-4 mt-3 mt-md-0"> -->
                       <input type="hidden" name="action" id="action" value="createDevenirPartenaire">
                       <input type="hidden" name="page" id="page" value="devenir-partenaire">
-                      <button type="reset" class="btn btn-primary">Reset</button>
-                      <button type="submit" class="btn btn-primary">Envoyer</button>
+                      <button type="reset" class="btn btn-primary lcf-button">Reset</button>
+                      <button type="submit" class="btn btn-primary lcf-button">Envoyer</button>
                   </div>
                   <!-- <div class="col-0 col-md-2"></div> -->
               </div>
