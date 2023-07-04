@@ -66,6 +66,7 @@
     }
 
 
+
 ?>
 
 <input type="hidden" id=isAdmin value="<?= $isAdmin ?>">
@@ -155,9 +156,21 @@
                     <a href="#" class="nav-link" id="nos-references-link">Nos r&eacute;f&eacute;rences</a>
                     <!-- <a href="index.php?page=univers" class="nav-link">Nos r&eacute;f&eacute;rences</a> -->
                     <ul id="sub-nav-univers" class="absolute">
-                    <?php foreach ($universs as $univers): ?>
+                    <?php if(isset($universs)) {
+                        foreach ($universs as $univers): ?>
                         <li><a href="index.php?page=univers&univers=<?= $univers->getId() ?>"><?= $univers->getNom() ?></a></li>
-                    <?php endforeach ?>
+                    <?php endforeach; }  else { 
+                      // A refactoriser. Il faudrait avoir à disposition la variable $universs tout au long de la navigation  
+                    ?>
+                        <li><a href="index.php?page=univers&univers=3">Acheter mon logement</a></li>
+                        <li><a href="index.php?page=univers&univers=6">Assurance</a></li>
+                        <li><a href="index.php?page=univers&univers=4">Construire ma maison</a></li>
+                        <li><a href="index.php?page=univers&univers=2">Copropri&eacute;t&eacute;</a></li>
+                        <li><a href="index.php?page=univers&univers=5">Cr&eacute;dit</a></li>
+                        <li><a href="index.php?page=univers&univers=1">Travaux</a></li>
+                    <?php } ?>
+
+                    
                     </ul>
                 </li>
                 <li class="nav-item"><a href="index.php?page=devenir-partenaire" class="nav-link">Devenir Partenaire</a></li>
