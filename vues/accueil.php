@@ -1,9 +1,6 @@
 <?php
 $titre = 'La Maison de l\'Habitat by La Centrale de Financement - Accueil';
 
-$diane = "<div class='et-diane'>DIANE LESPIGNANAISE</div>";
-
-
 ob_start();
 ?>
 

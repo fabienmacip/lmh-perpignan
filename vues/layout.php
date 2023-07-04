@@ -27,10 +27,20 @@
     <?php }
     ?>
 
-<link rel="shortcut icon" type="image/x-icon" href="img/icon/favicon.ico">
-<link rel="icon" type="image/png" sizes="192x192" href="img/icon/android-chrome-192x192.png">
-<link rel="icon" type="image/png" sizes="512x512" href="img/icon/android-chrome-512x512.png">
-<link rel="apple-touch-icon" sizes="180x180" href="img/icon/apple-touch-icon-180x180.png">
+<!-- <link rel="shortcut icon" type="image/x-icon" href="img/icon/favicon.ico">
+<link rel="icon" type="image/png" sizes="192x192" href="img/icon/la-reference-android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="img/icon/la-reference-android-chrome-512x512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="img/icon/la-reference-apple-touch-icon-180x180.png">
+ -->
+
+<!-- <link rel="shortcut icon" type="image/x-icon" href="img/icon/favicon.ico"> -->
+<link rel="apple-touch-icon" sizes="180x180" href="img/icon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="img/icon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="img/icon/favicon-16x16.png">
+<link rel="manifest" href="img/icon/site.webmanifest">
+<link rel="mask-icon" href="img/icon/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
 
 
 </head>
@@ -60,12 +70,43 @@
 <input type="hidden" id=isPartenaire value="<?= $isPartenaire ?>">
 
 <header>
-    <img 
-        id="logo" 
-        class="logo-large-screen" 
-        src="img/logo/logo_lmh_perpignan.png" 
-        alt="La maison de l'habitat (by La Centrale de Financement) - Perpignan"
-    >
+    <div class="logo">
+        <img 
+            id="logo" 
+            class="logo-large-screen" 
+            src="img/logo/logo-la-reference-350x311-transparent.png"
+            alt="La maison de l'habitat (by La Centrale de Financement) - Perpignan"
+            >
+    </div>
+    <div class="contacts">
+        <div class="contacts-phone">
+        <img
+            id="contacts-phone-img"
+            class=""
+            src="img/icones/tel.png"
+            alt="telephoner"
+        > 06 34 34 44 00
+        </div>
+        <div class="contacts-mail">
+        <img
+            id="contacts-mail-img"
+            class=""
+            src="img/icones/mail.png"
+            alt="mail"
+        > r.durin@la-reference.fr
+        </div>
+        <div class="contacts-lieu">
+        <img
+            id="contacts-lieu-img"
+            class=""
+            src="img/icones/map.png"
+            alt="lieu"
+        > 29, avenue de Grande Bretagne 66 000 PERPIGNAN
+        </div>
+    </div>
+
+
+
     <!-- <h1 class="text-center my-2">LA MAISON DE L'HABITAT - PERPIGNAN</h1> -->
 </header>
 <section>
@@ -138,10 +179,11 @@
     <div id="logo2-div">
         <img 
           id="logo2" 
+          src="img/logo/logo-la-reference-350x311-transparent.png"
           class="logo-little-screen" 
-          src="img/logo/logo_lmh_perpignan.png" 
           alt="La maison de l'habitat (by La Centrale de Financement) - Perpignan"
-        >
+          >
+          <!-- src="img/logo/logo_lmh_perpignan.png"  -->
     </div>
 
     </nav>

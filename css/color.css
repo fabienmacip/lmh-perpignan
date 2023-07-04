@@ -1,8 +1,12 @@
 :root{
-  --main-color: #e55d48;
-  /* --main-color-white: #fff;
-  --main-color-black: #212529;
-   */
+  /* Couleurs dominantes, d'après https://www.hostinger.fr/tutoriels/palette-couleur-site-web#19_Bleu_royal_fonce_et_or */
+  --main-color: #002349;
+  --main-color-accent: #957C3D;
+  --main-color-accent2: #b28e3b;
+  --main-color-dark: #001731;
+
+  /*ancienne (lcf) --main-color: #e55d48;*/
+
    --main-color-blue: #007bff;
 
   --main-color-black: #1e3333;
