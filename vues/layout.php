@@ -12,12 +12,14 @@
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous"> 
     <!--<link href="./script/bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
     <!-- <link href="./style.css" rel="stylesheet"> -->
+    
     <link rel="stylesheet" href="./css/main.css">
+    
     <!-- JQuery -->
     <!--<script src="./script/jquery-3.6.0.min.js"></script>-->
-     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
     
     <?php
     if(isset($scriptMission)) {
@@ -69,39 +71,57 @@
 <input type="hidden" id=isAdmin value="<?= $isAdmin ?>">
 <input type="hidden" id=isPartenaire value="<?= $isPartenaire ?>">
 
-<header>
-    <div class="logo">
+<header class="flex jcsb">
+    <div class="logo flex-1 tc">
         <img 
             id="logo" 
             class="logo-large-screen" 
             src="img/logo/logo-la-reference-350x311-transparent.png"
             alt="La maison de l'habitat (by La Centrale de Financement) - Perpignan"
-            >
+        >
     </div>
-    <div class="contacts">
-        <div class="contacts-phone">
-        <img
-            id="contacts-phone-img"
-            class=""
-            src="img/icones/tel.png"
-            alt="telephoner"
-        > 06 34 34 44 00
+    <div class="contacts flex-2 flex">
+        <div class="flex">
+            <div class="contacts-phone flex-1">
+            <img
+                id="contacts-phone-img"
+                class="contacts-icon"
+                src="img/icones/tel.png"
+                alt="telephoner"
+            > <a href="tel:0634344400" alt="telephoner">06 34 34 44 00</a>
+            </div>
+            <div class="contacts-mail flex-1">
+            <img
+                id="contacts-mail-img"
+                class="contacts-icon"
+                src="img/icones/mail.png"
+                alt="mail"
+            > <a href="mailto:contact@la-reference.fr">contact@la-reference.fr</a>
+            </div>
         </div>
-        <div class="contacts-mail">
-        <img
-            id="contacts-mail-img"
-            class=""
-            src="img/icones/mail.png"
-            alt="mail"
-        > r.durin@la-reference.fr
-        </div>
-        <div class="contacts-lieu">
-        <img
-            id="contacts-lieu-img"
-            class=""
-            src="img/icones/map.png"
-            alt="lieu"
-        > 29, avenue de Grande Bretagne 66 000 PERPIGNAN
+        <div>
+            <div class="contacts-lieu flex-1 flex aic">
+                <div>
+                    <a href="https://goo.gl/maps/G95PAPmo8yBdz5Pg7" target="_blank">
+                    <img
+                        id="contacts-lieu-img"
+                        class="contacts-icon"
+                        src="img/icones/map.png"
+                        alt="lieu"
+                    >
+                    </a>
+                </div>
+                <div>
+                    <a href="https://goo.gl/maps/G95PAPmo8yBdz5Pg7" target="_blank">
+                    &nbsp;29, avenue de Grande Bretagne&nbsp;
+                    </a>
+                </div>
+                <div>
+                    <a href="https://goo.gl/maps/G95PAPmo8yBdz5Pg7" target="_blank">
+                    &nbsp;66 000 PERPIGNAN
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 
