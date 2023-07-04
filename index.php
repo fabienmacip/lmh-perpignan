@@ -155,6 +155,10 @@ elseif (isset($_GET['page']) && 'stats' === $_GET['page']) {
     $controleur->pageStats();
 }
 
+elseif (isset($_GET['page']) && 'univers' === $_GET['page']) {
+    $controleur->accueil();
+}
+
 else {
     if(isset($_GET['backtounivers'])){
         $controleur->accueil($_GET['backtounivers']);

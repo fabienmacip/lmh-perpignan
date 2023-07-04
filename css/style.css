@@ -55,6 +55,22 @@ nav a:hover {
 
 }
 
+/* Sous-menu caché / Affiché si survol de "Nos références". */
+
+#sub-nav-univers {
+  display: none;
+  background-color: var(--main-color-dark);
+  min-width: 200px;
+}
+
+#sub-nav-univers > li {
+  margin: 7px;
+}
+
+#nav-nos-references:hover ul {
+  display: block;
+}
+
 
 
 
@@ -377,6 +393,19 @@ nav a:hover {
     margin-top: 1rem;
   }
 
+/* * * * * * * * SOUS-MENUS * * * * * * */
+
+  
+  #sub-nav-univers {
+    position: inherit;
+  }
+
+
+
+
+
+
+
   #lien-form-devenir-partenaire-up {
     display: inline;  
   }
@@ -586,7 +615,7 @@ br{
     display: none;
   }
   
-#nav-ul li:not(:last-child) {
+#nav-ul > li:not(:last-child) {
   border-right: 0.1px solid #d6d6d6;
 }
 

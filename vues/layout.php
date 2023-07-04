@@ -151,6 +151,15 @@
     }
 ?>
                 <li class="nav-item"><a href="index.php?page=accueil" class="nav-link">Accueil</a></li>
+                <li class="nav-item relative" id="nav-nos-references">
+                    <a href="#" class="nav-link" id="nos-references-link">Nos r&eacute;f&eacute;rences</a>
+                    <!-- <a href="index.php?page=univers" class="nav-link">Nos r&eacute;f&eacute;rences</a> -->
+                    <ul id="sub-nav-univers" class="absolute">
+                    <?php foreach ($universs as $univers): ?>
+                        <li><a href="index.php?page=univers&univers=<?= $univers->getId() ?>"><?= $univers->getNom() ?></a></li>
+                    <?php endforeach ?>
+                    </ul>
+                </li>
                 <li class="nav-item"><a href="index.php?page=devenir-partenaire" class="nav-link">Devenir Partenaire</a></li>
                                
                 
