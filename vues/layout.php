@@ -130,11 +130,12 @@
     <!-- <h1 class="text-center my-2">LA MAISON DE L'HABITAT - PERPIGNAN</h1> -->
 </header>
 <section>
-    <nav class="navbar navbar-light bg-light navbar-expand-lg" style="--bs-scroll-height: 10rem;">
+    <!-- <nav class="navbar navbar-light bg-light navbar-expand-lg" style="--bs-scroll-height: 10rem;"> -->
+    <nav class="navbar navbar-light navbar-expand-lg" style="--bs-scroll-height: 10rem;">
       <div class="container-fluid">
       
       <!-- ADDED -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <button id="navbar-toggler-button" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
       </button>
       <!-- FIN ADDED -->

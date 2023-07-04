@@ -1,3 +1,5 @@
+/* * * * * * HEADER * * * * * */
+
 header {
   display: flex;
   /* flex-flow: column; */
@@ -22,6 +24,55 @@ header {
 .contacts-icon {
   max-width: 50px;
 }
+
+
+/* * * * * * NAVBAR * * * * * */
+
+nav {
+  background-color: var(--main-color-dark);
+  color: var(--main-color-white)!important;
+
+}
+nav a {
+  color: var(--main-color-white)!important;
+}
+nav a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--main-color-accent2)!important;
+  -moz-text-decoration-color: var(--main-color-accent2)!important;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 2px;
+}
+
+#navbar-toggler-button {
+  background-color: var(--main-color-white)!important;
+  
+}
+
+.navbar-light .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='rgba%280, 0, 23, 49%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>");
+  /* background-image: url('../img/icones/map.png')!important; */
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 .aumoinsun {
