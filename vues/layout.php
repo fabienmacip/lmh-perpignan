@@ -158,7 +158,7 @@
                     <ul id="sub-nav-univers" class="absolute">
                     <?php if(isset($universs)) {
                         foreach ($universs as $univers): ?>
-                        <li><a href="index.php?page=univers&univers=<?= $univers->getId() ?>"><?= $univers->getNom() ?></a></li>
+                        <li><a href="index.php?page=univers&univers=<?= $univers->getId() ?>" onclick="showUnivers('<?= $univers->getId() ?>')"><?= $univers->getNom() ?></a></li>
                     <?php endforeach; }  else { 
                       // A refactoriser. Il faudrait avoir à disposition la variable $universs tout au long de la navigation  
                     ?>
@@ -244,7 +244,7 @@
 </section>
 </main>
 <footer class="fw-light fst-italic fs-6 text-center mt-4">
-    <p>La Maison de L'Habitat - Perpignan - Tous droits réservés</p>
+    <p>La R&eacute;f&eacute;rence - Perpignan - Tous droits réservés</p>
     <p>Webmaster - <a href="mailto:fabien.macip@gmail.com">fabien.macip@gmail.com</a></p>
 </footer>
 

@@ -8,6 +8,17 @@ ob_start();
 
 <div id="slider-back">
   <div id="slider">
+
+    <div id="slider-btns">
+      <div>
+        <?php foreach($universs as $univers): ?>
+          <div class="slider-btn">
+            <button onclick="showUnivers('<?= $univers->getId() ?>')" class="slider-btn-button"><?= $univers->getNom() ?></button>
+          </div>
+        <?php endforeach; ?>
+      </div>
+    </div>
+
     <figure>
     <?php 
       $universsSlider = $universs;
@@ -30,6 +41,14 @@ ob_start();
   </div>
 </div>
 
+<div id="slider-btns-phone-screen">
+        <?php foreach($universs as $univers): ?>
+          <div class="slider-btn">
+            <button onclick="showUnivers('<?= $univers->getId() ?>')" class="slider-btn-button"><?= $univers->getNom() ?></button>
+          </div>
+        <?php endforeach; ?>
+</div>
+
 <!-- FIN SLIDER -->
 
 
@@ -39,10 +58,10 @@ ob_start();
     <div class="flex-1 accueil-text-boxes">
       <h2>Bienvenue sur notre site</h2>
       <p>
-        La Référence, Agence Immobilière by Jérôme COUDRAY est heureuse de vous compter parmi les visiteurs de son site internet!
+        La Référence, by Christophe BOULDOUYRE et Richard DURIN est heureuse de vous compter parmi les visiteurs de son site internet !
       </p>
       <p>
-        Présent sur l'agglomération Nantaise et le littoral, pour l'achat, la vente et la mise en location de biens,
+        Présente sur le d&eacute;partement des Pyr&eacute;n&eacute;es Orientales, pour l'achat, la vente, les travaux, le financement et l'assurance,
         nous avons comme objectif la satisfaction client.
       </p>      
       <p>

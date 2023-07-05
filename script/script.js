@@ -81,6 +81,10 @@ let pageMission ='';
       /* $('button').hide(); */
       $('button').prop('disabled',true);
       $('button').addClass('inactif');
+
+      $('.slider-btn-button').removeClass('inactif');
+      $('.slider-btn-button').prop('disabled',false);
+
       $('#form-connexion').show();
       /* $('.btn-connexion').show(); */
       $('.btn-connexion').prop('disabled',false);

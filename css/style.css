@@ -61,6 +61,8 @@ nav a:hover {
   display: none;
   background-color: var(--main-color-dark);
   min-width: 200px;
+
+  z-index: 200;
 }
 
 #sub-nav-univers > li {
@@ -78,10 +80,6 @@ nav a:hover {
 
 #slider-back {
   background: linear-gradient(to bottom, var(--main-color-accent2), var(--main-color-accent2) 85%, #fff 85%, #fff 100%);
-}
-
-div#slider figure img::before {
-  content: "♥";
 }
 
 div#slider { 
@@ -171,6 +169,46 @@ div#slider figure {
   -moz-transition: ease;
   -ms-transition: ease;
   -o-transition: ease;
+}
+
+#slider-btns-phone-screen {
+  display: none;
+}
+
+#slider-btns {
+  position: relative;
+  left: 0px;
+  top: 0px;
+  max-height: 0px;
+  z-index: 150;
+
+  overflow: visible;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#slider-btns > div:first-child {
+  display: flex;
+  margin-top: 350px;
+  margin-left: 20px;
+  justify-content: start;
+  flex-wrap: wrap;
+}
+
+.slider-btn > button {
+  font-size: 1.1rem;
+  font-weight: 500;
+  background-color: var(--main-color-accent2)!important;
+  color: white;
+  border: 1px solid var(--main-color-accent);
+}
+
+.slider-btn > button:hover {
+  color: var(--main-color-dark);
+  border: 1px solid var(--main-color-dark);
 }
 
 
@@ -477,6 +515,18 @@ div#slider figure {
   }
   
 
+  #slider-btns > div:first-child {
+    margin-top: 300px;
+    margin-left: 15px;
+  }
+  
+  .slider-btn > button {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  
+
+
   .contacts {
 /*     flex-direction: column;
     justify-content: space-around;
@@ -549,6 +599,25 @@ div#slider figure {
   }
 }
 
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* * * * * * * MAX 732 px * * * * * * * * 
+* * * * * * * * * * * * * * * * * * * * * */
+
+
+@media screen and (max-width: 732px) {
+  #slider-btns > div:first-child {
+    margin-top: 180px;
+    margin-left: 15px;
+  }
+  
+  .slider-btn > button {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  
+}
+
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * * * * * * * MAX 560 px * * * * * * * * 
 * * * * * * * * * * * * * * * * * * * * * */
@@ -574,6 +643,18 @@ div#slider figure {
   div#slider figure .slider-divs span {
     font-size: 2.5rem;
   }
+
+  #slider-btns {
+    display: none;
+  }
+  #slider-btns-phone-screen {
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    flex-wrap: wrap;
+  }
+
 
   .contacts div {
     font-size: 1rem;
