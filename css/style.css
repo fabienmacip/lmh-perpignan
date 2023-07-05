@@ -174,11 +174,32 @@ div#slider figure {
 }
 
 
+/* * * * * * * * * * * * * * * * *
+* * * * * *ACCUEIL * * * * * *
+* * * * * * * * * * * * * * * * */
+
+.accueil-text-boxes {
+  max-width: 600px;
+  padding: 1rem;
+  margin: 0 1rem;
+}
+
+.accueil-text-boxes h2 {
+  font-size: 2rem;
+  color: var(--main-color-dark);
+  text-decoration: underline;
+  text-decoration-color: var(--main-color-accent2);
+  -moz-text-decoration-color: var(--main-color-accent2);
+  text-underline-offset: 10px;
+  text-decoration-thickness: 2px;
+
+  margin-bottom: 1.5rem;
+}
 
 
-
-
-
+.accueil-text-boxes h3 {
+  font-size: 1.7rem;
+}
 
 
 .aumoinsun {
@@ -231,32 +252,7 @@ div#slider figure {
 }
 
 
-@media screen and (max-width : 560px) {
 
-  #logo {
-    max-width: 250px;
-  }
-
-  .contacts div {
-    font-size: 1rem;
-  }
-
-  .contacts-icon {
-    max-width: 35px;
-  }
-
-  .contacts-lieu {
-    flex-flow: column;
-  }
-
-
-  .statdate pre {
-    word-spacing: -3px;
-  }
-  .stattotal {
-    flex: 1;
-  }
-}
 
 
 .stattotal {
@@ -451,9 +447,13 @@ div#slider figure {
   display: inline;  
 }
 
+.bonjour {
+  margin-top: 10px;
+}
 
-
-
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* * * * * * * MAX 991 px * * * * * * * * 
+* * * * * * * * * * * * * * * * * * * * * */
 
 
 @media screen and (max-width: 991px) {
@@ -464,6 +464,19 @@ div#slider figure {
     margin-bottom: 1rem;
   }
   
+  #accueil-text-boxes{
+    flex-direction: column;   
+  }
+
+  .accueil-text-boxes{
+    max-width: 90%;
+  }
+
+  div#slider figure .slider-divs span {
+    font-size: 2.7rem;
+  }
+  
+
   .contacts {
 /*     flex-direction: column;
     justify-content: space-around;
@@ -482,27 +495,22 @@ div#slider figure {
   .contacts > div > div {
     margin-top: 1rem;
   }
-
-/* * * * * * * * SOUS-MENUS * * * * * * */
-
+  
+  /* * * * * * * * SOUS-MENUS * * * * * * */
+  
   
   #sub-nav-univers {
     position: inherit;
   }
-
-
-
-
-
-
-
+  
+  
   #lien-form-devenir-partenaire-up {
     display: inline;  
   }
   #lien-form-devenir-partenaire-down {
     display: none;
   }
-
+  
   #update-partenaire-table button {
     font-size: 0.8rem;
     margin: 5px auto;
@@ -527,7 +535,7 @@ div#slider figure {
   #logo2-div {
     flex: 1;
   }
-
+  
   #logo2-div {
     /* display: flex; */
   }
@@ -535,27 +543,107 @@ div#slider figure {
   #nav-ul li:not(:last-child) {
     border-right: none;
   }
-
+  
   .navbar-toggler {
     margin-top: 10px;
   }
 }
 
-.bonjour {
-  margin-top: 10px;
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* * * * * * * MAX 560 px * * * * * * * * 
+* * * * * * * * * * * * * * * * * * * * * */
+
+@media screen and (max-width : 560px) {
+
+  #logo {
+    max-width: 250px;
+  }
+
+  .accueil-text-boxes{
+    max-width: 95%;
+  }
+
+  .accueil-text-boxes h2 {
+    font-size: 1.8rem;
+  }
+
+  .accueil-text-boxes h3 {
+    font-size: 1.6rem;
+  }
+
+  div#slider figure .slider-divs span {
+    font-size: 2.5rem;
+  }
+
+  .contacts div {
+    font-size: 1rem;
+  }
+
+  .contacts-icon {
+    max-width: 35px;
+  }
+
+  .contacts-lieu {
+    flex-flow: column;
+  }
+
+
+  .statdate pre {
+    word-spacing: -3px;
+  }
+  .stattotal {
+    flex: 1;
+  }
 }
 
-@media print {
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* * * * * * * MAX 400 px * * * * * * * * 
+* * * * * * * * * * * * * * * * * * * * * */
+
+@media screen and (max-width : 400px) {
+  div#slider figure .slider-divs span {
+    font-size: 1.5rem;
+  }
+
+  .accueil-text-boxes h2 {
+    font-size: 1.6rem;
+  }
+
+  .accueil-text-boxes h3 {
+    font-size: 1.4rem;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* * * * * * * PRINT * * * * * * * * 
+* * * * * * * * * * * * * * * * * * * * * */
+
+
+@media print {
+  
   *{
     margin: 0;
     padding: 0;
   }
-    
+  
   body{
     font-family: verdana, arial;
   }
-
+  
   body{
     margin: 0;
     padding: 0;
@@ -581,10 +669,6 @@ div#slider figure {
   }
 
 }
-
-
-
-
 
 
 
