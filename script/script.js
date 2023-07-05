@@ -154,6 +154,10 @@ function lienFormDevenirPartenaire(){
 
 // ##############  UNIVERS  ###################
 
+function showUnivers(universId) {
+  alert("Univers n°" + universId);
+}
+
 function switchUnivers(num){
   $('.univers-to-switch').toggle()
   $('#univers-'+num).toggle()

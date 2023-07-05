@@ -10,10 +10,20 @@ ob_start();
     <?php 
       $universsSlider = $universs;
       array_unshift($universsSlider,end($universsSlider));
+      $cptSlider = 0;
       foreach ($universsSlider as $univers):
     ?>
-      <img src="img/univers/<?= $univers->getImage() ?>" alt="<?= $univers->getNom() ?>">
-    <?php endforeach; ?>
+
+        <div class="slider-divs absolute" style="left:calc((<?= $cptSlider ?> * (100% / 7)) + 10px);" onclick="showUnivers('<?= $univers->getId() ?>')">
+          <span><?= $univers->getNom() ?></span>
+        </div>
+
+        <img src="img/univers/<?= $univers->getImage() ?>" alt="<?= $univers->getNom() ?>" alt="<?= $univers->getNom() ?>" onclick="showUnivers('<?= $univers->getId() ?>')">
+        
+    <?php 
+      $cptSlider++;
+      endforeach; 
+    ?>
     </figure>
   </div>
 </div>
