@@ -72,16 +72,76 @@ nav a:hover {
 }
 
 
+/* * * * * * * * * * * * * * * * * 
+* * * * * * SLIDER * * * * * * *
+* * * * * * * * * * * * * * * *   */
+
+#slider-back {
+  background: linear-gradient(to bottom, var(--main-color-accent2), var(--main-color-accent2) 85%, #fff 85%, #fff 100%);
+}
 
 
 
+div#slider { 
+  width: 100%; 
+  max-width: 900px; 
+  overflow: hidden; 
+  margin: 0 auto;
+  -webkit-box-shadow: 0px 13px 14px -5px rgba(0,0,0,0.52); 
+  box-shadow: 0px 13px 14px -5px rgba(0,0,0,0.52);
+}
 
+div#slider figure {
+  position: relative;
+  width: 700%;
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+  text-align: left;
+}
 
+div#slider figure img { 
+  width: calc(100% / 7); height: auto; float: left; 
+}
 
+@keyframes slidy {
+  0% { left: 0%; }
+  14% { left: 0%; }
 
+  18% { left: -100%; }
+  32% { left: -100%; }
+  
+  36% { left: -200%; }
+  50% { left: -200%; }
+  
+  54% { left: -300%; }
+  68% { left: -300%; }
+  
+  72% { left: -400%; }
+  86% { left: -400%; }
 
+  90% { left: -500%; }
+  96% { left: -500%; }
 
+  100% { left: -600%; }
+}
 
+div#slider figure {
+  position: relative;
+  width: 700%;
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+  left: 0;
+  text-align: left;
+  animation: 20s slidy infinite;
+  -webkit-animation: 20s slidy infinite;
+  transition: ease;
+  -webkit-transition: ease;
+  -moz-transition: ease;
+  -ms-transition: ease;
+  -o-transition: ease;
+}
 
 
 
@@ -451,7 +511,7 @@ nav a:hover {
   }
 }
 
-#bonjour {
+.bonjour {
   margin-top: 10px;
 }
 
