@@ -158,16 +158,17 @@
                     <ul id="sub-nav-univers" class="absolute">
                     <?php if(isset($universs)) {
                         foreach ($universs as $univers): ?>
-                        <li><a href="index.php?page=univers&univers=<?= $univers->getId() ?>" onclick="showUnivers('<?= $univers->getId() ?>')"><?= $univers->getNom() ?></a></li>
+                        <li><a href="index.php?page=univers&univid=<?= $univers->getId() ?>"><?= $univers->getNom() ?></a></li>
+                        <!-- onclick="showUnivers('=?= $univers->getId() ?=')" -->
                     <?php endforeach; }  else { 
                       // A refactoriser. Il faudrait avoir à disposition la variable $universs tout au long de la navigation  
                     ?>
-                        <li><a href="index.php?page=univers&univers=3">Acheter mon logement</a></li>
-                        <li><a href="index.php?page=univers&univers=6">Assurance</a></li>
-                        <li><a href="index.php?page=univers&univers=4">Construire ma maison</a></li>
-                        <li><a href="index.php?page=univers&univers=2">Copropri&eacute;t&eacute;</a></li>
-                        <li><a href="index.php?page=univers&univers=5">Cr&eacute;dit</a></li>
-                        <li><a href="index.php?page=univers&univers=1">Travaux</a></li>
+                        <li><a href="index.php?page=univers&univid=3">Acheter mon logement</a></li>
+                        <li><a href="index.php?page=univers&univid=6">Assurance</a></li>
+                        <li><a href="index.php?page=univers&univid=4">Construire ma maison</a></li>
+                        <li><a href="index.php?page=univers&univid=2">Copropri&eacute;t&eacute;</a></li>
+                        <li><a href="index.php?page=univers&univid=5">Cr&eacute;dit</a></li>
+                        <li><a href="index.php?page=univers&univid=1">Travaux</a></li>
                     <?php } ?>
 
                     
@@ -243,7 +244,7 @@
     <?= $contenu ?>
 </section>
 </main>
-<footer class="fw-light fst-italic fs-6 text-center mt-4">
+<footer class="fw-light fst-italic fs-6 text-center mt-5">
     <p>La R&eacute;f&eacute;rence - Perpignan - Tous droits réservés</p>
     <p>Webmaster - <a href="mailto:fabien.macip@gmail.com">fabien.macip@gmail.com</a></p>
 </footer>

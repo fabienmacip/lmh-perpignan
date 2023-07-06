@@ -44,9 +44,16 @@ ob_start();
 <div id="slider-btns-phone-screen">
         <?php foreach($universs as $univers): ?>
           <div class="slider-btn">
-            <button onclick="showUnivers('<?= $univers->getId() ?>')" class="slider-btn-button"><?= $univers->getNom() ?></button>
+            <button 
+              onclick="showUnivers('<?= $univers->getId() ?>')"
+              class="slider-btn-button"
+            >
+              <?= $univers->getNom() ?>
+            </button>
           </div>
-        <?php endforeach; ?>
+          <?php endforeach;
+                /* showUnivers('=?= $univers->getId() ?=')"  */
+          ?>
 </div>
 
 <!-- FIN SLIDER -->

@@ -49,13 +49,13 @@ ob_start();
       </div>
       <!--FIN UNIVERS -->
       
-
-<?php foreach($universEnfants as $univEnf): ?>
-<div>
-  Coucou : <?= $univEnf->getId() ?>
-
+<div id="univers-enfant-div" class="flex wrap mt-4 mx-auto col-12 col-sm-10 col-lg-8">
+  <?php foreach($universEnfants as $univEnf): ?>
+  <div class="univers-enfant flex-1 box">
+    <?= $univEnf->getNom() ?> : <?= $univEnf->getSurnom() ?>
+  </div>
+  <?php endforeach; ?>
 </div>
-<?php endforeach; ?>
 
 
           <?php

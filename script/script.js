@@ -159,7 +159,7 @@ function lienFormDevenirPartenaire(){
 // ##############  UNIVERS  ###################
 
 function showUnivers(universId) {
-  alert("Univers n°" + universId);
+  window.location.href='index.php?page=univers&univid='+universId
 }
 
 function switchUnivers(num){
