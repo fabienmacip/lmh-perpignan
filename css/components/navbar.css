@@ -3,55 +3,110 @@
 }
 
 
-/* * * * * * * * SOUS-MENUS * * * * * * */
-  
-  
-#sub-nav-univers {
-  position: inherit;
-}
 
-
-#lien-form-devenir-partenaire-up {
-  display: inline;  
-}
-#lien-form-devenir-partenaire-down {
-  display: none;
-}
-
-#update-partenaire-table button {
-  font-size: 0.8rem;
-  margin: 5px auto;
-}
-
-#logo {
-  /* display: none; */
-}
+/* * * * * * NAVBAR * * * * * */
 
 nav {
-  flex-direction: row;
+  background-color: var(--main-color-dark);
+  color: var(--main-color-white)!important;
+
+}
+nav a {
+  color: var(--main-color-white)!important;
 }
 
-.navbar {
-  align-items: flex-start;
+nav a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--main-color-accent2)!important;
+  -moz-text-decoration-color: var(--main-color-accent2)!important;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 2px;
 }
 
-nav .container-fluid {
-  flex: 4;
+#navbar-toggler-button {
+  background-color: var(--main-color-white)!important;
+  
 }
 
-#logo2-div {
-  flex: 1;
+.navbar-light .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='rgba%280, 0, 23, 49%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>");
+  /* background-image: url('../img/icones/map.png')!important; */
+
 }
 
-#logo2-div {
-  /* display: flex; */
+/* * * * * *NOS REFERENCES * * * * * * */
+/* Sous-menu caché / Affiché si survol de "Nos références". */
+
+
+#sub-nav-univers {
+  display: none;
+  background-color: var(--main-color-dark);
+  min-width: 200px;
+  z-index: 200;
 }
 
-#nav-ul li:not(:last-child) {
-  border-right: none;
+#sub-nav-univers > li {
+  margin: 7px;
 }
 
-.navbar-toggler {
-  margin-top: 10px;
+#nav-nos-references:hover ul {
+  display: block;
 }
+
+
+
+
+@media screen and (max-width: 991px) {
+
+  /* * * * * * * * SOUS-MENUS * * * * * * */
+    
+  #sub-nav-univers {
+    position: inherit;
+  }
+
+  #lien-form-devenir-partenaire-up {
+    display: inline;  
+  }
+  #lien-form-devenir-partenaire-down {
+    display: none;
+  }
+
+  #update-partenaire-table button {
+    font-size: 0.8rem;
+    margin: 5px auto;
+  }
+
+  #logo {
+    /* display: none; */
+  }
+
+  nav {
+    flex-direction: row;
+  }
+
+  .navbar {
+    align-items: flex-start;
+  }
+
+  nav .container-fluid {
+    flex: 4;
+  }
+
+  #logo2-div {
+    flex: 1;
+  }
+
+  #logo2-div {
+    /* display: flex; */
+  }
+
+  #nav-ul li:not(:last-child) {
+    border-right: none;
+  }
+
+  .navbar-toggler {
+    margin-top: 10px;
+  }
+
 }
+
