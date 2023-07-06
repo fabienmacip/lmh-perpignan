@@ -50,6 +50,19 @@ foreach($_POST as $key => $value) {
 var_dump('AFTER');
 var_dump($_POST); */
 
+// INITIALISATION du VISITEUR pour accès aux données des PARTENAIRES
+if(isset($_POST['page']) && 'univers' === $_POST['page'] && isset($_POST['action']) &&'registeruser' === $_POST['action']) {
+    echo "VVVVVVVVVVVVVViiiiiiiiiiiiiiiiiiiiisiteuuuuuuuuuuuuuur";
+    //$controleur->verifVisiteur();
+
+    /* Le visiteur valide le formulaire (nom, prenom, mail, tel).
+    On renvoie la page UNIVERS avec les partenaires visibles. 
+    Ce qui déclenche une fonction JS (car au READY, elle voit que les classes "inaccessibles" 
+    n'existent plus) qui enregistre dans localStorage. */
+
+}
+
+
 if(isset($_POST['action']) && 'connexion' === $_POST['action']) {
     $controleur->verifConnexion($_POST['mail'], $_POST['password']);
 }

@@ -12,11 +12,76 @@ function deleteCookie(name) {
   alert(document.cookie);
 }
 
+function  getCookie(name){
+  if(document.cookie.length == 0)
+    return null;
+
+  var regSepCookie = new RegExp('(; )', 'g');
+  var cookies = document.cookie.split(regSepCookie);
+
+  for(var i = 0; i < cookies.length; i++){
+    var regInfo = new RegExp('=', 'g');
+    var infos = cookies[i].split(regInfo);
+    if(infos[0] == name){
+      //return unescape(infos[1]);
+      return infos[1];
+    }
+  }
+  return null;
+}
+
+
+
+
+
 function sendDemandeRelation() {
   alert('Fonction pour envoie de mail de mise en relation.\n--- BIENTOT disponible ---');
   /* visiteur : nom, prenom, mail, tel
   partenaire : nom, mail */
+  
+  //alert(getCookie('user'));
 }
+
+
+
+
+
+
+
+
+
+
+
+// AUTORISER ou PAS le VISITEUR à lire les infos des PARTENAIRES
+function setLocalLarefUser(id,nom,prenom,mail,tel,date) {
+  
+ // ajouter un if DATE pas trop vieille...
+
+  if(id !== '') {
+    localStorage.setItem('laref-id',id);
+  }
+  if(nom !== '') {
+    localStorage.setItem('laref-nom',nom);
+  }
+  if(prenom !== '') {
+    localStorage.setItem('laref-prenom',prenom);
+  }
+  if(mail !== '') {
+    localStorage.setItem('laref-mail',mail);
+  }
+  if(tel !== '') {
+    localStorage.setItem('laref-tel',tel);
+  }
+  if(date !== '') {
+    localStorage.setItem('laref-date',date);
+  }
+}
+
+
+
+
+
+
 
 
 

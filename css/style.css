@@ -141,6 +141,10 @@ header {
   border: 0;
 }
 
+.inaccessible {
+  display: none;
+}
+
 .plus-minus-circle {
   width: 2rem;
   

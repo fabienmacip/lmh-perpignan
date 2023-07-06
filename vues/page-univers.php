@@ -79,7 +79,7 @@ ob_start();
             <!-- DEBUT 1 PARTENAIRE -->
             <div 
               id="partenaire-<?= $partenaire->getId() ?>"
-              class="show-partenaires-<?= $universEnfantActuelId ?> flex-1 flex entete-partenaire-sticker"
+              class="show-partenaires-<?= $universEnfantActuelId ?> flex-1 flex inaccessible entete-partenaire-sticker"
               
               >
               <!-- onclick='window.location.href="index.php?page=partenaire&id=A?= $partenaire->getId() ?B&univers=A?= $univEnf->getId() ?B"' -->
@@ -103,7 +103,7 @@ ob_start();
               </div>   
           </div>
 
-          <div id="partenaire-detail-<?= $partenaire->getId() ?>" class="">
+          <div id="partenaire-detail-<?= $partenaire->getId() ?>" class="inaccessible">
               <p>
                 <b>Avantages :</b> <?= $partenaire->getDescriptionBreve() ?><br><br>
               </p>

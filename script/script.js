@@ -74,6 +74,9 @@ let pageMission ='';
       
     } */ // FIN du IF pageMission
 
+    
+
+
     // Si on n'est pas ADMIN connecté, alors on n'accède pas aux formulaires de CRUD.
     if($('#isAdmin').val() != 1) {
       $('form').hide(); 
@@ -102,7 +105,22 @@ let pageMission ='';
       $('#form-create-devenir-partenaire [type=reset]').prop('disabled',false).removeClass('inactif');
       $('#form-create-devenir-partenaire [type=submit]').prop('disabled',false).removeClass('inactif');
 
+      // Si un VISITEUR n'a pas encore donné ses : nom, prénom, mail et téléphone, il n'accède pas aux données des partenaires.
+      
+      if(localStorage.getItem('laref-user') && localStorage.getItem('laref-user') !== '') {
+        //alert('OK\n'+localStorage.getItem('laref-user'));
+        $('.inaccessible').removeClass('inaccessible');
+      } else {
+        //alert('NOK');
+        //localStorage.setItem('laref-user','Pedro');
+      }
+
+
     } else {
+
+      // Voir les données d'un PARTENAIRE en tant que VISITEUR
+      $('.inaccessible').removeClass('inaccessible');
+
       $('form').show();
       
       $('.confidentiel').hide();
