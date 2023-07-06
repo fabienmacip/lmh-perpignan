@@ -74,148 +74,6 @@ nav a:hover {
 }
 
 
-/* * * * * * * * * * * * * * * * * 
-* * * * * * SLIDER * * * * * * *
-* * * * * * * * * * * * * * * *   */
-
-#slider-back {
-  background: linear-gradient(to bottom, var(--main-color-accent2), var(--main-color-accent2) 85%, #fff 85%, #fff 100%);
-}
-
-div#slider { 
-  width: 100%; 
-  max-width: 900px; 
-  overflow: hidden; 
-  margin: 0 auto;
-  -webkit-box-shadow: 0px 13px 14px -5px rgba(0,0,0,0.52); 
-  box-shadow: 0px 13px 14px -5px rgba(0,0,0,0.52);
-}
-
-div#slider figure {
-  position: relative;
-  width: 700%;
-  margin: 0;
-  padding: 0;
-  font-size: 0;
-  text-align: left;
-
-  cursor:pointer;
-}
-
-div#slider figure img { 
-  width: calc(100% / 7); 
-  height: auto; 
-  float: left; 
-}
-
-div#slider figure .slider-divs { 
-  top: 25px;
-  /* left: 10px + calc(100% / 7); */
-  width: calc(100% / 7);
-  opacity: 0.8;
-  z-index: 100;
-}
-
-div#slider figure .slider-divs span {
-  font-size: 3rem;
-  color: var(--main-color-dark);
-  background-color: var(--main-color-accent2);
-
-  padding: 6px;
-  margin-left: 20px;
-
-  border-radius: 5px ;
-  -webkit-border-radius: 5px ;
-  -moz-border-radius: 5px ;
-  -ms-border-radius: 5px ;
-  -o-border-radius: 5px ;
-}
-
-
-@keyframes slidy {
-  0% { left: 0%; }
-  14% { left: 0%; }
-
-  18% { left: -100%; }
-  32% { left: -100%; }
-  
-  36% { left: -200%; }
-  50% { left: -200%; }
-  
-  54% { left: -300%; }
-  68% { left: -300%; }
-  
-  72% { left: -400%; }
-  86% { left: -400%; }
-
-  90% { left: -500%; }
-  96% { left: -500%; }
-
-  100% { left: -600%; }
-}
-
-div#slider figure {
-  position: relative;
-  width: 700%;
-  margin: 0;
-  padding: 0;
-  font-size: 0;
-  left: 0;
-  text-align: left;
-  animation: 20s slidy infinite;
-  -webkit-animation: 20s slidy infinite;
-  transition: ease;
-  -webkit-transition: ease;
-  -moz-transition: ease;
-  -ms-transition: ease;
-  -o-transition: ease;
-}
-
-#slider-btns-phone-screen {
-  display: none;
-}
-
-#slider-btns {
-  position: relative;
-  left: 0px;
-  top: 0px;
-  max-height: 0px;
-  z-index: 150;
-
-  overflow: visible;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-#slider-btns > div:first-child {
-  display: flex;
-  margin-top: 350px;
-  margin-left: 20px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.slider-btn {
-  width: 45%;
-}
-
-.slider-btn > button {
-  font-size: 1.1rem;
-  font-weight: 500;
-  background-color: var(--main-color-accent2)!important;
-  color: white;
-  border: 1px solid var(--main-color-accent);
-  width: 90%;
-}
-
-.slider-btn > button:hover {
-  color: var(--main-color-dark);
-  border: 1px solid var(--main-color-dark);
-}
-
 
 /* * * * * * * * * * * * * * * * *
 * * * * * *ACCUEIL * * * * * *
@@ -370,148 +228,7 @@ div#slider figure {
   left: 5px;
 }
 
-/* ********** UNIVERS ************ */
-#tout-afficher{
-  display: none;
-}
 
-
-.univers-sticker{
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  max-width: 100%;
-  min-height: 250px;
-  margin: 5px;
-  border: 1px solid #777;
-  cursor: pointer;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-}
-
-.univers-sticker>div{
-  background-color: rgba(38,174,144,0.7);
-  display: flex;
-  flex-flow: column;
-  padding: 1rem;
-  margin-top: 10%;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-}
-
-#univers-enfant-div {
-  flex-direction: column;
-  row-gap: 1rem;
-  padding: 0 2rem;
-}
-
-.univers-enfant {
-  min-height: 3rem;
-  background-color: var(--main-color-accent-light);
-  margin: 1px;
-  padding: 1rem;
-  font-size: 1.1rem;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-}
-
-/* ****************** PARTENAIRES ************************** */
-.partenaire-sticker, .univers-sticker {
-  box-shadow: 2px 2px 5px 2px rgba(0,0,0,0.44);
-  transition: transform 0.5s, box-shadow 0.5s ;
-  -webkit-transition: transform 0.5s, box-shadow 0.5s ;
-  -moz-transition: transform 0.5s, box-shadow 0.5s ;
-  -ms-transition: transform 0.5s, box-shadow 0.5s ;
-  -o-transition: transform 0.5s, box-shadow 0.5s ;
-}
-
-.partenaire-sticker:hover,.univers-sticker:hover {
-  box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.44);
-  transform: scale(1.03);
-  -webkit-transform: scale(1.03);
-  -moz-transform: scale(1.03);
-  -ms-transform: scale(1.03);
-  -o-transform: scale(1.03);
-}
-
-.hide-partenaires{
-  display: none;
-}
-
-#croix-close-partenaire{
-  font-size: 2rem;
-  cursor: pointer;
-}
-
-#partenaire-detail{
-  display: none;
-}
-
-.partenaire-sticker{
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  max-width: 100%;
-  min-height: 250px;
-  margin: 5px;
-  border: 1px solid #777;
-  cursor: pointer;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-}
-
-
-.partenaire-sticker>div{
-  background-color: rgba(174, 115, 38, 0.7);
-  display: flex;
-  flex-flow: column;
-  padding: 1rem;
-  margin-top: 5%;
-  color: white;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-}
-
-.partenaire-logo{
-  max-width: 300px;
-  max-height: 250px;
-  margin: 5px;
-  border: 1px solid #777;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-  box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.44);
-}
-
-/* DEVENIR PARTENAIRE */
-
-#lien-form-devenir-partenaire-up {
-  display: none;
-}
-#lien-form-devenir-partenaire-down {
-  display: inline;  
-}
-
-.bonjour {
-  margin-top: 10px;
-}
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * * * * * * * MAX 991 px * * * * * * * * 
@@ -534,22 +251,9 @@ div#slider figure {
     max-width: 90%;
   }
 
-  div#slider figure .slider-divs span {
-    font-size: 2.7rem;
-  }
   
 
-  #slider-btns > div:first-child {
-    margin-top: 300px;
-    margin-left: 15px;
-  }
   
-  .slider-btn > button {
-    font-size: 1rem;
-    font-weight: 500;
-  }
-  
-
 
   .contacts {
 /*     flex-direction: column;
@@ -570,59 +274,7 @@ div#slider figure {
     margin-top: 1rem;
   }
   
-  /* * * * * * * * SOUS-MENUS * * * * * * */
   
-  
-  #sub-nav-univers {
-    position: inherit;
-  }
-  
-  
-  #lien-form-devenir-partenaire-up {
-    display: inline;  
-  }
-  #lien-form-devenir-partenaire-down {
-    display: none;
-  }
-  
-  #update-partenaire-table button {
-    font-size: 0.8rem;
-    margin: 5px auto;
-  }
-  
-  #logo {
-    /* display: none; */
-  }
-  
-  nav {
-    flex-direction: row;
-  }
-  
-  .navbar {
-    align-items: flex-start;
-  }
-  
-  nav .container-fluid {
-    flex: 4;
-  }
-  
-  #logo2-div {
-    flex: 1;
-  }
-  
-  #logo2-div {
-    /* display: flex; */
-  }
-
-  #nav-ul li:not(:last-child) {
-    border-right: none;
-  }
-  
-  .navbar-toggler {
-    margin-top: 10px;
-  }
-}
-
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * * * * * * * MAX 732 px * * * * * * * * 
@@ -630,20 +282,6 @@ div#slider figure {
 
 
 @media screen and (max-width: 732px) {
-  #slider-btns > div:first-child {
-    margin-top: 192px;
-    margin-left: 15px;
-  }
-  
-  .slider-btn {
-    width: 48%;
-  }
-
-  .slider-btn > button {
-    font-size: 1rem;
-    font-weight: 500;
-    width: 95%;
-  }
   
 }
 
@@ -670,24 +308,7 @@ div#slider figure {
     font-size: 1.6rem;
   }
 
-  div#slider figure .slider-divs span {
-    font-size: 2.5rem;
-  }
-
-  #slider-btns {
-    display: none;
-  }
-  #slider-btns-phone-screen {
-    margin: 2rem auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .slider-btn {
-    width: 80%;
-  }
+ 
 
   .contacts div {
     font-size: 1rem;
@@ -716,10 +337,6 @@ div#slider figure {
 * * * * * * * * * * * * * * * * * * * * * */
 
 @media screen and (max-width : 400px) {
-  div#slider figure .slider-divs span {
-    font-size: 1.5rem;
-  }
-
   .accueil-text-boxes h2 {
     font-size: 1.6rem;
   }
@@ -727,23 +344,7 @@ div#slider figure {
   .accueil-text-boxes h3 {
     font-size: 1.4rem;
   }
-
-  .slider-btn {
-    width: 95%;
-  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *

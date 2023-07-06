@@ -1,3 +1,57 @@
 .navbar-toggler-icon {
   cursor: pointer;
 }
+
+
+/* * * * * * * * SOUS-MENUS * * * * * * */
+  
+  
+#sub-nav-univers {
+  position: inherit;
+}
+
+
+#lien-form-devenir-partenaire-up {
+  display: inline;  
+}
+#lien-form-devenir-partenaire-down {
+  display: none;
+}
+
+#update-partenaire-table button {
+  font-size: 0.8rem;
+  margin: 5px auto;
+}
+
+#logo {
+  /* display: none; */
+}
+
+nav {
+  flex-direction: row;
+}
+
+.navbar {
+  align-items: flex-start;
+}
+
+nav .container-fluid {
+  flex: 4;
+}
+
+#logo2-div {
+  flex: 1;
+}
+
+#logo2-div {
+  /* display: flex; */
+}
+
+#nav-ul li:not(:last-child) {
+  border-right: none;
+}
+
+.navbar-toggler {
+  margin-top: 10px;
+}
+}
