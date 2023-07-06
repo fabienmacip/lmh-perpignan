@@ -8,14 +8,14 @@ ob_start();
 <div class="container m-0 mt-3 max-width-100vw">
   <div class="row max-width-100percent">
     
-    <div 
+<!--     <div 
       id="partenaire-detail" 
       class="col-12 p-1"
       
     > 
     <div id="partenaire-detail-texte"></div>
     <span id="croix-close-partenaire" onclick=closePartenaireDetail()>--X--</span>    
-    </div>
+    </div> -->
 
 
 
@@ -49,67 +49,75 @@ ob_start();
       </div>
       <!--FIN UNIVERS -->
 
+
+
+
       <!-- DEBUT UNIVERS ENFANTS -->
-      <div id="univers-enfant-div" class="flex wrap mt-4 mx-auto col-12 col-sm-10 col-lg-8">
-        <?php foreach($universEnfants as $univEnf): ?>
+      <?php foreach($universEnfants as $univEnf): ?>
+        <div id="univers-enfant-div" class="flex wrap mt-4 mx-auto col-12 col-sm-10 col-lg-8">
+        <!-- TOUJOURS AFFICHE -->
         <div class="univers-enfant flex-1 box">
           <b><?= $univEnf->getNom() ?> :</b> <?= $univEnf->getSurnom() ?>
         </div>
-
+        <!-- FIN TOUJOURS AFFICHE -->
 
 
           <!-- DEBUT PARTENAIRE (dévoilé ou non) -->
           <?php 
             $universEnfantActuelId = $univEnf->getId();
 
-            echo "universEnfantActuelId => ";
-            var_dump($universEnfantActuelId);
-            echo "partenaires -> ";
-            var_dump($partenaires);
+          //echo "universEnfantActuelId -> ";
+          //var_dump($partenaires);
+          
 
-            $partenairesDeLUnivers = array_filter($partenaires, function($el) use ($universEnfantActuelId) {
+            $partenairesDeLUniversEnfant = array_filter($partenaires, function($el) use ($universEnfantActuelId) {
               return in_array($universEnfantActuelId,$el->getUniversEnfantArray());
             });
-            
-            echo "partenairesDeLUnivers -> ";
-            var_dump($partenairesDeLUnivers);
 
-            foreach ($partenairesDeLUnivers as $partenaire): 
+            foreach ($partenairesDeLUniversEnfant as $partenaire): 
           ?>
-          <div class="flex wrap mt-4 mx-auto col-12 col-sm-10 col-lg-8">
-            
+            <!-- DEBUT 1 PARTENAIRE -->
             <div 
               id="partenaire-<?= $partenaire->getId() ?>"
-              class="show-partenaires-<?= $universActuelId ?> hide-partenaires col-12 col-sm-6 col-lg-4"
-              onclick='window.location.href="index.php?page=partenaire&id=<?= $partenaire->getId() ?>&univers=<?= $univers->getId() ?>"'
-              <?php
-                if($backToUnivers != 0 && $backToUnivers == $universActuelId){ ?>
-                  style="display: block"
-                <?php }
-              ?>
-            >
+              class="show-partenaires-<?= $universEnfantActuelId ?> flex-1 flex"
+              
+              >
+              <!-- onclick='window.location.href="index.php?page=partenaire&id=A?= $partenaire->getId() ?B&univers=A?= $univEnf->getId() ?B"' -->
               <div 
-                class="partenaire-sticker p-1"
+                class="partenaire-sticker p-1 flex-1"
                 style="background-image: url(img/partenaire/<?= $partenaire->getImage() ?>)"
               >
+              </div>
+              <div class="partenaire-sticker-right flex-1 flex flex-column jcse p-4">
                 <div>
                   <h3>
-                      <?= $partenaire->getNom() ?>
-                    </h3>
-                    <div>
-                      <?= $partenaire->getDescriptionBreve() ?>
-                    </div>
-                </div>  
-              </div>
-            </div>
-            
+                    <?= $partenaire->getNom() ?>
+                  </h3>
+                </div>
+                <div>
+                  <?= $partenaire->getDescriptionBreve() ?>
+                </div>
+                <div class="pointer pt-4 tr" onclick="showPartenaireDetail(<?= $partenaire->getId() ?>)">
+                  Voir le d&eacute;tail...
+                </div>
+              </div>   
           </div>
+
+          <div id="partenaire-detail-<?= $partenaire->getId() ?>" class="">
+              <p>
+                <b>Avantages :</b> <?= $partenaire->getDescriptionBreve() ?><br><br>
+              </p>
+              <p>
+                <b>Description complète :</b> <?= $partenaire->getDescription() ?><br><br>
+              </p>
+              <p class="tc">
+                <button class="btn-toujours-affiche btn-mis-en-relation">Etre mis en relation</button>
+              </p>
+          </div>
+          <!-- FIN 1 PARTENAIRE -->
 
           <?php endforeach; ?>
           <!-- FIN PARTENAIRE (dévoilé ou non) -->
-
-
-
 
       </div>
       <!-- FIN UNIVERS ENFANTS -->

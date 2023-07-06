@@ -39,7 +39,7 @@ class Partenaires
 
 
         if (!is_null($this->pdo)) {
-            $sql = 'SELECT nom FROM partenaire WHERE univers LIKE "%'.$whereUnivers.'%" ORDER BY nom';
+            $sql = 'SELECT * FROM partenaire WHERE univers LIKE "%'.$whereUnivers.'%" ORDER BY nom';
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute();
         }

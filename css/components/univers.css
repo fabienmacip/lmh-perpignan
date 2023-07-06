@@ -56,7 +56,19 @@
 }
 
 
+.btn-mis-en-relation {
+  font-size: 1.1rem;
+    font-weight: 500;
+    background-color: var(--main-color-accent2)!important;
+    color: white;
+    border: 1px solid var(--main-color-accent);
+    width: 70%;
+}
 
+.btn-mis-en-relation:hover {
+  color: var(--main-color-dark);
+  border: 1px solid var(--main-color-dark);
+}
 
 
 @media screen and (max-width: 732px) {

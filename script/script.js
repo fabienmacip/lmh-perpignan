@@ -85,6 +85,9 @@ let pageMission ='';
       $('.slider-btn-button').removeClass('inactif');
       $('.slider-btn-button').prop('disabled',false);
 
+      $('.btn-toujours-affiche').removeClass('inactif');
+      $('.btn-toujours-affiche').prop('disabled', false);
+
       $('#form-connexion').show();
       /* $('.btn-connexion').show(); */
       $('.btn-connexion').prop('disabled',false);
