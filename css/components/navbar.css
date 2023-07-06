@@ -54,6 +54,9 @@ nav a:hover {
 }
 
 
+#nav-ul {
+  margin: 0 auto;
+}
 
 
 @media screen and (max-width: 991px) {
@@ -103,6 +106,7 @@ nav a:hover {
   #nav-ul li:not(:last-child) {
     border-right: none;
   }
+
 
   .navbar-toggler {
     margin-top: 10px;

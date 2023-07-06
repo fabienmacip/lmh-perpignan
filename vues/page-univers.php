@@ -6,7 +6,7 @@ ob_start();
 
 
 <div class="container m-0 mt-3 max-width-100vw">
-  <div class="row max-width-100percent">
+  <div class="row max-width-100percent flex-column">
     
 <!--     <div 
       id="partenaire-detail" 
@@ -79,7 +79,7 @@ ob_start();
             <!-- DEBUT 1 PARTENAIRE -->
             <div 
               id="partenaire-<?= $partenaire->getId() ?>"
-              class="show-partenaires-<?= $universEnfantActuelId ?> flex-1 flex"
+              class="show-partenaires-<?= $universEnfantActuelId ?> flex-1 flex entete-partenaire-sticker"
               
               >
               <!-- onclick='window.location.href="index.php?page=partenaire&id=A?= $partenaire->getId() ?B&univers=A?= $univEnf->getId() ?B"' -->
