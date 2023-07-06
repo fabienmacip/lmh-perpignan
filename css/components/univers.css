@@ -21,11 +21,12 @@
 }
 
 .univers-sticker>div{
-  background-color: rgba(38,174,144,0.7);
+  background-color: var(--main-color-accent-light-transparent);
+  /* rgba(38,174,144,0.7); */
   display: flex;
   flex-flow: column;
   padding: 1rem;
-  margin-top: 10%;
+  margin-top: 1rem;
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -41,15 +42,17 @@
 
 .univers-enfant {
   min-height: 3rem;
-  background-color: var(--main-color-accent-light);
+  background-color: var(--main-color-light);
   margin: 1px;
-  padding: 1rem;
+  padding: 1.5rem 1rem 3rem 1rem;
   font-size: 1.1rem;
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
+
+  cursor:pointer;
 }
 
 

@@ -1,9 +1,11 @@
 :root{
   /* Couleurs dominantes, d'après https://www.hostinger.fr/tutoriels/palette-couleur-site-web#19_Bleu_royal_fonce_et_or */
   --main-color: #002349;
+  --main-color-light: #89baee;
   --main-color-accent: #957C3D;
   --main-color-accent2: #b28e3b;
   --main-color-accent-light: #e4cb8c;
+  --main-color-accent-light-transparent: rgba(228, 203, 140, 0.7);
 
 
   --main-color-dark: #001731;

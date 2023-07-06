@@ -55,12 +55,11 @@ ob_start();
         <div class="univers-enfant flex-1 box">
           <b><?= $univEnf->getNom() ?> :</b> <?= $univEnf->getSurnom() ?>
         </div>
-        <?php endforeach; ?>
-      </div>
-      <!-- FIN UNIVERS ENFANTS -->
 
 
-          <?php
+
+          <!-- DEBUT PARTENAIRE (dévoilé ou non) -->
+          <?php 
             $universActuelId = $univers->getId();
             $partenairesDeLUnivers = array_filter($partenaires, function($el) use ($universActuelId) {
               return in_array($universActuelId,$el->getUniversArray());
@@ -68,31 +67,43 @@ ob_start();
             
             foreach ($partenairesDeLUnivers as $partenaire): 
           ?>
-          <div 
-            id="partenaire-<?= $partenaire->getId() ?>"
-            class="show-partenaires-<?= $universActuelId ?> hide-partenaires col-12 col-sm-6 col-lg-4"
-            onclick='window.location.href="index.php?page=partenaire&id=<?= $partenaire->getId() ?>&univers=<?= $univers->getId() ?>"'
-            <?php
-              if($backToUnivers != 0 && $backToUnivers == $universActuelId){ ?>
-                style="display: block"
-              <?php }
-            ?>
-            >
+          <div class="flex wrap mt-4 mx-auto col-12 col-sm-10 col-lg-8">
+            
             <div 
-              class="partenaire-sticker p-1"
-              style="background-image: url(img/partenaire/<?= $partenaire->getImage() ?>)"
+              id="partenaire-<?= $partenaire->getId() ?>"
+              class="show-partenaires-<?= $universActuelId ?> hide-partenaires col-12 col-sm-6 col-lg-4"
+              onclick='window.location.href="index.php?page=partenaire&id=<?= $partenaire->getId() ?>&univers=<?= $univers->getId() ?>"'
+              <?php
+                if($backToUnivers != 0 && $backToUnivers == $universActuelId){ ?>
+                  style="display: block"
+                <?php }
+              ?>
             >
-              <div>
-                <h3>
-                    <?= $partenaire->getNom() ?>
-                  </h3>
-                  <div>
-                    <?= $partenaire->getDescriptionBreve() ?>
-                  </div>
-              </div>  
+              <div 
+                class="partenaire-sticker p-1"
+                style="background-image: url(img/partenaire/<?= $partenaire->getImage() ?>)"
+              >
+                <div>
+                  <h3>
+                      <?= $partenaire->getNom() ?>
+                    </h3>
+                    <div>
+                      <?= $partenaire->getDescriptionBreve() ?>
+                    </div>
+                </div>  
+              </div>
             </div>
+            
           </div>
-          
+
+          <?php endforeach; ?>
+          <!-- FIN PARTENAIRE (dévoilé ou non) -->
+
+
+
+
+      </div>
+      <!-- FIN UNIVERS ENFANTS -->
           <?php endforeach; ?>
       <?php 
       }

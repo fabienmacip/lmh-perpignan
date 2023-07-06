@@ -9,6 +9,7 @@ class Partenaire
     private $mail;
     private $telephone;
     private $univers;
+    private $universenfant;
     private $image;
     private $description;
     private $actif;
@@ -56,6 +57,15 @@ class Partenaire
 
     public function getUniversArray(){
         return explode(",",$this->univers);
+    }
+
+    public function getUniversEnfant()
+    {
+        return $this->universenfant;
+    }
+
+    public function getUniversEnfantArray(){
+        return explode(",",$this->universenfant);
     }
 
     public function getImage(){
