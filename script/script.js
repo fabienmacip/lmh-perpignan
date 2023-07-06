@@ -392,9 +392,21 @@ function alertMe() {
 
 // ####################  PARTENAIRE - Mise en relation d'un visiteur ####################
 
+function createCookie(name,value,duration = 7776000000) {
+  let date = new Date(Date.now() + duration); // 1 jour en millisecondes
+  date.toUTCString();
+  document.cookie = name+'='+value+'; expires='+duration;
+  alert(document.cookie);
+}
+
+function deleteCookie(name) {
+  document.cookie = name+'=; expires=Thu, 01 Jan 1970 00:00:00 UTC';
+  alert(document.cookie);
+}
+
 function sendDemandeRelation() {
   alert('Fonction pour envoie de mail de mise en relation.\n--- BIENTOT disponible ---');
   /* visiteur : nom, prenom, mail, tel
   partenaire : nom, mail */
-
 }
+
