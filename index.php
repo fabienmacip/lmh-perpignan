@@ -16,6 +16,8 @@ require_once('modeles/ConnectMe.php');
 
 require_once('controleurs/controleur.php');
 require_once('modeles/Modele.php');
+require_once('modeles/Prospect.php');
+require_once('modeles/Prospects.php');
 require_once('modeles/Univers.php');
 require_once('modeles/Universs.php');
 require_once('modeles/UniversEnfant.php');
