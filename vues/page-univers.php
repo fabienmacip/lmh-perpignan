@@ -111,7 +111,7 @@ ob_start();
                 <b>Description complète :</b> <?= $partenaire->getDescription() ?><br><br>
               </p>
               <p class="tc">
-                <button class="btn-toujours-affiche btn-mis-en-relation">Etre mis en relation</button>
+                <button class="btn-toujours-affiche btn-mis-en-relation" onclick="sendDemandeRelation()">Etre mis en relation</button>
               </p>
           </div>
           <!-- FIN 1 PARTENAIRE -->

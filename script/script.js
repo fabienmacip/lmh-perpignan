@@ -390,3 +390,11 @@ function alertMe() {
 
 
 
+// ####################  PARTENAIRE - Mise en relation d'un visiteur ####################
+
+function sendDemandeRelation() {
+  alert('Fonction pour envoie de mail de mise en relation.\n--- BIENTOT disponible ---');
+  /* visiteur : nom, prenom, mail, tel
+  partenaire : nom, mail */
+
+}
