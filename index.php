@@ -18,6 +18,8 @@ require_once('controleurs/controleur.php');
 require_once('modeles/Modele.php');
 require_once('modeles/Univers.php');
 require_once('modeles/Universs.php');
+require_once('modeles/UniversEnfant.php');
+require_once('modeles/UniversEnfants.php');
 require_once('modeles/Partenaire.php');
 require_once('modeles/Partenaires.php');
 require_once('modeles/StatPartenaire.php');
@@ -64,7 +66,17 @@ if(isset($_GET['page']) && 'connexion' === $_GET['page']) {
 } else if (isset($_GET['page']) && 'deconnexion' === $_GET['page']) {
     $controleur->deconnexion();
 
-}// UNIVERS - CRUD
+}
+
+// UNIVERS - Visiteur
+elseif (isset($_GET['page']) && 'univers' === $_GET['page'] && isset($_GET['univid']) && $_GET['univid'] >= 1 && $_GET['univid'] < 7) {
+    $controleur->pageUnivers(substr($_GET['univid'], 0, 1));
+}
+
+
+
+
+// UNIVERS - CRUD
 // UNIVERS - CREATE
 elseif (isset($_POST['page']) && 'universs' === $_POST['page'] && isset($_POST['action']) && 'createUnivers' === $_POST['action'] && isset($_POST['nom']) && isset($_POST['surnom'])) {
     $controleur->createUnivers($_POST['nom'],$_POST['surnom']);

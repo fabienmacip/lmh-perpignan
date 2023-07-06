@@ -1,6 +1,6 @@
 <?php
-$titre = 'La Maison de l\'Habitat by La Centrale de Financement - Accueil';
-
+$titre = 'La R&eacute;f&eacuterence - Nos r&eacute;f&eacute;rences';
+//$univToDisplay
 ob_start();
 ?>
 
@@ -19,17 +19,25 @@ ob_start();
 
 
 
-    <?php foreach ($universs as $univers): ?>
+    <?php foreach ($universs as $univers): 
+      // On n'affiche qu'un univers sur cette page.
+      if($univers->getId() == $univToDisplay){
+      
+    ?>
+
+
+      <!-- DEBUT UNIVERS -->
       <div 
-      id="univers-<?= $univers->getId() ?>"
-      class="col-12 col-sm-6 col-lg-4 univers-to-switch" 
-      onclick=switchUnivers(<?= $univers->getId() ?>) 
-      <?php
-        if($backToUnivers != 0 && $backToUnivers != $univers->getId()){ ?>
-          style="display: none"
-        <?php }
-      ?>
+        id="univers-<?= $univers->getId() ?>"
+        class="col-12 col-sm-10 col-lg-8 univers-to-switch mx-auto" 
+        onclick=switchUnivers(<?= $univers->getId() ?>) 
+        <?php
+          if($backToUnivers != 0 && $backToUnivers != $univers->getId()){ ?>
+            style="display: none"
+        <?php } ?>
       >
+        
+      
         <div class="univers-sticker p-1" style="background-image: url(img/univers/<?= $univers->getImage() ?>)">
           <div>
             <h2><?= $univers->getNom() ?></h2>
@@ -38,7 +46,18 @@ ob_start();
             </div>
           </div>
         </div>
-      </div><!--FIN UNIVERS -->
+      </div>
+      <!--FIN UNIVERS -->
+      
+
+<?php foreach($universEnfants as $univEnf): ?>
+<div>
+  Coucou : <?= $univEnf->getId() ?>
+
+</div>
+<?php endforeach; ?>
+
+
           <?php
             $universActuelId = $univers->getId();
             $partenairesDeLUnivers = array_filter($partenaires, function($el) use ($universActuelId) {
@@ -73,7 +92,9 @@ ob_start();
           </div>
           
           <?php endforeach; ?>
-      <?php endforeach; ?>
+      <?php 
+      }
+    endforeach; ?>
 
   </div>
 </div>

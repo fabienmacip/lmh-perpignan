@@ -194,8 +194,12 @@ div#slider figure {
   display: flex;
   margin-top: 350px;
   margin-left: 20px;
-  justify-content: start;
+  justify-content: center;
   flex-wrap: wrap;
+}
+
+.slider-btn {
+  width: 45%;
 }
 
 .slider-btn > button {
@@ -204,6 +208,7 @@ div#slider figure {
   background-color: var(--main-color-accent2)!important;
   color: white;
   border: 1px solid var(--main-color-accent);
+  width: 90%;
 }
 
 .slider-btn > button:hover {
@@ -607,13 +612,18 @@ div#slider figure {
 
 @media screen and (max-width: 732px) {
   #slider-btns > div:first-child {
-    margin-top: 180px;
+    margin-top: 192px;
     margin-left: 15px;
   }
   
+  .slider-btn {
+    width: 48%;
+  }
+
   .slider-btn > button {
     font-size: 1rem;
     font-weight: 500;
+    width: 95%;
   }
   
 }
@@ -634,6 +644,7 @@ div#slider figure {
 
   .accueil-text-boxes h2 {
     font-size: 1.8rem;
+    line-height: 2.3rem;
   }
 
   .accueil-text-boxes h3 {
@@ -651,10 +662,13 @@ div#slider figure {
     margin: 2rem auto;
     display: flex;
     flex-direction: row;
-    justify-content: start;
+    justify-content: center;
     flex-wrap: wrap;
   }
 
+  .slider-btn {
+    width: 80%;
+  }
 
   .contacts div {
     font-size: 1rem;
@@ -693,6 +707,10 @@ div#slider figure {
 
   .accueil-text-boxes h3 {
     font-size: 1.4rem;
+  }
+
+  .slider-btn {
+    width: 95%;
   }
 }
 

@@ -59,12 +59,18 @@ class Controleur {
         require_once('vues/accueil.php');
     }
     
-    public function pageUnivers($backToUnivers = 0)
+    public function pageUnivers($univId, $backToUnivers = 0)
     {
         $universs = new Universs($this->pdo);
         $universs = $universs->lister();
         $partenaires = new Partenaires($this->pdo);
         $partenaires = $partenaires->lister();
+
+        $univToDisplay = $univId;
+
+        $universEnfants = new UniversEnfants($this->pdo);
+        $universEnfants = $universEnfants->listerFromUnivers($univToDisplay);
+
         /* $dates = new MyDates($this->pdo);
         $dates = $dates->listerDate(); */
         $backToUnivers = $backToUnivers;
