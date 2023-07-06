@@ -26,6 +26,7 @@
         echo $scriptMission;
     } else {?>
         <script src="./script/script.js"></script>
+        <script src="./script/visiteurDatas.js"></script>
     <?php }
     ?>
 
