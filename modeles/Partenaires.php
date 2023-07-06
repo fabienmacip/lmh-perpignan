@@ -24,6 +24,36 @@ class Partenaires
         return $tuples;
     }
 
+    // READ
+    public function listerFromUnivers($univers = 0)
+    {
+        
+        $universId = intval($univers);
+
+        if($universId == 0){
+            $whereUnivers = '';
+        }
+        else {
+            $whereUnivers = $universId;
+        }
+
+
+        if (!is_null($this->pdo)) {
+            $sql = 'SELECT nom FROM partenaire WHERE univers LIKE "%'.$whereUnivers.'%" ORDER BY nom';
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute();
+        }
+        $tuples = [];
+        while ($tuple = $stmt->fetchObject('Partenaire', [$this->pdo])) {
+            $tuples[] = $tuple;
+        }
+
+        $stmt->closeCursor();
+
+        return $tuples;
+    }
+
+
     // READ pour listes déroulantes
     public function listerJson()
     {

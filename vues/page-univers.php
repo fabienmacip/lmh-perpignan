@@ -60,11 +60,20 @@ ob_start();
 
           <!-- DEBUT PARTENAIRE (dévoilé ou non) -->
           <?php 
-            $universActuelId = $univers->getId();
-            $partenairesDeLUnivers = array_filter($partenaires, function($el) use ($universActuelId) {
-              return in_array($universActuelId,$el->getUniversArray());
+            $universEnfantActuelId = $univEnf->getId();
+
+            echo "universEnfantActuelId => ";
+            var_dump($universEnfantActuelId);
+            echo "partenaires -> ";
+            var_dump($partenaires);
+
+            $partenairesDeLUnivers = array_filter($partenaires, function($el) use ($universEnfantActuelId) {
+              return in_array($universEnfantActuelId,$el->getUniversEnfantArray());
             });
             
+            echo "partenairesDeLUnivers -> ";
+            var_dump($partenairesDeLUnivers);
+
             foreach ($partenairesDeLUnivers as $partenaire): 
           ?>
           <div class="flex wrap mt-4 mx-auto col-12 col-sm-10 col-lg-8">

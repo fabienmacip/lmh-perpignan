@@ -63,10 +63,13 @@ class Controleur {
     {
         $universs = new Universs($this->pdo);
         $universs = $universs->lister();
-        $partenaires = new Partenaires($this->pdo);
-        $partenaires = $partenaires->lister();
-
+        
         $univToDisplay = $univId;
+
+        $partenaires = new Partenaires($this->pdo);
+        $partenaires = $partenaires->listerFromUnivers($univToDisplay);
+
+        /* $partenaires = $partenaires->lister(); */
 
         $universEnfants = new UniversEnfants($this->pdo);
         $universEnfants = $universEnfants->listerFromUnivers($univToDisplay);
