@@ -1,34 +1,26 @@
 // ####################  PARTENAIRE - Mise en relation d'un visiteur ####################
-
-function createCookie(name,value,duration = 7776000000) {
-  let date = new Date(Date.now() + duration); // 1 jour en millisecondes
-  date.toUTCString();
-  document.cookie = name+'='+value+'; expires='+duration;
-  alert(document.cookie);
-}
-
-function deleteCookie(name) {
-  document.cookie = name+'=; expires=Thu, 01 Jan 1970 00:00:00 UTC';
-  alert(document.cookie);
-}
-
-function  getCookie(name){
-  if(document.cookie.length == 0)
-    return null;
-
-  var regSepCookie = new RegExp('(; )', 'g');
-  var cookies = document.cookie.split(regSepCookie);
-
-  for(var i = 0; i < cookies.length; i++){
-    var regInfo = new RegExp('=', 'g');
-    var infos = cookies[i].split(regInfo);
-    if(infos[0] == name){
-      //return unescape(infos[1]);
-      return infos[1];
+function checkVisiteurRegistered(id){
+  
+  // Si c'est déjà ouvert, alors on ferme les DIVS
+  if(!$('.univers-enfant-to-display-'+id).hasClass('inaccessible')) {
+    $('#down-arrow-univers-enfant-'+id).css({'transform' : 'rotate('+ 0 +'deg)'})
+    $('.univers-enfant-to-display-'+id).addClass('inaccessible')
+  } else {
+    // Si c'est fermé, alors avant, on vérifie si le visiteur est enregistré
+    if(localStorage.getItem('laref-nom') && localStorage.getItem('laref-nom') !== '') {
+      //alert('OK\n'+localStorage.getItem('laref-user'));
+      $('.univers-enfant-to-display-'+id).removeClass('inaccessible')
+      $('#down-arrow-univers-enfant-'+id).css({'transform' : 'rotate('+ 180 +'deg)'})
+    } else {
+      displayShortMessageBox("Enregistrez-vous pour pouvoir accéder à nos références", couleur = '', km = '', prix = '', alma = '')
+      
+      //displayShortMessageBox(titre, couleur = '', km = '', prix = '', alma = '')
+      //localStorage.setItem('laref-user','Pedro');
     }
   }
-  return null;
+  
 }
+
 
 
 
@@ -90,7 +82,7 @@ function setLocalLarefUser(id,nom,prenom,mail,tel,date) {
 function displayShortMessageBox(titre, couleur = '', km = '', prix = '', alma = ''){
     
   if(titre === "mustang"){
-      rappelDonnees = "LOCATION MUSTANG - Demande d'informations";
+      rappelDonnees = "";
   } 
   else {
       if(couleur === '' && km === '' && prix === ''){
@@ -100,57 +92,47 @@ function displayShortMessageBox(titre, couleur = '', km = '', prix = '', alma = 
       }
   }
 
-  if(alma === 'alma'){
-      rappelDonnees = 'ALMA / SANTANDER - paiement en plusieurs fois<br>' + rappelDonnees;
-  }
-  
-{/* <div id="rappelDonneesMoto">${titre} (${couleur}) - ${km} km - ${prix} €</div> */}
-
   let form = `<div id="content-short-mail-box">
                   <div id="croixCloseFSM" onclick="closeFormShortMail()" style="padding:1rem">X</div>
                   
                   <div id="confirmShortMailSent"></div><!-- messages d'erreur -->
-                  <div id="rappelDonneesMoto">${rappelDonnees}</div>
+                  <div id="rappelDonneesMoto" class="mb-2">${rappelDonnees}</div>
 
                   <form id="formShortMail" method='post' action="app/controllers/sendShortMail.php">
                       <div id="fsm-contact-donnees">
-                          <div id="fsm-contact-coordonnees">
-                                  <div>
-                                      <label for="fsm-mail">Mail <span class="asterisque">(mail ou tél. obligatoire)</span><br>
-                                      <input type="email" id="fsm-mail" name="fsm-mail" maxlength=50 placeholder="votre mail" tabindex="1">
-                                  </label>
-                                  </div>
-                                  <div>
-                                      <label for="fsm-tel">T&eacute;l&eacute;phone <span class="asterisque">(mail ou tél obligatoire)</span><br>
-                                      <input type="text" id="fsm-tel" name="fsm-tel"  maxlength=10 placeholder="num&eacute;ro &agrave; 10 chiffres ET sans espaces" tabindex="2">
-                                  </label><br>
-                                  </div>
+                        <div id="fsm-contact-coordonnees">
+                          <div>
+                            <label for="fsm-nom">Nom <span class="asterisque"></span><br>
+                            <input type="text" id="fsm-nom" name="fsm-nom" maxlength=50 placeholder="votre nom" tabindex="1">
+                            </label>
                           </div>
-                          <div id="fsm-contact-message">
-                              <div>
-                                  <label for="fsm-message">Votre message <span class="asterisque">(obligatoire)</span><br>
-                                  <textarea id="fsm-message" name="fsm-message" maxlength=500 rows=8 placeholder="votre message" tabindex="3"></textarea></label><br>
-                              </div>
-                              <div>
-                                  <input type="hidden" id="fsm-titre" name="fsm-titre" value="${titre}"/>
-                                  <input type="hidden" id="fsm-couleur" name="fsm-couleur" value="${couleur}"/>
-                                  <input type="hidden" id="fsm-km" name="fsm-km" value="${km}"/>
-                                  <input type="hidden" id="fsm-prix" name="fsm-prix" value="${prix}"/>
-                                  <input type="hidden" id="fsm-alma" name="fsm-alma" value="${alma}"/>
-                              </div>
-                          </div>
-
-                          <div id="short-contact-btn">
-                              <div class="button CTAButton shortMailButton" id="btn-annuler-short-mail" name="btn-annuler-short-mail" value="ANNULER" tabindex="4" onClick="closeFormShortMail()">Annuler</div><br/>
-                              <div class="button CTAButton shortMailButton" id="btn-envoyer-short-mail" name="btn-envoyer-short-mail" value="ENVOYER" tabindex="5" onClick="confirmSendShortMail()">Envoyer</div>
-                          </div>	
+                        <div>
+                          <label for="fsm-prenom">Pr&eacute;nom <span class="asterisque"></span><br>
+                          <input type="text" id="fsm-prenom" name="fsm-prenom"  maxlength=10 placeholder="votre pr&eacute;nom" tabindex="2">
+                          </label><br>
+                        </div>
+                        <div>
+                          <label for="fsm-mail">Mail <span class="asterisque"></span><br>
+                          <input type="email" id="fsm-mail" name="fsm-mail" maxlength=50 placeholder="votre mail" tabindex="3">
+                          </label>
+                        </div>
+                        <div>
+                          <label for="fsm-tel">T&eacute;l&eacute;phone <span class="asterisque"></span><br>
+                          <input type="text" id="fsm-tel" name="fsm-tel"  maxlength=10 placeholder="num&eacute;ro &agrave; 10 chiffres ET sans espaces" tabindex="4">
+                          </label><br>
+                        </div>
                       </div>
+
+                      <div id="short-contact-btn" class="mt-2 flex gap-10">
+                        <div class="button CTAButton shortMailButton" id="btn-annuler-short-mail" name="btn-annuler-short-mail" value="ANNULER" tabindex="5" onClick="closeFormShortMail()">Annuler</div><br/>
+                        <div class="button CTAButton shortMailButton" id="btn-envoyer-short-mail" name="btn-envoyer-short-mail" value="ENVOYER" tabindex="6" onClick="confirmSendShortMail()">Envoyer</div>
+                      </div>	
                   </form>
               </div>`;
 
   let f = document.createElement('div');
   f.setAttribute('id','div-fsm');
-  f.style.zIndex = 100;
+  f.style.zIndex = 1000;
   f.style.display = 'flex';
   f.style.flexFlow = 'row';
   f.style.justifyContent = 'center';

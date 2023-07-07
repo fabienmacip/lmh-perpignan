@@ -242,6 +242,9 @@ img {
   padding-top: 60px;
 }
 
+.pb-0 {
+  padding-bottom: 0px;
+}
 
 .pb-5 {
   padding-bottom: 5px;
@@ -520,7 +523,9 @@ img {
   margin-top: 130px;
 }
 
-
+.mb-0 {
+  margin-bottom: 0px;
+}
 
 .mb-5 {
   margin-bottom: 5px;

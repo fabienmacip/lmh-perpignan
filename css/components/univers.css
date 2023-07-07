@@ -39,7 +39,7 @@
   -o-border-radius: 5px;
 }
 
-#univers-enfant-div {
+.univers-enfant-div {
   flex-direction: column;
   row-gap: 1rem;
   padding: 0 2rem;
@@ -50,16 +50,35 @@
   min-height: 3rem;
   background-color: var(--main-color-light);
   margin: 1px;
-  padding: 1.5rem 1rem 3rem 1rem;
+  padding: 1.5rem 1rem;
   font-size: 1.1rem;
+
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
 
-  cursor:pointer;
+  
 }
+
+.down-arrow-univers-enfant {
+  max-width: 70px;
+  cursor: pointer;
+  border: 2px solid rgba(0,0,0,0);
+  transition: all 1s ease;
+}
+
+.down-arrow-univers-enfant:hover {
+  border: 2px solid var(--main-color-accent-light-transparent);
+  box-shadow: 2px 2px 5px 2px rgba(0,0,0,0.44);
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
 
 
 .btn-mis-en-relation {
@@ -87,7 +106,18 @@
     min-height: 240px;
   }
 
+  .down-arrow-univers-enfant {
+    max-width: 50px;
+  }
+  
+
   .entete-partenaire-sticker {
     flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .univers-enfant {
+    font-size: 1rem;
   }
 }

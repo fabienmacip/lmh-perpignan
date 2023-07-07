@@ -54,12 +54,17 @@ ob_start();
 
       <!-- DEBUT UNIVERS ENFANTS -->
       <?php foreach($universEnfants as $univEnf): ?>
-        <div id="univers-enfant-div" class="flex wrap mt-4 mx-auto col-12 col-sm-10 col-lg-8">
-        <!-- TOUJOURS AFFICHE -->
-        <div class="univers-enfant flex-1 box">
-          <b><?= $univEnf->getNom() ?> :</b> <?= $univEnf->getSurnom() ?>
-        </div>
-        <!-- FIN TOUJOURS AFFICHE -->
+        <div id="univers-enfant-div-<?=$univEnf->getId()?>" class="flex wrap mt-4 mx-auto col-12 col-sm-10 col-lg-8 univers-enfant-div">
+          <!-- TOUJOURS AFFICHE -->
+          <div class="univers-enfant flex-1 box">
+            <p class="mb-0">
+              <b><?= $univEnf->getNom() ?> :</b> <?= $univEnf->getSurnom() ?>
+            </p>  
+            <p class="tr px-15 mb-0">
+              <img id="down-arrow-univers-enfant-<?= $univEnf->getId() ?>" rel="flèche vers le bas" src="img/icones/down-arrow.png" class="down-arrow-univers-enfant" onclick="checkVisiteurRegistered(<?= $univEnf->getId() ?>)">
+            </p>
+          </div>
+          <!-- FIN TOUJOURS AFFICHE -->
 
 
           <!-- DEBUT PARTENAIRE (dévoilé ou non) -->
@@ -79,7 +84,7 @@ ob_start();
             <!-- DEBUT 1 PARTENAIRE -->
             <div 
               id="partenaire-<?= $partenaire->getId() ?>"
-              class="show-partenaires-<?= $universEnfantActuelId ?> flex-1 flex inaccessible entete-partenaire-sticker"
+              class="show-partenaires-<?= $universEnfantActuelId ?> flex-1 flex inaccessible entete-partenaire-sticker univers-enfant-to-display-<?= $univEnf->getId() ?>"
               
               >
               <!-- onclick='window.location.href="index.php?page=partenaire&id=A?= $partenaire->getId() ?B&univers=A?= $univEnf->getId() ?B"' -->
@@ -103,7 +108,7 @@ ob_start();
               </div>   
           </div>
 
-          <div id="partenaire-detail-<?= $partenaire->getId() ?>" class="inaccessible">
+          <div id="partenaire-detail-<?= $partenaire->getId() ?>" class="inaccessible univers-enfant-to-display-<?= $univEnf->getId() ?>">
               <p>
                 <b>Avantages :</b> <?= $partenaire->getDescriptionBreve() ?><br><br>
               </p>

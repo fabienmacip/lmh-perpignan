@@ -119,7 +119,7 @@ let pageMission ='';
 
       if(localStorage.getItem('laref-nom') && localStorage.getItem('laref-nom') !== '') {
         //alert('OK\n'+localStorage.getItem('laref-user'));
-        $('.inaccessible').removeClass('inaccessible');
+        //$('.inaccessible').removeClass('inaccessible');
       } else {
         //alert('NOK');
         //localStorage.setItem('laref-user','Pedro');
