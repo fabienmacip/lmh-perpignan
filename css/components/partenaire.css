@@ -8,7 +8,7 @@
   -o-transition: transform 0.5s, box-shadow 0.5s ;
 }
 
-.partenaire-sticker:hover,.univers-sticker:hover {
+.partenaire-sticker:hover {
   box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.44);
   transform: scale(1.03);
   -webkit-transform: scale(1.03);

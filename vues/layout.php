@@ -25,8 +25,8 @@
     if(isset($scriptMission)) {
         echo $scriptMission;
     } else {?>
-        <script src="./script/script.js"></script>
         <script src="./script/visiteurDatas.js"></script>
+        <script src="./script/script.js"></script>
     <?php }
     ?>
 
@@ -67,9 +67,14 @@
     }
 
 
+    $visiteurRegisteredDatas = '';
+    //$visiteurRegisteredDatas = '1,Durand,Jean,durandjean1234321@voila.fr,06 44 33 44 33,2023-07-02';
+
+
 
 ?>
 
+<input type="hidden" id=isVisiteurRegistered value="<?= $visiteurRegisteredDatas ?>">
 <input type="hidden" id=isAdmin value="<?= $isAdmin ?>">
 <input type="hidden" id=isPartenaire value="<?= $isPartenaire ?>">
 

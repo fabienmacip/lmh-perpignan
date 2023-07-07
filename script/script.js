@@ -106,8 +106,18 @@ let pageMission ='';
       $('#form-create-devenir-partenaire [type=submit]').prop('disabled',false).removeClass('inactif');
 
       // Si un VISITEUR n'a pas encore donné ses : nom, prénom, mail et téléphone, il n'accède pas aux données des partenaires.
-      
-      if(localStorage.getItem('laref-user') && localStorage.getItem('laref-user') !== '') {
+      if($('#isVisiteurRegistered').val() != '') {
+        datas = $('#isVisiteurRegistered').val()
+        datas = datas.split(',')
+        console.log(datas)
+        
+        setLocalLarefUser(datas[0],datas[1],datas[2],datas[3],datas[4],datas[5]);
+        //function setLocalLarefUser(id,nom,prenom,mail,tel,date)
+
+      }
+
+
+      if(localStorage.getItem('laref-nom') && localStorage.getItem('laref-nom') !== '') {
         //alert('OK\n'+localStorage.getItem('laref-user'));
         $('.inaccessible').removeClass('inaccessible');
       } else {
