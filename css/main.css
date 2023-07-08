@@ -1,12 +1,12 @@
-@import url("color.css");
-@import url("framework/utiles.css");
+@import url("color.css?v=1");
+@import url("framework/utiles.css?v=1");
 /* @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"); */
-@import url("components/navbar.css");
-@import url("components/slider.css");
-@import url("components/univers.css");
-@import url("components/partenaire.css");
-@import url("components/connexion.css");
-@import url("style.css");
+@import url("components/navbar.css?v=1");
+@import url("components/slider.css?v=1");
+@import url("components/univers.css?v=1");
+@import url("components/partenaire.css?v=1");
+@import url("components/connexion.css?v=1");
+@import url("style.css?v=1");
 
 /* @import url("components/nav.css");
 @import url("components/toaster-contact-form.css");

@@ -81,6 +81,48 @@ class Controleur {
     }
 
 
+    // PROSPECT - CRUD
+
+    public function listerProspects()
+    {
+        $prospects = new Prospects($this->pdo);
+        $prospects = $prospects->lister();
+        //require_once('vues/liste-prospect.php');
+    }
+
+    public function listerProspect($id)
+    {
+        $prospects = new Prospects($this->pdo);
+        $prospects = $prospects->listerUn($id);
+        //require_once('vues/liste-prospect.php');
+    }
+
+    public function createProspect($nom, $prenom, $mail, $telephone)
+    {
+        $prospects = new Prospects($this->pdo);
+        $prospectToCreate = $prospects->create($nom, $prenom, $mail, $telephone);
+        $prospects = $prospects->lister();
+        //require_once('vues/liste-prospect.php');
+    }
+
+    public function updateProspect($id, $nom, $prenom, $mail, $telephone)
+    {
+        $prospects = new Prospects($this->pdo);
+        $prospectToUpdate = $prospects->update($id, $nom, $prenom, $mail, $telephone);
+        $prospects = $prospects->lister();
+        //require_once('vues/liste-prospect.php');
+    }
+
+    public function deleteProspect($id,$nom)
+    {
+        $prospects = new Prospects($this->pdo);
+        $prospectToDelete = $prospects->delete($id, $nom);
+        $prospects = $prospects->lister();
+        //require_once('vues/liste-prospect.php');
+    }
+
+
+
     // UNIVERS - CRUD
 
     public function listerUnivers()

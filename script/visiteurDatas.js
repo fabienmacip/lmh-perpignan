@@ -22,10 +22,6 @@ function checkVisiteurRegistered(id){
 }
 
 
-
-
-
-
 function sendDemandeRelation() {
   alert('Fonction pour envoie de mail de mise en relation.\n--- BIENTOT disponible ---');
   /* visiteur : nom, prenom, mail, tel
@@ -35,9 +31,54 @@ function sendDemandeRelation() {
 }
 
 
+/* --------------------------------------------------------------------------------------------------------------------------------------- */
+
+function testCreationProspect() {
+
+  let datasObj = {};
+  
+  datasObj.nom = "Dupond";
+  datasObj.prenom = "Charly";
+  datasObj.mail = "lui@gmail.com";
+  datasObj.telephone = "06 33 44 55 66";
 
 
 
+
+
+  //createProspectFromPublic($nom, $prenom, $mail, $telephone)
+
+
+
+  let data = new FormData();
+  for (const key in datasObj) {
+    data.append(key, datasObj[key])
+  }
+  var req = new XMLHttpRequest();
+
+/*       console.log(keroxObj);
+  debugger;
+*/
+  req.open('POST', 'controleurs/createProspectFromPublic.php');
+
+  
+
+  req.onload = function() {
+
+   
+    $('#confirmShortMailSent').innerHTML = "Message envoyé avec succ&egrave;s.";
+    setTimeout(function() {
+        alert('Votre message a été envoyé par mail. Nous vous recontactons dès que possible.');
+
+    }, 1000);
+    setTimeout(function() {
+        $('#confirmShortMailSent').innerHTML = '';
+        resetShortContactFormScreen();
+        $('#div-fsm').remove();
+    }, 2000); 
+  }
+  req.send(data);
+}
 
 
 
@@ -96,7 +137,7 @@ function displayShortMessageBox(titre, couleur = '', km = '', prix = '', alma = 
                   <div id="croixCloseFSM" onclick="closeFormShortMail()" style="padding:1rem">X</div>
                   
                   <div id="confirmShortMailSent"></div><!-- messages d'erreur -->
-                  <div id="rappelDonneesMoto" class="mb-2">${rappelDonnees}</div>
+                  <div id="rappelDonneesMoto" class="mb-2">${rappelDonnees}<br><br>RICHARD ! Je sais, pour le moment c'est moche... D'abord les fonnctionnalités, ensuite la déco ;-)</div>
 
                   <form id="formShortMail" method='post' action="app/controllers/sendShortMail.php">
                       <div id="fsm-contact-donnees">
@@ -177,49 +218,59 @@ var regexEmailShort = /^([0-9a-zA-Z].*?@([0-9a-zA-Z].*\.\w{2,4}))$/;
 var regexPhoneShort = /^(0)[1-9](\d{2}){4}$/;
 
 function confirmSendShortMail() {
- 
+
+  
+
   let formOK = true;
 
-  if($('#fsm-mail').value.length > 0 && !regexEmailShort.test($('#fsm-mail').value)){
-    formOK = false;
-    renderErrorFormContact($('#fsm-mail').parentNode, "Merci d'entrer une adresse mail valide.");
-  } 
+  if(formOK) {
+    alert('Validation bientôt développée...')
+  } else {
+    // Contenu initial
+
+    if($('#fsm-mail').value.length > 0 && !regexEmailShort.test($('#fsm-mail').value)){
+      formOK = false;
+      renderErrorFormContact($('#fsm-mail').parentNode, "Merci d'entrer une adresse mail valide.");
+    } 
+    
+    if($('#fsm-tel').value.length > 0 && !regexPhoneShort.test($('#fsm-tel').value)){
+      formOK = false;
+      renderErrorFormContact($('#fsm-tel').parentNode, "Le téléphone doit comporter 10 chiffres.");
+    }
+    
+    if($('#fsm-mail').value === '' && $('#fsm-tel').value === ''){
+      formOK = false;
+      renderErrorFormContact($('#fsm-tel').parentNode, "Merci d'indiquer une adresse mail OU une numéro de téléphone.");
+      renderErrorFormContact($('#fsm-mail').parentNode, "Merci d'indiquer une adresse mail OU une numéro de téléphone.");
+    }
   
-  if($('#fsm-tel').value.length > 0 && !regexPhoneShort.test($('#fsm-tel').value)){
-    formOK = false;
-    renderErrorFormContact($('#fsm-tel').parentNode, "Le téléphone doit comporter 10 chiffres.");
-  }
+    if($('#fsm-message').value.trim().length === 0){
+      formOK = false;
+      renderErrorFormContact($('#fsm-message').parentNode, "Avez-vous écrit un message ?");
+    }
   
-  if($('#fsm-mail').value === '' && $('#fsm-tel').value === ''){
-    formOK = false;
-    renderErrorFormContact($('#fsm-tel').parentNode, "Merci d'indiquer une adresse mail OU une numéro de téléphone.");
-    renderErrorFormContact($('#fsm-mail').parentNode, "Merci d'indiquer une adresse mail OU une numéro de téléphone.");
-  }
-
-  if($('#fsm-message').value.trim().length === 0){
-    formOK = false;
-    renderErrorFormContact($('#fsm-message').parentNode, "Avez-vous écrit un message ?");
-  }
-
-  if(formOK){
-    if (confirm("Confirmer l'envoi de ce message ?")) { 
-
-      let keroxObj = {};
-
-      keroxObj.titre = $('#fsm-titre').value;
-      keroxObj.couleur = $('#fsm-couleur').value;
-      keroxObj.km = $('#fsm-km').value;
-      keroxObj.prix = $('#fsm-prix').value;
-      keroxObj.alma = $('#fsm-alma').value;
-
-      keroxObj.mail = $('#fsm-mail').value;
-      keroxObj.tel = $('#fsm-tel').value;
-      keroxObj.message = $('#fsm-message').value;
+    if(formOK){
+      if (confirm("Confirmer l'envoi de ce message ?")) { 
   
-      //enableButtonLoadingState($('#btn-envoyer-mail'));
-      sendShortMail(keroxObj);
-     } 
+        let keroxObj = {};
+  
+        keroxObj.titre = $('#fsm-titre').value;
+        keroxObj.couleur = $('#fsm-couleur').value;
+        keroxObj.km = $('#fsm-km').value;
+        keroxObj.prix = $('#fsm-prix').value;
+        keroxObj.alma = $('#fsm-alma').value;
+  
+        keroxObj.mail = $('#fsm-mail').value;
+        keroxObj.tel = $('#fsm-tel').value;
+        keroxObj.message = $('#fsm-message').value;
+    
+        //enableButtonLoadingState($('#btn-envoyer-mail'));
+        sendShortMail(keroxObj);
+       } 
+    }
+
   }
+
 }
 
 function sendShortMail(keroxObj) {

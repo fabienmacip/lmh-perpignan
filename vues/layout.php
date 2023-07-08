@@ -13,7 +13,7 @@
     <!--<link href="./script/bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
     <!-- <link href="./style.css" rel="stylesheet"> -->
     
-    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/main.css?v=1">
     
     <!-- JQuery -->
     <!--<script src="./script/jquery-3.6.0.min.js"></script>-->
@@ -25,8 +25,9 @@
     if(isset($scriptMission)) {
         echo $scriptMission;
     } else {?>
-        <script src="./script/visiteurDatas.js"></script>
-        <script src="./script/script.js"></script>
+        <script src="./script/test.js?v=1"></script>
+        <script src="./script/visiteurDatas.js?v=1"></script>
+        <script src="./script/script.js?v=1"></script>
     <?php }
     ?>
 
@@ -48,6 +49,8 @@
 
 </head>
 <body id="body">
+
+<div class="p-5 pointer box" onclick="testCreationProspect()">TEST CREATION PROSPECT</div>
 
 <?php
     if(isset($_SESSION['role']) && $_SESSION['role'] == 1) {

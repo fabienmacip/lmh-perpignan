@@ -5,11 +5,11 @@ class Prospects
     use Modele;
 
     // READ
-    public function lister($actif = 1)
+    public function lister()
     {
 
         if (!is_null($this->pdo)) {
-            $stmt = $this->pdo->query('SELECT * FROM prospect '.$actif.' ORDER BY nom');
+            $stmt = $this->pdo->query('SELECT * FROM prospect ORDER BY nom');
         }
         $tuples = [];
         while ($tuple = $stmt->fetchObject('Prospect', [$this->pdo])) {
