@@ -22,10 +22,16 @@ if (isset($_POST['nom'])) {
   
   $reponse = $controleur2->createVisiteur($nom, $prenom, $mail, $telephone, $today);
   
-  if($reponse){
+  if($reponse > 0){
     $res["status"] = "200";
     $res["data"] = "Prospect ajouté avec succès";
     $res["prospectok"] = "true";
+    $res["id"] = $reponse;
+    $res["nom"] = $nom;
+    $res["prenom"] = $prenom;
+    $res["mail"] = $mail;
+    $res["telephone"] = $telephone;
+    $res["date"] = $today;
   }
   else {
     $res['status'] = "404";

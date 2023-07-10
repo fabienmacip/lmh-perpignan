@@ -109,7 +109,11 @@ class Controleur {
         $prospectToCreate = $prospects->create($nom, $prenom, $mail, $telephone, $today);
         $newProspect = $prospects->listerDernier()[0]->getId();
         
-        return ($newProspect > $dernierProspectConnu);
+        if($newProspect > $dernierProspectConnu) {
+            return $newProspect;
+        } else {
+            return 0;
+        }
         
     }
 
