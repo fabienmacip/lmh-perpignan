@@ -112,7 +112,8 @@ function setLocalLarefUser(id,nom,prenom,mail,tel,date) {
 
 
 function checkVisiteurFormField(field) {
-    let error = false;
+  
+  let error = false;
   
   if(field == 'fsm-tel') {
 
@@ -125,6 +126,8 @@ function checkVisiteurFormField(field) {
     const regexEmail = /^([0-9a-zA-Z].*?@([0-9a-zA-Z].*\.\w{2,4}))$/;
     error = (($('#fsm-mail').val().length > 0 && !regexEmail.test($('#fsm-mail').val())) || $('#fsm-mail').val().trim().length < 1);
 
+  } else if (field =='fsm-conditions') {
+    console.log($('#fsm-conditions').is(":checked"))
   } else {
     
     error = ($('#'+field).val().trim().length < 2);
@@ -145,7 +148,56 @@ function checkVisiteurFormField(field) {
 
 
 function validFormVisiteur() {
-  console.log("Valider le formulaire")
+  
+    const regexEmail = /^([0-9a-zA-Z].*?@([0-9a-zA-Z].*\.\w{2,4}))$/;
+    /* var regexPhone = /^(0|\+33)[1-9](\d{2}){4}$/; */
+    const regexPhone = /^(0)[1-9](\d{2}){4}$/;
+    
+    let formOK = true;
+  
+    if($('#fsm-nom').val().length < 2){
+      formOK = false;
+      console.log("FormOK " + formOK + " nom")
+      //renderErrorFormContact($('#fm-nom').parentNode, "Le nom doit comporter au moins 2 caractères.");
+    }
+  
+    if($('#fsm-prenom').val().length < 2){
+      formOK = false;
+      //renderErrorFormContact($('#fm-prenom').parentNode, "Le prénom doit comporter au moins 2 caractères.");
+      console.log("FormOK " + formOK + " prenom")
+    }
+  
+    if($('#fsm-mail').val().length > 0 && !regexEmail.test($('#fsm-mail').val())){
+      formOK = false;
+      console.log("FormOK " + formOK + " mail")
+      //renderErrorFormContact($('#fm-mail').parentNode, "Merci d'entrer une adresse mail valide.");
+    } 
+    
+    if($('#fsm-tel').val().length > 0 && !regexPhone.test($('#fsm-tel').val())){
+      formOK = false;
+      console.log("FormOK " + formOK + " tel")
+      //renderErrorFormContact($('#fm-tel').parentNode, "Le téléphone doit comporter 10 chiffres.");
+    }
+  
+    if(!($('#fsm-conditions').is(":checked"))){
+      formOK = false;
+
+      console.log("FormOK " + formOK + " conditions NOT checked")
+      //renderErrorFormContact($('#fm-consentement').parentNode, "Avez-vous lu et accepté les conditions générales ?");
+    } else {
+      console.log("FormOK " + formOK + " conditions checked")
+    }
+ 
+    if(formOK){
+      $('#btn-envoyer-visiteur').addClass('btn-active');
+      $('#btn-envoyer-visiteur').removeClass('btn-inactive');
+      $('#btn-envoyer-visiteur').prop('disabled', false);
+    } else {
+      $('#btn-envoyer-visiteur').removeClass('btn-active');
+      $('#btn-envoyer-visiteur').addClass('btn-inactive');
+      $('#btn-envoyer-visiteur').prop('disabled', true);
+    }
+    
 }
 
 
@@ -165,12 +217,12 @@ function displayShortMessageBox(titre, couleur = '', km = '', prix = '', alma = 
   }
 
   let form = `<div id="content-short-mail-box">
-                  <div id="croixCloseFSM" onclick="closeFormShortMail()" style="padding:1rem">X</div>
+                  <div id="croixCloseFormVisiteur" onclick="closeFormVisiteur()">X</div>
                   
                   <div id="confirmShortMailSent"></div><!-- messages d'erreur -->
                   <div id="rappelDonneesMoto" class="mb-2">${rappelDonnees}<br><br>RICHARD ! Je sais, pour le moment c'est moche... D'abord les fonnctionnalités, ensuite la déco ;-)</div>
 
-                  <form id="formShortMail" method='post' action="app/controllers/sendShortMail.php">
+                  <form id="formShortMail" method='post' action="app/controllers/sendShortMail.php" onSubmit="confirmSendShortMail()">
                       <div id="fsm-contact-donnees">
                         <div id="fsm-contact-coordonnees">
                           <div>
@@ -201,11 +253,21 @@ function displayShortMessageBox(titre, couleur = '', km = '', prix = '', alma = 
                           </label><br>
                           <div id="error-fsm-tel" class="visiteur-form-error">T&eacute;l&eacute;phone invalide ou vide</div>
                         </div>
+                        <div id="div-conditions-visiteur" class="flex flex-row">
+                          <div class="mr-5">
+                            <input type="checkbox" name="fsm-conditions" id="fsm-conditions" onclick="checkVisiteurFormField('fsm-conditions')">
+                          </div>  
+                          <div>
+                            J'ai lu et j'accepte les conditions g&eacute;n&eacute;rales d'utilisation des donn&eacute;es.<br>
+                            Consultez notre <a class="doc-link" href="assets/doc/Lettre-RGPD-LCF.pdf" target="_blank">Politique données personnelles</a> pour en 
+                            savoir plus sur l'utilisation de vos donn&eacute;es ou pour exercer vos droits et notamment votre droit d'opposition.
+                          </div>	
+                        </div>
                       </div>
 
                       <div id="short-contact-btn" class="mt-2 flex gap-10">
-                        <div class="button CTAButton shortMailButton" id="btn-annuler-short-mail" name="btn-annuler-short-mail" value="ANNULER" tabindex="5" onClick="closeFormShortMail()">Annuler</div><br/>
-                        <div class="button CTAButton shortMailButton" id="btn-envoyer-short-mail" name="btn-envoyer-short-mail" value="ENVOYER" tabindex="6" onClick="confirmSendShortMail()">Envoyer</div>
+                        <button class="button CTAButton shortMailButton" id="btn-annuler-visiteur" name="btn-annuler-visiteur" value="ANNULER" tabindex="5" onClick="closeFormVisiteur()">Annuler</button><br/>
+                        <button class="button CTAButton shortMailButton btn-inactive" disabled type="submit" id="btn-envoyer-visiteur" name="btn-envoyer-visiteur" value="ENVOYER" tabindex="6">Envoyer</button>
                       </div>	
                   </form>
               </div>`;
@@ -227,19 +289,19 @@ function displayShortMessageBox(titre, couleur = '', km = '', prix = '', alma = 
   window.scrollTo(0,0);
   document.body.appendChild(f);
 
-  let c = $('#croixCloseFSM');
+  /* let c = $('#croixCloseFSM');
   c.style.backgroundColor = 'rgba(0,0,0,0.1)';
   c.style.width = '4rem';
   c.style.textAlign = 'center';
   c.style.marginBottom = '1rem';
   c.style.cursor = 'pointer';
-  c.classList.add('hoverCroix');
+  c.classList.add('hoverCroix'); */
 
               
 
 }
 
-function closeFormShortMail(){
+function closeFormVisiteur(){
   $('#div-fsm').remove();
 }
 

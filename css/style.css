@@ -26,11 +26,53 @@
 
 /* FORMULAIRE VISITEUR */
 
+#croixCloseFormVisiteur{
+  font-size: 1.5rem;
+  font-weight: 700;
+  max-width: 50px;
+  text-align: center;
+  
+  padding: 0.3rem;
+  margin-bottom: 1rem;
+  
+  cursor: pointer;
+
+  border: 1px solid var(--main-color);
+
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+
 .visiteur-form-error {
   color: var(--main-color-red);
   font-weight: 600;
   margin-bottom: 1rem;
   display: none;
+}
+
+#div-conditions-visiteur{
+  max-width: 600px;
+  margin: 1rem auto;
+}
+
+
+
+.doc-link {
+  text-decoration: none;
+  color: var(--main-color-accent2);
+}
+
+.btn-active {
+  cursor: pointer;
+  opacity: 1!important;
+}
+
+.btn-inactive {
+  opacity: 0.5!important;
+  cursor: not-allowed;
 }
 
 
