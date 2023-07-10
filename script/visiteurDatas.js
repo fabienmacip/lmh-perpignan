@@ -33,7 +33,7 @@ function sendDemandeRelation() {
 
 /* --------------------------------------------------------------------------------------------------------------------------------------- */
 
-function testCreationProspect() {
+function createVisiteur(nom, prenom, mail, telephone) {
 
   let datasObj = {};
   
@@ -77,10 +77,6 @@ function testCreationProspect() {
   // Envoie requête
   req.send(data);
 
-  
-    
-
-  
 }
 
 
@@ -115,10 +111,42 @@ function setLocalLarefUser(id,nom,prenom,mail,tel,date) {
 
 
 
+function checkVisiteurFormField(field) {
+    let error = false;
+  
+  if(field == 'fsm-tel') {
+
+    const regexPhone = /^(0)[1-9](\d{2}){4}$/;
+    //error = ($('#telephone').val().length > 0 && !regexPhone.test($('#telephone').val()));    
+    error = (($('#fsm-tel').val().length > 0 && !regexPhone.test($('#fsm-tel').val())) || $('#fsm-tel').val().trim().length < 1);    
+
+  } else if (field == 'fsm-mail') {
+    
+    const regexEmail = /^([0-9a-zA-Z].*?@([0-9a-zA-Z].*\.\w{2,4}))$/;
+    error = (($('#fsm-mail').val().length > 0 && !regexEmail.test($('#fsm-mail').val())) || $('#fsm-mail').val().trim().length < 1);
+
+  } else {
+    
+    error = ($('#'+field).val().trim().length < 2);
+
+  }
+  
+  //error = ($('#email').val() === '' && $('#telephone').val() === '');
+
+  if(error) {
+    $('#error-'+field).show();
+  } else {
+    $('#error-'+field).hide();
+  }
+  
+  validFormVisiteur();
+
+}
 
 
-
-
+function validFormVisiteur() {
+  console.log("Valider le formulaire")
+}
 
 
 /* ------------------------- Mini formulaire contact direct depuis annonce ------------------------------ */
@@ -147,23 +175,31 @@ function displayShortMessageBox(titre, couleur = '', km = '', prix = '', alma = 
                         <div id="fsm-contact-coordonnees">
                           <div>
                             <label for="fsm-nom">Nom <span class="asterisque"></span><br>
-                            <input type="text" id="fsm-nom" name="fsm-nom" maxlength=50 placeholder="votre nom" tabindex="1">
-                            </label>
+                            <input type="text" id="fsm-nom" name="fsm-nom" maxlength=50 placeholder="votre nom" tabindex="1" oninput="checkVisiteurFormField('fsm-nom')"
+                            onblur="checkVisiteurFormField('fsm-nom')">
+                            </label><br>
+                            <div id="error-fsm-nom" class="visiteur-form-error">Nom : minimum 2 caract&egrave;res</div>
                           </div>
                         <div>
                           <label for="fsm-prenom">Pr&eacute;nom <span class="asterisque"></span><br>
-                          <input type="text" id="fsm-prenom" name="fsm-prenom"  maxlength=10 placeholder="votre pr&eacute;nom" tabindex="2">
+                          <input type="text" id="fsm-prenom" name="fsm-prenom"  maxlength=10 placeholder="votre pr&eacute;nom" tabindex="2" oninput="checkVisiteurFormField('fsm-prenom')"
+                          onblur="checkVisiteurFormField('fsm-prenom')">
                           </label><br>
+                          <div id="error-fsm-prenom" class="visiteur-form-error">Pr&eacute;nom : minimum 2 caract&egrave;res</div>
                         </div>
                         <div>
                           <label for="fsm-mail">Mail <span class="asterisque"></span><br>
-                          <input type="email" id="fsm-mail" name="fsm-mail" maxlength=50 placeholder="votre mail" tabindex="3">
-                          </label>
+                          <input type="email" id="fsm-mail" name="fsm-mail" maxlength=50 placeholder="votre mail" tabindex="3" oninput="checkVisiteurFormField('fsm-mail')"
+                          onblur="checkVisiteurFormField('fsm-mail')">
+                          </label><br>
+                          <div id="error-fsm-mail" class="visiteur-form-error">Email invalide ou vide</div>
                         </div>
                         <div>
                           <label for="fsm-tel">T&eacute;l&eacute;phone <span class="asterisque"></span><br>
-                          <input type="text" id="fsm-tel" name="fsm-tel"  maxlength=10 placeholder="num&eacute;ro &agrave; 10 chiffres ET sans espaces" tabindex="4">
+                          <input type="text" id="fsm-tel" name="fsm-tel"  maxlength=10 placeholder="num&eacute;ro &agrave; 10 chiffres ET sans espaces" tabindex="4" oninput="checkVisiteurFormField('fsm-tel')"
+                          onblur="checkVisiteurFormField('fsm-tel')">
                           </label><br>
+                          <div id="error-fsm-tel" class="visiteur-form-error">T&eacute;l&eacute;phone invalide ou vide</div>
                         </div>
                       </div>
 
@@ -268,7 +304,8 @@ function confirmSendShortMail() {
         keroxObj.message = $('#fsm-message').value;
     
         //enableButtonLoadingState($('#btn-envoyer-mail'));
-        sendShortMail(keroxObj);
+        //sendShortMail(keroxObj);
+        createVisiteur()
        } 
     }
 

@@ -24,6 +24,16 @@
 }
 
 
+/* FORMULAIRE VISITEUR */
+
+.visiteur-form-error {
+  color: var(--main-color-red);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  display: none;
+}
+
+
 /* * * * * * HEADER * * * * * */
 
 header {

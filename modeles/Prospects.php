@@ -119,16 +119,19 @@ class Prospects
     //Supprime 1 pays de la BDD.
     public function delete($id, $nom)
     {
-        if (!is_null($this->pdo)) {
-            try{
-                $this->pdo->query('DELETE FROM prospect WHERE id = '.$id.'');
-                $tupleDeleted = "Le prospect <b>".$nom."</b> a bien été supprimé.";
+        if($id != 0) {
+            if (!is_null($this->pdo)) {
+                try{
+                    $this->pdo->query('DELETE FROM prospect WHERE id = '.$id.'');
+                    $tupleDeleted = "Le prospect <b>".$nom."</b> a bien été supprimé.";
+                }
+                catch(Exception $e) {
+                    $tupleDeleted = "Le prospect <b>".$nom."</b> n'a pas pu être supprimé.<br/><br/>";
+                }
             }
-            catch(Exception $e) {
-                $tupleDeleted = "Le prospect <b>".$nom."</b> n'a pas pu être supprimé.<br/><br/>";
-            }
+            
+
         }
-        
         return $tupleDeleted;
     }
 
