@@ -23,14 +23,14 @@ if (isset($_POST['nom'])) {
   $reponse = $controleur2->createVisiteur($nom, $prenom, $mail, $telephone, $today);
   
   if($reponse){
-    $res["status"] = 200;
+    $res["status"] = "200";
     $res["data"] = "Prospect ajouté avec succès";
-    $res["prospectok"] = true;
+    $res["prospectok"] = "true";
   }
   else {
-    $res['status'] = 404;
+    $res['status'] = "404";
     $res["data"] ="Erreur lors de l'ajout du prospect";
-    $res["prospectok"] = false;
+    $res["prospectok"] = "false";
   }
   echo json_encode($res);
           

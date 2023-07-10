@@ -49,26 +49,38 @@ function testCreationProspect() {
     data.append(key, datasObj[key])
   }
   var req = new XMLHttpRequest();
-
+  req.responseType = 'json';
   req.open('POST', 'controleurs/createProspectFromPublic.php');
 
   // SPINNER
+
+
   req.onloadstart = function() {
     $('#testCreateProspect').css('background-color','green')
   }
   
+  req.onprogress = function() {
+    $('#testCreateProspect').css('background-color','purple')
+  }
+
   req.onload = function() {
     $('#testCreateProspect').css('background-color','orange')
   }
   
   req.onloadend = function () {
     $('#testCreateProspect').css('background-color','red')
+    let procedureOK = req.response["prospectok"]
+    //console.log(req.response["prospectok"])
+
   }
   
   // Envoie requête
   req.send(data);
 
-  console.log(req);
+  
+    
+
+  
 }
 
 
