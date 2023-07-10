@@ -20,6 +20,22 @@ class Prospects
     }
 
     // READ
+    public function listerDernier()
+    {
+
+        if (!is_null($this->pdo)) {
+            $stmt = $this->pdo->query('SELECT * FROM prospect ORDER BY id DESC LIMIT 1');
+        }
+        $tuples = [];
+        while ($tuple = $stmt->fetchObject('Prospect', [$this->pdo])) {
+            $tuples[] = $tuple;
+        }
+        $stmt->closeCursor();
+        return $tuples;
+    }
+
+
+    // READ
     public function listerUn($prospectId = 0)
     {
         

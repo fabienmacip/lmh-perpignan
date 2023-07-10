@@ -50,7 +50,7 @@
 </head>
 <body id="body">
 
-<div class="p-5 pointer box" onclick="testCreationProspect()">TEST CREATION PROSPECT</div>
+<div id="testCreateProspect" class="p-5 pointer box" onclick="testCreationProspect()">TEST CREATION PROSPECT</div>
 
 <?php
     if(isset($_SESSION['role']) && $_SESSION['role'] == 1) {

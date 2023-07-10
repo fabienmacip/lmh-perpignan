@@ -1,74 +1,42 @@
 <?php
-    // Création prospect directement par un visiteur
-/*     public function createProspectFromPublic($nom, $prenom, $mail, $telephone)
-    {
-        $prospects = new Prospects($this->pdo);
-        $prospectToCreate = $prospects->create($nom, $prenom, $mail, $telephone);
-        $prospects = $prospects->lister();
+ 
+ require_once(dirname(__FILE__,2).'/modeles/ConnectMe.php');
+ require_once(dirname(__FILE__,2).'/modeles/Modele.php');
+ 
+ require_once(dirname(__FILE__).'/controleur.php');
+ 
+ require_once(dirname(__FILE__,2).'/modeles/Prospect.php');
+ require_once(dirname(__FILE__,2).'/modeles/Prospects.php');
 
-    }
- */
-
- require_once('../modeles/Modele.php');
- //use Modele; 
-require_once('../modeles/Prospect.php');
-require_once('../modeles/Prospects.php');
-
-
-
-
-// include_once dirname(__FILE__) . '/../services/shortMailEngine.php';
+ $controleur2 = new Controleur($pdo);
 
 if (isset($_POST['nom'])) {
   
-        // Cette fonction sert à nettoyer et enregistrer un texte
-        function cleanText($text,$br = true)
-        {
-          $text = htmlspecialchars(trim($text), ENT_QUOTES);
-            $text = stripslashes($text);
-            if($br){
-              $text = nl2br($text);
-            }
-            return $text;
-          }
-          
-          $nom = $_POST['nom'] ?? '';
-          $prenom = $_POST['prenom'] ?? '';
-          $mail = $_POST['mail'] ?? '';
-          $telephone = $_POST['telephone'] ?? '';
-          
-          
-          
-          $today = date("Y-m-d");
-
-
-          
-          
-          $pdo2 = new PDO('mysql:host=localhost;dbname=lmhperpignan;charset=utf8', 'root', '');
-          
+        
+  $nom = $_POST['nom'] ?? '';
+  $prenom = $_POST['prenom'] ?? '';
+  $mail = $_POST['mail'] ?? '';
+  $telephone = $_POST['telephone'] ?? '';
+  
+  $today = date("Y-m-d H:i:s");
+  
+  $reponse = $controleur2->createVisiteur($nom, $prenom, $mail, $telephone, $today);
+  
+  if($reponse){
+    $res["status"] = 200;
+    $res["data"] = "Prospect ajouté avec succès";
+    $res["prospectok"] = true;
+  }
+  else {
+    $res['status'] = 404;
+    $res["data"] ="Erreur lors de l'ajout du prospect";
+    $res["prospectok"] = false;
+  }
+  echo json_encode($res);
           
 
-          $prospects = new Prospects($pdo2);
-          $prospectToCreate = $prospects->create($nom, $prenom, $mail, $telephone, $today);
-          $prospects = $prospects->lister();
-          //require_once('vues/liste-prospect.p
+          //ICI, AJOUTER fonction dans services/mailEngine.php pour createMail
           
-          /*          global $con;
-          */     
-          
-          /*             $query = "insert into prospect(nom, prenom, mail, telephone) values('$nom','$prenom','$mail','$telephone')";
-          mysqli_query($con, $query);
-          return true;
-          */
-
-
-
-
-
-
-
-        //ICI, AJOUTER fonction dans services/mailEngine.php pour createMail
-    
         /* $dest = "fabien.macip@gmail.com"; */
 /*         if($titre === "mustang") {
           $dest = "custhomeloc34@gmail.com";
@@ -127,14 +95,8 @@ if (isset($_POST['nom'])) {
      
     //setcookie('coucou2', 'apres mail', time()+60*60*24*30, '/');     
     
-        $res["status"] = 200;
-        $res["data"] = "Vous avez bien été enregistré";
-        echo json_encode($res);
-    
-    } else {
-        $res['status'] = 404;
-        echo json_encode($res);
-    }
+
+}
     
     
   

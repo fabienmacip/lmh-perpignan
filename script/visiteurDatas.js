@@ -42,13 +42,7 @@ function testCreationProspect() {
   datasObj.mail = "lui@gmail.com";
   datasObj.telephone = "06 33 44 55 66";
 
-
-
-
-
   //createProspectFromPublic($nom, $prenom, $mail, $telephone)
-
-
 
   let data = new FormData();
   for (const key in datasObj) {
@@ -56,28 +50,25 @@ function testCreationProspect() {
   }
   var req = new XMLHttpRequest();
 
-/*       console.log(keroxObj);
-  debugger;
-*/
   req.open('POST', 'controleurs/createProspectFromPublic.php');
 
-  
-
-  req.onload = function() {
-
-   
-    $('#confirmShortMailSent').innerHTML = "Message envoyé avec succ&egrave;s.";
-    setTimeout(function() {
-        alert('Votre message a été envoyé par mail. Nous vous recontactons dès que possible.');
-
-    }, 1000);
-    setTimeout(function() {
-        $('#confirmShortMailSent').innerHTML = '';
-        resetShortContactFormScreen();
-        $('#div-fsm').remove();
-    }, 2000); 
+  // SPINNER
+  req.onloadstart = function() {
+    $('#testCreateProspect').css('background-color','green')
   }
+  
+  req.onload = function() {
+    $('#testCreateProspect').css('background-color','orange')
+  }
+  
+  req.onloadend = function () {
+    $('#testCreateProspect').css('background-color','red')
+  }
+  
+  // Envoie requête
   req.send(data);
+
+  console.log(req);
 }
 
 

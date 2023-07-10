@@ -1,6 +1,6 @@
 <?php
 
-require_once('modeles/Modele.php');
+require_once(dirname(__FILE__,2).'/modeles/Modele.php');
 class Controleur {
      use Modele; 
 
@@ -96,6 +96,25 @@ class Controleur {
         $prospects = $prospects->listerUn($id);
         //require_once('vues/liste-prospect.php');
     }
+
+    public function createVisiteur($nom, $prenom, $mail, $telephone, $today)
+    {
+        if($today === ''){
+            $today = date("Y-m-d H:i:s");
+        }
+
+        $prospects = new Prospects($this->pdo);
+        $dernierProspectConnu = $prospects->listerDernier()[0]->getId();
+        
+        $prospectToCreate = $prospects->create($nom, $prenom, $mail, $telephone, $today);
+        $newProspect = $prospects->listerDernier()[0]->getId();
+        
+        return ($newProspect > $dernierProspectConnu);
+        
+    }
+
+
+
 
     public function createProspect($nom, $prenom, $mail, $telephone)
     {
