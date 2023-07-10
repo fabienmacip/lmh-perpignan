@@ -1,3 +1,6 @@
+var PHP_AJAX_VISITEUR = "http://pcf-lcf.fr/lmh-perpignan/controleurs/createProspectFromPublic.php"
+
+
 // ####################  PARTENAIRE - Mise en relation d'un visiteur ####################
 function checkVisiteurRegistered(id){
   
@@ -58,6 +61,7 @@ function createVisiteur(nom, prenom, mail, telephone) {
   var req = new XMLHttpRequest();
   req.responseType = 'json';
   req.open('POST', 'controleurs/createProspectFromPublic.php');
+  //req.open('POST', PHP_AJAX_VISITEUR);
 
   // SPINNER
   req.onloadstart = function() {

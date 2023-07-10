@@ -96,6 +96,16 @@
 }
 
 
+.link-show-partenaire-detail {
+  color: green;
+  font-weight: 700;
+}
+
+.link-hide-partenaire-detail {
+  color: red;
+  font-weight: 700;
+}
+
 @media screen and (max-width: 732px) {
   
   .univers-back {

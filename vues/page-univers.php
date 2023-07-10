@@ -102,13 +102,16 @@ ob_start();
                 <div>
                   <?= $partenaire->getDescriptionBreve() ?>
                 </div>
-                <div class="pointer pt-4 tr" onclick="showPartenaireDetail(<?= $partenaire->getId() ?>)">
-                  Voir le d&eacute;tail...
+                <div id="link-show-partenaire-detail-<?= $partenaire->getId() ?>" class="pointer pt-4 tr link-show-partenaire-detail" onclick="showPartenaireDetail(<?= $partenaire->getId() ?>)">
+                  Voir la description...
+                </div>
+                <div id="link-hide-partenaire-detail-<?= $partenaire->getId() ?>" class="pointer pt-4 tr link-hide-partenaire-detail" onclick="hidePartenaireDetail(<?= $partenaire->getId() ?>)">
+                  Masquer la description...
                 </div>
               </div>   
           </div>
 
-          <div id="partenaire-detail-<?= $partenaire->getId() ?>" class="inaccessible univers-enfant-to-display-<?= $univEnf->getId() ?>">
+          <div id="partenaire-detail-<?= $partenaire->getId() ?>" class="inaccessible univers-enfant-detail-to-display-<?= $univEnf->getId() ?>">
               <p>
                 <b>Avantages :</b> <?= $partenaire->getDescriptionBreve() ?><br><br>
               </p>

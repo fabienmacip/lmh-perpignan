@@ -25,7 +25,7 @@
     if(isset($scriptMission)) {
         echo $scriptMission;
     } else {?>
-        <script src="./script/test.js?v=1"></script>
+        <!-- <script src="./script/test.js?v=1"></script> -->
         <script src="./script/visiteurDatas.js?v=1"></script>
         <script src="./script/script.js?v=1"></script>
     <?php }
@@ -49,8 +49,6 @@
 
 </head>
 <body id="body">
-
-<div id="testCreateProspect" class="p-5 pointer box" onclick="testCreationProspect()">TEST CREATION PROSPECT</div>
 
 <?php
     if(isset($_SESSION['role']) && $_SESSION['role'] == 1) {

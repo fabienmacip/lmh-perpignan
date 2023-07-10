@@ -105,6 +105,8 @@ let pageMission ='';
       $('#form-create-devenir-partenaire [type=reset]').prop('disabled',false).removeClass('inactif');
       $('#form-create-devenir-partenaire [type=submit]').prop('disabled',false).removeClass('inactif');
 
+      $('.link-hide-partenaire-detail').hide()
+
       // Si un VISITEUR n'a pas encore donné ses : nom, prénom, mail et téléphone, il n'accède pas aux données des partenaires.
       if($('#isVisiteurRegistered').val() != '') {
         datas = $('#isVisiteurRegistered').val()
@@ -309,6 +311,20 @@ function confirmeTogglePartenaire(id, nom, actif){
   } 
 
 }
+
+function showPartenaireDetail(id) {
+  $('#partenaire-detail-'+id).show()
+  $('#link-hide-partenaire-detail-'+id).show()
+  $('#link-show-partenaire-detail-'+id).hide()
+}
+
+function hidePartenaireDetail(id) {
+  $('#partenaire-detail-'+id).hide()
+  $('#link-hide-partenaire-detail-'+id).hide()
+  $('#link-show-partenaire-detail-'+id).show()
+}
+
+
 
 function displayPartenaireDetail(detail){
   $('#partenaire-detail').show()
