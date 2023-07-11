@@ -247,7 +247,7 @@ function displayShortMessageBox(titre, couleur = '', km = '', prix = '', alma = 
                   <div id="croixCloseFormVisiteur" onclick="closeFormVisiteur()">X</div>
                   
                   <div id="confirmShortMailSent"></div><!-- messages d'erreur -->
-                  <div id="rappelDonneesMoto" class="mb-2">${rappelDonnees}<br><br>RICHARD ! Je sais, pour le moment c'est moche... D'abord les fonnctionnalités, ensuite la déco ;-)</div>
+                  <div id="rappelDonneesMoto" class="mb-2">${rappelDonnees}<br><br>RICHARD ! Je sais, pour le moment c'est moche... D'abord les fonctionnalités, ensuite la déco ;-)</div>
 
                   <form id="formShortMail" method='post' action="">
                       <div id="fsm-contact-donnees">
@@ -282,23 +282,23 @@ function displayShortMessageBox(titre, couleur = '', km = '', prix = '', alma = 
                         </div>
                         <div id="div-conditions-visiteur" class="flex flex-row">
                           <div class="mr-5">
-                            <input type="checkbox" name="fsm-conditions" id="fsm-conditions" onclick="checkVisiteurFormField('fsm-conditions')">
+                            <input type="checkbox" name="fsm-conditions" id="fsm-conditions" onclick="checkVisiteurFormField('fsm-conditions')" tabindex="5">
                           </div>  
                           <div>
                             J'ai lu et j'accepte les conditions g&eacute;n&eacute;rales d'utilisation des donn&eacute;es.<br>
-                            Consultez notre <a class="doc-link" href="assets/doc/Lettre-RGPD-LCF.pdf" target="_blank">Politique données personnelles</a> pour en 
-                            savoir plus sur l'utilisation de vos donn&eacute;es ou pour exercer vos droits et notamment votre droit d'opposition.
+                            Consultez notre <a style="color:red;" class="link" onclick="popMentionsLegales()" tabindex="6">mentions légales</a>
+                            pour en savoir plus sur l'utilisation de vos donn&eacute;es ou pour exercer vos droits et notamment votre droit d'opposition.
                           </div>	
                         </div>
                       </div>
 
                       <div id="short-contact-btn" class="mt-2 flex gap-10">
-                        <button class="button CTAButton shortMailButton" id="btn-annuler-visiteur" name="btn-annuler-visiteur" value="ANNULER" tabindex="5" onClick="closeFormVisiteur()">Annuler</button><br/>
-                        <button class="button CTAButton shortMailButton btn-inactive" disabled id="btn-envoyer-visiteur" name="btn-envoyer-visiteur" value="ENVOYER" tabindex="6" onClick="registerVisiteur()">Envoyer</button>
+                        <button class="button CTAButton shortMailButton" id="btn-annuler-visiteur" name="btn-annuler-visiteur" value="ANNULER" tabindex="7" onClick="closeFormVisiteur()">Annuler</button><br/>
+                        <button class="button CTAButton shortMailButton btn-inactive" disabled id="btn-envoyer-visiteur" name="btn-envoyer-visiteur" value="ENVOYER" tabindex="8" onClick="registerVisiteur()">Envoyer</button>
                       </div>	
                   </form>
               </div>`;
-
+{/* <a class="doc-link" href="assets/doc/Lettre-RGPD-LCF.pdf" target="_blank">Politique données personnelles</a> */}
   let f = document.createElement('div');
   f.setAttribute('id','div-fsm');
   f.style.zIndex = 1000;

@@ -13,7 +13,7 @@
     <!--<link href="./script/bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
     <!-- <link href="./style.css" rel="stylesheet"> -->
     
-    <link rel="stylesheet" href="./css/main.css?v=1">
+    <link rel="stylesheet" href="./css/main.css?v=2">
     
     <!-- JQuery -->
     <!--<script src="./script/jquery-3.6.0.min.js"></script>-->
@@ -26,8 +26,9 @@
         echo $scriptMission;
     } else {?>
         <!-- <script src="./script/test.js?v=1"></script> -->
-        <script src="./script/visiteurDatas.js?v=1"></script>
-        <script src="./script/script.js?v=1"></script>
+        <script src="./script/visiteurDatas.js?v=2"></script>
+        <script src="./script/script.js?v=2"></script>
+        <script src="./script/divers.js?v=2"></script>
     <?php }
     ?>
 

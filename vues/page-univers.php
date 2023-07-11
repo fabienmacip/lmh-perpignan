@@ -137,6 +137,10 @@ ob_start();
   </div>
 </div>
 
+<div class="hidden-popup-mentions-legales">
+  <?php require_once('page-mentions-legales.php'); ?>
+</div>
+
 <?php
 $contenu = ob_get_clean();
 require_once('layout.php');
