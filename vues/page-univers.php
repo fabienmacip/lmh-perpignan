@@ -4,7 +4,6 @@ $titre = 'La R&eacute;f&eacuterence - Nos r&eacute;f&eacute;rences';
 ob_start();
 ?>
 
-
 <div class="container m-0 max-width-100vw univers-back">
   <div class="row max-width-100percent flex-column">
     

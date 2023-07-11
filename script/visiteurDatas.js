@@ -15,7 +15,7 @@ function checkVisiteurRegistered(id){
       $('.univers-enfant-to-display-'+id).removeClass('inaccessible')
       $('#down-arrow-univers-enfant-'+id).css({'transform' : 'rotate('+ 180 +'deg)'})
     } else {
-      displayShortMessageBox("Enregistrez-vous pour pouvoir accéder à nos références", couleur = '', km = '', prix = '', alma = '')
+      displayShortMessageBox("visiteur",id)
       
       //displayShortMessageBox(titre, couleur = '', km = '', prix = '', alma = '')
       //localStorage.setItem('laref-user','Pedro');
@@ -43,9 +43,16 @@ function sendDemandeRelation() {
 }
 
 
+function showPartenaireInUnivers(id) {
+  $('.univers-enfant-to-display-'+id).removeClass('inaccessible')
+  $('#down-arrow-univers-enfant-'+id).css({'transform' : 'rotate('+ 180 +'deg)'})
+  //alert("SHOW PART : " + id)
+
+}
+
 /* --------------------------------------------------------------------------------------------------------------------------------------- */
 
-function createVisiteur(nom, prenom, mail, telephone) {
+function createVisiteur(nom, prenom, mail, telephone, partenaireId) {
 
   let datasObj = {};
   
@@ -91,7 +98,18 @@ function createVisiteur(nom, prenom, mail, telephone) {
       date = req.response["date"]
 
       setLocalLarefUser(id,nom,prenom,mail,tel,date)
-
+      closeFormVisiteur()
+      showPartenaireInUnivers(partenaireId)
+      
+      let abc = $('#univers-enfant-div-'+partenaireId).offset().top
+      console.log(abc)
+      
+      window.scrollTo({
+        top: abc,
+        left: 0,
+        behavior: 'smooth'
+      })
+      
       alert('Vous avez bien été enregistré, vous pouvez désormais prendre contact avec nos références.')
     } else {
       alert('Erreur lors de votre enregistrement.\nVous pouvez ré-essayer ou nous contacter directement par mail afin que nous puissions vous inscrire.')
@@ -285,18 +303,14 @@ function myMd5(chaine) {
 
 /* ------------------------- Mini formulaire contact direct depuis annonce ------------------------------ */
 
-function displayShortMessageBox(titre, couleur = '', km = '', prix = '', alma = ''){
+function displayShortMessageBox(titre, partenaireId){
     
-  if(titre === "mustang"){
-      rappelDonnees = "";
-  } 
-  else {
-      if(couleur === '' && km === '' && prix === ''){
-          rappelDonnees = titre;
-      } else {
-          rappelDonnees = titre + " " + "(" + couleur + ") - " + km + " km - " + prix + " €";
-      }
+  if(titre == "visiteur") {
+    rappelDonnees = "Afin d'accéder à nos références triées sur le volet, il est nécessaire de vous enregistrer.<br>Nous ne vous demandons que les donn&eacute;es essentielles.<br>Ces donn&eacute;es serviront uniquement si vous souhaitez &ecirc;tre mis en relation avec un ou plusieurs de nos partenaires."
+  } else {
+    rappelDonnes = "TITRE MANQUANT (variable TITRE)"
   }
+
 
   /* CAPTCHA */
   let nb1 = Math.floor(Math.random() * 5) + 1
@@ -367,7 +381,7 @@ function displayShortMessageBox(titre, couleur = '', km = '', prix = '', alma = 
 
                       <div id="short-contact-btn" class="mt-2 flex gap-10">
                         <button class="button CTAButton shortMailButton" id="btn-annuler-visiteur" name="btn-annuler-visiteur" value="ANNULER" tabindex="8" onClick="closeFormVisiteur()">Annuler</button><br/>
-                        <button class="button CTAButton shortMailButton btn-inactive" disabled id="btn-envoyer-visiteur" name="btn-envoyer-visiteur" value="ENVOYER" tabindex="9" onClick="registerVisiteur()">Envoyer</button>
+                        <button class="button CTAButton shortMailButton btn-inactive" disabled id="btn-envoyer-visiteur" name="btn-envoyer-visiteur" value="ENVOYER" tabindex="9" onClick="registerVisiteur('${partenaireId}')">Envoyer</button>
                       </div>	
                   </form>
               </div>`;
@@ -389,6 +403,10 @@ function displayShortMessageBox(titre, couleur = '', km = '', prix = '', alma = 
   window.scrollTo(0,0);
   document.body.appendChild(f);
 
+  $('#formShortMail').on('submit',function(e) {
+    e.preventDefault();
+  })
+
 }
 
 function closeFormVisiteur(){
@@ -400,7 +418,7 @@ function closeFormVisiteur(){
 
 function manageFormShortContact(e){
   e.preventDefault();
-  alert("coucou");
+  //alert("coucou");
   console.log(e);
 }
 
@@ -410,15 +428,15 @@ var regexPhoneShort = /^(0)[1-9](\d{2}){4}$/;
 
 
 
-function registerVisiteur() {
+function registerVisiteur(partenaireId) {
   if(validFormVisiteur()) {
     
     nom = $('#fsm-nom').val();
     prenom = $('#fsm-prenom').val();
     mail = $('#fsm-mail').val();
     telephone = $('#fsm-tel').val();
-
-    createVisiteur(nom, prenom, mail, telephone)
+    
+    createVisiteur(nom, prenom, mail, telephone, partenaireId)
 
 
   }

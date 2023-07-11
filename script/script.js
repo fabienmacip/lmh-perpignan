@@ -127,7 +127,6 @@ let pageMission ='';
         //localStorage.setItem('laref-user','Pedro');
       }
 
-
     } else {
 
       // Voir les données d'un PARTENAIRE en tant que VISITEUR
