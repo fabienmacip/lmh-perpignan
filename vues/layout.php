@@ -20,12 +20,14 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
     crossorigin="anonymous"></script>
+    <!-- <script src="./script/md5.js?v=2"></script> -->
     
     <?php
     if(isset($scriptMission)) {
         echo $scriptMission;
     } else {?>
         <!-- <script src="./script/test.js?v=1"></script> -->
+        <script src="https://cdn.jsdelivr.net/npm/jquery.md5@1.0.2/index.min.js"></script>
         <script src="./script/visiteurDatas.js?v=2"></script>
         <script src="./script/script.js?v=2"></script>
         <script src="./script/divers.js?v=2"></script>

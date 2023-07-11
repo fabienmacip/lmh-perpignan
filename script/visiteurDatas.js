@@ -153,6 +153,8 @@ function checkVisiteurFormField(field) {
 
   } else if (field =='fsm-conditions') {
     
+  } else if (field == 'fsm-captcha') {
+    error = (($('#fsm-captcha').val().length < 1)) || (($('#fsm-captcha').val().length > 0) && (myMd5($('#fsm-captcha').val())) != ($('#fsm-vcaptcha').val()))
   } else {
     
     error = ($('#'+field).val().trim().length < 2);
@@ -192,7 +194,7 @@ function validFormVisiteur() {
       
     }
   
-    if($('#fsm-mail').val().length > 0 && !regexEmail.test($('#fsm-mail').val())){
+    if($('#fsm-mail').val().length == 0 || ($('#fsm-mail').val().length > 0 && !regexEmail.test($('#fsm-mail').val()))){
       formOK = false;
       
       //renderErrorFormContact($('#fm-mail').parentNode, "Merci d'entrer une adresse mail valide.");
@@ -213,6 +215,10 @@ function validFormVisiteur() {
       
     }
  
+    if((($('#fsm-captcha').val().length < 1)) || (($('#fsm-captcha').val().length > 0) && (myMd5($('#fsm-captcha').val())) != ($('#fsm-vcaptcha').val()))) {
+      formOK = false;
+    }
+
     if(formOK){
       $('#btn-envoyer-visiteur').addClass('btn-active');
       $('#btn-envoyer-visiteur').removeClass('btn-inactive');
@@ -227,6 +233,55 @@ function validFormVisiteur() {
 
 }
 
+function replaceNumberAsString(thechar) {
+  switch(thechar) {
+    case "0":
+      return "3"
+      break;
+    case "1":
+      return "5"
+      break;
+    case "2":
+      return "7"
+      break;
+    case "3":
+      return "9"
+      break;
+    case "4":
+      return "0"
+      break;
+    case "5":
+      return "8"
+      break;   
+    case "6":
+      return "4"
+      break;
+    case "7":
+      return "6"
+      break;    
+    case "8":
+      return "2"
+      break;
+    case "9":
+      return "1"
+      break;
+    default:
+      return ""
+  }
+
+}
+
+function myMd5(chaine) {
+  chaine = chaine.toString()
+  chaine2 = ''
+
+  for(j = 0 ; j < chaine.length ; j++) {
+    chaine2 += replaceNumberAsString(chaine.charAt(j))
+  }
+  
+  return chaine2
+
+}
 
 /* ------------------------- Mini formulaire contact direct depuis annonce ------------------------------ */
 
@@ -242,6 +297,15 @@ function displayShortMessageBox(titre, couleur = '', km = '', prix = '', alma = 
           rappelDonnees = titre + " " + "(" + couleur + ") - " + km + " km - " + prix + " €";
       }
   }
+
+  /* CAPTCHA */
+  let nb1 = Math.floor(Math.random() * 5) + 1
+  let nb2 = Math.floor(Math.random() * 5) + 1
+  let somme = nb1 + nb2
+
+  let captchaCrypted = myMd5(somme)
+
+  /* FIN CAPTCHA */
 
   let form = `<div id="content-short-mail-box">
                   <div id="croixCloseFormVisiteur" onclick="closeFormVisiteur()">X</div>
@@ -292,9 +356,18 @@ function displayShortMessageBox(titre, couleur = '', km = '', prix = '', alma = 
                         </div>
                       </div>
 
+                      <div>
+                        <input type="hidden" id="fsm-vcaptcha" name="fsm-vcaptcha" value="${captchaCrypted}">
+                        <input class="input" type="text" style="width:12rem; margin-top:1rem; margin-bottom:0;" maxlength="3" id="fsm-captcha" name="fsm-captcha" tabindex="7" placeholder="Combien font ${nb1} + ${nb2} ?"
+                        oninput="checkVisiteurFormField('fsm-captcha')" onblur="checkVisiteurFormField('fsm-captcha')"><br>
+                        <small><i>
+                          (Vérification anti-robots)
+                        </i></small>
+                      </div>
+
                       <div id="short-contact-btn" class="mt-2 flex gap-10">
-                        <button class="button CTAButton shortMailButton" id="btn-annuler-visiteur" name="btn-annuler-visiteur" value="ANNULER" tabindex="7" onClick="closeFormVisiteur()">Annuler</button><br/>
-                        <button class="button CTAButton shortMailButton btn-inactive" disabled id="btn-envoyer-visiteur" name="btn-envoyer-visiteur" value="ENVOYER" tabindex="8" onClick="registerVisiteur()">Envoyer</button>
+                        <button class="button CTAButton shortMailButton" id="btn-annuler-visiteur" name="btn-annuler-visiteur" value="ANNULER" tabindex="8" onClick="closeFormVisiteur()">Annuler</button><br/>
+                        <button class="button CTAButton shortMailButton btn-inactive" disabled id="btn-envoyer-visiteur" name="btn-envoyer-visiteur" value="ENVOYER" tabindex="9" onClick="registerVisiteur()">Envoyer</button>
                       </div>	
                   </form>
               </div>`;
