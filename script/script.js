@@ -74,8 +74,10 @@ let pageMission ='';
       
     } */ // FIN du IF pageMission
 
-    
-
+/*     $('#form-create-devenir-partenaire').on('submit',function(e) {
+      e.preventDefault();
+    })
+ */
 
     // Si on n'est pas ADMIN connecté, alors on n'accède pas aux formulaires de CRUD.
     if($('#isAdmin').val() != 1) {
@@ -184,9 +186,6 @@ function handleClickPrint(){
 }
 
 
-function lienFormDevenirPartenaire(){
-  $('input#nom').focus()
-}
 
 // ##############  UNIVERS  ###################
 
@@ -336,6 +335,9 @@ function closePartenaireDetail(){
   $('#partenaire-detail').hide()
 }
 
+function closeToaster(id) {
+  $('#'+id).hide()
+}
 // ##############  DATE  ###################
 
 // Affiche le formulaire de modification de la date

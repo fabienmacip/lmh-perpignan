@@ -69,12 +69,12 @@ nav a:hover {
     position: inherit;
   }
 
-  #lien-form-devenir-partenaire-up {
+  /* #lien-form-devenir-partenaire-up {
     display: inline;  
   }
   #lien-form-devenir-partenaire-down {
     display: none;
-  }
+  } */
 
   #update-partenaire-table button {
     font-size: 0.8rem;

@@ -66,6 +66,50 @@
   margin: 1rem auto;
 }
 
+/* TOASTER */
+
+.toaster {
+  background-color: var(--main-color-yellow);
+  color: var(--main-color);
+  padding: 1rem;  
+  
+  max-width: 800px;
+  margin: 0 auto 1rem auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  border-radius: 0 0 5px 5px;
+  -webkit-border-radius: 0 0 5px 5px;
+  -moz-border-radius: 0 0 5px 5px;
+  -ms-border-radius: 0 0 5px 5px;
+  -o-border-radius: 0 0 5px 5px;
+}
+
+.toaster div {
+  width: 600px;
+  max-width: 95%;
+}
+
+.toaster div:nth-child(1) {
+  text-align: right;
+}
+
+.toaster div:nth-child(1) span{
+  padding: 1rem;
+  font-size: 1.3rem;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.toaster div:nth-child(1) span:hover{
+  color: var(--main-color-red);
+}
+
+.toaster div:nth-child(2) {
+  text-align: left;
+}
 /* FORMULAIRE VISITEUR */
 
 #croixCloseFormVisiteur{
@@ -114,7 +158,7 @@
 
 .btn-inactive {
   opacity: 0.5!important;
-  cursor: not-allowed;
+  cursor: not-allowed!important;
 }
 
 

@@ -185,7 +185,7 @@ elseif (isset($_GET['page']) && 'devenir-partenaire' === $_GET['page']){
     $controleur->devenirPartenaire();
 }
 elseif (isset($_POST['page']) && 'devenir-partenaire' === $_POST['page'] && isset($_POST['action']) && 'createDevenirPartenaire' === $_POST['action']){
-    $controleur->devenirPartenaireCreation($_POST['nom'], '', 0, $_POST['mail'], $_POST['telephone']);
+    $controleur->devenirPartenaireCreation($_POST['fdp-nom'], '', 0, $_POST['fdp-mail'], $_POST['fdp-tel']);
 }
 
 elseif (isset($_GET['page']) && 'reserver' === $_GET['page']){

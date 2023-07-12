@@ -1,3 +1,16 @@
+/* * * * * * DEVENIR PARTENAIRE * * * * * */
+
+#form-create-devenir-partenaire{
+  
+}
+
+.devenir-partenaire-form-error {
+  color: var(--main-color-red);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  display: none;
+}
+
 /* ****************** PARTENAIRES ************************** */
 .partenaire-sticker, .univers-sticker {
   box-shadow: 2px 2px 5px 2px rgba(0,0,0,0.44);
@@ -76,12 +89,12 @@
 
 /* DEVENIR PARTENAIRE */
 
-#lien-form-devenir-partenaire-up {
+/* #lien-form-devenir-partenaire-up {
   display: none;
 }
 #lien-form-devenir-partenaire-down {
   display: inline;  
-}
+} */
 
 .bonjour {
   margin-top: 10px;
