@@ -84,7 +84,7 @@ if(isset($_GET['page']) && 'connexion' === $_GET['page']) {
 }
 
 // CGU
-elseif ($_GET['page'] && 'cgu' === $_GET['page']) {
+elseif (isset($_GET['page']) && 'cgu' === $_GET['page']) {
     ob_start();
     require_once('vues/page-cgu.php');
     $contenu = ob_get_clean();
@@ -93,7 +93,7 @@ elseif ($_GET['page'] && 'cgu' === $_GET['page']) {
 }
 
 // MENTIONS LEGALES
-elseif ($_GET['page'] && 'mentions-legales' === $_GET['page']) {
+elseif (isset($_GET['page']) && 'mentions-legales' === $_GET['page']) {
     ob_start();
     require_once('vues/page-mentions-legales.php');
     $contenu = ob_get_clean();

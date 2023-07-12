@@ -1,7 +1,19 @@
+#form-connexion {
+
+  margin-bottom: 15vh;
+
+  max-width: 95%;
+
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+
 #form-connexion,
 .lcf-form {
-  background-color: var(--main-color-orange-light)!important;
-  
+  background-color: var(--main-color-accent-light)!important;
 }
 
 #form-connexion label {
@@ -14,9 +26,12 @@
   color: var(--main-color-black);
 }
 
+
+
+
 #form-connexion button,
 .lcf-button {
-  background-color: var(--main-color-orange);
+  background-color: var(--main-color-accent);
   color: var(--main-color-white);
   font-weight: 600;
   letter-spacing: 1px;
@@ -35,8 +50,22 @@
 .lcf-button:hover,
 #form-connexion button:focus,
 .lcf-button:focus {
-  background-color: var(--main-color-orange-dark);
-  border: 1px solid var(--main-color-orange-dark);
+  opacity: 0.7;
+  /* background-color: var(--main-color-orange-dark);
+  border: 1px solid var(--main-color-orange-dark); */
   box-shadow: 2px 8px 12px rgba(0, 0, 0, 0.2);
+  
+  
+  transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  -o-transform: scale(1.05);
+}
 
+
+#title-se-connecter {
+  padding: 1.2rem 0;
+  margin-bottom: 3rem;
+  background-color: var(--main-color-accent);
 }

@@ -58,7 +58,7 @@ ob_start();
                       <input type="hidden" name="action" id="action" value="createDevenirPartenaire">
                       <input type="hidden" name="page" id="page" value="devenir-partenaire">
                       <button type="reset" class="btn btn-primary lcf-button">Reset</button>
-                      <button type="submit" class="btn btn-primary lcf-button">Envoyer</button>
+                      <button type="submit" class="btn btn-primary lcf-button CTAButton ">Envoyer</button>
                   </div>
                   <!-- <div class="col-0 col-md-2"></div> -->
               </div>

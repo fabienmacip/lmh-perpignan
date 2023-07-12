@@ -17,17 +17,17 @@ require_once('modeles/ConnectMe.php');
 $titre = 'La Maison de l\'Habitat by La Centrale de Financement - Liste des types de planques';
 ob_start();
 ?>
-
-<div class="mx-auto col-12 col-sm-10 col-md-6 col-xl-4  text-center">
+ <!-- col-sm-10 col-md-6 col-xl-4  -->
+<div class="mx-auto col-12 text-center">
   <?php 
   if(isset($messageConnexion) && $messageConnexion !== '') {?>
     <div class="text-danger"><?= $messageConnexion ?></div> 
   <?php 
   }
   ?>
-  <h4>Se connecter</h4>    
+  <h4 id="title-se-connecter">Se connecter</h4>    
 
-  <form method="post" id="form-connexion" action="index.php" class="mt-3 py-4 bg-info">
+  <form method="post" id="form-connexion" action="index.php" class="mt-3 py-4 bg-info box col-12 col-sm-10 col-md-6 col-xl-4 mx-auto">
 
     <div class="mb-3 col-10 mx-auto">
       <label for="mail" class="form-label">Login</label>
@@ -43,8 +43,8 @@ ob_start();
     </div>
 
         <input type="hidden" name="action" id="action" value="connexion">
-        <button type="reset" class="btn-connexion btn-primary">Reset</button>
-        <button type="submit" class="btn-connexion btn-primary">Envoyer</button>
+        <button type="reset" class="btn-connexion">Reset</button>
+        <button type="submit" class="btn-connexion">Envoyer</button>
 
     </form>
 
