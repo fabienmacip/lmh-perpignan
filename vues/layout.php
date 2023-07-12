@@ -29,6 +29,7 @@
         <!-- <script src="./script/test.js?v=1"></script> -->
         <!-- <script src="https://cdn.jsdelivr.net/npm/jquery.md5@1.0.2/index.min.js"></script> -->
         <script src="./script/visiteurDatas.js?v=2"></script>
+        <script src="./script/partenaire.js?v=2"></script>
         <script src="./script/script.js?v=2"></script>
         <script src="./script/divers.js?v=2"></script>
     <?php }

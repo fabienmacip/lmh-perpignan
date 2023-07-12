@@ -253,6 +253,7 @@ public function devenirPartenaire()
 }
 
 public function devenirPartenaireCreation($nom, $univers, $actif, $mail, $telephone){
+
     $partenaires = new Partenaires($this->pdo);
     $partenaireToCreate = $partenaires->create($nom, $univers, $actif, $mail, $telephone);
     require_once('vues/devenir-partenaire.php');

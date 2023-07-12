@@ -89,12 +89,13 @@ class Partenaires
     public function create($nom, $univers, $actif = 1, $mail = '', $telephone = '', $universenfant = '') {
         if (!is_null($this->pdo)) {
             try {
+                $dateCreation = date("Y-m-d");
                 $univers = str_replace(' ', '', $univers);
                 $universenfant = str_replace(' ', '', $universenfant);
                 // Requête mysql pour insérer des données
-                $aInserer = array(":nom"=>$nom, "mail"=>$mail, "telephone"=>$telephone, "univers"=>$univers, "universenfant"=>$universenfant, "actif"=>$actif);
+                $aInserer = array(":nom"=>$nom, ":mail"=>$mail, ":telephone"=>$telephone, ":univers"=>$univers, ":universenfant"=>$universenfant, ":date"=>$dateCreation, ":actif"=>$actif);
                 if($actif != 1) { $actif = 0; }
-                $sql = "INSERT INTO partenaire (nom, mail, telephone, univers, universenfant, actif) VALUES (:nom, :mail, :telephone, :univers, :universenfant :actif)";
+                $sql = "INSERT INTO partenaire (nom, mail, telephone, univers, universenfant, date, actif) VALUES (:nom, :mail, :telephone, :univers, :universenfant, :date, :actif)";
                 $res = $this->pdo->prepare($sql);
                 $exec = $res->execute($aInserer);
                 if($exec){

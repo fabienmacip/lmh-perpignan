@@ -1,5 +1,74 @@
 <?php
 $titre = 'La Maison de l\'Habitat by La Centrale de Financement - Devenir partenaire';
+if(isset($partenaireToCreate) && $partenaireToCreate != ''){
+?>
+
+    <div class="toaster">
+            <?= $partenaireToCreate ?>
+    </div>
+
+<?php
+}
+
+// Captcha
+$nb1 = rand(1, 5);
+$nb2 = rand(1, 5);
+$somme = $nb1 + $nb2;
+
+function replaceNumberAsString($thechar) {
+  switch($thechar) {
+    case "0":
+      return "3";
+      break;
+    case "1":
+      return "5";
+      break;
+    case "2":
+      return "7";
+      break;
+    case "3":
+      return "9";
+      break;
+    case "4":
+      return "0";
+      break;
+    case "5":
+      return "8";
+      break;   
+    case "6":
+      return "4";
+      break;
+    case "7":
+      return "6";
+      break;    
+    case "8":
+      return "2";
+      break;
+    case "9":
+      return "1";
+      break;
+    default:
+      return "";
+  }
+}
+
+function myMd5($chaine) {
+  $chaine = $chaine.toString();
+  $chaine2 = '';
+
+  for($j = 0 ; $j < $chaine.length ; $j++) {
+    $chaine2 += replaceNumberAsString($chaine.charAt(j));
+  }
+  
+  return $chaine2;
+}
+
+
+$captcha_crypted = myMd5($somme);
+
+
+
+
 ob_start();
 ?>
 <div class="container">
@@ -49,16 +118,39 @@ ob_start();
                   <div class="form-group mb-2">
                       <!-- <label for="nom">Nom du pays</label> -->
                       <!-- <label for="nom">Nom de famille</label> -->
-                      <input type="text" name="nom" class="form-control" maxlength="40" id="nom" placeholder="Saisissez le nom du partenaire">
-                      <input type="mail" name="mail" class="form-control" maxlength="40" id="mail" placeholder="Mail">
-                      <input type="text" name="telephone" class="form-control" maxlength="15" id="telephone" placeholder="Téléphone">
+                      <input type="text" name="fdp-nom" class="form-control" maxlength="40" id="fdp-nom" placeholder="Saisissez le nom du partenaire"
+                      oninput="checkFormDevenirPartenaire('fdp-nom')" onblur="checkFormDevenirPartenaire('fdp-nom')" tabindex="1">
+                      <input type="mail" name="fdp-mail" class="form-control" maxlength="40" id="fdp-mail" placeholder="Mail" tabindex="2"
+                      oninput="checkFormDevenirPartenaire('fdp-mail')" onblur="checkFormDevenirPartenaire('fdp-mail')">
+                      <input type="text" name="fdp-tel" class="form-control" maxlength="15" id="fdp-tel" placeholder="Téléphone" tabindex="3"
+                      oninput="checkFormDevenirPartenaire('fdp-tel')" onblur="checkFormDevenirPartenaire('fdp-tel')">
+                  </div>
+                  <div class="form-group mb-2">
+                    <div id="div-conditions-devenir-partenaire" class="flex flex-row">
+                        <div class="mr-5">
+                            <input type="checkbox" name="fdp-conditions" id="fdp-conditions" onclick="checkFormDevenirPartenaire('fdp-conditions')" tabindex="4">
+                        </div>  
+                        <div>
+                            J'ai lu et j'accepte les conditions g&eacute;n&eacute;rales d'utilisation des donn&eacute;es.<br>
+                            Consultez notre <a style="color:red;" class="link" onclick="popMentionsLegales()" tabindex="5">mentions légales</a>
+                            pour en savoir plus sur l'utilisation de vos donn&eacute;es ou pour exercer vos droits et notamment votre droit d'opposition.
+                        </div>	
+                    </div>
+                  </div>
+                  <div class="form-group mb-2">
+                    <div>
+                        <input type="hidden" id="fdp-vcaptcha" name="fdp-vcaptcha" value="<?= $captchaCrypted ?>">
+                        <input class="input" type="text" style="width:12rem; margin-top:1rem; margin-bottom:0;" maxlength="3" id="fdp-captcha" name="fdp-captcha" tabindex="6" placeholder="Combien font <?= $nb1 ?> + <?= $nb2 ?> ?"
+                        oninput="checkFormDevenirPartenaire('fdp-captcha')" onblur="checkFormDevenirPartenaire('fdp-captcha')"><br>
+                        <small><i>(Vérification anti-robots)</i></small>
+                    </div>
                   </div>
                   <div class="form-group mb-2">
                   <!-- <div class="col-12 col-md-4 mt-3 mt-md-0"> -->
                       <input type="hidden" name="action" id="action" value="createDevenirPartenaire">
                       <input type="hidden" name="page" id="page" value="devenir-partenaire">
-                      <button type="reset" class="btn btn-primary lcf-button">Reset</button>
-                      <button type="submit" class="btn btn-primary lcf-button CTAButton ">Envoyer</button>
+                      <button type="reset" class="btn btn-primary lcf-button CTAButton" tabindex="7">Reset</button>
+                      <button id="fdp-submit" type="submit" class="btn btn-primary lcf-button CTAButton btn-inactive" tabindex="8" disabled>Envoyer</button>
                   </div>
                   <!-- <div class="col-0 col-md-2"></div> -->
               </div>
@@ -72,6 +164,10 @@ ob_start();
 
 
     </div>
+</div>
+
+<div class="hidden-popup-mentions-legales">
+  <?php require_once('page-mentions-legales.php'); ?>
 </div>
 
 
