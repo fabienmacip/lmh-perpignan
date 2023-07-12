@@ -1,0 +1,4 @@
+<div id="cgu-div">
+    <h1>CONDITIONS GENERALES D'UTILISATION (C.G.U.)</h1>
+    LES C.G.U. SERONT BIENTOT DISPONIBLES ICI.
+</div>

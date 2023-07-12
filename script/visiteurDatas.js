@@ -102,7 +102,7 @@ function createVisiteur(nom, prenom, mail, telephone, partenaireId) {
       showPartenaireInUnivers(partenaireId)
       
       let abc = $('#univers-enfant-div-'+partenaireId).offset().top
-      console.log(abc)
+      abc -= 70
       
       window.scrollTo({
         top: abc,

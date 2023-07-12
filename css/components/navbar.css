@@ -9,7 +9,9 @@
 nav {
   background-color: var(--main-color-dark);
   color: var(--main-color-white)!important;
-
+  position: sticky!important;
+  top: 0!important;
+  z-index: 50;
 }
 nav a {
   color: var(--main-color-white)!important;

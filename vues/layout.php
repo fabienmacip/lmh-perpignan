@@ -254,9 +254,16 @@
     <?= $contenu ?>
 </section>
 </main>
-<footer class="fw-light fst-italic fs-6 text-center mt-5">
-    <p>La R&eacute;f&eacute;rence - Perpignan - Tous droits réservés</p>
-    <p>Webmaster - <a href="mailto:fabien.macip@gmail.com">fabien.macip@gmail.com</a></p>
+<!-- fw-light fst-italic fs-6 -->
+<footer class="text-center mt-5">
+        <div class="flex-1">
+            <a href="index.php?page=cgu">CGU</a>&nbsp;|&nbsp;
+          <a href="index.php?page=mentions-legales">Mentions L&eacute;gales</a>
+        </div>
+        <div class="flex-1">
+            <p>La R&eacute;f&eacute;rence - Perpignan - Tous droits réservés</p>
+            <p>Webmaster - <a href="mailto:fabien.macip@gmail.com">fabien.macip@gmail.com</a></p>
+        </div>
 </footer>
 
 <!-- ADDED -->

@@ -1,0 +1,120 @@
+footer {
+  background-color: var(--main-color-dark);
+  color: var(--main-color-white);
+  font-size: 0.8rem!important;
+
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+}
+
+footer a:hover {
+  color: var(--main-color-accent2);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+footer div p {
+  margin-bottom: 0;
+  padding: 0 1.2rem;
+}
+
+footer div p:nth-child(1) {
+  border-bottom: 1px solid #bbb;
+}
+
+footer div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+}
+
+footer div:nth-child(1) {
+  flex-direction: row;
+}
+
+footer div:nth-child(2){
+  flex-direction: column;
+}
+
+/* MENTIONS LEGALES */
+
+#mentions-legales-div {
+  text-align: left;
+  padding: 20px;
+  margin: 0;
+}
+
+#mentions-legales-div ul {
+  padding-left: 3rem;
+  margin-bottom: 1rem;
+}
+
+#mentions-legales-div li {
+  list-style: disc;
+}
+
+#mentions-legales-div h1, 
+#mentions-legales-div h2 {
+  margin: 1rem auto;
+  text-align: center;
+}
+
+/* * * * * CGU * * * * */
+
+
+#cgu-div {
+  text-align: left;
+  padding: 20px;
+  margin: 0 0 500px 0;
+}
+
+#cgu-div ul {
+  padding-left: 3rem;
+  margin-bottom: 1rem;
+}
+
+#cgu-div li {
+  list-style: disc;
+}
+
+#cgu-div h1 {
+  font-size: 35px;
+}
+
+#cgu-div h2 {
+  font-size: 28px;
+}
+
+#cgu-div h1, 
+#cgu-div h2 {
+  margin: 1rem auto;
+  text-align: center;
+}
+
+
+@media screen and (max-width: 732px) {
+  footer div:nth-child(1) {
+    flex: 1;
+  }
+  footer div:nth-child(2) {
+    flex: 2;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  footer {
+    flex-direction: column;
+  }
+  
+  footer div {
+    flex: 1;
+  }
+
+  footer div p {
+    padding: 0 0.2rem;
+  }
+}
