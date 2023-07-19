@@ -2,7 +2,7 @@
 
 function sendMail($objectToUse) {
   
-  var_dump($objectToUse);
+  //var_dump($objectToUse);
 
   //$objectToUse["nomProspect"];
   //$objectToUse["prenomProspect"];
@@ -25,27 +25,43 @@ function sendMail($objectToUse) {
   /* ************************************** */
 
   $mail2 = $objectToUse["mailProspect"];
-  $mail3 = 'macip.conseil.finance@gmail.com';
   
+  //Mail3 = copie cachée
+  $mail3 = 'fabien.macip@gmail.com';
+
+  
+  ini_set( 'display_errors', 1);
+  @ini_set('sendmail_from',$mail2);
+  error_reporting( E_ALL );
+
+
   $headers  = array(
     
     'MIME-Version' => '1.0',
-    'From' => $mail2,
+    'From' => $objectToUse["prenomProspect"].' '.$objectToUse["nomProspect"].' <'.$mail2.'>',
     'Reply-To' => ''.$mail2,
     'Bcc' => $mail3,
-    'Content-Type' => ' text/plain; charset="utf-8"; DelSp="Yes"; format=flowed ; ',
+    'Content-Type' => ' text/plain; charset="charset=iso-8859-1"; DelSp="Yes"; format=flowed ; ',
     'Content-Disposition' => ' inline',
     'Content-Transfer-Encoding' => ' 7bit',
-    'X-Envelope-From' => $mail2,
+    'X-Envelope-From' => ' <'.$mail2.'>',
+    'X-Priority' => '3',
+    'X-MSMail-Priority' => 'Normal',
+    'X-Unsent' => '1',
+    'X-Originating-IP' => '[0.0.0.0]',
     'X-Mailer' => 'PHP/'.phpversion()
   );
-
+  
+  //'Content-Type' => ' text/plain; charset="utf-8"; DelSp="Yes"; format=flowed ; ',
+  //'Content-transfer-encoding' => 'base64',
   
   // Si on souhaite garder une trace en BDD
   // $corps2 = htmlspecialchars($corps,ENT_QUOTES);
   // registerMailProspectToPartenaire($sujet, $corps2);
 
-  if(mail($dest, $sujet, $corps, $headers)) {
+  //if(mail($dest, $sujet, chunk_split(base64_encode($corps)), $headers)) {
+  if(mail($dest, $sujet, $corps, $headers)) {     
+    //var_dump($headers);
     setcookie('okmail', 'mail ok', time()+60*60*24*30, '/');
     return true;
   } else {

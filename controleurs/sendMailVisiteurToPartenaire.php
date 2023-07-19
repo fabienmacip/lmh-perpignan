@@ -54,6 +54,7 @@ if (isset($_POST['partenaireId']) && isset($_POST['visiteurId'])) {
       $res["status"] = "200";
       $res["data"] = "Mise en relation envoyée avec succès. Notre partenaire vous recontactera dans les meilleurs délais.";
       $res["requeteok"] = "true";
+      $res["partenairenom"] = $objectToUse["nomPartenaire"];
     }
     else {
       $res['status'] = "404";
