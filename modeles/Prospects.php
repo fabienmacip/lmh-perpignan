@@ -42,7 +42,7 @@ class Prospects
         $prospectId = intval($prospectId);
 
         if (!is_null($this->pdo)) {
-            $sql = 'SELECT * FROM prospect WHERE id = :id ORDER BY nom';
+            $sql = 'SELECT * FROM prospect WHERE id = :id';
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute([":id"=>$prospectId]);
         }

@@ -24,6 +24,28 @@ class Partenaires
         return $tuples;
     }
 
+        public function listerUn($id = 0)
+        {
+
+            $tupleId = intval($id);
+
+            if (!is_null($this->pdo)) {
+                $sql = 'SELECT * FROM partenaire WHERE id = :id';
+                $stmt = $this->pdo->prepare($sql);
+                $stmt->execute([":id"=>$tupleId]);
+            }
+            $tuples = [];
+            while ($tuple = $stmt->fetchObject('Partenaire', [$this->pdo])) {
+                $tuples[] = $tuple;
+            }
+    
+            $stmt->closeCursor();
+    
+            return $tuples;
+    
+        }
+
+
     // READ
     public function listerFromUnivers($univers = 0)
     {

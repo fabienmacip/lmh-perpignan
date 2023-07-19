@@ -145,6 +145,20 @@ class Controleur {
     }
 
 
+    public function readOneProspect($prospectId){
+        $prospectToRead = new Prospects($this->pdo);
+        $prospectToRead = $prospectToRead->listerUn($prospectId);
+
+        return $prospectToRead;
+    }
+
+    public function readOnePartenaire($partenaireId){
+
+        $partenaireToRead = new Partenaires($this->pdo);
+        $partenaireToRead = $partenaireToRead->listerUn($partenaireId);
+
+        return $partenaireToRead;
+    }
 
     // UNIVERS - CRUD
 

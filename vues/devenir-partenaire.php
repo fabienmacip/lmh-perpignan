@@ -86,7 +86,7 @@ ob_start();
     
       <div class="col-12 col-lg-6 col-xl-6">
       <?php if(!isset($_SESSION['partenaire'])) { ?>
-          <a href="#form-create-devenir-partenaire" id="lien-form-devenir-partenaire-up" onclick="lienFormDevenirPartenaire()">DEVENIR PARTENAIRE</a>
+          <!-- <a href="#form-create-devenir-partenaire" id="lien-form-devenir-partenaire-up" onclick="lienFormDevenirPartenaire()">DEVENIR PARTENAIRE</a> -->
       <?php } ?>
           <p>
             <h3>

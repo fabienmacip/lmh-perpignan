@@ -25,21 +25,87 @@ function checkVisiteurRegistered(id){
 }
 
 
-function sendDemandeRelation() {
+function confirmDemandeRelation(partenaireId, partenaireNom) {
 
-  id = localStorage.getItem('laref-id') ?? ''
-  nom = localStorage.getItem('laref-nom') ?? ''
-
+  visiteurId = localStorage.getItem('laref-id') ?? ''
+  visiteurNom = localStorage.getItem('laref-nom') ?? ''
+  
   plus = ''
-  if(id !== '' && nom != ''){
-    plus = 'Votre nom est enregistré : ' + nom + '.\nAinsi que votre identifiant : ' + id
+  if(visiteurId !== '' && visiteurNom != ''){
+    plus = 'Votre nom est enregistré : ' + visiteurNom + '.\nAinsi que votre identifiant : ' + visiteurId
   }
 
-  alert('Fonction pour envoie de mail de mise en relation.\n--- BIENTOT disponible ---\n\n'+plus);
+  if(confirm('Confirmez-vous votre demande de mise en relation avec notre partenaire '+partenaireNom+' ?')) {
+    sendMailRelation(partenaireId, visiteurId)
+  }
+
   /* visiteur : nom, prenom, mail, tel
   partenaire : nom, mail */
   
   //alert(getCookie('user'));
+}
+
+
+function sendMailRelation(partenaireId, visiteurId) {
+  let datasObj = {};
+  
+  datasObj.partenaireId = partenaireId;
+  datasObj.visiteurId = visiteurId;
+
+  let data = new FormData();
+  for (const key in datasObj) {
+    data.append(key, datasObj[key])
+  }
+  var req = new XMLHttpRequest();
+  req.responseType = 'json';
+  req.open('POST', 'controleurs/sendMailVisiteurToPartenaire.php');
+  //req.open('POST', PHP_AJAX_VISITEUR);
+
+  // SPINNER
+  req.onloadstart = function() {
+    
+  }
+  
+  req.onprogress = function() {
+    
+  }
+
+  req.onload = function() {
+    
+  }
+  
+  // Requête terminée, résultat
+  req.onloadend = function () {
+    
+    let procedureOK = req.response["requeteok"]
+
+    if(procedureOK) {
+
+      partenaireNom = req.response["partenairenom"]
+
+      //setLocalLarefUser(id,nom,prenom,mail,tel,date)
+      //closeFormVisiteur()
+      //showPartenaireInUnivers(partenaireId)
+      
+      //let abc = $('#univers-enfant-div-'+partenaireId).offset().top
+      //abc -= 70
+      
+      /* window.scrollTo({
+        top: abc,
+        left: 0,
+        behavior: 'smooth'
+      }) */
+      
+      alert(`Votre mail a bien été envoyé à `+partenaireNom+``)
+    } else {
+      alert('Erreur lors de l\'envoi du mail à notre partenaire. Si cette erreur persiste, vous pouvez nous contacter directement, nous vous mettrons en relation avec le(s) partenaire(s) désiré(s).')
+    }
+
+  }
+  
+  // Envoie requête
+  req.send(data);
+
 }
 
 
