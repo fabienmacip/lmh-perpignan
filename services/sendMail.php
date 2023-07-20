@@ -1,4 +1,9 @@
 <?php 
+// -------------------------------------------------
+// ATTENTION !!! Utiliser la bonne adresse FROM pour
+// que le serveur LWS envoie bien le mail.
+// Ici : mail_php@pcf-lcf.fr
+// -------------------------------------------------
 
 function sendMail($objectToUse) {
   
@@ -28,20 +33,25 @@ function sendMail($objectToUse) {
   
   //Mail3 = copie cachée
   $mail3 = 'fabien.macip@gmail.com';
+  $mail4 = 'richard.durin@neuf.fr';
+  //$mail4 = 'fatabien@gmail.com';
 
   
   ini_set( 'display_errors', 1);
-  @ini_set('sendmail_from',$mail2);
+  //@ini_set('sendmail_from',$mail2);
   error_reporting( E_ALL );
+
+  $fromOK = 'mail_php@pcf-lcf.fr';
+  //$fromOK = $objectToUse["prenomProspect"].' '.$objectToUse["nomProspect"].' <'.$mail2.'>';
 
 
   $headers  = array(
     
     'MIME-Version' => '1.0',
-    'From' => $objectToUse["prenomProspect"].' '.$objectToUse["nomProspect"].' <'.$mail2.'>',
+    'From' => $fromOK,
     'Reply-To' => ''.$mail2,
-    'Bcc' => $mail3,
-    'Content-Type' => ' text/plain; charset="charset=iso-8859-1"; DelSp="Yes"; format=flowed ; ',
+    'Bcc' => $mail3.','.$mail4,
+    'Content-Type' => ' text/html; charset="charset=utf-8"; DelSp="Yes"; format=flowed ; ',
     'Content-Disposition' => ' inline',
     'Content-Transfer-Encoding' => ' 7bit',
     'X-Envelope-From' => ' <'.$mail2.'>',

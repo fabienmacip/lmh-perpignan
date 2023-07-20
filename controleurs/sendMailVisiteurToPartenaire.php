@@ -43,8 +43,8 @@ if (isset($_POST['partenaireId']) && isset($_POST['visiteurId'])) {
     $objectToUse["nomPartenaire"] = $reponsePartenaire->getNom();
     $objectToUse["mailPartenaire"] = $reponsePartenaire->getMail();
     
-    $objectToUse["sujet"] = 'Demande de mise en relation d\'un prospect via le site LA REFERENCE';
-    $objectToUse["corps"] = 'Bonjour,\n\nvoici une demande de mise en relation en provenance du site LA REFERENCE :\nNOM : '.$reponseProspect->getNom().'\nPRENOM : '.$reponseProspect->getPrenom();
+    $objectToUse["sujet"] = 'Demande de mise en relation d\'un prospect via le site LA REFERENCE, pour le partenaire '.strtoupper($objectToUse["nomPartenaire"]).'.';
+    $objectToUse["corps"] = 'Bonjour,<br/><br/>voici une demande de mise en relation en provenance du site LA REFERENCE :<br/>NOM : '.$reponseProspect->getNom().'<br/>PRENOM : '.$reponseProspect->getPrenom();
 
     $reponse = sendMail($objectToUse);
 
