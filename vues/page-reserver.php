@@ -34,45 +34,114 @@ ob_start();
         }
     ?>
 
+    <?php
+    // PREPARATION pour les mois en français et la date actuelle
+    
+        $today = date("m.d.Y");
+
+        //echo $today;
+
+        function moisFrancais($mois = "01"){
+        $moisEnFrancais = "Janvier";
+        switch($mois){
+            case "01": $moisEnFrancais = "Janvier";
+                        break;
+            case "02": $moisEnFrancais = "F&eacute;vrier";
+                        break;
+            case "03": $moisEnFrancais = "Mars";
+                        break;
+            case "04": $moisEnFrancais = "Avril";
+                        break;
+            case "05": $moisEnFrancais = "Mai";
+                        break;
+            case "06": $moisEnFrancais = "Juin";
+                        break;
+            case "07": $moisEnFrancais = "Juillet";
+                        break;
+            case "08": $moisEnFrancais = "Ao&ucirc;t";
+                        break;
+            case "09": $moisEnFrancais = "Septembre";
+                        break;
+            case "10": $moisEnFrancais = "Octobre";
+                        break;
+            case "11": $moisEnFrancais = "Novembre";
+                        break;
+            case "12": $moisEnFrancais = "D&eacute;cembre";
+                        break;
+            default: $moisEnFrancais = "Janvier";
+                        break;
+        }
+        return $moisEnFrancais;
+        }
+
+        $currentMonth = date("m");
+        $currentDay = date("d");
+        $currentYear = date("Y");
+        
+        $premierjourdumois = $currentYear."-".$currentMonth."-01";
+        $premierjourdumois = strtotime($premierjourdumois);
+        $firstDayOfCurrentMonth = date('w',$premierjourdumois); 
+
+        //echo "FIRST : ".$firstDayOfCurrentMonth." ...";
+        if($firstDayOfCurrentMonth == 0){
+            $firstDayOfCurrentMonth = 7;
+        } else {
+            $firstDayOfCurrentMonth--;
+        }
+        
+        $numberOfDaysOfCurrentMonth = date("t");
+
+        $moisFrancais = moisFrancais($currentMonth);
+
+
+    ?>
+
         <h1>PAGE des Réservations</h1>
         <div class="reservation-main">
             <p>Vous avez 10 heures de disponibilit&eacute; par mois, cumulables.</p>
             <p>A ce jour, vous avez droit à XXX heures.</p>
             <p>Les bureaux et la salle de r&eacute;union sont r&eacute;servables de 8h à 20h, du LUNDI au SAMEDI.</p>
 
+            <?php
+                // On affecte un tableau (array) par bureau pour avoir un tableau de réservations par bureau
+                $buros = [];
+                $nbBuros = intval($nbBureaux[0]["total"]);
+                for($i = 0; $i < $nbBuros; $i++){
+                    $buros[$i] = array_filter($calendars, function($c) use ($i) {
+                        return $c->getIdBureau() == (intval($i)+1);
+                    });
+                }
+
+                // DEBUT liste DES CARDS
+                $index = 0;
+                foreach($bureaux as $bureau):
+            ?>
+
+
+
             <div id="bureau1" class="bureau-card">
                 <div class="bureau-entete">
                     <div class="bureau-title">
-                        <h2>Bureau n°1</h2>
-                        <p>3 m², 1er sur la gauche en entrant dans nos locaux.</p>
+                        <h2><?= $bureau->getTitre() ?></h2>
+                        <p><?= $bureau->getDescription() ?></p>
                     </div>    
                     <div class="bureau-img1">
-                        <img src="img/reserver/bureau1.jpg" onclick="displayBigImg('reserver/bureau1.jpg')">
+                        <img src="<?= $bureau->getImg() ?>" onclick="displayBigImg('<?= $bureau->getImg() ?>','bureau-img1-<?= $bureau->getId() ?>')" id="bureau-img1-<?= $bureau->getId() ?>">
                     </div>
                 </div>    
                 <div class="bureau-corps">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate fugit rem est qui temporibus, nesciunt, labore amet asperiores ullam corporis vel! Voluptate ex ducimus et dolor, assumenda debitis molestias perferendis quod libero omnis consequuntur, natus voluptatem? Saepe dolores necessitatibus modi. Ut illo porro corrupti nobis quam necessitatibus? Consequuntur nulla, doloribus eligendi rem beatae commodi itaque voluptate eum, sit veritatis vitae velit, veniam dolor ipsa laudantium sequi perspiciatis soluta pariatur iure inventore praesentium at repudiandae saepe voluptatum? Itaque aut, nihil quibusdam a aspernatur repellat inventore natus ipsum error, reiciendis dolores mollitia quidem quasi deserunt iure deleniti accusantium suscipit obcaecati quis amet?<br>
-                    
-                    <br>Nombre de bureaux : <?= $tempo[0]["total"] ?><br><br>
-
-                    <?php 
-                        foreach($calendars as $calendar) :
+                    <?php
+                         $calendrierDuBureau = $buros[$index];
+                         require(dirname(__FILE__,2).'/vues/bureauCalendar.php'); 
                     ?>
 
-                        Ligne <?= $calendar->getId() ?><br>
-                        Partenaire n°<?= $calendar->getIdPartenaire() ?><br>
-                        Bureau n°<?= $calendar->getIdBureau() ?><br>
-                        Jour : <?= $calendar->getDate() ?><br>
-                        Heure début : <?= $calendar->getHeureDebut() ?><br>
-                        Heure fin : <?= $calendar->getHeureFin() ?><br>
-                        Durée : <?= $calendar->getDureeEnMinutes() ?> mn
-
-                        <hr>
-
-                    <?php endforeach; ?>
                 </div>
             </div>
 
+            <?php   $index++;
+                    endforeach; 
+                  // FIN liste des CARDS      
+            ?>
 
         </div>
     </div>

@@ -27,6 +27,8 @@ require_once('modeles/Partenaires.php');
 require_once('modeles/StatPartenaire.php');
 require_once('modeles/StatPartenaireDetail.php');
 require_once('modeles/StatPartenaires.php');
+require_once('modeles/Bureau.php');
+require_once('modeles/Bureaus.php');
 require_once('modeles/BureauCalendar.php');
 require_once('modeles/BureauCalendars.php');
 /* require_once('modeles/MyDate.php');

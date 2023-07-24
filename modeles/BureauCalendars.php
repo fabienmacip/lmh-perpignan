@@ -22,12 +22,22 @@ class BureauCalendars
         return $tuples;
     }
 
-    public function readNbTuples() {
-      //$stmt = $this->pdo->query('SELECT COUNT(*) FROM bureaucalendar');
-      $req = $this->pdo->prepare('SELECT COUNT(*) as total FROM bureau');
-      $req->execute();
-      $data=$req->fetchAll(PDO::FETCH_ASSOC);
-      return $data;
+    public function isJourReserve($idBureau,$date) {
+
+        if (!is_null($this->pdo)) {
+            $sql = 'SELECT * FROM bureaucalendar WHERE idBureau = :idBureau AND date = :date';
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([":idBureau"=>$idBureau, ":date"=>$date]);
+        }
+        $tuples = [];
+        while ($tuple = $stmt->fetchObject('BureauCalendar', [$this->pdo])) {
+            $tuples[] = $tuple;
+        }
+
+        $stmt->closeCursor();
+
+        return count($tuples) > 0;
+
     }
 
     // READ pour listes déroulantes

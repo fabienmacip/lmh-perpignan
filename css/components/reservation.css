@@ -33,3 +33,11 @@
   margin: 1rem auto;
   background-color: aqua;
 }
+
+.bureau-reserve {
+  background-color: orange;
+}
+
+.bureau-non-reserve {
+  background-color: green;
+}
