@@ -20,7 +20,7 @@ ob_start();
 
 <!-- ######################## DEBUT FORM Modifier Mot de passe PARTENAIRE #################### -->
 
-<form method="post" action="index.php" id="form-modif-admin-partenaire" class="mt-3 rounded py-3 px-1 bg-info">
+<form method="post" action="index.php" id="form-modif-admin-partenaire" class="mt-3 rounded py-3 px-1 lcf-form">
         <h4>Modifier mes donn&eacute;es de connexion. </h4>    
         <div class="form-group mb-2">
             <label for="nom">Nom de famille</label>
@@ -42,8 +42,8 @@ ob_start();
         <input type="hidden" name="page" id="page" value="admin-partenaire" >
 
         <div id="form-modif-admin-partenaire-btn" class="form-group mb-2">
-            <button type="reset" class="btn btn-primary">Reset</button>
-            <button type="submit"class="btn btn-primary">Envoyer</button>
+            <button type="reset" class="button CTAButton">Reset</button>
+            <button type="submit"class="button CTAButton">Envoyer</button>
         </div>
     </form>
 

@@ -943,6 +943,10 @@ img {
   background-color: green;
 }
 
+.bg-green-light {
+  background-color: lightseagreen;
+}
+
 /* MAX-WIDTH  */
 
 .mw-30 {

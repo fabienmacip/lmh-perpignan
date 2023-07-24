@@ -72,9 +72,9 @@ class Administrateur
     {
         $role = 0;
         if($this->getPartenaire() == 0) {
-            $role = 1;
+            $role = 1; //admin
         } else {
-            $role = 2;
+            $role = 2; //partenaire
         }
         return $role;
     }

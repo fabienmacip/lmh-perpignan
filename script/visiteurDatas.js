@@ -1,4 +1,4 @@
-var PHP_AJAX_VISITEUR = "http://pcf-lcf.fr/lmh-perpignan/controleurs/createProspectFromPublic.php"
+//var PHP_AJAX_VISITEUR = "http://pcf-lcf.fr/lmh-perpignan/controleurs/createProspectFromPublic.php"
 
 
 // ####################  PARTENAIRE - Mise en relation d'un visiteur ####################

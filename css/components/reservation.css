@@ -1,0 +1,30 @@
+.bureau-card {
+  background-color: lightgrey;
+  padding: 5px;
+
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+.bureau-entete {
+  display: flex;
+  flex-direction: row;
+}
+
+.bureau-title {
+  flex: 1;
+  text-align: center;
+}
+
+.bureau-img1 {
+  flex: 1;
+  cursor: pointer;
+}
+
+.bureau-img1 img {
+  max-width: 90%;
+  width: 300px;
+}

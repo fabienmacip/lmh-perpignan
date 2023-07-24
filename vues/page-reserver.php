@@ -34,16 +34,26 @@ ob_start();
         }
     ?>
 
-<h2>PAGE des Réservations</h2>
-<div class="reservation-main">
-    <p>Contenu à déterminer...</p>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veritatis sunt deserunt beatae dolorum minima rerum quidem eos sapiente optio harum incidunt enim delectus ab, cupiditate maiores porro dolores sequi autem.</p>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veritatis sunt deserunt beatae dolorum minima rerum quidem eos sapiente optio harum incidunt enim delectus ab, cupiditate maiores porro dolores sequi autem.</p>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veritatis sunt deserunt beatae dolorum minima rerum quidem eos sapiente optio harum incidunt enim delectus ab, cupiditate maiores porro dolores sequi autem.</p>
-    
-</div>
+        <h1>PAGE des Réservations</h1>
+        <div class="reservation-main">
+            <p>Vous avez 10 heures de disponibilit&eacute; par mois, cumulables.</p>
+            <p>A ce jour, vous avez droit à XXX heures.</p>
+            <p>Les bureaux et la salle de r&eacute;union sont r&eacute;servables de 8h à 20h, du LUNDI au SAMEDI.</p>
 
-<!-- Ancien emplacement du formulaire AJOUT ANIMAL -->
+            <div id="bureau1" class="bureau-card">
+                <div class="bureau-entete">
+                    <div class="bureau-title">
+                        <h2>Bureau n°1</h2>
+                        <p>3 m², 1er sur la gauche en entrant dans nos locaux.</p>
+                    </div>    
+                    <div class="bureau-img1">
+                        <img src="img/reserver/bureau1.jpg" onclick="displayBigImg('reserver/bureau1.jpg')">
+                    </div>
+                </div>    
+            </div>
+
+
+        </div>
     </div>
   </div>
 </div>

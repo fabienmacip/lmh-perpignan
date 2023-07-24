@@ -11,7 +11,7 @@ nav {
   color: var(--main-color-white)!important;
   position: sticky!important;
   top: 0!important;
-  z-index: 50;
+  z-index: 190;
 }
 nav a {
   color: var(--main-color-white)!important;

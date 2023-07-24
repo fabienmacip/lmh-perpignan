@@ -30,6 +30,7 @@
         <!-- <script src="https://cdn.jsdelivr.net/npm/jquery.md5@1.0.2/index.min.js"></script> -->
         <script src="./script/visiteurDatas.js?v=2"></script>
         <script src="./script/partenaire.js?v=2"></script>
+        <script src="./script/reserver.js"></script>
         <script src="./script/script.js?v=2"></script>
         <script src="./script/divers.js?v=2"></script>
     <?php }
@@ -142,6 +143,15 @@
     <!-- <h1 class="text-center my-2">LA MAISON DE L'HABITAT - PERPIGNAN</h1> -->
 </header>
 <section>
+<?php 
+
+if(isset($_SESSION['prenom']) && isset($_SESSION['nom']) && isset($_SESSION['role-libelle']) && (!empty($_SESSION['role-libelle']))) {
+    echo "<div id='bonjour' class='bonjour bg-green-light'><i>".$_SESSION['prenom']." ".$_SESSION['nom']." - <b>".$_SESSION['role-libelle']."</b></i></div>";
+} else {
+    echo "<div id='bonjour'></div>";
+}
+
+?>    
     <!-- <nav class="navbar navbar-light bg-light navbar-expand-lg" style="--bs-scroll-height: 10rem;"> -->
     <nav class="navbar navbar-light navbar-expand-lg" style="--bs-scroll-height: 10rem;">
       <div class="container-fluid">
@@ -163,6 +173,8 @@
     }
 ?>
                 <li class="nav-item"><a href="index.php?page=accueil" class="nav-link">Accueil</a></li>
+                <?php if($isPartenaire != 1) { ?>
+                
                 <li class="nav-item relative" id="nav-nos-references">
                     <a href="#" class="nav-link" id="nos-references-link">Nos r&eacute;f&eacute;rences</a>
                     <!-- <a href="index.php?page=univers" class="nav-link">Nos r&eacute;f&eacute;rences</a> -->
@@ -185,8 +197,10 @@
                     
                     </ul>
                 </li>
+                <?php } // fin du IF pour affichage NOS REFERENCES
+                if(!isset($_SESSION["role"]) || (isset($_SESSION["role"]) && $isAdmin == 0 && $isPartenaire == 0)) { ?>
                 <li class="nav-item"><a href="index.php?page=devenir-partenaire" class="nav-link">Devenir Partenaire</a></li>
-                               
+                <?php } ?>                               
                 
                 <?php 
                 if(!isset($_SESSION['role']) || $_SESSION['role'] < 1) { ?>
@@ -242,15 +256,7 @@
     </div>
 
     </nav>
-    <?php 
 
-        if(isset($_SESSION['prenom']) && isset($_SESSION['nom']) && isset($_SESSION['role-libelle']) && (!empty($_SESSION['role-libelle']))) {
-            echo "<div id='bonjour' class='bonjour'><i>".$_SESSION['prenom']." ".$_SESSION['nom']." - <b>".$_SESSION['role-libelle']."</b></i></div>";
-        } else {
-            echo "<div id='bonjour'></div>";
-        }
-
-    ?>
 
     <?= $contenu ?>
 </section>
