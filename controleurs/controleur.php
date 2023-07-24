@@ -316,7 +316,11 @@ public function pageReserver()
     $bureaux = $bureaux->lister();
 
     $calendarsObject = new BureauCalendars($this->pdo);
+    $remainingHours = $calendarsObject->getRemainingHoursPartenaire(intval($_SESSION["partenaire"]));
     $calendars = $calendarsObject->readAll();
+
+    $partenaireActif = new Partenaires($this->pdo);
+    $partenaireActif = $partenaireActif->listerUn($_SESSION["partenaire"]);
     require_once('vues/page-reserver.php');
 }
 

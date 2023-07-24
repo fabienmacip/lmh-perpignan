@@ -98,8 +98,14 @@ ob_start();
 
         <h1>PAGE des Réservations</h1>
         <div class="reservation-main">
+
+            <?php
+                /* foreach ($_SESSION as $k=>$v) {
+                    echo "$k => $v <br />\n";
+                } */
+            ?>
             <p>Vous avez 10 heures de disponibilit&eacute; par mois, cumulables.</p>
-            <p>A ce jour, vous avez droit à XXX heures.</p>
+            <p>A ce jour, vous avez droit à <?= $remainingHours ?> heures.</p>
             <p>Les bureaux et la salle de r&eacute;union sont r&eacute;servables de 8h à 20h, du LUNDI au SAMEDI.</p>
 
             <?php

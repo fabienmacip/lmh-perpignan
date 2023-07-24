@@ -40,6 +40,25 @@ class BureauCalendars
 
     }
 
+    public function getRemainingHoursPartenaire($idPartenaire) {
+        
+        $idPartenaire = intval($idPartenaire);
+        
+        if (!is_null($this->pdo)) {
+            $stmt = $this->pdo->prepare('SELECT * FROM bureaucalendar WHERE idPartenaire = :idPartenaire');
+            $stmt->execute([":idPartenaire"=>$idPartenaire]);
+        }
+        $tuples = [];
+        while ($tuple = $stmt->fetchObject('BureauCalendar', [$this->pdo])) {
+            $tuples[] = $tuple;
+        }
+        $stmt->closeCursor();
+
+
+
+        //return $tuples;
+        return 100;
+    }
     // READ pour listes déroulantes
 /*     public function listerPaysJson()
     {
