@@ -21,6 +21,7 @@ class Controleur {
         $_SESSION['admin'] = 0;
         $_SESSION['role'] = 0;
         $_SESSION['partenaire'] = -1;
+        $_SESSION['datepartenaire'] = '';
         $_SESSION['nom'] = "";
         $_SESSION['prenom'] = "";
         $_SESSION['role-libelle'] = '';
@@ -316,7 +317,8 @@ public function pageReserver()
     $bureaux = $bureaux->lister();
 
     $calendarsObject = new BureauCalendars($this->pdo);
-    $remainingHours = $calendarsObject->getRemainingHoursPartenaire(intval($_SESSION["partenaire"]));
+    $remainingMinutes = $calendarsObject->getRemainingMinutesPartenaire(intval($_SESSION["partenaire"]),$_SESSION["datepartenaire"]);
+    $remainingHours = $calendarsObject->getRemainingHoursPartenaire(intval($_SESSION["partenaire"]),$_SESSION["datepartenaire"]);
     $calendars = $calendarsObject->readAll();
 
     $partenaireActif = new Partenaires($this->pdo);

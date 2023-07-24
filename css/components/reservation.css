@@ -1,5 +1,5 @@
 .bureau-card {
-  background-color: lightgrey;
+  background-color: var(--main-color-accent-light);
   padding: 5px;
 
   margin-bottom: 1.5rem;
@@ -42,7 +42,7 @@
 
 .bureau-corps {
   margin: 1rem auto;
-  background-color: aqua;
+  background-color: var(--main-color-accent-light);
 }
 
 .table-calendar{

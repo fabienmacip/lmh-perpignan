@@ -121,6 +121,7 @@ class Administrateurs
         //return ($reponse && password_verify($password, $reponse->getMotDePasse()));
         if(($reponse && password_verify($password, $reponse->getMotDePasse()))){
             $_SESSION['partenaire'] = $reponse->getPartenaire();
+            $_SESSION['datepartenaire'] = $reponse->getDateCreation();
             $_SESSION['role'] = $reponse->getRole();
             if($reponse->getRole() == 1) {
                 $_SESSION['admin'] = $reponse->getId();

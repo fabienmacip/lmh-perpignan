@@ -40,7 +40,7 @@ class BureauCalendars
 
     }
 
-    public function getRemainingHoursPartenaire($idPartenaire) {
+    public function getRemainingMinutesPartenaire($idPartenaire, $datePartenaire) {
         
         $idPartenaire = intval($idPartenaire);
         
@@ -54,10 +54,53 @@ class BureauCalendars
         }
         $stmt->closeCursor();
 
+        // Calcul durée déjà utilisé (en minutes)
+        $duree = 0; // Durée déjà utilisée
+        foreach($tuples as $line):
+            $duree += intval($line->getDureeEnMinutes());
+        endforeach;
+
+        // Calcul duréé autorisée depuis création partenaire
+        $start_year = substr($datePartenaire,0,4);
+        $start_month = substr($datePartenaire,5,2);
+        $end_year = date('Y');
+        $end_month = date('m');
+        
+        $DROITS_EN_HEURES_PAR_MOIS = 10;
+
+        $nbmois = 0;
+        if($end_year == $start_year){
+            if($end_month < $start_month){
+            } else {
+                $nbmois = $end_month - $start_month + 1;
+            }
+        }
+        
+        $droits = $nbmois * $DROITS_EN_HEURES_PAR_MOIS * 60;
+
+        // TOTAL
+        $droitsRestants = $droits - $duree;
+
+        return $droitsRestants;
+
+
+        //$dureeTotaleAutorisee = $_SESSION['datepartenaire'];
+
+        //return 100;
 
 
         //return $tuples;
-        return 100;
+        //return $tuples[0]->getDureeEnHeures();
+    }
+    
+    function getRemainingHoursPartenaire($idPartenaire, $datePartenaire) {
+        $duree = $this->getRemainingMinutesPartenaire($idPartenaire, $datePartenaire);
+        $dureeMn = $duree % 60;
+        $dureeH = ($duree - $dureeMn) / 60;
+        if($dureeMn < 10) {
+            $dureeMn = "0".$dureeMn;
+        }
+        return $dureeH."h".$dureeMn;
     }
     // READ pour listes déroulantes
 /*     public function listerPaysJson()
