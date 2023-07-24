@@ -943,6 +943,11 @@ img {
   background-color: green;
 }
 
+/* MAX-WIDTH  */
+
+.mw-30 {
+  max-width: 30px;
+}
 
 /* CONTAINER */
 

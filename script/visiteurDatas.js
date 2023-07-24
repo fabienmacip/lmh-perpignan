@@ -367,12 +367,17 @@ function myMd5(chaine) {
 
 }
 
+function displayFormShortMail() {
+  $('#formShortMail').removeClass('inaccessible')
+  $('#btn-displayFormShortMail').remove()
+}
+
 /* ------------------------- Mini formulaire contact direct depuis annonce ------------------------------ */
 
 function displayShortMessageBox(titre, partenaireId){
     
   if(titre == "visiteur") {
-    rappelDonnees = "Afin d'accéder à nos références triées sur le volet, il est nécessaire de vous enregistrer.<br>Nous ne vous demandons que les donn&eacute;es essentielles.<br>Ces donn&eacute;es serviront uniquement si vous souhaitez &ecirc;tre mis en relation avec un ou plusieurs de nos partenaires."
+    rappelDonnees = "Afin d'accéder à nos références triées sur le volet, il est nécessaire de vous enregistrer.<br>Nous ne vous demandons que les <b>donn&eacute;es essentielles</b>.<br>Ces donn&eacute;es serviront uniquement si vous effectuez une demande de mise en relation avec un ou plusieurs de nos partenaires."
   } else {
     rappelDonnes = "TITRE MANQUANT (variable TITRE)"
   }
@@ -391,9 +396,13 @@ function displayShortMessageBox(titre, partenaireId){
                   <div id="croixCloseFormVisiteur" onclick="closeFormVisiteur()">X</div>
                   
                   <div id="confirmShortMailSent"></div><!-- messages d'erreur -->
-                  <div id="rappelDonneesMoto" class="mb-2">${rappelDonnees}<br><br>RICHARD ! Je sais, pour le moment c'est moche... D'abord les fonctionnalités, ensuite la déco ;-)</div>
+                  <div id="rappelDonneesMoto" class="mb-2">${rappelDonnees}<br><br></div>
 
-                  <form id="formShortMail" method='post' action="">
+                  <div>
+                    <button class="button CTAButton flex flex-row aic" id="btn-displayFormShortMail" onclick="displayFormShortMail()">M'inscrire <img src="img/icones/down-arrow.png" class="ml-10 mw-30"></button>
+                  </div>
+
+                  <form id="formShortMail" method='post' action="" class="inaccessible">
                       <div id="fsm-contact-donnees">
                         <div id="fsm-contact-coordonnees">
                           <div>
