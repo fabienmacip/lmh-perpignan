@@ -146,7 +146,7 @@ let pageMission ='';
 
     // MAIS, si on est partenaire, on doit pouvoir modifier ses données de connexion.
     if($('#isPartenaire').val() == 1) {
-      console.log("isPartenaire---");
+      //console.log("isPartenaire---");
       $('#form-modif-admin-partenaire').show();
       //$('#form-modif-admin-partenaire [type=button]').prop('disabled',false).removeClass('inactif');
       $('#form-modif-admin-partenaire-btn button').removeClass('inactif').prop('disabled',false);

@@ -50,6 +50,27 @@ ob_start();
                         <img src="img/reserver/bureau1.jpg" onclick="displayBigImg('reserver/bureau1.jpg')">
                     </div>
                 </div>    
+                <div class="bureau-corps">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate fugit rem est qui temporibus, nesciunt, labore amet asperiores ullam corporis vel! Voluptate ex ducimus et dolor, assumenda debitis molestias perferendis quod libero omnis consequuntur, natus voluptatem? Saepe dolores necessitatibus modi. Ut illo porro corrupti nobis quam necessitatibus? Consequuntur nulla, doloribus eligendi rem beatae commodi itaque voluptate eum, sit veritatis vitae velit, veniam dolor ipsa laudantium sequi perspiciatis soluta pariatur iure inventore praesentium at repudiandae saepe voluptatum? Itaque aut, nihil quibusdam a aspernatur repellat inventore natus ipsum error, reiciendis dolores mollitia quidem quasi deserunt iure deleniti accusantium suscipit obcaecati quis amet?<br>
+                    
+                    <br>Nombre de bureaux : <?= $tempo[0]["total"] ?><br><br>
+
+                    <?php 
+                        foreach($calendars as $calendar) :
+                    ?>
+
+                        Ligne <?= $calendar->getId() ?><br>
+                        Partenaire n°<?= $calendar->getIdPartenaire() ?><br>
+                        Bureau n°<?= $calendar->getIdBureau() ?><br>
+                        Jour : <?= $calendar->getDate() ?><br>
+                        Heure début : <?= $calendar->getHeureDebut() ?><br>
+                        Heure fin : <?= $calendar->getHeureFin() ?><br>
+                        Durée : <?= $calendar->getDureeEnMinutes() ?> mn
+
+                        <hr>
+
+                    <?php endforeach; ?>
+                </div>
             </div>
 
 

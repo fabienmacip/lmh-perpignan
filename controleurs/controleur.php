@@ -311,6 +311,9 @@ public function deleteDate($id,$date)
 
 public function pageReserver()
 {
+    $calendars = new BureauCalendars($this->pdo);
+    $tempo = $calendars->readNbTuples();
+    $calendars = $calendars->readAll();
     require_once('vues/page-reserver.php');
 }
 

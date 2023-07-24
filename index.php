@@ -27,9 +27,12 @@ require_once('modeles/Partenaires.php');
 require_once('modeles/StatPartenaire.php');
 require_once('modeles/StatPartenaireDetail.php');
 require_once('modeles/StatPartenaires.php');
+require_once('modeles/BureauCalendar.php');
+require_once('modeles/BureauCalendars.php');
 /* require_once('modeles/MyDate.php');
 require_once('modeles/MyDates.php');
- */require_once('modeles/Administrateur.php');
+ */
+require_once('modeles/Administrateur.php');
 require_once('modeles/Administrateurs.php');
 
 /* $LISTE_PAYS = "index.php?page=payss";
@@ -177,6 +180,8 @@ elseif (isset($_POST['page']) && 'administrateurs' === $_POST['page'] && isset($
     $controleur->listerAdministrateurs();
 } 
 
+/* PARTENAIRE */
+
 elseif (isset($_GET['page']) && 'partenaire' === $_GET['page'] && isset($_GET['id']) && isset($_GET['univers'])) {
     $controleur->affichePartenaire($_GET['id'], $_GET['univers']);
 }
@@ -188,9 +193,14 @@ elseif (isset($_POST['page']) && 'devenir-partenaire' === $_POST['page'] && isse
     $controleur->devenirPartenaireCreation($_POST['fdp-nom'], '', 0, $_POST['fdp-mail'], $_POST['fdp-tel']);
 }
 
+/* RESERVER BUREAU */
+
 elseif (isset($_GET['page']) && 'reserver' === $_GET['page']){
     $controleur->pageReserver();
 }
+
+
+/* ************ */
 
 elseif (isset($_GET['page']) && 'adminpartenaire' === $_GET['page'] && isset($_GET['idadminpart'])){
     $controleur->pageAdminPartenaire($_GET['idadminpart']);
