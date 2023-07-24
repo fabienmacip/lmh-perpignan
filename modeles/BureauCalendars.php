@@ -74,12 +74,22 @@ class BureauCalendars
             } else {
                 $nbmois = $end_month - $start_month + 1;
             }
+        } else if($end_year < $start_year) {
+        } else { 
+            $nbYears = ($end_year - $start_year);
+            $nbMonths = $end_month - $start_month + 1;
+            $nbmois = ($nbYears * 12) + $nbMonths;
+            var_dump($nbmois);
         }
-        
+
         $droits = $nbmois * $DROITS_EN_HEURES_PAR_MOIS * 60;
 
         // TOTAL
         $droitsRestants = $droits - $duree;
+
+/*         if($droitsRestants < 0) {
+            $droitsRestants = 0;
+        } */
 
         return $droitsRestants;
 
@@ -97,8 +107,10 @@ class BureauCalendars
         $duree = $this->getRemainingMinutesPartenaire($idPartenaire, $datePartenaire);
         $dureeMn = $duree % 60;
         $dureeH = ($duree - $dureeMn) / 60;
-        if($dureeMn < 10) {
+        if($dureeMn < 10 && $dureeMn >= 0) {
             $dureeMn = "0".$dureeMn;
+        } elseif($dureeMn < 0 && $dureeMn > -10) {
+            $dureeMn = substr($dureeMn,0,1)."0".substr($dureeMn,1,1);
         }
         return $dureeH."h".$dureeMn;
     }
