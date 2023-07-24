@@ -35,8 +35,10 @@
             $dayNumberString = "0".$dayNumber;
           } else { $dayNumberString = $dayNumber; }
           $dateSQL = $currentYear."-".$currentMonth."-".$dayNumberString;
+          $heuresReserveesParLePartenaire = $calendarsObject->listHoursReservedByPartenaire($dateSQL,$_SESSION['partenaire']);
+          $heuresReserveesParUnAutrePartenaire = $calendarsObject->listHoursReservedByAnotherPartenaire($dateSQL,$_SESSION['partenaire']);
           $reservedClass = $calendarsObject->isJourReserve($bureau->getId(),$dateSQL) ? 'bureau-reserve' : 'bureau-non-reserve';
-          $toggleDay = ' onClick="alert(\'coucou\')" id=\'mustangDay'.$dayNumber.'\'"';
+          $toggleDay = ' onClick="displayCalendarBureauDay(\''.$dateSQL.'\',\''.$bureau->getId().'\',\''.$_SESSION["partenaire"].'\')" id=\'bureau'.$bureau->getId().'-day'.$dayNumber.'\'"';
           
           if($i == 6){
             echo "<td class='bureau-non-reservable'>".$dayNumber."</td>";
@@ -61,8 +63,10 @@
                 $dayNumberString = "0".$dayNumber;
               } else { $dayNumberString = $dayNumber; }
               $dateSQL = $currentYear."-".$currentMonth."-".$dayNumberString;
+              $heuresReserveesParLePartenaire = $calendarsObject->listHoursReservedByPartenaire($dateSQL,$_SESSION['partenaire']);
+              $heuresReserveesParUnAutrePartenaire = $calendarsObject->listHoursReservedByAnotherPartenaire($dateSQL,$_SESSION['partenaire']);
               $reservedClass = $calendarsObject->isJourReserve($bureau->getId(),$dateSQL) ? 'bureau-reserve' : 'bureau-non-reserve';
-              $toggleDay = ' onClick="alert(\'coucou\')" id=\'mustangDay'.$dayNumber.'\'"';
+              $toggleDay = ' onClick="displayCalendarBureauDay(\''.$dateSQL.'\',\''.$bureau->getId().'\',\''.$_SESSION["partenaire"].'\',\''.$heuresReserveesParLePartenaire.'\',\''.$heuresReserveesParUnAutrePartenaire.'\')" id=\'bureau'.$bureau->getId().'-day'.$dayNumber.'\'"';
               if($day == 7){
                 echo "<td class='bureau-non-reservable'>".$dayNumber."</td>";
               } else {

@@ -96,8 +96,8 @@ ob_start();
 
     ?>
 
-        <h1>PAGE des Réservations</h1>
-        <div class="reservation-main">
+        <h1 id="reservations-h1">Réservations de bureaux</h1>
+        <div class="reservation-main" id="reservation-main">
 
             <?php
                  /* foreach ($_SESSION as $k=>$v) {
