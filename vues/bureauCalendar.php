@@ -4,7 +4,7 @@
 
 ?>
 
-<table id="table-calendar">
+<table id="table-calendar" class="table-calendar">
   <thead>
     <th>&nbsp;</th>
     <th colspan="5"><?= $moisFrancais ?> <?= $currentYear ?></th>
@@ -37,7 +37,13 @@
           $dateSQL = $currentYear."-".$currentMonth."-".$dayNumberString;
           $reservedClass = $calendarsObject->isJourReserve($bureau->getId(),$dateSQL) ? 'bureau-reserve' : 'bureau-non-reserve';
           $toggleDay = ' onClick="alert(\'coucou\')" id=\'mustangDay'.$dayNumber.'\'"';
-          echo "<td".$toggleDay." class='".$reservedClass." pointer'>".$dayNumber."</td>";
+          
+          if($i == 6){
+            echo "<td class='bureau-non-reservable'>".$dayNumber."</td>";
+          } else {
+            echo "<td".$toggleDay." class='".$reservedClass." pointer'>".$dayNumber."</td>";
+          }
+          
           $dayNumber++;
         }
       }
@@ -57,7 +63,11 @@
               $dateSQL = $currentYear."-".$currentMonth."-".$dayNumberString;
               $reservedClass = $calendarsObject->isJourReserve($bureau->getId(),$dateSQL) ? 'bureau-reserve' : 'bureau-non-reserve';
               $toggleDay = ' onClick="alert(\'coucou\')" id=\'mustangDay'.$dayNumber.'\'"';
-              echo "<td".$toggleDay." class='".$reservedClass." pointer'>".$dayNumber."</td>";
+              if($day == 7){
+                echo "<td class='bureau-non-reservable'>".$dayNumber."</td>";
+              } else {
+                echo "<td".$toggleDay." class='".$reservedClass." pointer'>".$dayNumber."</td>";
+              }
               $dayNumber++;
             }
             else {

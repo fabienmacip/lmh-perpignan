@@ -119,7 +119,7 @@ ob_start();
 
 
 
-            <div id="bureau1" class="bureau-card">
+            <div id="bureau-<?= $bureau->getId() ?>" class="bureau-card">
                 <div class="bureau-entete">
                     <div class="bureau-title">
                         <h2><?= $bureau->getTitre() ?></h2>
