@@ -92,12 +92,49 @@ class BureauCalendars
 
     }
 
-    public function listHoursReservedByPartenaire($dateSQL,$idPpartenaire){
-        return "10:00:00and10:30:00and11:00:00and11:30:00and15:00:00and15:30:00";
+    // Liste des créneaux horaires pour UN jour donnée
+    public function listHoursReservedByPartenaire($dateSQL,$idPartenaire,$idBureau){
+        
+        if (!is_null($this->pdo)) {
+            $sql = 'SELECT * FROM bureaucalendar WHERE idBureau = :idBureau AND date = :date AND idPartenaire = :idPartenaire';
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([":idBureau"=>$idBureau, ":date"=>$dateSQL, ":idPartenaire"=>$idPartenaire]);
+        }
+        $tuples = '';
+        while ($tuple = $stmt->fetchObject('BureauCalendar', [$this->pdo])) {
+            $tuples .= $tuple->getHeureDebut()."/";
+        }
+        
+        $stmt->closeCursor();
+
+        if(strlen($tuples) > 0) {
+            $tuples = substr($tuples,0,-1);
+        }
+        
+        return $tuples;
+
     }
 
-    public function listHoursReservedByAnotherPartenaire($dateSQL,$idPartenaire) {
-        return "08:00:00and08:03:00and09:00:00and09:30:00and16:30:00and17:00:00and17:30:00and18:00:00and18:30:00";
+    // Liste des créneaux horaires pour UN jour donnée
+    public function listHoursReservedByAnotherPartenaire($dateSQL,$idPartenaire,$idBureau) {
+        if (!is_null($this->pdo)) {
+            $sql = 'SELECT * FROM bureaucalendar WHERE idBureau = :idBureau AND date = :date AND idPartenaire <> :idPartenaire';
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([":idBureau"=>$idBureau, ":date"=>$dateSQL, ":idPartenaire"=>$idPartenaire]);
+        }
+        $tuples = '';
+        while ($tuple = $stmt->fetchObject('BureauCalendar', [$this->pdo])) {
+            $tuples .= $tuple->getHeureDebut()."/";
+        }
+        
+        $stmt->closeCursor();
+
+        if(strlen($tuples) > 0) {
+            $tuples = substr($tuples,0,-1);
+        }
+        
+        return $tuples;
+
     }
 
     public function getRemainingMinutesPartenaire($idPartenaire, $datePartenaire) {

@@ -48,7 +48,7 @@ if(isset($_POST['action']) && 'add' === $_POST['action']) {
 
 if(isset($_POST['action']) && 'reloadRemaningHours' === $_POST['action']) {
 
-  $reponse = $controleur4->reloadRemainingHours($_POST['partenaireId'],$_POST['partenaireDate']);
+  $reponse = $controleur4->reloadRemainingHours($_POST['partenaireId']);
     
   // ***********************************************************
   if($reponse){
