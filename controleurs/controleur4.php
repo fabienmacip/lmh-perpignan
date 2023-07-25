@@ -20,4 +20,12 @@ class Controleur4 {
             return false;
         }
     }
+
+    public function reloadRemainingHours($idPartenaire)
+    {
+        $calendarsObject = new BureauCalendars($this->pdo);
+        //$remainingMinutes = $calendarsObject->getRemainingMinutesPartenaire(intval($_SESSION["partenaire"]),$_SESSION["datepartenaire"]);
+        $remainingHours = $calendarsObject->getRemainingHoursPartenaireSansDate(intval($idPartenaire));
+        return $remainingHours;
+    }
 }

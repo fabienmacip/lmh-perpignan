@@ -37,6 +37,18 @@ class BureauCalendars
         return $tuples;
     }
 
+    public function findPartenaireDate($idPartenaire)
+    {
+        $idPartenaire = intval($idPartenaire);
+        if (!is_null($this->pdo)) {
+            $req = $this->pdo->prepare('SELECT date_creation FROM administrateur WHERE partenaire = '.$idPartenaire);
+            $req->execute();
+            $data=$req->fetchAll(PDO::FETCH_ASSOC);
+        }
+        return $data[0]["date_creation"];
+    }
+
+
     // CREATE
     public function create($partenaireId,$bureauId,$jour,$heure) {
         $tupleCreated = false;
@@ -155,6 +167,21 @@ class BureauCalendars
     }
     
     function getRemainingHoursPartenaire($idPartenaire, $datePartenaire) {
+        $duree = $this->getRemainingMinutesPartenaire($idPartenaire, $datePartenaire);
+        $dureeMn = $duree % 60;
+        $dureeH = ($duree - $dureeMn) / 60;
+        if($dureeMn < 10 && $dureeMn >= 0) {
+            $dureeMn = "0".$dureeMn;
+        } elseif($dureeMn < 0 && $dureeMn > -10) {
+            $dureeMn = substr($dureeMn,0,1)."0".substr($dureeMn,1,1);
+        }
+        return $dureeH."h".$dureeMn;
+    }
+
+    function getRemainingHoursPartenaireSansDate($idPartenaire) {
+
+        $datePartenaire = $this->findPartenaireDate($idPartenaire);
+        //var_dump($datePartenaire[0]["date_creation"]);
         $duree = $this->getRemainingMinutesPartenaire($idPartenaire, $datePartenaire);
         $dureeMn = $duree % 60;
         $dureeH = ($duree - $dureeMn) / 60;

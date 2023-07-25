@@ -67,6 +67,8 @@ function reserverHeureCalendar(heure,jour,idBureau,idPartenaire) {
       let creneauToUpdate = document.getElementById(monElement)
       creneauToUpdate.classList.remove('heure-libre')
       creneauToUpdate.classList.add('heure-modifiable', 'heure-partenaire')
+
+      localStorage.setItem('laref-reload-remaining-hours','true')
       //alert(`Votre créneau horaire a bien été réservé.`)
     } else {
       alert('Erreur lors de la réservation de ce créneau horaire. Si cette erreur persiste, vous pouvez nous contacter directement, nous réserverons ce créneau pour vous.')
@@ -78,26 +80,26 @@ function reserverHeureCalendar(heure,jour,idBureau,idPartenaire) {
 }
 
 function displayCalendarBureauDay(dateSQL, idBureau, idPartenaire,heuresParLePartenaire,heuresParUnAutrePartenaire) {
-  console.log(dateSQL)
+  /* console.log(dateSQL)
   console.log(idBureau)
   console.log(idPartenaire)
   console.log(heuresParLePartenaire)
-  console.log(heuresParUnAutrePartenaire)
+  console.log(heuresParUnAutrePartenaire) */
 
   dateFormatOK = dateSQL.substring(8,10)+"/"+dateSQL.substring(5,7)+"/"+dateSQL.substring(0,4)
   
   let mainReservations = $('#reservation-main');
   mainReservations.html();
   let leJour = `<div id="leJour">
-                <div id="closeLeJour" onclick='displayAnewReservationMain()' class="pointer"> X </div>
+                <div id="closeLeJour" onclick='displayAnewReservationMain(${idPartenaire})' class="pointer"> X </div>
                 <h2>${dateFormatOK}</h2>
                 <p>Les cr&eacute;neaux se r&eacute;servent par demi-heure. Le dernier cr&eacute;neau commence à 19h30 et se termine donc à 20h00.</p>`
 
   heuresPartenaire = heuresParLePartenaire.split('and')
   heuresAutrePartenaire = heuresParUnAutrePartenaire.split('and')
-  console.log(heuresPartenaire)
+  /* console.log(heuresPartenaire)
   console.log(heuresAutrePartenaire)
-
+ */
   // Génération des plages horaires par 30mn - De 08h à 20h
   for(i = 8 ; i<20 ; i++) {
     j = i < 10 ? "0"+i : i
@@ -124,10 +126,50 @@ function displayCalendarBureauDay(dateSQL, idBureau, idPartenaire,heuresParLePar
 
 }
 
-function displayAnewReservationMain(codeHTML){
+function displayAnewReservationMain(partenaireId = 2, partenaireDate = '2023-04-03'){
   let leJour = $('#leJour')
   leJour.remove();
   let mainReservations = $('#reservation-main')
   mainReservations.show()
+
+  if(localStorage.getItem('laref-reload-remaining-hours') && localStorage.getItem('laref-reload-remaining-hours') === 'true') {
+    let datasObj = {}
+  
+    datasObj.partenaireId = partenaireId
+    datasObj.action = 'reloadRemaningHours'
+  
+    let data = new FormData();
+    for (const key in datasObj) {
+      data.append(key, datasObj[key])
+    }
+    var req = new XMLHttpRequest();
+    req.responseType = 'json';
+    req.open('POST', 'controleurs/bureauCalendar.php');
+    //req.open('POST', PHP_AJAX_VISITEUR);
+  
+    // SPINNER
+    req.onloadstart = function() {}
+    req.onprogress = function() {}
+    req.onload = function() {}
+    
+    // Requête terminée, résultat
+    req.onloadend = function () {
+      
+      let procedureOK = req.response["requeteok"]
+  
+      if(procedureOK) {
+        //let creneauToUpdate = document.getElementById(monElement)
+        $('#span-remaining-hours').html(req.response["remainingHours"])
+        localStorage.setItem('laref-reload-remaining-hours','false')
+        //alert(`Votre créneau horaire a bien été réservé.`)
+      } else {
+        alert('Erreur lors de la réservation de ce créneau horaire. Si cette erreur persiste, vous pouvez nous contacter directement, nous réserverons ce créneau pour vous.')
+      }
+    }
+   
+    // Envoie requête
+    req.send(data);
+     
+  } 
   
 }

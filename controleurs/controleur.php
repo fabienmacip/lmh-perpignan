@@ -326,6 +326,8 @@ public function pageReserver()
     require_once('vues/page-reserver.php');
 }
 
+
+
 // MOT de PASSE PARTENAIRE
 public function pageAdminPartenaire($id)
 {

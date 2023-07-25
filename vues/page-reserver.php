@@ -105,7 +105,7 @@ ob_start();
                 }  */
             ?>
             <p>Vous avez 10 heures de disponibilit&eacute; par mois, cumulables.</p>
-            <p>A ce jour, vous avez droit à <?= $remainingHours ?>.</p>
+            <p>A ce jour, vous avez droit à <span id="span-remaining-hours"><?= $remainingHours ?></span>.</p>
             <p>Les bureaux et la salle de r&eacute;union sont r&eacute;servables de 8h à 20h, du LUNDI au SAMEDI.</p>
 
             <?php
