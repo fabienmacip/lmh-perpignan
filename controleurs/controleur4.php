@@ -21,6 +21,14 @@ class Controleur4 {
         }
     }
 
+    public function removeCreneauHoraire($partenaireId,$bureauId,$jour,$heure)
+    {
+        $tuples = new BureauCalendars($this->pdo);
+        $tupleASupprimer = $tuples->deleteWithoutId($partenaireId,$bureauId,$jour,$heure);
+        
+        return $tupleASupprimer == 1;
+    }
+
     public function reloadRemainingHours($idPartenaire)
     {
         $calendarsObject = new BureauCalendars($this->pdo);

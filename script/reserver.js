@@ -25,13 +25,19 @@ function displayBigImg(adresse,idimgorigine){
 
 }
 
-function annulerHeureCalendar(heure,jour,idBureau,idPartenaire) {
-  alert("Annuler ?\n"+heure+" - "+jour+" - "+idBureau+" - "+idPartenaire)
-}
-
-function reserverHeureCalendar(heure,jour,idBureau,idPartenaire) {
+function toggleHeureCalendar(heure,jour,idBureau,idPartenaire,action) {
   
-  alert("Reserver ?\n"+heure+" - "+jour+" - "+idBureau+" - "+idPartenaire)
+  let message = ''
+  if(action == 'add') {
+    message = 'Etes-vous sûr de vouloir réserver ce créneau ?'
+  } else if(action == 'remove') {
+    message = 'Etes-vous sûr de vouloir libérer ce créneau ?'
+  }
+
+  if(!confirm(message)){
+    return true
+  }
+  
 
   let datasObj = {}
   
@@ -39,7 +45,7 @@ function reserverHeureCalendar(heure,jour,idBureau,idPartenaire) {
   datasObj.jour = jour
   datasObj.bureauId = idBureau
   datasObj.partenaireId = idPartenaire
-  datasObj.action = 'add'
+  datasObj.action = action // add ou remove
 
   let data = new FormData();
   for (const key in datasObj) {
@@ -62,19 +68,37 @@ function reserverHeureCalendar(heure,jour,idBureau,idPartenaire) {
     
     let procedureOK = req.response["requeteok"]
 
-    if(procedureOK) {
-      let monElement = 'heure-'+heure.substring(0,5)
-      let creneauToUpdate = document.getElementById(monElement)
-      creneauToUpdate.classList.remove('heure-libre')
-      creneauToUpdate.classList.add('heure-modifiable', 'heure-partenaire')
-
-      localStorage.setItem('laref-reload-remaining-hours','true')
-      //alert(`Votre créneau horaire a bien été réservé.`)
-    } else {
-      alert('Erreur lors de la réservation de ce créneau horaire. Si cette erreur persiste, vous pouvez nous contacter directement, nous réserverons ce créneau pour vous.')
+    if(action === 'add') {
+      if(procedureOK){
+        let monElement = 'heure-'+heure.substring(0,5)
+        let creneauToUpdate = document.getElementById(monElement)
+        creneauToUpdate.classList.remove('heure-libre')
+        creneauToUpdate.classList.add('heure-modifiable', 'heure-partenaire')
+        creneauToUpdate.innerText = 'réservé pour vous'
+  
+        localStorage.setItem('laref-reload-remaining-hours','true')
+        //alert(`Votre créneau horaire a bien été réservé.`)
+      } else {
+        alert('Erreur lors de la réservation de ce créneau horaire. Si cette erreur persiste, vous pouvez nous contacter directement, nous réserverons ce créneau pour vous.')
+      }
     }
+    
+    if(action === 'remove') {
+      if(procedureOK){
+        let monElement = 'heure-'+heure.substring(0,5)
+        let creneauToUpdate = document.getElementById(monElement)
+        creneauToUpdate.classList.remove('heure-modifiable', 'heure-partenaire')
+        creneauToUpdate.classList.add('heure-libre')
+        creneauToUpdate.innerText = 'disponible'
+
+        localStorage.setItem('laref-reload-remaining-hours','true')
+        //alert(`Votre créneau horaire a bien été réservé.`)
+      } else {
+        alert('Erreur lors de la suppression de ce créneau horaire. Si cette erreur persiste, vous pouvez nous contacter directement, nous supprimerons ce créneau pour vous.')
+      }
+    }
+
   }
- 
   // Envoie requête
   req.send(data);
 }
@@ -110,8 +134,8 @@ function displayCalendarBureauDay(dateSQL, idBureau, idPartenaire,heuresParLePar
     reserveText = heuresPartenaire.includes(j+":00:00") ? 'r&eacute;serv&eacute; pour vous' : heuresAutrePartenaire.includes(j+":00:00") ? 'non-disponible' : 'disponible'
     reserveText30 = heuresPartenaire.includes(j+":30:00") ? 'r&eacute;serv&eacute; pour vous' : heuresAutrePartenaire.includes(j+":30:00") ? 'non-disponible' : 'disponible'
 
-    reserveClic = heuresPartenaire.includes(j+":00:00") ? `onclick="annulerHeureCalendar(\'${j}:00:00\',\'${dateSQL}\',\'${idBureau}\',\'${idPartenaire}\')"` : heuresAutrePartenaire.includes(j+":00:00") ? '' : `onclick="reserverHeureCalendar(\'${j}:00:00\',\'${dateSQL}\',\'${idBureau}\',\'${idPartenaire}\')"`
-    reserveClic30 = heuresPartenaire.includes(j+":30:00") ? `onclick="annulerHeureCalendar(\'${j}:30:00\',\'${dateSQL}\',\'${idBureau}\',\'${idPartenaire}\')"` : heuresAutrePartenaire.includes(j+":30:00") ? '' : `onclick="reserverHeureCalendar(\'${j}:30:00\',\'${dateSQL}\',\'${idBureau}\',\'${idPartenaire}\')"`
+    reserveClic = heuresPartenaire.includes(j+":00:00") ? `onclick="toggleHeureCalendar(\'${j}:00:00\',\'${dateSQL}\',\'${idBureau}\',\'${idPartenaire}\',\'remove\')"` : heuresAutrePartenaire.includes(j+":00:00") ? '' : `onclick="toggleHeureCalendar(\'${j}:00:00\',\'${dateSQL}\',\'${idBureau}\',\'${idPartenaire}\',\'add\')"`
+    reserveClic30 = heuresPartenaire.includes(j+":30:00") ? `onclick="toggleHeureCalendar(\'${j}:30:00\',\'${dateSQL}\',\'${idBureau}\',\'${idPartenaire}\',\'remove\')"` : heuresAutrePartenaire.includes(j+":30:00") ? '' : `onclick="toggleHeureCalendar(\'${j}:30:00\',\'${dateSQL}\',\'${idBureau}\',\'${idPartenaire}\',\'add\')"`
 
     leJour += `<div class="flex flew-row jcc aic heure-line"><div class="heure-digitale">${j}:00</div><div id='heure-${j}:00' ${reserveClic} class='heure-contenu tc ${reserve}'>${reserveText}</div></div>`
     leJour += `<div class="flex flex-row jcc aic heure-line"><div class="heure-digitale">${j}:30</div><div id='heure-${j}:30' ${reserveClic30} class='heure-contenu tc ${reserve30}'>${reserveText30}</div></div>`

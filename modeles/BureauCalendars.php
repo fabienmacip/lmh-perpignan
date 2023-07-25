@@ -72,7 +72,24 @@ class BureauCalendars
         return $tupleCreated;
     }
 
+    public function deleteWithoutId($partenaireId,$bureauId,$jour,$heure){
 
+        if (!is_null($this->pdo)) {
+            try{
+                $sql = 'DELETE FROM bureaucalendar WHERE idPartenaire = :idPartenaire AND idBureau = :idBureau AND date = :date AND heuredebut = :heuredebut';
+                $stmt = $this->pdo->prepare($sql);
+                $stmt->execute(['idPartenaire' => $partenaireId, 'idBureau'=>$bureauId, 'date'=>$jour, 'heuredebut'=>$heure]);
+                if($stmt->rowCount() == 1) {
+                    $tupleDeleted = "Le créneau <b>".$heure."</b> a bien été supprimé.";
+                }
+            }
+            catch(Exception $e) {
+                $tupleDeleted = "Le créneau <b>".$heure."</b> n'a pas pu être supprimé.<br/><br/>".$e;
+            }
+        }
+
+        return $stmt->rowCount();
+    }
 
     public function isJourReserve($idBureau,$date) {
 

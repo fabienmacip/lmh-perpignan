@@ -14,31 +14,48 @@
 
  $controleur4 = new Controleur4($pdo);
 
-if(isset($_POST['action']) && 'add' === $_POST['action']) {
+if(isset($_POST['action']) && ('add' === $_POST['action'] || 'remove' === $_POST['action'])) {
   
   $partenaireId = $_POST['partenaireId'] ?? '';
   $bureauId = $_POST['bureauId'] ?? '';
   $jour = $_POST['jour'] ?? '';
   $heure = $_POST['heure'] ?? '';
+  $action = $_POST['action'] ?? '';
 
   if (isset($_POST['partenaireId']) && isset($_POST['bureauId'])) {
-    
-    $reponse = $controleur4->addCreneauHoraire($partenaireId,$bureauId,$jour,$heure);
-    
-    // ***********************************************************
-    if($reponse){
-      $res["status"] = "200";
-      $res["data"] = "Créneau horaire réservé avec succès.";
-      $res["requeteok"] = "true";
-      //ici, mettre à jour le nombre d'heures restantes pour le partenaire
+    if($action === 'add'){
+
+      $reponse = $controleur4->addCreneauHoraire($partenaireId,$bureauId,$jour,$heure);
+      
+      if($reponse){
+        $res["status"] = "200";
+        $res["data"] = "Créneau horaire réservé avec succès.";
+        $res["requeteok"] = "true";
+      }
+      else {
+        $res['status'] = "404";
+        $res["data"] ="Erreur lors de la réservation du créneau horaire";
+        $res["requeteok"] = "false";
+      }
+
+    } elseif($action === 'remove') {
+
+      $reponse = $controleur4->removeCreneauHoraire($partenaireId,$bureauId,$jour,$heure);
+      
+      if($reponse){
+        $res["status"] = "200";
+        $res["data"] = "Créneau horaire supprimé avec succès.";
+        $res["requeteok"] = "true";
+      }
+      else {
+        $res['status'] = "404";
+        $res["data"] ="Erreur lors de la suppression du créneau horaire";
+        $res["requeteok"] = "false";
+      }
     }
-    else {
-      $res['status'] = "404";
-      $res["data"] ="Erreur lors de la réservation du créneau horaire";
-      $res["requeteok"] = "false";
-    }
+
     echo json_encode($res);
-    // ***********************************************************
+
     /* else {
       var_dump("ERREUR lors de la récupération des données PROSPECT et/ou PARTENAIRE.");
     } */
