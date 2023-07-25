@@ -27,6 +27,14 @@ function displayBigImg(adresse,idimgorigine){
 
 function toggleHeureCalendar(heure,jour,idBureau,idPartenaire,action) {
   
+  let now = new Date()
+  let dateToToggle = new Date(jour+" "+heure)
+
+  if(now > dateToToggle) {
+    alert('Ce créneau n\'est plus modifiable.')
+    return true
+  }
+
   let message = ''
   if(action == 'add') {
     message = 'Etes-vous sûr de vouloir réserver ce créneau ?'
@@ -40,7 +48,7 @@ function toggleHeureCalendar(heure,jour,idBureau,idPartenaire,action) {
   
 
   let datasObj = {}
-  
+
   datasObj.heure = heure
   datasObj.jour = jour
   datasObj.bureauId = idBureau
@@ -75,7 +83,9 @@ function toggleHeureCalendar(heure,jour,idBureau,idPartenaire,action) {
         creneauToUpdate.classList.remove('heure-libre')
         creneauToUpdate.classList.add('heure-modifiable', 'heure-partenaire')
         creneauToUpdate.innerText = 'réservé pour vous'
-  
+        //creneauToUpdate.removeAttribute('onclick')
+        creneauToUpdate.setAttribute('onclick','toggleHeureCalendar(\''+heure+'\',\''+jour+'\',\''+idBureau+'\',\''+idPartenaire+'\',\'remove\')')
+        
         localStorage.setItem('laref-reload-remaining-hours','true')
         //alert(`Votre créneau horaire a bien été réservé.`)
       } else {
@@ -90,6 +100,7 @@ function toggleHeureCalendar(heure,jour,idBureau,idPartenaire,action) {
         creneauToUpdate.classList.remove('heure-modifiable', 'heure-partenaire')
         creneauToUpdate.classList.add('heure-libre')
         creneauToUpdate.innerText = 'disponible'
+        creneauToUpdate.setAttribute('onclick','toggleHeureCalendar(\''+heure+'\',\''+jour+'\',\''+idBureau+'\',\''+idPartenaire+'\',\'add\')')
 
         localStorage.setItem('laref-reload-remaining-hours','true')
         //alert(`Votre créneau horaire a bien été réservé.`)
