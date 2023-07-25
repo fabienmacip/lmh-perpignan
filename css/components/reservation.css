@@ -73,11 +73,11 @@
 }
 
 .bureau-reserve {
-  background-color: orange;
+  background-color: lightsalmon;
 }
 
 .bureau-non-reserve {
-  background-color: green;
+  background-color: lightgreen;
 }
 
 .bureau-non-reservable {
@@ -133,14 +133,14 @@
 }
 
 .heure-modifiable {
-  background-color: orange;
+  background-color: rgb(255, 255, 140);
 }
 
 .heure-non-modifiable {
-  background-color: red;
+  background-color: lightcoral;
   cursor: not-allowed;
 }
 
 .heure-libre {
-  background-color: green;
+  background-color: lightgreen;
 }

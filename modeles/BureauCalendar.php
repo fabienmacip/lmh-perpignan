@@ -9,8 +9,8 @@ class BureauCalendar
     private $idBureau;
     private $date;
     private $heuredebut;
-    private $heurefin;
-    private $duree; // en minutes
+    /* private $heurefin;
+    private $duree; */ 
 
     public function read($id = '')
     {
@@ -51,15 +51,15 @@ class BureauCalendar
       return $this->heuredebut;
     }
 
-    public function getHeureFin() {
+/*     public function getHeureFin() {
       return $this->heurefin;
     }
 
     public function getDuree() {
       return $this->duree;
     }
-
-    public function getDureeEnMinutes() {
+ */
+    /* public function getDureeEnMinutes() {
       $hDeb = intval(substr($this->heuredebut,0,2));
       $mDeb = intval(substr($this->heuredebut,3,2));
       $hFin = intval(substr($this->heurefin,0,2));
@@ -71,9 +71,9 @@ class BureauCalendar
         $duree = (($hFin - $hDeb) * 60) - 60 + ($mFin + 60 - $mDeb);
       }
       return $duree;
-    }
+    } */
 
-    public function getDureeEnHeures() {
+    /* public function getDureeEnHeures() {
       $duree = $this->getDureeEnMinutes();
       $dureeMn = $duree % 60;
       $dureeH = ($duree - $dureeMn) / 60;
@@ -81,7 +81,7 @@ class BureauCalendar
         $dureeMn = "0".$dureeMn;
       }
       return $dureeH."h".$dureeMn;
-    }
+    } */
 
 }
 

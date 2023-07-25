@@ -22,6 +22,46 @@ class BureauCalendars
         return $tuples;
     }
 
+    // READ
+    public function listerDernier()
+    {
+
+        if (!is_null($this->pdo)) {
+            $stmt = $this->pdo->query('SELECT * FROM bureaucalendar ORDER BY id DESC LIMIT 1');
+        }
+        $tuples = [];
+        while ($tuple = $stmt->fetchObject('BureauCalendar', [$this->pdo])) {
+            $tuples[] = $tuple;
+        }
+        $stmt->closeCursor();
+        return $tuples;
+    }
+
+    // CREATE
+    public function create($partenaireId,$bureauId,$jour,$heure) {
+        $tupleCreated = false;
+        
+        if (!is_null($this->pdo)) {
+            try {
+                // Requête mysql pour insérer des données
+                $aInserer = array(":partenaireId"=>$partenaireId, ":bureauId"=>$bureauId, ":jour"=>$jour, ":heure"=>$heure);
+                $sql = "INSERT INTO bureaucalendar (idPartenaire, idBureau, date, heuredebut) VALUES (:partenaireId, :bureauId, :jour, :heure)";
+                $res = $this->pdo->prepare($sql);
+                $exec = $res->execute($aInserer);
+                if($exec){
+                    $tupleCreated = true; //"Le créneau <b>".strtoupper($heure)."</b> a bien été ajouté.";
+                }
+            }
+            catch(Exception $e) {
+                $tupleCreated = false;//"Le créneau <b>".$heure."</b> n'a pas pu être ajouté.<br/><br/>".$e;
+            }
+        }
+        
+        return $tupleCreated;
+    }
+
+
+
     public function isJourReserve($idBureau,$date) {
 
         if (!is_null($this->pdo)) {
@@ -64,9 +104,13 @@ class BureauCalendars
 
         // Calcul durée déjà utilisé (en minutes)
         $duree = 0; // Durée déjà utilisée
-        foreach($tuples as $line):
+        /* foreach($tuples as $line):
             $duree += intval($line->getDureeEnMinutes());
-        endforeach;
+        endforeach; */
+
+        // DUREE = nombre de tuples x 30mn
+        $duree = count($tuples) * 30;
+        
 
         // Calcul duréé autorisée depuis création partenaire
         $start_year = substr($datePartenaire,0,4);

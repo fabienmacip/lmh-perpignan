@@ -30,7 +30,51 @@ function annulerHeureCalendar(heure,jour,idBureau,idPartenaire) {
 }
 
 function reserverHeureCalendar(heure,jour,idBureau,idPartenaire) {
+  
   alert("Reserver ?\n"+heure+" - "+jour+" - "+idBureau+" - "+idPartenaire)
+
+  let datasObj = {}
+  
+  datasObj.heure = heure
+  datasObj.jour = jour
+  datasObj.bureauId = idBureau
+  datasObj.partenaireId = idPartenaire
+  datasObj.action = 'add'
+
+  let data = new FormData();
+  for (const key in datasObj) {
+    data.append(key, datasObj[key])
+  }
+  var req = new XMLHttpRequest();
+  req.responseType = 'json';
+  req.open('POST', 'controleurs/bureauCalendar.php');
+  //req.open('POST', PHP_AJAX_VISITEUR);
+
+  // SPINNER
+  req.onloadstart = function() {}
+  
+  req.onprogress = function() {}
+
+  req.onload = function() {}
+  
+  // Requête terminée, résultat
+  req.onloadend = function () {
+    
+    let procedureOK = req.response["requeteok"]
+
+    if(procedureOK) {
+      let monElement = 'heure-'+heure.substring(0,5)
+      let creneauToUpdate = document.getElementById(monElement)
+      creneauToUpdate.classList.remove('heure-libre')
+      creneauToUpdate.classList.add('heure-modifiable', 'heure-partenaire')
+      //alert(`Votre créneau horaire a bien été réservé.`)
+    } else {
+      alert('Erreur lors de la réservation de ce créneau horaire. Si cette erreur persiste, vous pouvez nous contacter directement, nous réserverons ce créneau pour vous.')
+    }
+  }
+ 
+  // Envoie requête
+  req.send(data);
 }
 
 function displayCalendarBureauDay(dateSQL, idBureau, idPartenaire,heuresParLePartenaire,heuresParUnAutrePartenaire) {
@@ -58,8 +102,8 @@ function displayCalendarBureauDay(dateSQL, idBureau, idPartenaire,heuresParLePar
   for(i = 8 ; i<20 ; i++) {
     j = i < 10 ? "0"+i : i
 
-    reserve = heuresPartenaire.includes(j+":00:00") ? 'heure-modifiable heurepartenaire pointer' : heuresAutrePartenaire.includes(j+":00:00") ? 'heure-non-modifiable' : 'heure-libre pointer'
-    reserve30 = heuresPartenaire.includes(j+":30:00") ? 'heure-modifiable heurepartenaire pointer' : heuresAutrePartenaire.includes(j+":30:00") ? 'heure-non-modifiable' : 'heure-libre pointer'
+    reserve = heuresPartenaire.includes(j+":00:00") ? 'heure-modifiable heure-partenaire pointer' : heuresAutrePartenaire.includes(j+":00:00") ? 'heure-non-modifiable' : 'heure-libre pointer'
+    reserve30 = heuresPartenaire.includes(j+":30:00") ? 'heure-modifiable heure-partenaire pointer' : heuresAutrePartenaire.includes(j+":30:00") ? 'heure-non-modifiable' : 'heure-libre pointer'
 
     reserveText = heuresPartenaire.includes(j+":00:00") ? 'r&eacute;serv&eacute; pour vous' : heuresAutrePartenaire.includes(j+":00:00") ? 'non-disponible' : 'disponible'
     reserveText30 = heuresPartenaire.includes(j+":30:00") ? 'r&eacute;serv&eacute; pour vous' : heuresAutrePartenaire.includes(j+":30:00") ? 'non-disponible' : 'disponible'
