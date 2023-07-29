@@ -43,11 +43,8 @@ class Controleur4 {
         return $bureau;
     }
 
-    public function getMonthFromBureau($moisan, $id) {
+    public function getMonthFromBureau($an, $mois, $id) {
         $calendarsObject = new BureauCalendars($this->pdo);
-        //$remainingMinutes = $calendarsObject->getRemainingMinutesPartenaire(intval($_SESSION["partenaire"]),$_SESSION["datepartenaire"]);
-        //$remainingHours = $calendarsObject->getRemainingHoursPartenaire(intval($_SESSION["partenaire"]),$_SESSION["datepartenaire"]);
-        $calendars = $calendarsObject->readAllForOneBureau($moisan, $id);
-    
+        return $calendarsObject;
     }
 }

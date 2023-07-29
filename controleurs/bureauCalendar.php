@@ -1,5 +1,7 @@
 <?php
  
+session_start();
+
  require_once(dirname(__FILE__,2).'/modeles/ConnectMe.php');
  require_once(dirname(__FILE__,2).'/modeles/Modele.php');
  
@@ -151,39 +153,12 @@ if(isset($_GET['moisan']) && isset($_GET['id']) && isset($_GET['action']) && 'di
 
 // FIN idem que dans vues/page-reserver.php
 
-      var_dump($_SESSION['partenaire']);
+    $calendarsObject = $controleur4->getMonthFromBureau($currentYear, $currentMonth, $id);
+    $calendars = $calendarsObject->readAllForOneBureau($currentYear, $currentMonth, $id);    
 
-    $calendarsObject = $controleur4->getMonthFromBureau($moisan, $id);
+    require_once(dirname(__FILE__,2).'/vues/BureauCalendar.php');
 
-
-      var_dump($calendarsObject);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  require_once(dirname(__FILE__,2).'/vues/BureauCalendar.php');
-
-
-  echo $container;
+    //echo $container;
 
 
 }
