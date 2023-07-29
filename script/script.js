@@ -110,6 +110,7 @@ let pageMission ='';
       $('.link-hide-partenaire-detail').hide()
 
       $('.btn-next-month').prop('disabled',false).removeClass('inactif')
+      $('.btn-last-month').prop('disabled',false).removeClass('inactif')
 
       // Si un VISITEUR n'a pas encore donné ses : nom, prénom, mail et téléphone, il n'accède pas aux données des partenaires.
       if($('#isVisiteurRegistered').val() != '') {

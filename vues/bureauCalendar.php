@@ -6,7 +6,7 @@
 
 <table id="table-calendar-<?= $bureau->getId() ?>" class="table-calendar">
   <thead>
-    <th>&nbsp;</th>
+  <th><button id="btn-last-month-<?= $bureau->getId() ?>" class="btn-last-month" onClick="bureauLastMonth('<?=$currentMonth?>','<?=$currentYear?>','<?=$bureau->getId()?>')"><</button></th>
     <th colspan="5"><?= $moisFrancais ?> <?= $currentYear ?></th>
     <th><button id="btn-next-month-<?= $bureau->getId() ?>" class="btn-next-month" onClick="bureauNextMonth('<?=$currentMonth?>','<?=$currentYear?>','<?=$bureau->getId()?>')">></button></th>
   </thead>
@@ -25,35 +25,45 @@
       
       // Jours vides.
       $dayNumber = 1;
-      for ($i = 0; $i < 7; $i++) {
-        if($i < $firstDayOfCurrentMonth){
-          echo "<td></td>";
-        }
-        else {
-          // est-ce que ce jour du mois est réservé ?
-          if($dayNumber < 10) {
-            $dayNumberString = "0".$dayNumber;
-          } else { $dayNumberString = $dayNumber; }
-          $dateSQL = $currentYear."-".$currentMonth."-".$dayNumberString;
-          $heuresReserveesParLePartenaire = $calendarsObject->listHoursReservedByPartenaire($dateSQL,$_SESSION['partenaire'],$bureau->getId());
-          $heuresReserveesParUnAutrePartenaire = $calendarsObject->listHoursReservedByAnotherPartenaire($dateSQL,$_SESSION['partenaire'],$bureau->getId());
-          $reservedClass = $calendarsObject->isJourReserve($bureau->getId(),$dateSQL) ? 'bureau-reserve' : 'bureau-non-reserve';
-          $toggleDay = ' onClick="displayCalendarBureauDay(\''.$dateSQL.'\',\''.$bureau->getId().'\',\''.$_SESSION["partenaire"].'\',\''.$heuresReserveesParLePartenaire.'\',\''.$heuresReserveesParUnAutrePartenaire.'\')" id=\'bureau'.$bureau->getId().'-day'.$dayNumber.'\'"';
-          
-          if($i == 6){
-            echo "<td class='bureau-non-reservable'>".$dayNumber."</td>";
-          } else {
-            echo "<td".$toggleDay." class='".$reservedClass." pointer'>".$dayNumber."</td>";
+
+      
+
+      if($firstDayOfCurrentMonth <> 7) {
+        for ($i = 0; $i < 7; $i++) {
+          if($i < $firstDayOfCurrentMonth){
+            echo "<td></td>";
           }
-          
-          $dayNumber++;
+          else {
+            // Affichage du jour sur 2 caractères
+            if($dayNumber < 10) {
+              $dayNumberString = "0".$dayNumber;
+            } else { $dayNumberString = $dayNumber; }
+  
+            // est-ce que ce jour du mois est réservé ?
+            $dateSQL = $currentYear."-".$currentMonth."-".$dayNumberString;
+            $heuresReserveesParLePartenaire = $calendarsObject->listHoursReservedByPartenaire($dateSQL,$_SESSION['partenaire'],$bureau->getId());
+            $heuresReserveesParUnAutrePartenaire = $calendarsObject->listHoursReservedByAnotherPartenaire($dateSQL,$_SESSION['partenaire'],$bureau->getId());
+            $reservedClass = $calendarsObject->isJourReserve($bureau->getId(),$dateSQL) ? 'bureau-reserve' : 'bureau-non-reserve';
+            $toggleDay = ' onClick="displayCalendarBureauDay(\''.$dateSQL.'\',\''.$bureau->getId().'\',\''.$_SESSION["partenaire"].'\',\''.$heuresReserveesParLePartenaire.'\',\''.$heuresReserveesParUnAutrePartenaire.'\')" id=\'bureau'.$bureau->getId().'-day'.$dayNumber.'\'"';
+            
+            if($i == 6){
+              echo "<td class='bureau-non-reservable'>".$dayNumber."</td>";
+            } else {
+              echo "<td".$toggleDay." class='".$reservedClass." pointer'>".$dayNumber."</td>";
+            }
+            
+            $dayNumber++;
+          }
         }
       }
       ?>
     </tr>
     <?php 
-    // 4 lignes suivantes
-    for($tr = 1 ; $tr <= 5; $tr++){
+    // 4 ou 5 lignes suivantes ?
+    $numberOfDaysOfCurrentMonth = (new DateTime($currentYear."-".$currentMonth))->format('t');
+    $nb_lignes_a_ajouter = ceil(($numberOfDaysOfCurrentMonth - $dayNumber + 1) / 7);
+
+    for($tr = 1 ; $tr <= $nb_lignes_a_ajouter; $tr++){
       ?>
       <tr>
         <?php

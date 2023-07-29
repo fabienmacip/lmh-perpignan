@@ -126,6 +126,8 @@ function displayCalendarBureauDay(dateSQL, idBureau, idPartenaire,heuresParLePar
   let mainReservations = $('#reservation-main');
   mainReservations.html();
   let leJour = `<div id="leJour">
+                <input type="hidden" name="dateSQL" id="dateSQL" value="${dateSQL}">
+                <input type="hidden" name="bureauId" id="bureauId" value="${idBureau}">
                 <div id="closeLeJour" onclick='displayAnewReservationMain(${idPartenaire})' class="pointer"> X </div>
                 <h2>${dateFormatOK}</h2>
                 <p>Les cr&eacute;neaux se r&eacute;servent par demi-heure. Le dernier cr&eacute;neau commence à 19h30 et se termine donc à 20h00.</p>`
@@ -162,6 +164,10 @@ function displayCalendarBureauDay(dateSQL, idBureau, idPartenaire,heuresParLePar
 }
 
 function displayAnewReservationMain(partenaireId = 2, partenaireDate = '2023-04-03'){
+  
+  let dateSQL = $('#dateSQL').val() // Pour reload calendrier du bureau concerné
+  let bureauId = $('#bureauId').val() // Pour reload calendrier du bureau concerné
+
   let leJour = $('#leJour')
   leJour.remove();
   let mainReservations = $('#reservation-main')
@@ -207,6 +213,10 @@ function displayAnewReservationMain(partenaireId = 2, partenaireDate = '2023-04-
      
   } 
   
+  let an = dateSQL.substring(0,4)
+  let mois = dateSQL.substring(5,7)
+  bureauReloadMonth(mois, an, bureauId)
+
 }
 
 // *********************** AFFICHAGE NEXT MONTH et LAST MONTH ***************************************
@@ -228,9 +238,6 @@ function loadOneBureauCalendarMonth(moisan, id) {
 
   req.open('GET', 'controleurs/bureauCalendar.php?moisan=' + moisan + '&id=' + id + '&action=display-bureau-next-month');
 
-
-
-
   let lemois = '';
 
   req.onloadstart = function() {}
@@ -240,28 +247,30 @@ function loadOneBureauCalendarMonth(moisan, id) {
   req.onloadend = function() {
 
     lemois = this.responseText;
-    console.log(lemois)
-    //renderMustangCalendarMonth(id, lemois);
     bureau = document.getElementById('bureau-corps-'+id)
     bureau.innerHTML = lemois
-    
-    
-    //let kerox = JSON.parse(this.responseText);
-    //let lemois = JSON.parse(this.responseText);
-    //console.log("response : "+lemois.toString());
-      
-      
       
     }
   req.send();
   
+}
+
+function bureauReloadMonth(mois = '07', an = '2023', id = '1') {
+
+  mois = parseInt(mois);
+  an = parseInt(an);
   
+  if(mois < 10){
+    mois = "0"+mois;
+  }
+
+  let moisan = an.toString()+mois;
+
+  loadOneBureauCalendarMonth(moisan,id);
 }
 
 
 function bureauNextMonth(mois = '07', an = '2023', id = '1') {
-
-  console.log("bureau avant " + mois + " - " + an + " - ID : " + id)
 
   mois = parseInt(mois);
   mois = ((mois + 1) % 12);
@@ -279,13 +288,40 @@ function bureauNextMonth(mois = '07', an = '2023', id = '1') {
   }
   an = newMonth.getFullYear();
 
-  moisan = an.toString()+mois.toString();
+  let moisan = an.toString()+mois.toString();
 
-  console.log("bureau après " + mois + " - " + an + " - ID : " + id)
-  
   loadOneBureauCalendarMonth(moisan,id);
-  //renderMustangCalendarMonth(id);
+}
+
+function bureauLastMonth(mois = '07', an = '2023', id = '1') {
+
+  mois = parseInt(mois);
+  mois = ((mois - 1) % 12);
+  if(mois === 0) { mois = 12; }
+
+  if (mois === 12){
+    an = parseInt(an) - 1;
+  }
+  lastMonth = an+'-'+mois+'-01';
+  newMonth = new Date(lastMonth);
+
+  mois = newMonth.getMonth() + 1;
+  if(mois < 10){
+    mois = "0"+mois;
+  }
+  an = newMonth.getFullYear();
+
+  let moisan = an.toString()+mois.toString();
+
+  loadOneBureauCalendarMonth(moisan,id);
 }
 
 
+
 // *********************** FIN AFFICHAGE NEXT MONTH et LAST MONTH ***************************************
+
+
+
+
+
+
