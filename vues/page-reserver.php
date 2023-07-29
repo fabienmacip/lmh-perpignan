@@ -135,7 +135,7 @@ ob_start();
                         <img src="<?= $bureau->getImg() ?>" onclick="displayBigImg('<?= $bureau->getImg() ?>','bureau-img1-<?= $bureau->getId() ?>')" id="bureau-img1-<?= $bureau->getId() ?>">
                     </div>
                 </div>    
-                <div class="bureau-corps">
+                <div class="bureau-corps" id="bureau-corps-<?= $bureau->getId() ?>">
                     <?php
                          $calendrierDuBureau = $buros[$index];
                          require(dirname(__FILE__,2).'/vues/bureauCalendar.php'); 

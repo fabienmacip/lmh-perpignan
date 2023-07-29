@@ -208,3 +208,84 @@ function displayAnewReservationMain(partenaireId = 2, partenaireDate = '2023-04-
   } 
   
 }
+
+// *********************** AFFICHAGE NEXT MONTH et LAST MONTH ***************************************
+
+function loadOneBureauCalendarMonth(moisan, id) {
+  
+  let datasObj = {}
+
+/*   datasObj.mois = moisan
+  datasObj.bureauId = id
+  datasObj.action = 'display-next-month'
+ */
+  let data = new FormData();
+  for (const key in datasObj) {
+    data.append(key, datasObj[key])
+  }
+  var req = new XMLHttpRequest();
+  req.responseType = 'text';
+
+  req.open('GET', 'controleurs/bureauCalendar.php?moisan=' + moisan + '&id=' + id + '&action=display-bureau-next-month');
+
+
+
+
+  let lemois = '';
+
+  req.onloadstart = function() {}
+  req.onprogress = function() {}
+  req.onload = function() {}
+
+  req.onloadend = function() {
+
+    lemois = this.responseText;
+    console.log(lemois)
+    //renderMustangCalendarMonth(id, lemois);
+    bureau = document.getElementById('bureau-corps-'+id)
+    bureau.innerHTML = lemois
+    
+    
+    //let kerox = JSON.parse(this.responseText);
+    //let lemois = JSON.parse(this.responseText);
+    //console.log("response : "+lemois.toString());
+      
+      
+      
+    }
+  req.send();
+  
+  
+}
+
+
+function bureauNextMonth(mois = '07', an = '2023', id = '1') {
+
+  console.log("bureau avant " + mois + " - " + an + " - ID : " + id)
+
+  mois = parseInt(mois);
+  mois = ((mois + 1) % 12);
+  if(mois === 0) { mois = 12; }
+
+  if (mois === 1){
+    an = parseInt(an) + 1;
+  }
+  nextMonth = an+'-'+mois+'-01';
+  newMonth = new Date(nextMonth);
+
+  mois = newMonth.getMonth() + 1;
+  if(mois < 10){
+    mois = "0"+mois;
+  }
+  an = newMonth.getFullYear();
+
+  moisan = an.toString()+mois.toString();
+
+  console.log("bureau après " + mois + " - " + an + " - ID : " + id)
+  
+  loadOneBureauCalendarMonth(moisan,id);
+  //renderMustangCalendarMonth(id);
+}
+
+
+// *********************** FIN AFFICHAGE NEXT MONTH et LAST MONTH ***************************************

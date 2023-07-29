@@ -23,6 +23,21 @@ class BureauCalendars
     }
 
     // READ
+    // $currentYearMonth de type : 202307 (juillet 2023)
+    public function readAllForOneBureau($currentYearMonth, $bureauId)
+    {
+        if (!is_null($this->pdo)) {
+            $stmt = $this->pdo->query('SELECT * FROM bureaucalendar WHERE (date LIKE "%'.$currentYearMonth.'%") AND (idBureau = "'.$bureauId.'")');
+        }
+        $tuples = [];
+        while ($tuple = $stmt->fetchObject('BureauCalendar', [$this->pdo])) {
+            $tuples[] = $tuple;
+        }
+        $stmt->closeCursor();
+        return $tuples;
+    }
+
+    // READ
     public function listerDernier()
     {
 

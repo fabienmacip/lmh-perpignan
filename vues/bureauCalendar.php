@@ -4,11 +4,11 @@
 
 ?>
 
-<table id="table-calendar" class="table-calendar">
+<table id="table-calendar-<?= $bureau->getId() ?>" class="table-calendar">
   <thead>
     <th>&nbsp;</th>
     <th colspan="5"><?= $moisFrancais ?> <?= $currentYear ?></th>
-    <th><button id="btn-last-month" onClick="mustangNextMonth('<?=$currentMonth?>','<?=$currentYear?>')">></button></th>
+    <th><button id="btn-next-month-<?= $bureau->getId() ?>" class="btn-next-month" onClick="bureauNextMonth('<?=$currentMonth?>','<?=$currentYear?>','<?=$bureau->getId()?>')">></button></th>
   </thead>
   <tbody>
     <tr>

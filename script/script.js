@@ -109,6 +109,8 @@ let pageMission ='';
 
       $('.link-hide-partenaire-detail').hide()
 
+      $('.btn-next-month').prop('disabled',false).removeClass('inactif')
+
       // Si un VISITEUR n'a pas encore donné ses : nom, prénom, mail et téléphone, il n'accède pas aux données des partenaires.
       if($('#isVisiteurRegistered').val() != '') {
         datas = $('#isVisiteurRegistered').val()
@@ -142,11 +144,15 @@ let pageMission ='';
       $('button').prop('disabled',false);
       $('.inactif-force').prop('disabled',true);
       $('#les-admins #tr1 [type=button]').prop('disabled',true).css('background-color','grey').css('border-color','grey');
+
+      
     }
 
     // MAIS, si on est partenaire, on doit pouvoir modifier ses données de connexion.
     if($('#isPartenaire').val() == 1) {
       //console.log("isPartenaire---");
+      
+
       $('#form-modif-admin-partenaire').show();
       //$('#form-modif-admin-partenaire [type=button]').prop('disabled',false).removeClass('inactif');
       $('#form-modif-admin-partenaire-btn button').removeClass('inactif').prop('disabled',false);

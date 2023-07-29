@@ -7,6 +7,7 @@
  
  require_once(dirname(__FILE__,2).'/modeles/Partenaire.php');
  require_once(dirname(__FILE__,2).'/modeles/Partenaires.php');
+ require_once(dirname(__FILE__,2).'/modeles/Bureau.php');
  require_once(dirname(__FILE__,2).'/modeles/BureauCalendar.php');
  require_once(dirname(__FILE__,2).'/modeles/BureauCalendars.php');
 
@@ -83,3 +84,106 @@ if(isset($_POST['action']) && 'reloadRemaningHours' === $_POST['action']) {
    
 }
   
+if(isset($_GET['moisan']) && isset($_GET['id']) && isset($_GET['action']) && 'display-bureau-next-month' === $_GET['action']) {
+  //$container = '<div>Coucou les gens</div><div>Coucou les gens 2</div><div>Coucou les gens 3</div><div>'.$_GET['moisan'].' - '.$_GET['id'].' - '.$_GET['action'].'</div>';
+  
+  $id = intval($_GET['id']);
+  $moisan = $_GET['moisan'];
+
+  $container = '';
+  
+  $bureau = $controleur4->getBureauById($id);
+  
+
+// Idem que dans vues/page-reserver.php
+
+    function moisFrancais($mois = "01"){
+      $moisEnFrancais = "Janvier";
+      switch($mois){
+          case "01": $moisEnFrancais = "Janvier";
+                      break;
+          case "02": $moisEnFrancais = "F&eacute;vrier";
+                      break;
+          case "03": $moisEnFrancais = "Mars";
+                      break;
+          case "04": $moisEnFrancais = "Avril";
+                      break;
+          case "05": $moisEnFrancais = "Mai";
+                      break;
+          case "06": $moisEnFrancais = "Juin";
+                      break;
+          case "07": $moisEnFrancais = "Juillet";
+                      break;
+          case "08": $moisEnFrancais = "Ao&ucirc;t";
+                      break;
+          case "09": $moisEnFrancais = "Septembre";
+                      break;
+          case "10": $moisEnFrancais = "Octobre";
+                      break;
+          case "11": $moisEnFrancais = "Novembre";
+                      break;
+          case "12": $moisEnFrancais = "D&eacute;cembre";
+                      break;
+          default: $moisEnFrancais = "Janvier";
+                      break;
+      }
+      return $moisEnFrancais;
+      }
+
+      $currentMonth = substr($moisan, 4, 2);
+      //$currentDay = date("d");
+      $currentYear = substr($moisan, 0, 4);
+      
+      $premierjourdumois = $currentYear."-".$currentMonth."-01";
+      $premierjourdumois = strtotime($premierjourdumois);
+      $firstDayOfCurrentMonth = date('w',$premierjourdumois); 
+
+      //echo "FIRST : ".$firstDayOfCurrentMonth." ...";
+      if($firstDayOfCurrentMonth == 0){
+          $firstDayOfCurrentMonth = 7;
+      } else {
+          $firstDayOfCurrentMonth--;
+      }
+      
+      $numberOfDaysOfCurrentMonth = date("t");
+
+      $moisFrancais = moisFrancais($currentMonth);
+
+// FIN idem que dans vues/page-reserver.php
+
+      var_dump($_SESSION['partenaire']);
+
+    $calendarsObject = $controleur4->getMonthFromBureau($moisan, $id);
+
+
+      var_dump($calendarsObject);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  require_once(dirname(__FILE__,2).'/vues/BureauCalendar.php');
+
+
+  echo $container;
+
+
+}
