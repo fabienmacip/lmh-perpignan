@@ -4,8 +4,8 @@
   text-decoration: underline;
   text-decoration-thickness: 2px;
   text-underline-offset: 6px;
-  
 }
+
 
 .bureau-card {
   background-color: var(--main-color-accent-light);
@@ -36,6 +36,7 @@
 .bureau-img1 {
   flex: 1;
   cursor: pointer;
+  text-align: center;
 }
 
 .bureau-img1 img {
@@ -102,7 +103,8 @@
   font-size: 1.1rem;
 }
 
-#leJour h2 {
+#leJour h2,
+#leJour h3 {
   text-align: center;
 }
 
@@ -151,4 +153,33 @@
 
 .heure-libre {
   background-color: lightgreen;
+}
+
+
+
+@media screen and (max-width: 480px) {
+
+  #reservations-h1 {
+    font-size: 1.8rem;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+  }
+
+  .bureau-title h2 {
+    font-size: 1.5rem;
+  }
+
+  .bureau-entete {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .table-calendar td,
+  .table-calendar-title-line td{
+    font-size: 1rem;
+    padding: 5px 0;
+  }
+  
+
+
 }

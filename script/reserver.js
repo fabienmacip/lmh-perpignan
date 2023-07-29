@@ -123,13 +123,21 @@ function displayCalendarBureauDay(dateSQL, idBureau, idPartenaire,heuresParLePar
 
   dateFormatOK = dateSQL.substring(8,10)+"/"+dateSQL.substring(5,7)+"/"+dateSQL.substring(0,4)
   
+  let options = { weekday: "long" }
+  datePourJour = new Intl.DateTimeFormat("fr-FR", options).format(new Date(dateSQL))
+  datePourJour = datePourJour.charAt(0).toUpperCase() + datePourJour.slice(1)
+
   let mainReservations = $('#reservation-main');
   mainReservations.html();
+
+  let heightToGoBack = $('#bureau-'+idBureau).offset().top
+
   let leJour = `<div id="leJour">
                 <input type="hidden" name="dateSQL" id="dateSQL" value="${dateSQL}">
                 <input type="hidden" name="bureauId" id="bureauId" value="${idBureau}">
-                <div id="closeLeJour" onclick='displayAnewReservationMain(${idPartenaire})' class="pointer"> X </div>
-                <h2>${dateFormatOK}</h2>
+                <div id="closeLeJour" onclick='displayAnewReservationMain(${idPartenaire},${heightToGoBack})' class="pointer"> X </div>
+                <h2>${datePourJour} ${dateFormatOK}</h2>
+                <h3>Bureau n°${idBureau}</h3>
                 <p>Les cr&eacute;neaux se r&eacute;servent par demi-heure. Le dernier cr&eacute;neau commence à 19h30 et se termine donc à 20h00.</p>`
 
   heuresPartenaire = heuresParLePartenaire.split('/')
@@ -158,16 +166,23 @@ function displayCalendarBureauDay(dateSQL, idBureau, idPartenaire,heuresParLePar
   mainReservations.hide();
   let reservationsH1 = $('#reservations-h1')
   reservationsH1.after(leJour)
+
+  let yToScroll = reservationsH1.offset().top - 120
+  window.scrollTo(0,yToScroll);
   //mainReservations.hide();
   //document.body.appendChild
 
 }
 
-function displayAnewReservationMain(partenaireId = 2, partenaireDate = '2023-04-03'){
+//function displayAnewReservationMain(partenaireId = 2, partenaireDate = '2023-04-03', top = 0){
+  function displayAnewReservationMain(partenaireId = 2, top = 0){
   
   let dateSQL = $('#dateSQL').val() // Pour reload calendrier du bureau concerné
   let bureauId = $('#bureauId').val() // Pour reload calendrier du bureau concerné
 
+  // Pour se repositionner (à la fin de cette fonction), sur le calendrier du bureau en cours
+  let yToGo = top - 70
+  
   let leJour = $('#leJour')
   leJour.remove();
   let mainReservations = $('#reservation-main')
@@ -216,6 +231,14 @@ function displayAnewReservationMain(partenaireId = 2, partenaireDate = '2023-04-
   let an = dateSQL.substring(0,4)
   let mois = dateSQL.substring(5,7)
   bureauReloadMonth(mois, an, bureauId)
+
+  // On se repositionne sur le calendrier modifié
+  window.scrollTo({
+    top: yToGo,
+    left: 0,
+    behavior: 'smooth'
+  })
+
 
 }
 
