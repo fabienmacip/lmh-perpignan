@@ -127,6 +127,24 @@ class BureauCalendars
 
     }
 
+    public function nbCreneauJourReserve($idBureau, $date) {
+
+        if (!is_null($this->pdo)) {
+            $sql = 'SELECT * FROM bureaucalendar WHERE idBureau = :idBureau AND date = :date';
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([":idBureau"=>$idBureau, ":date"=>$date]);
+        }
+        $tuples = [];
+        while ($tuple = $stmt->fetchObject('BureauCalendar', [$this->pdo])) {
+            $tuples[] = $tuple;
+        }
+
+        $stmt->closeCursor();
+
+        return count($tuples);
+
+    }
+
     // Liste des créneaux horaires pour UN jour donnée
     public function listHoursReservedByPartenaire($dateSQL,$idPartenaire,$idBureau){
         

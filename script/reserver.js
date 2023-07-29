@@ -133,7 +133,7 @@ function displayCalendarBureauDay(dateSQL, idBureau, idPartenaire,heuresParLePar
                 <p>Les cr&eacute;neaux se r&eacute;servent par demi-heure. Le dernier cr&eacute;neau commence à 19h30 et se termine donc à 20h00.</p>`
 
   heuresPartenaire = heuresParLePartenaire.split('/')
-  heuresAutrePartenaire = heuresParUnAutrePartenaire.split('and')
+  heuresAutrePartenaire = heuresParUnAutrePartenaire.split('/')
   /* console.log(heuresPartenaire)
   console.log(heuresAutrePartenaire)
  */

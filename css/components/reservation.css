@@ -73,7 +73,15 @@
 }
 
 .bureau-reserve {
+  background-color: yellow;
+}
+
+.bureau-reserve-much {
   background-color: lightsalmon;
+}
+
+.bureau-reserve-full {
+  background-color: lightcoral;
 }
 
 .bureau-non-reserve {
