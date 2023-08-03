@@ -317,8 +317,9 @@ public function pageReserver()
     $bureaux = $bureaux->lister();
 
     $calendarsObject = new BureauCalendars($this->pdo);
-    $remainingMinutes = $calendarsObject->getRemainingMinutesPartenaire(intval($_SESSION["partenaire"]),$_SESSION["datepartenaire"]);
-    $remainingHours = $calendarsObject->getRemainingHoursPartenaire(intval($_SESSION["partenaire"]),$_SESSION["datepartenaire"]);
+    $currentMonth = date('Y-m');
+    //$remainingMinutes = $calendarsObject->getRemainingMinutesPartenaire(intval($_SESSION["partenaire"]),$_SESSION["datepartenaire"]);
+    //$remainingHoursPerWeek = $calendarsObject->getRemainingHoursPartenairePerWeek(intval($_SESSION["partenaire"]),$currentMonth);
     $calendars = $calendarsObject->readAll();
 
     $partenaireActif = new Partenaires($this->pdo);

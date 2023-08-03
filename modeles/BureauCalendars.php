@@ -190,13 +190,39 @@ class BureauCalendars
 
     }
 
-    public function getRemainingMinutesPartenaire($idPartenaire, $datePartenaire) {
-        
+    // $day au format YYYY-MM-JJ
+    function getWeekStartDay($day) {
+        $day2array = explode("-",$day);
+        $day2 = $day2array[2]."-".$day2array[1]."-".$day2array[0];
+        $custom_date = strtotime( date('d-m-Y', strtotime($day2)) ); 
+        return date('Y-m-d', strtotime('this week monday', $custom_date));
+    }
+
+    function getWeekEndDay($day) {
+        $day2array = explode("-",$day);
+        $day2 = $day2array[2]."-".$day2array[1]."-".$day2array[0];
+        $custom_date = strtotime( date('d-m-Y', strtotime($day2)) ); 
+        return date('Y-m-d', strtotime('this week sunday', $custom_date));
+    }
+
+    // Un partenaire a droit à 6 heures de réservation par semaine, non cumulable.
+    // $day au format : YYYY-MM-DD
+    function getRemainingWeekHoursPartenaire($idPartenaire, $day) {
+                
+        // Etablissement de la liste des dates de la même semaine que $day.
+        $dayCalculable = strtotime($day);
+        $year = date('Y',$dayCalculable);
+        $week = date('W',$dayCalculable);
+        //$days = $this->week2str($year, $week);
+
+        $week_start = $this->getWeekStartDay($day);
+        $week_end = $this->getWeekEndDay($day);
+
         $idPartenaire = intval($idPartenaire);
         
         if (!is_null($this->pdo)) {
-            $stmt = $this->pdo->prepare('SELECT * FROM bureaucalendar WHERE idPartenaire = :idPartenaire');
-            $stmt->execute([":idPartenaire"=>$idPartenaire]);
+            $stmt = $this->pdo->prepare('SELECT * FROM bureaucalendar WHERE idPartenaire = :idPartenaire AND date BETWEEN :week_start AND :week_end');
+            $stmt->execute([":idPartenaire"=>$idPartenaire, ":week_start"=> $week_start, ":week_end"=>$week_end]);
         }
         $tuples = [];
         while ($tuple = $stmt->fetchObject('BureauCalendar', [$this->pdo])) {
@@ -206,57 +232,82 @@ class BureauCalendars
 
         // Calcul durée déjà utilisé (en minutes)
         $duree = 0; // Durée déjà utilisée
-        /* foreach($tuples as $line):
-            $duree += intval($line->getDureeEnMinutes());
-        endforeach; */
 
-        // DUREE = nombre de tuples x 30mn
-        $duree = count($tuples) * 30;
-        
+        // DUREE : une ligne = 1 heure
+        $duree = count($tuples);
 
-        // Calcul duréé autorisée depuis création partenaire
-        $start_year = substr($datePartenaire,0,4);
-        $start_month = substr($datePartenaire,5,2);
-        $end_year = date('Y');
-        $end_month = date('m');
-        
-        $DROITS_EN_HEURES_PAR_MOIS = 10;
-
-        $nbmois = 0;
-        if($end_year == $start_year){
-            if($end_month < $start_month){
-            } else {
-                $nbmois = $end_month - $start_month + 1;
-            }
-        } else if($end_year < $start_year) {
-        } else { 
-            $nbYears = ($end_year - $start_year);
-            $nbMonths = $end_month - $start_month + 1;
-            $nbmois = ($nbYears * 12) + $nbMonths;
-        }
-
-        $droits = $nbmois * $DROITS_EN_HEURES_PAR_MOIS * 60;
+        $DROITS_EN_HEURES_PAR_SEMAINE = 6;
 
         // TOTAL
-        $droitsRestants = $droits - $duree;
-
-/*         if($droitsRestants < 0) {
-            $droitsRestants = 0;
-        } */
+        $droitsRestants = $DROITS_EN_HEURES_PAR_SEMAINE - $duree;
 
         return $droitsRestants;
 
+    }
 
-        //$dureeTotaleAutorisee = $_SESSION['datepartenaire'];
-
-        //return 100;
-
-
-        //return $tuples;
-        //return $tuples[0]->getDureeEnHeures();
+    function getRemainingHoursPartenairePerWeek($idPartenaire, $currentMonth){
+        var_dump($currentMonth);
     }
     
-    function getRemainingHoursPartenaire($idPartenaire, $datePartenaire) {
+    function getRemainingHoursPartenaire($idPartenaire, $day) {
+        $duree = $this->getRemainingWeekHoursPartenaire($idPartenaire, $day);
+        return $duree;
+    }
+    
+
+    // Cette fonction n'est plus utilisée. Elle était utile lorsque on était en créneaux de 30mn.
+    function getRemainingMinutesPartenaire($idPartenaire, $datePartenaire) {
+                
+                $idPartenaire = intval($idPartenaire);
+                
+                if (!is_null($this->pdo)) {
+                    $stmt = $this->pdo->prepare('SELECT * FROM bureaucalendar WHERE idPartenaire = :idPartenaire');
+                    $stmt->execute([":idPartenaire"=>$idPartenaire]);
+                }
+                $tuples = [];
+                while ($tuple = $stmt->fetchObject('BureauCalendar', [$this->pdo])) {
+                    $tuples[] = $tuple;
+                }
+                $stmt->closeCursor();
+        
+                // Calcul durée déjà utilisé (en minutes)
+                $duree = 0; // Durée déjà utilisée
+        
+                // DUREE = nombre de tuples x 30mn
+                $duree = count($tuples) * 30;
+        
+                // Calcul duréé autorisée depuis création partenaire
+                $start_year = substr($datePartenaire,0,4);
+                $start_month = substr($datePartenaire,5,2);
+                $end_year = date('Y');
+                $end_month = date('m');
+                
+                $DROITS_EN_HEURES_PAR_MOIS = 10;
+        
+                $nbmois = 0;
+                if($end_year == $start_year){
+                    if($end_month < $start_month){
+                    } else {
+                        $nbmois = $end_month - $start_month + 1;
+                    }
+                } else if($end_year < $start_year) {
+                } else { 
+                    $nbYears = ($end_year - $start_year);
+                    $nbMonths = $end_month - $start_month + 1;
+                    $nbmois = ($nbYears * 12) + $nbMonths;
+                }
+        
+                $droits = $nbmois * $DROITS_EN_HEURES_PAR_MOIS * 60;
+        
+                // TOTAL
+                $droitsRestants = $droits - $duree;
+        
+        
+                return $droitsRestants;
+        
+    }
+
+    function anciengetRemainingHoursPartenaire($idPartenaire, $datePartenaire) {
         $duree = $this->getRemainingMinutesPartenaire($idPartenaire, $datePartenaire);
         $dureeMn = $duree % 60;
         $dureeH = ($duree - $dureeMn) / 60;
@@ -267,9 +318,9 @@ class BureauCalendars
         }
         return $dureeH."h".$dureeMn;
     }
-
-    function getRemainingHoursPartenaireSansDate($idPartenaire) {
-
+    
+    function anciengetRemainingHoursPartenaireSansDate($idPartenaire) {
+        
         $datePartenaire = $this->findPartenaireDate($idPartenaire);
         //var_dump($datePartenaire[0]["date_creation"]);
         $duree = $this->getRemainingMinutesPartenaire($idPartenaire, $datePartenaire);
@@ -284,3 +335,4 @@ class BureauCalendars
     }
 
 }
+

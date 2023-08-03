@@ -29,11 +29,11 @@ class Controleur4 {
         return $tupleASupprimer == 1;
     }
 
-    public function reloadRemainingHours($idPartenaire)
+    public function reloadRemainingHours($idPartenaire, $day)
     {
         $calendarsObject = new BureauCalendars($this->pdo);
         //$remainingMinutes = $calendarsObject->getRemainingMinutesPartenaire(intval($_SESSION["partenaire"]),$_SESSION["datepartenaire"]);
-        $remainingHours = $calendarsObject->getRemainingHoursPartenaireSansDate(intval($idPartenaire));
+        $remainingHours = $calendarsObject->getRemainingHoursPartenaire(intval($idPartenaire), $day);
         return $remainingHours;
     }
 

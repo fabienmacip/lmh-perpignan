@@ -66,12 +66,12 @@ if(isset($_POST['action']) && ('add' === $_POST['action'] || 'remove' === $_POST
   }
 }
 
-if(isset($_POST['action']) && 'reloadRemaningHours' === $_POST['action']) {
+if(isset($_POST['action']) && 'reloadRemaningHours' === $_POST['action'] && isset($_POST['day'])) {
 
-  $reponse = $controleur4->reloadRemainingHours($_POST['partenaireId']);
+  $reponse = $controleur4->reloadRemainingHours($_POST['partenaireId'],$_POST['day']);
     
   // ***********************************************************
-  if($reponse){
+  if($reponse || $reponse === 0){
     $res["status"] = "200";
     $res["data"] = "reload ok";
     $res["requeteok"] = "true";
@@ -140,13 +140,6 @@ if(isset($_GET['moisan']) && isset($_GET['id']) && isset($_GET['action']) && 'di
       $premierjourdumois = strtotime($premierjourdumois);
       $firstDayOfCurrentMonth = date('w',$premierjourdumois); 
 
-      //echo "FIRST : ".$firstDayOfCurrentMonth." ...";
-      if($firstDayOfCurrentMonth == 0){
-          $firstDayOfCurrentMonth = 7;
-      } else {
-          $firstDayOfCurrentMonth--;
-      }
-      
       $numberOfDaysOfCurrentMonth = date("t");
 
       $moisFrancais = moisFrancais($currentMonth);

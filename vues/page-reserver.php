@@ -83,12 +83,12 @@ ob_start();
         $firstDayOfCurrentMonth = date('w',$premierjourdumois); 
 
         //echo "FIRST : ".$firstDayOfCurrentMonth." ...";
-        if($firstDayOfCurrentMonth == 0){
+        /* if($firstDayOfCurrentMonth == 0){
             $firstDayOfCurrentMonth = 7;
         } else {
             $firstDayOfCurrentMonth--;
-        }
-        
+        } */
+        //echo "FIRST after : ".$firstDayOfCurrentMonth." ...";
         $numberOfDaysOfCurrentMonth = date("t");
 
         $moisFrancais = moisFrancais($currentMonth);
@@ -104,8 +104,8 @@ ob_start();
                     echo "$k => $v <br />\n";
                 }  */
             ?>
-            <p>Vous avez 10 heures de disponibilit&eacute; par mois, cumulables.</p>
-            <p>A ce jour, vous avez droit à <span id="span-remaining-hours"><?= $remainingHours ?></span>.</p>
+            <p>Vous avez 6 heures de disponibilit&eacute; par semaine, non-cumulables.</p>
+            <!-- <p>A ce jour, vous avez droit à <span id="span-remaining-hours">>?= /*$remainingHours*/ ?<</span>.</p> -->
             <p>Les bureaux et la salle de r&eacute;union sont r&eacute;servables de 8h à 20h, du LUNDI au SAMEDI.</p>
 
             <?php
