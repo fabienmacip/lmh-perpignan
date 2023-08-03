@@ -77,7 +77,7 @@ ob_start();
     </div>
 
     <div class="flex-1 accueil-text-boxes">
-      <h2>Devenir partenaire</h2>
+      <h2>Etre r&eacute;f&eacute;renc&eacute;</h2>
       <p>
         <h3>
             Pourquoi adhérer ?

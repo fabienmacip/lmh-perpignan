@@ -182,7 +182,7 @@ elseif (isset($_POST['page']) && 'administrateurs' === $_POST['page'] && isset($
     $controleur->listerAdministrateurs();
 } 
 
-/* PARTENAIRE */
+/* REFERENCES (anciennement PARTENAIRE) */
 
 elseif (isset($_GET['page']) && 'partenaire' === $_GET['page'] && isset($_GET['id']) && isset($_GET['univers'])) {
     $controleur->affichePartenaire($_GET['id'], $_GET['univers']);
@@ -193,6 +193,15 @@ elseif (isset($_GET['page']) && 'devenir-partenaire' === $_GET['page']){
 }
 elseif (isset($_POST['page']) && 'devenir-partenaire' === $_POST['page'] && isset($_POST['action']) && 'createDevenirPartenaire' === $_POST['action']){
     $controleur->devenirPartenaireCreation($_POST['fdp-nom'], '', 0, $_POST['fdp-mail'], $_POST['fdp-tel']);
+}
+
+/* PARTENAIRE (LABELS) */
+
+elseif (isset($_GET['page']) && 'nos-partenaires-officiels' === $_GET['page']){
+    ob_start();
+    require_once('vues/page-partenaires.php');
+    $contenu = ob_get_clean();
+    require_once('vues/layout.php');
 }
 
 /* RESERVER BUREAU */

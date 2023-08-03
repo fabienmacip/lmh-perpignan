@@ -123,7 +123,7 @@ ob_start();
           <!-- ######################## DEBUT FORM CANDIDATURE PARTENAIRE #################### -->
           
           <form method="post" action="index.php" id="form-create-devenir-partenaire" class="mt-3 rounded py-3 px-2 bg-info lcf-form">
-              <h4>Devenir partenaire</h4>    
+              <h4>Etre r&eacute;f&eacute;renc&eacute;</h4>    
               <div class="row">
                   <!-- <div class="col-12 col-md-12"> -->
                   <div class="form-group mb-2">
