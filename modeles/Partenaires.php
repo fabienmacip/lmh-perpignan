@@ -108,7 +108,10 @@ class Partenaires
 
 
     // CREATE
-    public function create($nom, $univers, $actif = 1, $mail = '', $telephone = '', $universenfant = '') {
+    public function create($nom, $univers, $actif = 1, $mail = '', $telephone = '', $universenfant = '', $nomEntreprise, $activiteEntreprise) {
+        
+        //ICI, utiliser $nomEntreprise, $activiteEntreprise
+        
         if (!is_null($this->pdo)) {
             try {
                 $dateCreation = date("Y-m-d");

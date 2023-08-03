@@ -267,10 +267,10 @@ public function devenirPartenaire()
     require_once('vues/devenir-partenaire.php');
 }
 
-public function devenirPartenaireCreation($nom, $univers, $actif, $mail, $telephone){
+public function devenirPartenaireCreation($nom, $univers, $actif, $mail, $telephone, $universEnfant, $nomEntreprise, $activiteEntreprise){
 
     $partenaires = new Partenaires($this->pdo);
-    $partenaireToCreate = $partenaires->create($nom, $univers, $actif, $mail, $telephone);
+    $partenaireToCreate = $partenaires->create($nom, $univers, $actif, $mail, $telephone, $universEnfant, $nomEntreprise, $activiteEntreprise);
     require_once('vues/devenir-partenaire.php');
 }
 

@@ -23,6 +23,20 @@ function checkFormFieldDevenirPartenaire(myField) {
     displayErrorMsgForm(error, myField)
   }
 
+  if(myField == 'fdp-nom-entreprise' && $('#fdp-nom-entreprise').val().length < 2){
+    error = true
+    displayErrorMsgForm(error, myField)
+  } else if (myField == 'fdp-nom-entreprise'){
+    displayErrorMsgForm(error, myField)
+  }
+
+  if(myField == 'fdp-activite-entreprise' && $('#fdp-activite-entreprise').val().length < 2){
+    error = true
+    displayErrorMsgForm(error, myField)
+  } else if (myField == 'fdp-activite-entreprise'){
+    displayErrorMsgForm(error, myField)
+  }
+
   if((myField == 'fdp-mail') &&($('#fdp-mail').val().length == 0 || ($('#fdp-mail').val().length > 0 && !regexEmail.test($('#fdp-mail').val())))){
     error = true
     displayErrorMsgForm(error, myField)
@@ -55,6 +69,14 @@ function validFormDevenirPartenaire() {
   const regexPhone = /^(0)[1-9](\d{2}){4}$/;
   
   let formOK = true;
+
+  if($('#fdp-nom-entreprise').val().length < 2){
+    formOK = false;
+  }
+
+  if($('#fdp-activite-entreprise').val().length < 2){
+    formOK = false;
+  }
 
   if($('#fdp-nom').val().length < 2){
     formOK = false;

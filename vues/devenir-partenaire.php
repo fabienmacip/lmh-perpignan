@@ -129,26 +129,34 @@ ob_start();
                   <div class="form-group mb-2">
                       <!-- <label for="nom">Nom du pays</label> -->
                       <!-- <label for="nom">Nom de famille</label> -->
-                      <input type="text" name="fdp-nom" class="form-control" maxlength="40" id="fdp-nom" placeholder="Saisissez le nom du partenaire"
-                      oninput="checkFormFieldDevenirPartenaire('fdp-nom')" onblur="checkFormFieldDevenirPartenaire('fdp-nom')" tabindex="1">
+                      <input type="text" name="fdp-nom-entreprise" class="form-control" maxlength="40" id="fdp-nom-entreprise" placeholder="Nom de l'entreprise"
+                      oninput="checkFormFieldDevenirPartenaire('fdp-nom-entreprise')" onblur="checkFormFieldDevenirPartenaire('fdp-nom-entreprise')" tabindex="1">
                       <div class="error-fdp-nom devenir-partenaire-form-error">Minimum 2 caract&egrave;res pour le nom</div>
 
-                      <input type="mail" name="fdp-mail" class="form-control" maxlength="40" id="fdp-mail" placeholder="Mail" tabindex="2"
+                      <input type="text" name="fdp-activite-entreprise" class="form-control" maxlength="60" id="fdp-activite-entreprise" placeholder="Activité de l'entreprise en quelques mots"
+                      oninput="checkFormFieldDevenirPartenaire('fdp-activite-entreprise')" onblur="checkFormFieldDevenirPartenaire('fdp-activite-entreprise')" tabindex="2">
+                      <div class="error-fdp-nom devenir-partenaire-form-error">Minimum 2 caract&egrave;res pour le nom</div>
+
+                      <input type="text" name="fdp-nom" class="form-control" maxlength="40" id="fdp-nom" placeholder="Saisissez le nom du partenaire"
+                      oninput="checkFormFieldDevenirPartenaire('fdp-nom')" onblur="checkFormFieldDevenirPartenaire('fdp-nom')" tabindex="3">
+                      <div class="error-fdp-nom devenir-partenaire-form-error">Minimum 2 caract&egrave;res pour le nom</div>
+
+                      <input type="mail" name="fdp-mail" class="form-control" maxlength="40" id="fdp-mail" placeholder="Mail" tabindex="4"
                       oninput="checkFormFieldDevenirPartenaire('fdp-mail')" onblur="checkFormFieldDevenirPartenaire('fdp-mail')">
                       <div class="error-fdp-mail devenir-partenaire-form-error">Adresse mail incorrecte</div>
 
-                      <input type="text" name="fdp-tel" class="form-control" maxlength="15" id="fdp-tel" placeholder="Téléphone" tabindex="3"
+                      <input type="text" name="fdp-tel" class="form-control" maxlength="15" id="fdp-tel" placeholder="Téléphone" tabindex="5"
                       oninput="checkFormFieldDevenirPartenaire('fdp-tel')" onblur="checkFormFieldDevenirPartenaire('fdp-tel')">
                       <div class="error-fdp-tel devenir-partenaire-form-error">10 chiffres svp</div>
                   </div>
                   <div class="form-group mb-2">
                     <div id="div-conditions-devenir-partenaire" class="flex flex-row">
                         <div class="mr-5">
-                            <input type="checkbox" name="fdp-conditions" id="fdp-conditions" onclick="checkFormFieldDevenirPartenaire('fdp-conditions')" tabindex="4">
+                            <input type="checkbox" name="fdp-conditions" id="fdp-conditions" onclick="checkFormFieldDevenirPartenaire('fdp-conditions')" tabindex="6">
                         </div>  
                         <div>
                             J'ai lu et j'accepte les conditions g&eacute;n&eacute;rales d'utilisation des donn&eacute;es.<br>
-                            Consultez notre <a style="color:red;" class="link" onclick="popMentionsLegales()" tabindex="5">mentions légales</a>
+                            Consultez notre <a style="color:red;" class="link" onclick="popMentionsLegales()" tabindex="7">mentions légales</a>
                             pour en savoir plus sur l'utilisation de vos donn&eacute;es ou pour exercer vos droits et notamment votre droit d'opposition.
                         </div>	
                     </div>
@@ -156,7 +164,7 @@ ob_start();
                   <div class="form-group mb-2">
                     <div>
                         <input type="hidden" id="fdp-vcaptcha" name="fdp-vcaptcha" value="<?= $captchaCrypted ?>">
-                        <input class="input" type="text" style="width:12rem; margin-top:1rem; margin-bottom:0;" maxlength="3" id="fdp-captcha" name="fdp-captcha" tabindex="6" placeholder="Combien font <?= $nb1 ?> + <?= $nb2 ?> ?"
+                        <input class="input" type="text" style="width:12rem; margin-top:1rem; margin-bottom:0;" maxlength="3" id="fdp-captcha" name="fdp-captcha" tabindex="8" placeholder="Combien font <?= $nb1 ?> + <?= $nb2 ?> ?"
                         oninput="checkFormFieldDevenirPartenaire('fdp-captcha')" onblur="checkFormFieldDevenirPartenaire('fdp-captcha')"><br>
                         <small><i>(Vérification anti-robots)</i></small>
                     </div>
@@ -165,8 +173,8 @@ ob_start();
                   <!-- <div class="col-12 col-md-4 mt-3 mt-md-0"> -->
                       <input type="hidden" name="action" id="action" value="createDevenirPartenaire">
                       <input type="hidden" name="page" id="page" value="devenir-partenaire">
-                      <button type="reset" class="btn lcf-button CTAButton" tabindex="7">Reset</button>
-                      <button id="fdp-submit" type="submit" class="btn lcf-button CTAButton btn-inactive" tabindex="8" disabled>Envoyer</button>
+                      <button type="reset" class="btn lcf-button CTAButton" tabindex="9">Reset</button>
+                      <button id="fdp-submit" type="submit" class="btn lcf-button CTAButton btn-inactive" tabindex="10" disabled>Envoyer</button>
                   </div>
                   <!-- <div class="col-0 col-md-2"></div> -->
               </div>
