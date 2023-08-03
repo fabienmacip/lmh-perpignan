@@ -60,9 +60,9 @@ ob_start();
 
 
 <div class="container m-0 mt-3 max-width-100vw">
-  <div class="row max-width-100percent jcc" id="accueil-text-boxes">
+  <div class="row max-width-100percent jcc wrap" id="accueil-text-boxes">
     
-    <div class="flex-1 accueil-text-boxes">
+    <div class="accueil-text-boxes">
       <h2>Bienvenue sur notre site</h2>
       <p>
         La Référence, by Christophe BOULDOUYRE et Richard DURIN est heureuse de vous compter parmi les visiteurs de son site internet !
@@ -76,7 +76,7 @@ ob_start();
       </p>
     </div>
 
-    <div class="flex-1 accueil-text-boxes">
+    <div class="accueil-text-boxes">
       <h2>Etre r&eacute;f&eacute;renc&eacute;</h2>
       <p>
         <h3>
@@ -100,6 +100,21 @@ ob_start();
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, hic consequuntur! Voluptatum mollitia odit enim iste inventore delectus maxime in voluptate quibusdam. Consequatur perspiciatis aliquid nihil et voluptate necessitatibus consequuntur illo quam deserunt quis est a veniam, nobis iste commodi quo harum recusandae reiciendis quaerat, vero aperiam? Autem, excepturi reiciendis!
       </p>
     </div>
+
+    <div class="accueil-text-boxes" id="div-qui-sommes-nous">
+      <h2>Qui sommes-nous ?</h2>
+      <p>
+        <h3>
+            Une &eacute;quipe exp&eacute;riment&eacute;e
+        </h3>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis totam corporis laborum, similique quaerat fugit facere sapiente amet rerum nobis tenetur sit incidunt, sed natus quos reiciendis commodi eveniet vero!
+      </p>
+      <div id="qui-sommes-nous-visages">
+        <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam aspernatur vel, itaque inventore iure magnam eveniet nesciunt tenetur magni reiciendis dignissimos, error, esse iusto recusandae omnis suscipit sit deleniti nihil.</div>
+        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum neque laudantium minus tempore ullam odit explicabo at quia alias iste voluptates eligendi maiores eveniet beatae, debitis harum nulla aut sapiente.</div>
+      </div>
+    </div>
+
 
   </div>
 </div>

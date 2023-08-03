@@ -199,6 +199,7 @@ header {
 * * * * * * * * * * * * * * * * */
 
 .accueil-text-boxes {
+  width: 45%;
   max-width: 600px;
   padding: 1rem;
   margin: 0 1rem;
@@ -216,6 +217,20 @@ header {
   margin-bottom: 1.5rem;
 }
 
+#div-qui-sommes-nous {
+  width: 95%;
+}
+
+#qui-sommes-nous-visages{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#qui-sommes-nous-visages > div{
+  width: 40%;
+}
 
 .accueil-text-boxes h3 {
   font-size: 1.7rem;
@@ -368,10 +383,11 @@ header {
   
   #accueil-text-boxes{
     flex-direction: column;   
+    align-items: center;
   }
 
   .accueil-text-boxes{
-    max-width: 90%;
+    width: 95%;
   }
 
   
