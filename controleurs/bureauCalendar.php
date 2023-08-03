@@ -57,6 +57,8 @@ if(isset($_POST['action']) && ('add' === $_POST['action'] || 'remove' === $_POST
       }
     }
 
+    $res["heures-restantes"] = $controleur4->reloadRemainingHours($partenaireId,$jour);
+
     echo json_encode($res);
 
     /* else {

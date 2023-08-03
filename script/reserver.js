@@ -30,13 +30,45 @@ function displayBigImg(adresse,idimgorigine){
 
 }
 
-function toggleHeureCalendar(heure,jour,idBureau,idPartenaire,action) {
+function setHeuresRestantesOnClick(heuresRestantes) {
+    // Remplacer HeuresRestantes dans toutes les cases cliquables
+    //heure-libre heure-modifiable
+    let heuresLibres = document.getElementsByClassName('heure-libre')
+    let heuresModifiables = document.getElementsByClassName('heure-modifiable')
+
+    for(i = 0 ; i < heuresLibres.length ; i++) {
+      let x = heuresLibres[i].getAttribute("onclick")
+      let indexEnd = x.length
+      let index = x.lastIndexOf(',')
+      let newClick = x.substring(0,index) + ",'" + heuresRestantes + "')"
+      heuresLibres[i].setAttribute("onclick",newClick)
+    }
+
+    for(i = 0 ; i < heuresModifiables.length ; i++) {
+      let x = heuresModifiables[i].getAttribute("onclick")
+      let indexEnd = x.length
+      let index = x.lastIndexOf(',')
+      let newClick = x.substring(0,index) + ",'" + heuresRestantes + "')"
+      heuresModifiables[i].setAttribute("onclick",newClick)
+    }
+
+}
+
+function toggleHeureCalendar(heure,jour,idBureau,idPartenaire,action,heuresRestantes) {
   
+  //console.info(heuresRestantes)
+
   let now = new Date()
   let dateToToggle = new Date(jour+" "+heure)
 
   if(now > dateToToggle) {
     alert('Ce créneau n\'est plus modifiable.')
+    return true
+  }
+
+  heuresRestantes = parseInt(heuresRestantes)
+  if(heuresRestantes == 0 && action === 'add') {
+    alert('Il vous reste 0 heures pour cette semaine.\nVous devez supprimer un créneau horaire pour pouvoir réserver celui-ci.')
     return true
   }
 
@@ -85,12 +117,19 @@ function toggleHeureCalendar(heure,jour,idBureau,idPartenaire,action) {
       if(procedureOK){
         let monElement = 'heure-'+heure.substring(0,5)
         let creneauToUpdate = document.getElementById(monElement)
+
+        let heuresRestantes = document.getElementById('heures-restantes-semaine')
+        heuresRestantesInt = parseInt(req.response["heures-restantes"])
+        heuresRestantes.innerText = req.response["heures-restantes"]
+
         creneauToUpdate.classList.remove('heure-libre')
         creneauToUpdate.classList.add('heure-modifiable', 'heure-partenaire')
         creneauToUpdate.innerText = 'réservé pour vous'
         //creneauToUpdate.removeAttribute('onclick')
-        creneauToUpdate.setAttribute('onclick','toggleHeureCalendar(\''+heure+'\',\''+jour+'\',\''+idBureau+'\',\''+idPartenaire+'\',\'remove\')')
+        creneauToUpdate.setAttribute('onclick','toggleHeureCalendar(\''+heure+'\',\''+jour+'\',\''+idBureau+'\',\''+idPartenaire+'\',\'remove\',\''+heuresRestantesInt+'\')')
         
+        setHeuresRestantesOnClick(heuresRestantesInt)
+
         localStorage.setItem('laref-reload-remaining-hours','true')
         localStorage.setItem('laref-reload-remaining-hours-in-week',jour)
 
@@ -104,10 +143,17 @@ function toggleHeureCalendar(heure,jour,idBureau,idPartenaire,action) {
       if(procedureOK){
         let monElement = 'heure-'+heure.substring(0,5)
         let creneauToUpdate = document.getElementById(monElement)
+
+        let heuresRestantes = document.getElementById('heures-restantes-semaine')
+        heuresRestantesInt = parseInt(req.response["heures-restantes"])
+        heuresRestantes.innerText = req.response["heures-restantes"]
+
         creneauToUpdate.classList.remove('heure-modifiable', 'heure-partenaire')
         creneauToUpdate.classList.add('heure-libre')
         creneauToUpdate.innerText = 'disponible'
-        creneauToUpdate.setAttribute('onclick','toggleHeureCalendar(\''+heure+'\',\''+jour+'\',\''+idBureau+'\',\''+idPartenaire+'\',\'add\')')
+        creneauToUpdate.setAttribute('onclick','toggleHeureCalendar(\''+heure+'\',\''+jour+'\',\''+idBureau+'\',\''+idPartenaire+'\',\'add\',\''+heuresRestantesInt+'\')')
+
+        setHeuresRestantesOnClick(heuresRestantesInt)
 
         localStorage.setItem('laref-reload-remaining-hours','true')
         localStorage.setItem('laref-reload-remaining-hours-in-week',jour)
@@ -123,7 +169,7 @@ function toggleHeureCalendar(heure,jour,idBureau,idPartenaire,action) {
   req.send(data);
 }
 
-function displayCalendarBureauDay(dateSQL, idBureau, idPartenaire,heuresParLePartenaire,heuresParUnAutrePartenaire) {
+function displayCalendarBureauDay(dateSQL, idBureau, idPartenaire,heuresParLePartenaire,heuresParUnAutrePartenaire, heuresRestantes) {
   /* console.log(dateSQL)
   console.log(idBureau)
   console.log(idPartenaire)
@@ -147,7 +193,8 @@ function displayCalendarBureauDay(dateSQL, idBureau, idPartenaire,heuresParLePar
                 <div id="closeLeJour" onclick='displayAnewReservationMain(${idPartenaire},${heightToGoBack})' class="pointer"> X </div>
                 <h2>${datePourJour} ${dateFormatOK}</h2>
                 <h3>Bureau n°${idBureau}</h3>
-                <p>Les cr&eacute;neaux se r&eacute;servent par demi-heure. Le dernier cr&eacute;neau commence à 19h30 et se termine donc à 20h00.</p>`
+                <p>Les cr&eacute;neaux se r&eacute;servent par demi-heure. Le dernier cr&eacute;neau commence à 19h30 et se termine donc à 20h00.</p>
+                <p>Pour cette semaine, il vous reste <span id="heures-restantes-semaine">${heuresRestantes}</span> heure(s).`
 
   heuresPartenaire = heuresParLePartenaire.split('/')
   heuresAutrePartenaire = heuresParUnAutrePartenaire.split('/')
@@ -164,7 +211,7 @@ function displayCalendarBureauDay(dateSQL, idBureau, idPartenaire,heuresParLePar
     reserveText = heuresPartenaire.includes(j+":00:00") ? 'r&eacute;serv&eacute; pour vous' : heuresAutrePartenaire.includes(j+":00:00") ? 'non-disponible' : 'disponible'
     //reserveText30 = heuresPartenaire.includes(j+":30:00") ? 'r&eacute;serv&eacute; pour vous' : heuresAutrePartenaire.includes(j+":30:00") ? 'non-disponible' : 'disponible'
 
-    reserveClic = heuresPartenaire.includes(j+":00:00") ? `onclick="toggleHeureCalendar(\'${j}:00:00\',\'${dateSQL}\',\'${idBureau}\',\'${idPartenaire}\',\'remove\')"` : heuresAutrePartenaire.includes(j+":00:00") ? '' : `onclick="toggleHeureCalendar(\'${j}:00:00\',\'${dateSQL}\',\'${idBureau}\',\'${idPartenaire}\',\'add\')"`
+    reserveClic = heuresPartenaire.includes(j+":00:00") ? `onclick="toggleHeureCalendar(\'${j}:00:00\',\'${dateSQL}\',\'${idBureau}\',\'${idPartenaire}\',\'remove\',\'${heuresRestantes}\')"` : heuresAutrePartenaire.includes(j+":00:00") ? '' : `onclick="toggleHeureCalendar(\'${j}:00:00\',\'${dateSQL}\',\'${idBureau}\',\'${idPartenaire}\',\'add\',\'${heuresRestantes}\')"`
     //reserveClic30 = heuresPartenaire.includes(j+":30:00") ? `onclick="toggleHeureCalendar(\'${j}:30:00\',\'${dateSQL}\',\'${idBureau}\',\'${idPartenaire}\',\'remove\')"` : heuresAutrePartenaire.includes(j+":30:00") ? '' : `onclick="toggleHeureCalendar(\'${j}:30:00\',\'${dateSQL}\',\'${idBureau}\',\'${idPartenaire}\',\'add\')"`
 
     leJour += `<div class="flex flew-row jcc aic heure-line"><div class="heure-digitale">${j}:00</div><div id='heure-${j}:00' ${reserveClic} class='heure-contenu tc ${reserve}'>${reserveText}</div></div>`
@@ -376,6 +423,43 @@ function bureauLastMonth(mois = '07', an = '2023', id = '1') {
 
 
 // *********************** FIN AFFICHAGE NEXT MONTH et LAST MONTH ***************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
