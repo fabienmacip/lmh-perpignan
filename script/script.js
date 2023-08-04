@@ -77,7 +77,9 @@ let pageMission ='';
 /*     $('#form-create-devenir-partenaire').on('submit',function(e) {
       e.preventDefault();
     })
- */
+ */ if($('#toaster-partenaire-create-msg').length){
+      alert($('#toaster-partenaire-create-msg').text())
+    }
 
     // Si on n'est pas ADMIN connecté, alors on n'accède pas aux formulaires de CRUD.
     if($('#isAdmin').val() != 1) {

@@ -192,7 +192,7 @@ elseif (isset($_GET['page']) && 'devenir-partenaire' === $_GET['page']){
     $controleur->devenirPartenaire();
 }
 elseif (isset($_POST['page']) && 'devenir-partenaire' === $_POST['page'] && isset($_POST['action']) && 'createDevenirPartenaire' === $_POST['action']){
-    $controleur->devenirPartenaireCreation($_POST['fdp-nom'], '', 0, $_POST['fdp-mail'], $_POST['fdp-tel'], '', $_POST['fdp-nom-entreprise'], $_POST['fdp-activite-entreprise']);
+    $controleur->devenirPartenaireCreation($_POST['fdp-nom'], '', 0, $_POST['fdp-mail'], $_POST['fdp-tel'], '', $_POST['fdp-nom-contact'], $_POST['fdp-activite-entreprise']);
 }
 
 /* PARTENAIRE (LABELS) */

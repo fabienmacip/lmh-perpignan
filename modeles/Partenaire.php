@@ -6,6 +6,8 @@ class Partenaire
 
     private $id;
     private $nom;
+    private $nomcontact;
+    private $activiteentreprise;
     private $mail;
     private $telephone;
     private $univers;
@@ -38,6 +40,16 @@ class Partenaire
     public function getNom()
     {
         return $this->nom;
+    }
+
+    public function getNomContact() 
+    {
+        return $this->nomcontact;
+    }
+
+    public function getActiviteEntreprise()
+    {
+        return $this->activiteentreprise;
     }
 
     public function getMail()

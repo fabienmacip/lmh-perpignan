@@ -68,15 +68,15 @@ ob_start();
     <?php // TOASTER
     if(isset($partenaireToCreate) && $partenaireToCreate != ''){
       if(strpos($partenaireToCreate, "ajout")) {
-        $partenaireToCreate = "Votre candidature a bien &eacute;t&eacute prise en compte.<br>Nous vous recontacterons d&egrave;s que possible.";
+        $partenaireToCreate = "Votre candidature a bien &eacute;t&eacute prise en compte.&nbsp;<br>Nous vous recontacterons d&egrave;s que possible.";
       }
       else {
-        $partenaireToCreate = "Erreur lors de l'ajout de vos données.<br>Vous pouvez nous contacter par mail ou téléphone pour vous inscrire.";
+        $partenaireToCreate = "Erreur lors de l'ajout de vos données.&nbsp;<br>Vous pouvez nous contacter par mail ou téléphone pour vous inscrire.";
       }
     ?>
       <div class="toaster" id="toaster-devenir-partenaire">
         <div onclick="closeToaster('toaster-devenir-partenaire')"><span>X</span></div>
-        <div><?= $partenaireToCreate ?></div>
+        <div id="toaster-partenaire-create-msg"><?= $partenaireToCreate ?></div>
       </div>
     <?php
     }
@@ -128,26 +128,30 @@ ob_start();
                   <!-- <div class="col-12 col-md-12"> -->
                   <div class="form-group mb-2">
                       <!-- <label for="nom">Nom du pays</label> -->
-                      <!-- <label for="nom">Nom de famille</label> -->
-                      <input type="text" name="fdp-nom-entreprise" class="form-control" maxlength="40" id="fdp-nom-entreprise" placeholder="Nom de l'entreprise"
-                      oninput="checkFormFieldDevenirPartenaire('fdp-nom-entreprise')" onblur="checkFormFieldDevenirPartenaire('fdp-nom-entreprise')" tabindex="1">
+                      <label for="fdp-nom">Nom de l'entreprise</label>
+                      <input type="text" name="fdp-nom" class="form-control" maxlength="50" id="fdp-nom" placeholder="Nom de l'entreprise"
+                      oninput="checkFormFieldDevenirPartenaire('fdp-nom')" onblur="checkFormFieldDevenirPartenaire('fdp-nom')" tabindex="1">
                       <div class="error-fdp-nom devenir-partenaire-form-error">Minimum 2 caract&egrave;res pour le nom</div>
-
-                      <input type="text" name="fdp-activite-entreprise" class="form-control" maxlength="60" id="fdp-activite-entreprise" placeholder="Activité de l'entreprise en quelques mots"
+                      
+                      <label for="fdp-activite-entreprise">Activit&eacute; de l'entreprise, en quelques mots.</label>
+                      <input type="text" name="fdp-activite-entreprise" class="form-control" maxlength="100" id="fdp-activite-entreprise" placeholder="Activité de l'entreprise en quelques mots"
                       oninput="checkFormFieldDevenirPartenaire('fdp-activite-entreprise')" onblur="checkFormFieldDevenirPartenaire('fdp-activite-entreprise')" tabindex="2">
-                      <div class="error-fdp-nom devenir-partenaire-form-error">Minimum 2 caract&egrave;res pour le nom</div>
+                      <div class="error-fdp-activite-entreprise devenir-partenaire-form-error">Minimum 2 caract&egrave;res pour le nom</div>
+                      
+                      <label for="fdp-nom-contact">Nom du contact</label>
+                      <input type="text" name="fdp-nom-contact" class="form-control" maxlength="60" id="fdp-nom-contact" placeholder="Nom du contact"
+                      oninput="checkFormFieldDevenirPartenaire('fdp-nom-contact')" onblur="checkFormFieldDevenirPartenaire('fdp-nom-contact')" tabindex="3">
+                      <div class="error-fdp-nom-contact devenir-partenaire-form-error">Minimum 2 caract&egrave;res pour le nom</div>
 
-                      <input type="text" name="fdp-nom" class="form-control" maxlength="40" id="fdp-nom" placeholder="Saisissez le nom du partenaire"
-                      oninput="checkFormFieldDevenirPartenaire('fdp-nom')" onblur="checkFormFieldDevenirPartenaire('fdp-nom')" tabindex="3">
-                      <div class="error-fdp-nom devenir-partenaire-form-error">Minimum 2 caract&egrave;res pour le nom</div>
-
-                      <input type="mail" name="fdp-mail" class="form-control" maxlength="40" id="fdp-mail" placeholder="Mail" tabindex="4"
+                      <label for="fdp-mail">Mail du contact</label>
+                      <input type="mail" name="fdp-mail" class="form-control" maxlength="50" id="fdp-mail" placeholder="Mail" tabindex="4"
                       oninput="checkFormFieldDevenirPartenaire('fdp-mail')" onblur="checkFormFieldDevenirPartenaire('fdp-mail')">
                       <div class="error-fdp-mail devenir-partenaire-form-error">Adresse mail incorrecte</div>
 
-                      <input type="text" name="fdp-tel" class="form-control" maxlength="15" id="fdp-tel" placeholder="Téléphone" tabindex="5"
+                      <label for="fdp-tel">T&eacute;l&eacute;phone du contact</label>
+                      <input type="text" name="fdp-tel" class="form-control" maxlength="10" id="fdp-tel" placeholder="Téléphone" tabindex="5"
                       oninput="checkFormFieldDevenirPartenaire('fdp-tel')" onblur="checkFormFieldDevenirPartenaire('fdp-tel')">
-                      <div class="error-fdp-tel devenir-partenaire-form-error">10 chiffres svp</div>
+                      <div class="error-fdp-tel devenir-partenaire-form-error">10 chiffres svp, commencer par 0.</div>
                   </div>
                   <div class="form-group mb-2">
                     <div id="div-conditions-devenir-partenaire" class="flex flex-row">
@@ -169,7 +173,7 @@ ob_start();
                         <small><i>(Vérification anti-robots)</i></small>
                     </div>
                   </div>
-                  <div class="form-group mb-2">
+                  <div class="form-group mb-2 mt-2">
                   <!-- <div class="col-12 col-md-4 mt-3 mt-md-0"> -->
                       <input type="hidden" name="action" id="action" value="createDevenirPartenaire">
                       <input type="hidden" name="page" id="page" value="devenir-partenaire">

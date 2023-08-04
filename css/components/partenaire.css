@@ -4,6 +4,15 @@
   
 }
 
+#form-create-devenir-partenaire label {
+  margin-top: 14px;
+  margin-bottom: 4px;
+}
+
+#div-conditions-devenir-partenaire{
+  margin-top: 14px;
+}
+
 .devenir-partenaire-form-error {
   color: var(--main-color-red);
   font-weight: 600;

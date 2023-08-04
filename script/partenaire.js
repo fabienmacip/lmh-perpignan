@@ -1,10 +1,10 @@
 function displayErrorMsgForm(error, field) {
- console.log(field + ' : ' + error)
+ 
  
   if(error) {
-    $('#error-'+field).show();
+    $('.error-'+field).show();
   } else {
-    $('#error-'+field).hide();
+    $('.error-'+field).hide();
   }
 }
 
@@ -23,10 +23,10 @@ function checkFormFieldDevenirPartenaire(myField) {
     displayErrorMsgForm(error, myField)
   }
 
-  if(myField == 'fdp-nom-entreprise' && $('#fdp-nom-entreprise').val().length < 2){
+  if(myField == 'fdp-nom-contact' && $('#fdp-nom-contact').val().length < 2){
     error = true
     displayErrorMsgForm(error, myField)
-  } else if (myField == 'fdp-nom-entreprise'){
+  } else if (myField == 'fdp-nom-contact'){
     displayErrorMsgForm(error, myField)
   }
 
@@ -70,7 +70,7 @@ function validFormDevenirPartenaire() {
   
   let formOK = true;
 
-  if($('#fdp-nom-entreprise').val().length < 2){
+  if($('#fdp-nom-contact').val().length < 2){
     formOK = false;
   }
 

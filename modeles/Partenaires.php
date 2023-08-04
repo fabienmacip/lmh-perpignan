@@ -108,7 +108,7 @@ class Partenaires
 
 
     // CREATE
-    public function create($nom, $univers, $actif = 1, $mail = '', $telephone = '', $universenfant = '', $nomEntreprise, $activiteEntreprise) {
+    public function create($nom, $univers, $actif = 1, $mail = '', $telephone = '', $universenfant = '', $nomContact = '', $activiteEntreprise = '') {
         
         //ICI, utiliser $nomEntreprise, $activiteEntreprise
         
@@ -118,9 +118,20 @@ class Partenaires
                 $univers = str_replace(' ', '', $univers);
                 $universenfant = str_replace(' ', '', $universenfant);
                 // Requête mysql pour insérer des données
-                $aInserer = array(":nom"=>$nom, ":mail"=>$mail, ":telephone"=>$telephone, ":univers"=>$univers, ":universenfant"=>$universenfant, ":date"=>$dateCreation, ":actif"=>$actif);
+                $aInserer = array(
+                                    ":nom"=>$nom, 
+                                    ":nomcontact"=>$nomContact,
+                                    ":activiteentreprise"=>$activiteEntreprise,
+                                    ":mail"=>$mail, 
+                                    ":telephone"=>$telephone, 
+                                    ":univers"=>$univers, 
+                                    ":universenfant"=>$universenfant, 
+                                    ":date"=>$dateCreation, 
+                                    ":actif"=>$actif
+                                );
                 if($actif != 1) { $actif = 0; }
-                $sql = "INSERT INTO partenaire (nom, mail, telephone, univers, universenfant, date, actif) VALUES (:nom, :mail, :telephone, :univers, :universenfant, :date, :actif)";
+                $sql = "INSERT INTO partenaire (nom, nomcontact, activiteentreprise, mail, telephone, univers, universenfant, date, actif) VALUES 
+                        (:nom, :nomcontact, :activiteentreprise, :mail, :telephone, :univers, :universenfant, :date, :actif)";
                 $res = $this->pdo->prepare($sql);
                 $exec = $res->execute($aInserer);
                 if($exec){
@@ -136,18 +147,18 @@ class Partenaires
     }
 
     // UPDATE
-    public function update($id,$nom,$univers, $mail = '', $telephone = '', $actif = '', $universenfant = '') {
+    public function update($id,$nom,$univers, $mail = '', $telephone = '', $actif = '', $universenfant = '', $nomContact = '', $activiteEntreprise = '') {
         if (!is_null($this->pdo)) {
             try {
                 $univers = str_replace(' ', '', $univers);
                 $universenfant = str_replace(' ', '', $universenfant);
                 // Requête mysql pour insérer des données
-                $aInserer = array(":nom"=>$nom, ":mail"=>$mail, "telephone"=>$telephone, ":univers"=>$univers, "universenfant"=>$universenfant, ":id"=>$id);
+                $aInserer = array(":nom"=>$nom, ":nomcontact"=>$nomContact, ":activiteentreprise"=>$activiteEntreprise, ":mail"=>$mail, "telephone"=>$telephone, ":univers"=>$univers, "universenfant"=>$universenfant, ":id"=>$id);
                 if($actif == 1 || $actif != '') {
                     array_push($aInserer, $actif);
-                    $sql = "UPDATE partenaire SET nom = (:nom), mail = (:mail), telephone = (:telephone), univers = (:univers), universenfant = (:universenfant), actif = (:actif) WHERE id = (:id)";
+                    $sql = "UPDATE partenaire SET nom = (:nom), nomcontact = (:nomcontact), activiteentreprise = (:activiteentreprise), mail = (:mail), telephone = (:telephone), univers = (:univers), universenfant = (:universenfant), actif = (:actif) WHERE id = (:id)";
                 } else {
-                    $sql = "UPDATE partenaire SET nom = (:nom), mail = (:mail), telephone = (:telephone), univers = (:univers), universenfant = (:universenfant) WHERE id = (:id)";
+                    $sql = "UPDATE partenaire SET nom = (:nom), nomcontact = (:nomcontact), activiteentreprise = (:activiteentreprise), mail = (:mail), telephone = (:telephone), univers = (:univers), universenfant = (:universenfant) WHERE id = (:id)";
                 }
                 $res = $this->pdo->prepare($sql);
                 $exec = $res->execute($aInserer);
