@@ -166,11 +166,18 @@
 
 header {
   display: flex;
-  /* flex-flow: column; */
+  justify-content: space-between;
+  padding: 0 12%;
+  background: linear-gradient(to right, #A6A6A6, #A6A6A6 25%, #fff 35%, #fff);
+}
+
+header .logo {
+  background: linear-gradient(to right, #A6A6A6, #A6A6A6 80%, #fff 80%, #fff);
 }
 
 #logo {
   max-width: 350px;
+  /* object-fit: fill; */
 }
 
 #logo2 {
@@ -181,16 +188,12 @@ header {
   flex-direction: column;
   justify-content: space-around;
   font-size: 1.2rem;
-  margin: 4rem auto;
+  margin: 0 auto;
 }
-
 
 .contacts-icon {
   max-width: 50px;
 }
-
-
-
 
 
 
@@ -368,6 +371,28 @@ header {
 
 
 
+
+
+
+
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* * * * * * * MAX 1400 px * * * * * * * * 
+* * * * * * * * * * * * * * * * * * * * * */
+
+@media screen and (max-width: 1400px) {
+  header{
+    padding: 0;
+    background: #fff;
+  }
+
+  header .logo {
+    background: linear-gradient(to right, #A6A6A6, #A6A6A6 40%, #fff 60%, #fff);
+  }
+}
+
+
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * * * * * * * MAX 991 px * * * * * * * * 
 * * * * * * * * * * * * * * * * * * * * * */
@@ -377,8 +402,13 @@ header {
   
   header {
     flex-direction: column;
-    margin-top: 1rem;
+    margin-top: 0;
     margin-bottom: 1rem;
+    background: #fff;
+  }
+
+  header .logo {
+    background: linear-gradient(to right, #A6A6A6, #A6A6A6 40%, #fff 60%, #fff);
   }
   
   #accueil-text-boxes{
@@ -403,6 +433,7 @@ header {
 
   .contacts > div:first-child {
     flex-direction: column;
+    gap: 0;
   }
   
   .contacts > div {
@@ -457,7 +488,9 @@ header {
     max-width: 35px;
   }
 
-  .contacts-lieu {
+  .contacts-lieu,
+  .contacts-phone,
+  .contacts-mail {
     flex-flow: column;
   }
 

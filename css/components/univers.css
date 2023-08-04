@@ -67,6 +67,7 @@
   cursor: pointer;
   border: 2px solid rgba(0,0,0,0);
   transition: all 1s ease;
+  background: radial-gradient(#000,#000 40%, var(--main-color-light) 67%, var(--main-color-light));
 }
 
 .down-arrow-univers-enfant:hover {
@@ -78,8 +79,6 @@
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
 }
-
-
 
 .btn-mis-en-relation {
     font-size: 1.1rem;

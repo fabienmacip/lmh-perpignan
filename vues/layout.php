@@ -84,7 +84,7 @@
 <input type="hidden" id=isAdmin value="<?= $isAdmin ?>">
 <input type="hidden" id=isPartenaire value="<?= $isPartenaire ?>">
 
-<header class="flex jcsb">
+<header>
     <div class="logo flex-1 tc">
         <img 
             id="logo" 
@@ -94,25 +94,40 @@
         >
     </div>
     <div class="contacts flex-2 flex">
-        <div class="flex">
-            <div class="contacts-phone flex-1">
-            <img
-                id="contacts-phone-img"
-                class="contacts-icon"
-                src="img/icones/tel.png"
-                alt="telephoner"
-            > <a href="tel:0634344400" alt="telephoner">06 34 34 44 00</a>
+        <div class="flex flex-column gap-15 aic">
+            <div class="contacts-phone flex-1 flex aic">
+                <div>
+                    <a href="tel:0634344400" alt="telephoner">
+                        <img
+                            id="contacts-phone-img"
+                            class="contacts-icon"
+                            src="img/icones/tel.png"
+                            alt="telephoner"
+                        >
+                    </a>
+                </div>
+                <div>
+                    <a href="tel:0634344400" alt="telephoner">&nbsp;Votre interlocuteur,</a>
+                </div>
+                <div>
+                <a href="tel:0634344400" alt="telephoner">&nbsp;Bruce : 06 34 34 44 00</a>
+                </div>
             </div>
-            <div class="contacts-mail flex-1">
-            <img
-                id="contacts-mail-img"
-                class="contacts-icon"
-                src="img/icones/mail.png"
-                alt="mail"
-            > <a href="mailto:contact@la-reference.fr">contact@la-reference.fr</a>
+            <div class="contacts-mail flex-1 flex aic">
+                <div>
+                    <a href="mailto:contact@la-reference.fr">
+                        <img
+                            id="contacts-mail-img"
+                            class="contacts-icon"
+                            src="img/icones/mail.png"
+                            alt="mail"
+                        >
+                    </a>
+                </div>
+                <div>
+                    <a href="mailto:contact@la-reference.fr">&nbsp;contact@la-reference.fr</a>
+                </div>
             </div>
-        </div>
-        <div>
             <div class="contacts-lieu flex-1 flex aic">
                 <div>
                     <a href="https://goo.gl/maps/G95PAPmo8yBdz5Pg7" target="_blank">
@@ -137,10 +152,6 @@
             </div>
         </div>
     </div>
-
-
-
-    <!-- <h1 class="text-center my-2">LA MAISON DE L'HABITAT - PERPIGNAN</h1> -->
 </header>
 <section>
 <?php 
@@ -205,7 +216,7 @@ if(isset($_SESSION['prenom']) && isset($_SESSION['nom']) && isset($_SESSION['rol
                 
                 <?php 
                 if(!isset($_SESSION['role']) || $_SESSION['role'] < 1) { ?>
-                    <li class="nav-item" id="li-connexion"><a href="index.php?page=connexion" class="nav-link">Se connecter</a></li>
+                    <li class="nav-item" id="li-connexion"><a href="index.php?page=connexion" class="nav-link">Espace adh&eacute;rents</a></li>
                     <?php
                 } else { ?>
                     <li class="nav-item"><a href="index.php?page=reserver" class="nav-link">Réserver</a></li>
