@@ -8,7 +8,7 @@
             <a href="https://www.unis-immo.fr/" target="_blank"><img src="img/partenaires/unis.png" alt="unis"></a>
         </div>
         <div>
-            <a href="https://www.arec-occitanie.fr/" target="_blank"><img src="img/partenaires/arec.jpg" alt="arec" id="arec-img"></a>
+            <a href="https://www.arec-occitanie.fr/" target="_blank"><img src="img/partenaires/arec.png" alt="arec" id="arec-img"></a>
         </div>
     </div>
 </div>

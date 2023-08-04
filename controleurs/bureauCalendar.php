@@ -151,7 +151,7 @@ if(isset($_GET['moisan']) && isset($_GET['id']) && isset($_GET['action']) && 'di
     $calendarsObject = $controleur4->getMonthFromBureau($currentYear, $currentMonth, $id);
     $calendars = $calendarsObject->readAllForOneBureau($currentYear, $currentMonth, $id);    
 
-    require_once(dirname(__FILE__,2).'/vues/BureauCalendar.php');
+    require_once(dirname(__FILE__,2).'/vues/bureauCalendar.php');
 
     //echo $container;
 
