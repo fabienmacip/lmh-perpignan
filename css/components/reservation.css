@@ -33,6 +33,24 @@
   text-align: center;
 }
 
+.bureau-footer {
+  padding-right: 1rem;
+}
+
+.bureau-footer img {
+  width: 150px;
+  max-width: 35%;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+.table-calendar-skeleton{
+  display: none;
+}
+
 .bureau-img1 {
   flex: 1;
   cursor: pointer;

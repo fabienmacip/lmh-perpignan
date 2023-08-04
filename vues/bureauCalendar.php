@@ -113,7 +113,7 @@
   </tbody>
 </table>
 
-<table id="table-calendar-skeleton" class="invisible">
+<table id="table-calendar-skeleton-<?= $bureau->getId() ?>" class="invisible table-calendar-skeleton">
   <thead>
     <th></th>
     <th colspan="5"></th>

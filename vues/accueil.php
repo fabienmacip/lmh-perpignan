@@ -8,7 +8,7 @@ ob_start();
 
 <div id="slider-back">
   <div id="slider">
-
+    <div id="slider-title" class="slider-title"><span>NOS REFERENCES</span></div>
     <div id="slider-btns">
       <div>
         <?php foreach($universs as $univers): ?>
@@ -41,19 +41,22 @@ ob_start();
   </div>
 </div>
 
-<div id="slider-btns-phone-screen">
-        <?php foreach($universs as $univers): ?>
-          <div class="slider-btn">
-            <button 
-              onclick="showUnivers('<?= $univers->getId() ?>')"
-              class="slider-btn-button"
-            >
-              <?= $univers->getNom() ?>
-            </button>
-          </div>
-          <?php endforeach;
-                /* showUnivers('=?= $univers->getId() ?=')"  */
-          ?>
+<div id="nos-refs-phone-screen" class="flex flex-column">
+  <div id="slider-title-phone-screen" class="slider-title"><span>NOS REFERENCES</span></div>
+  <div id="slider-btns-phone-screen">
+          <?php foreach($universs as $univers): ?>
+            <div class="slider-btn">
+              <button 
+                onclick="showUnivers('<?= $univers->getId() ?>')"
+                class="slider-btn-button"
+              >
+                <?= $univers->getNom() ?>
+              </button>
+            </div>
+            <?php endforeach;
+                  /* showUnivers('=?= $univers->getId() ?=')"  */
+            ?>
+  </div>
 </div>
 
 <!-- FIN SLIDER -->

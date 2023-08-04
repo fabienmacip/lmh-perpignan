@@ -106,5 +106,6 @@
 } */
 
 .bonjour {
-  margin-top: 10px;
+  font-size: 1rem;
+  padding: 0.5rem;
 }

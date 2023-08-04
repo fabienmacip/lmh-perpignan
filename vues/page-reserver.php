@@ -140,7 +140,13 @@ ob_start();
                          $calendrierDuBureau = $buros[$index];
                          require(dirname(__FILE__,2).'/vues/bureauCalendar.php'); 
                     ?>
-
+                </div>
+                <div class="bureau-footer tr">
+                    <img 
+                        class="logo-bureau-footer box" 
+                        src="img/logo/logo-la-reference-350x311-transparent.png"
+                        alt="La maison de l'habitat (by La Centrale de Financement) - Perpignan"
+                    >
                 </div>
             </div>
 

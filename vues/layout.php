@@ -157,7 +157,7 @@
 <?php 
 
 if(isset($_SESSION['prenom']) && isset($_SESSION['nom']) && isset($_SESSION['role-libelle']) && (!empty($_SESSION['role-libelle']))) {
-    echo "<div id='bonjour' class='bonjour bg-green-light'><i>".$_SESSION['prenom']." ".$_SESSION['nom']." - <b>".$_SESSION['role-libelle']."</b></i></div>";
+    echo "<div id='bonjour' class='bonjour bg-green-light'>&nbsp;Vous &ecirc;tes connect&eacute;(e) : <i>".$_SESSION['prenom']." ".$_SESSION['nom']." - <b>".$_SESSION['role-libelle']."</b></i></div>";
 } else {
     echo "<div id='bonjour'></div>";
 }

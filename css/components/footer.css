@@ -54,7 +54,10 @@ footer div:nth-child(3){
 }
 
 #footer-partenaires div img {
-  max-height: 50px;
+  /* max-height: 50px; */
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: contain;
 }
 
 
