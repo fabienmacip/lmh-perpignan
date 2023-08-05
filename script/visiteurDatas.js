@@ -399,7 +399,7 @@ function displayShortMessageBox(titre, partenaireId){
                   <div id="rappelDonneesMoto" class="mb-2">${rappelDonnees}<br><br></div>
 
                   <div>
-                    <button class="button CTAButton flex flex-row aic" id="btn-displayFormShortMail" onclick="displayFormShortMail()">M'inscrire <img src="img/icones/down-arrow.png" class="ml-10 mw-30"></button>
+                    <button class="button CTAButton flex flex-row aic" id="btn-displayFormShortMail" onclick="displayFormShortMail()">M'inscrire <img src="img/icones/down-arrow-white.png" class="ml-10 mw-30"></button>
                   </div>
 
                   <form id="formShortMail" method='post' action="" class="inaccessible">

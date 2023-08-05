@@ -83,6 +83,23 @@
   text-align: center;
 }
 
+.btn-next-month,
+.btn-last-month{
+  background-color: var(--main-color-accent-light);
+  width: 50px;
+  transition: background-color 1s, box-shadow 1s;
+  -webkit-transition: background-color 1s, box-shadow 12s;
+  -moz-transition: background-color 1s, box-shadow 12s;
+  -ms-transition: background-color 1s, box-shadow 12s;
+  -o-transition: background-color 1s, box-shadow 12s;
+}
+
+.btn-next-month:hover,
+.btn-last-month:hover{
+ box-shadow: 2px 8px 12px rgba(0, 0, 0, 0.2);
+ background-color: white;
+}
+
 .table-calendar td {
   text-align: center;
   font-size: 1.2rem;
@@ -215,6 +232,11 @@
     align-items: center;
   }
 
+
+  .btn-next-month,
+  .btn-last-month{
+    width: 40px;
+  }
   .table-calendar td,
   .table-calendar-title-line td{
     font-size: 1rem;
