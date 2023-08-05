@@ -31,6 +31,11 @@
         <script src="./script/visiteurDatas.js?v=2"></script>
         <script src="./script/partenaire.js?v=2"></script>
         <script src="./script/reserver.js?v=1"></script>
+        
+        <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 1){ ?>
+            <script src="./script/reserver-admin.js?v=1"></script>
+        <?php }  ?>
+
         <script src="./script/script.js?v=2"></script>
         <script src="./script/divers.js?v=2"></script>
     <?php }
@@ -184,7 +189,7 @@ if(isset($_SESSION['prenom']) && isset($_SESSION['nom']) && isset($_SESSION['rol
     }
 ?>
                 <li class="nav-item"><a href="index.php?page=accueil" class="nav-link">Accueil</a></li>
-                <?php if($isPartenaire != 1) { ?>
+                <?php if($isPartenaire != 1 && $isAdmin != 1) { ?>
                 
                 <li class="nav-item relative" id="nav-nos-references">
                     <a href="#" class="nav-link" id="nos-references-link">Nos r&eacute;f&eacute;rences</a>
@@ -232,9 +237,16 @@ if(isset($_SESSION['prenom']) && isset($_SESSION['nom']) && isset($_SESSION['rol
                     // Si la personne connectée est un ADMINISTRATEUR
                     if(isset($_SESSION['role']) && $_SESSION['role'] == 1){
                     ?>
-                    <li class="nav-item"><a href="index.php?page=universs" class="nav-link">Univers</a></li>
-                    <li class="nav-item"><a href="index.php?page=partenaires&actif=1" class="nav-link">Partenaires activés</a></li>
-                    <li class="nav-item"><a href="index.php?page=partenaires&actif=0" class="nav-link">Partenaires non-actifs</a></li>
+                    <!-- <li class="nav-item"><a href="index.php?page=universs" class="nav-link">Univers</a></li> -->
+                    <li class="nav-item relative" id="nav-nos-references-admin">
+                        <a href="#" class="nav-link" id="references-link">Partenaires R&eacute;f&eacute;renc&eacute;s</a>
+                        <!-- <a href="index.php?page=univers" class="nav-link">Nos r&eacute;f&eacute;rences</a> -->
+                            <ul id="sub-nav-references-admin" class="absolute">
+                                <li class="nav-item"><a href="index.php?page=reserveradmin" class="nav-link">Calendrier</a></li>
+                                <li class="nav-item"><a href="index.php?page=partenaires&actif=1" class="nav-link">Partenaires activés</a></li>
+                                <li class="nav-item"><a href="index.php?page=partenaires&actif=0" class="nav-link">Partenaires non-actifs</a></li>
+                            </ul>
+                    </li>
                     <li class="nav-item"><a href="index.php?page=stats" class="nav-link">Stats</a></li>
                     <li class="nav-item"><a href="index.php?page=administrateurs" class="nav-link">Administrateurs</a></li>
                     

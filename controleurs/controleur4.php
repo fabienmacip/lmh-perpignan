@@ -47,4 +47,26 @@ class Controleur4 {
         $calendarsObject = new BureauCalendars($this->pdo);
         return $calendarsObject;
     }
+
+    public function listeCalendarsAdmin()
+    {
+
+        require(dirname(__FILE__,2).'/services/moisFrancaisEtDateActuelle.php'); 
+        $bureaux = new Bureaus($this->pdo);
+        $nbBureaux = $bureaux->readNbTuples();
+        $bureaux = $bureaux->lister();
+    
+        $calendarsObject = new BureauCalendars($this->pdo);
+        //$currentMonth = date('Y-m');
+        $calendars = $calendarsObject->readAll();
+    
+        $partenaireActif = new Partenaires($this->pdo);
+        $partenaireActif = $partenaireActif->listerUn($_SESSION["partenaireActuel"]);
+
+        //var_dump($_SESSION['partenaireActuel']);
+
+        require(dirname(__FILE__,2).'/vues/liste-calendriers-admin.php');
+    }
+    
+
 }

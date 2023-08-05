@@ -46,7 +46,8 @@ nav a:hover {
 /* Sous-menu caché / Affiché si survol de "Nos références". */
 
 
-#sub-nav-univers {
+#sub-nav-univers,
+#sub-nav-references-admin {
   display: none;
   background-color: var(--main-color-dark);
   min-width: 200px;
@@ -57,7 +58,8 @@ nav a:hover {
   margin: 7px;
 }
 
-#nav-nos-references:hover ul {
+#nav-nos-references:hover ul,
+#nav-nos-references-admin:hover ul {
   display: block;
 }
 

@@ -334,6 +334,24 @@ public function pageReserver()
     require_once('vues/page-reserver.php');
 }
 
+public function pageReserverAdmin()
+{
+    $bureaux = new Bureaus($this->pdo);
+    $nbBureaux = $bureaux->readNbTuples();
+    $bureaux = $bureaux->lister();
+
+    $calendarsObject = new BureauCalendars($this->pdo);
+    $currentMonth = date('Y-m');
+    $calendars = $calendarsObject->readAll();
+
+    $partenaireActif = new Partenaires($this->pdo);
+    $partenaireActif = $partenaireActif->listerUn($_SESSION["partenaire"]);
+    require_once('vues/page-reserver-admin.php');
+}
+
+
+
+
 // MOT de PASSE PARTENAIRE
 public function pageAdminPartenaire($id)
 {

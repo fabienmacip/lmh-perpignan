@@ -10,6 +10,7 @@ session_start();
  require_once(dirname(__FILE__,2).'/modeles/Partenaire.php');
  require_once(dirname(__FILE__,2).'/modeles/Partenaires.php');
  require_once(dirname(__FILE__,2).'/modeles/Bureau.php');
+ require_once(dirname(__FILE__,2).'/modeles/Bureaus.php');
  require_once(dirname(__FILE__,2).'/modeles/BureauCalendar.php');
  require_once(dirname(__FILE__,2).'/modeles/BureauCalendars.php');
 
@@ -156,4 +157,14 @@ if(isset($_GET['moisan']) && isset($_GET['id']) && isset($_GET['action']) && 'di
     //echo $container;
 
 
+}
+
+/* ************** PARTIE CALENDAR ADMIN ***************** */
+
+if(isset($_GET['page']) && 'reserveradmin' === $_GET['page'] && isset($_GET['idpartenaire'])) {
+  
+  $_SESSION['partenaireActuel'] = $_GET['idpartenaire'];
+  $controleur4->listeCalendarsAdmin($_GET['idpartenaire']);
+  
+  
 }

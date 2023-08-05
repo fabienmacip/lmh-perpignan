@@ -239,6 +239,37 @@
   background-color: lightgreen;
 }
 
+/* *********** PARTIE ADMIN ************ */
+
+#div-select-abonne-for-calendar {
+  width: 100%;
+  text-align: center;  
+}
+
+#select-abonne-for-calendar {
+  padding: 1rem;
+  width: 90%;
+
+
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.option-abonne-for-calendar{
+  font-size: 1.1rem;
+}
+
+#liste-calendriers-admin {
+  border: 0;
+  padding: 0;
+  margin: 1rem 0 0 0;
+}
+
+
+/* *********** FIN PARTIE ADMIN ************ */
 
 
 @media screen and (max-width: 480px) {

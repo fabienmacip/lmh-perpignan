@@ -214,6 +214,9 @@ elseif (isset($_GET['page']) && 'reserver' === $_GET['page']){
     $controleur->pageReserver();
 }
 
+elseif (isset($_GET['page']) && 'reserveradmin' === $_GET['page']){
+    $controleur->pageReserverAdmin();
+}
 
 /* ************ */
 

@@ -1,6 +1,6 @@
 <?php
 
-//var_dump($calendrierDuBureau);
+/* echo "<pre>SESSION['partenaireActuel'] => ",var_dump($_SESSION['partenaireActuel']),"</pre>"; */
 
 ?>
 
@@ -23,7 +23,7 @@
       <td>V</td>
       <td>S</td>
       <td>D</td>
-      <td class="vos-heures-dispos-title">Vos heures disponibles</td>
+      <td class="vos-heures-dispos-title">Heures disponibles</td>
     </tr>
     <tr>
       <?php 
@@ -46,9 +46,9 @@
 
           // est-ce que ce jour du mois est réservé ?
           $dateSQL = $currentYear."-".$currentMonth."-".$dayNumberString;
-          $heuresReserveesParLePartenaire = $calendarsObject->listHoursReservedByPartenaire($dateSQL,$_SESSION['partenaire'],$bureau->getId());
-          $heuresReserveesPourLePartenaire = $calendarsObject->listHoursReservedForPartenaire($dateSQL,$_SESSION['partenaire'],$bureau->getId());
-          $heuresReserveesParUnAutrePartenaire = $calendarsObject->listHoursReservedByAnotherPartenaire($dateSQL,$_SESSION['partenaire'],$bureau->getId());
+          $heuresReserveesParLePartenaire = $calendarsObject->listHoursReservedByPartenaire($dateSQL,$_SESSION['partenaireActuel'],$bureau->getId());
+          $heuresReserveesPourLePartenaire = $calendarsObject->listHoursReservedForPartenaire($dateSQL,$_SESSION['partenaireActuel'],$bureau->getId());
+          $heuresReserveesParUnAutrePartenaire = $calendarsObject->listHoursReservedByAnotherPartenaire($dateSQL,$_SESSION['partenaireActuel'],$bureau->getId());
 
 
           // Est-ce que ce partenaire a réservé des créneaux sur ce jour du mois ?
@@ -57,11 +57,11 @@
           $nbCreneauxReserves = $calendarsObject->nbCreneauJourReserve($bureau->getId(),$dateSQL);
           $reservedClass = $nbCreneauxReserves == 0 ? 'bureau-non-reserve' : ($nbCreneauxReserves < 6 ? 'bureau-reserve' : ($nbCreneauxReserves < 11 ? 'bureau-reserve-much' : 'bureau-reserve-full'));
 
-          $toggleDay = ' onClick="displayCalendarBureauDay(\''.$dateSQL.'\',\''.$bureau->getId().'\',\''.$_SESSION["partenaire"].'\',\''.$heuresReserveesParLePartenaire.'\',\''.$heuresReserveesPourLePartenaire.'\',\''.$heuresReserveesParUnAutrePartenaire.'\',\''.$calendarsObject->getRemainingHoursPartenaire($_SESSION['partenaire'],$dateSQL).'\')" id=\'bureau'.$bureau->getId().'-day'.$dayNumber.'\'"';
+          $toggleDay = ' onClick="displayCalendarBureauDay(\''.$dateSQL.'\',\''.$bureau->getId().'\',\''.$_SESSION["partenaire"].'\',\''.$heuresReserveesParLePartenaire.'\',\''.$heuresReserveesPourLePartenaire.'\',\''.$heuresReserveesParUnAutrePartenaire.'\',\''.$calendarsObject->getRemainingHoursPartenaire($_SESSION['partenaireActuel'],$dateSQL).'\')" id=\'bureau'.$bureau->getId().'-day'.$dayNumber.'\'"';
           
           if($i == 7){
             echo "<td class='bureau-non-reservable'>".$dayNumber."</td>";
-            echo "<td id='".$dayNumber."/".$bureau->getId()."' class='bureau-heures-restantes bureau-heures-restantes-".$dateSQL."'>".$calendarsObject->getRemainingHoursPartenaire($_SESSION['partenaire'],$dateSQL)."</td>";
+            echo "<td id='".$dayNumber."/".$bureau->getId()."' class='bureau-heures-restantes bureau-heures-restantes-".$dateSQL."'>".$calendarsObject->getRemainingHoursPartenaire($_SESSION['partenaireActuel'],$dateSQL)."</td>";
           } else {
             echo "<td".$toggleDay." class='".$reservedClass.$hasCreneauPartenaire." pointer'>".$dayNumber."</td>";
           }
@@ -88,9 +88,9 @@
                 $dayNumberString = "0".$dayNumber;
               } else { $dayNumberString = $dayNumber; }
               $dateSQL = $currentYear."-".$currentMonth."-".$dayNumberString;
-              $heuresReserveesParLePartenaire = $calendarsObject->listHoursReservedByPartenaire($dateSQL,$_SESSION['partenaire'],$bureau->getId());
-              $heuresReserveesPourLePartenaire = $calendarsObject->listHoursReservedForPartenaire($dateSQL,$_SESSION['partenaire'],$bureau->getId());
-              $heuresReserveesParUnAutrePartenaire = $calendarsObject->listHoursReservedByAnotherPartenaire($dateSQL,$_SESSION['partenaire'],$bureau->getId());
+              $heuresReserveesParLePartenaire = $calendarsObject->listHoursReservedByPartenaire($dateSQL,$_SESSION['partenaireActuel'],$bureau->getId());
+              $heuresReserveesPourLePartenaire = $calendarsObject->listHoursReservedForPartenaire($dateSQL,$_SESSION['partenaireActuel'],$bureau->getId());
+              $heuresReserveesParUnAutrePartenaire = $calendarsObject->listHoursReservedByAnotherPartenaire($dateSQL,$_SESSION['partenaireActuel'],$bureau->getId());
 
               // Est-ce que ce partenaire a réservé des créneaux sur ce jour du mois ?
               strlen($heuresReserveesParLePartenaire.$heuresReserveesPourLePartenaire) > 0 ? $hasCreneauPartenaire = ' has-creneau-partenaire' : $hasCreneauPartenaire = '';
@@ -99,7 +99,7 @@
               $nbCreneauxReserves = $calendarsObject->nbCreneauJourReserve($bureau->getId(),$dateSQL);
               $reservedClass = $nbCreneauxReserves == 0 ? 'bureau-non-reserve' : ($nbCreneauxReserves < 6 ? 'bureau-reserve' : ($nbCreneauxReserves < 11 ? 'bureau-reserve-much' : 'bureau-reserve-full'));
 
-              $toggleDay = ' onClick="displayCalendarBureauDay(\''.$dateSQL.'\',\''.$bureau->getId().'\',\''.$_SESSION["partenaire"].'\',\''.$heuresReserveesParLePartenaire.'\',\''.$heuresReserveesPourLePartenaire.'\',\''.$heuresReserveesParUnAutrePartenaire.'\',\''.$calendarsObject->getRemainingHoursPartenaire($_SESSION['partenaire'],$dateSQL).'\')" id=\'bureau'.$bureau->getId().'-day'.$dayNumber.'\'"';
+              $toggleDay = ' onClick="displayCalendarBureauDay(\''.$dateSQL.'\',\''.$bureau->getId().'\',\''.$_SESSION["partenaire"].'\',\''.$heuresReserveesParLePartenaire.'\',\''.$heuresReserveesPourLePartenaire.'\',\''.$heuresReserveesParUnAutrePartenaire.'\',\''.$calendarsObject->getRemainingHoursPartenaire($_SESSION['partenaireActuel'],$dateSQL).'\')" id=\'bureau'.$bureau->getId().'-day'.$dayNumber.'\'"';
               if($day == 7){
                 echo "<td class='bureau-non-reservable'>".$dayNumber."</td>";
                 
@@ -114,7 +114,7 @@
               echo "<td></td>";
             }
           }
-          echo "<td id='".$dayNumber."/".$bureau->getId()."' class='bureau-heures-restantes bureau-heures-restantes-".$dateSQL."'>".$calendarsObject->getRemainingHoursPartenaire($_SESSION['partenaire'],$dateSQL)."</td>";
+          echo "<td id='".$dayNumber."/".$bureau->getId()."' class='bureau-heures-restantes bureau-heures-restantes-".$dateSQL."'>".$calendarsObject->getRemainingHoursPartenaire($_SESSION['partenaireActuel'],$dateSQL)."</td>";
         ?>
       </tr>
       <?php
