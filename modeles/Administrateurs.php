@@ -18,6 +18,19 @@ class Administrateurs
         return $liste;
     }
 
+    public function listerPartenaires()
+    {
+        if (!is_null($this->pdo)) {
+            $stmt = $this->pdo->query('SELECT * FROM administrateur WHERE partenaire <> 0');
+        }
+        $liste = [];
+        while ($element = $stmt->fetchObject('Administrateur',[$this->pdo])) {
+            $liste[] = $element;
+        }
+        $stmt->closeCursor();
+        return $liste;
+    }
+
     public function listerId($id)
     {
         $id = intval($id);

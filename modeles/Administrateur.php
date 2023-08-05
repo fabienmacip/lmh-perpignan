@@ -11,6 +11,7 @@ class Administrateur
     private $date_creation;
     private $mot_de_passe;
     private $partenaire;
+    private $isadmin; // si NOT isAdmin, alors c'est un "partenaire"
     
     public function afficher($id)
     {
@@ -63,6 +64,10 @@ class Administrateur
         return $this->partenaire;
     }
 
+    public function getIsAdmin() 
+    {
+        return $this->isadmin;
+    }
 
     // ROLES 
     // 1 : Admin
@@ -71,7 +76,7 @@ class Administrateur
     public function getRole()
     {
         $role = 0;
-        if($this->getPartenaire() == 0) {
+        if($this->getIsAdmin() == 1) {
             $role = 1; //admin
         } else {
             $role = 2; //partenaire

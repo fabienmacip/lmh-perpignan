@@ -48,6 +48,9 @@ class Controleur4 {
         return $calendarsObject;
     }
 
+
+/* ****************** CALENDAR ADMIN ****************** */
+
     public function listeCalendarsAdmin()
     {
 

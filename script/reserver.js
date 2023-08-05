@@ -67,7 +67,7 @@ function toggleHeureCalendar(heure,jour,idBureau,idPartenaire,action,heuresResta
   }
 
   heuresRestantes = parseInt(heuresRestantes)
-  if(heuresRestantes == 0 && action === 'add') {
+  if(heuresRestantes <= 0 && action === 'add') {
     alert('Il vous reste 0 heures pour cette semaine.\n'+
            'Vous devez, pour pouvoir réserver ce créneau horaire, soit :\n'+
            '- Supprimer un créneau horaire,\n'+

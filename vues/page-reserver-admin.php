@@ -23,12 +23,27 @@ ob_start();
             <p>Les bureaux et la salle de r&eacute;union sont r&eacute;servables de 8h à 20h, du LUNDI au SAMEDI.</p>
             <br>
             <div id="div-select-abonne-for-calendar">
+
+            <!-- $_SESSION["partenaireActuel"] -->
+
+            <?php 
+                /* echo "<pre>",var_dump($partenaireAllArray),"</pre>"; */
+            ?>
                 <select id="select-abonne-for-calendar" onchange="updateCalendarAdmin()">
-                    <option value="0" class="option-abonne-for-calendar">Fabien PCF-LCF</option>
-                    <option value="1"class="option-abonne-for-calendar">Maurice Agence Perpignan</option>
-                    <option value="2"class="option-abonne-for-calendar">Marcel Agence Perpignan</option>
-                    <option value="3"class="option-abonne-for-calendar">Julie BNP 66</option>
+                    <option value="<?= $partenaireActif[0]->getId() ?>" class="option-abonne-for-calendar"><?= $partenaireActif[0]->getNom() ?></option>
+                <?php
+                    foreach($partenaireAllArray as $onePartenaire):
+                        
+                        if($partenaireActif[0]->getId() != $onePartenaire->getId()){
+                ?>
+                        <option value="<?= $onePartenaire->getId() ?>" class="option-abonne-for-calendar"><?= $onePartenaire->getNom() ?></option>
+                <?php
+                        }
+                    endforeach;
+                ?>
                 </select>
+
+
             </div>
 
             <div id="liste-calendriers-admin">

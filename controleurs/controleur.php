@@ -345,7 +345,16 @@ public function pageReserverAdmin()
     $calendars = $calendarsObject->readAll();
 
     $partenaireActif = new Partenaires($this->pdo);
-    $partenaireActif = $partenaireActif->listerUn($_SESSION["partenaire"]);
+    $partenaireAll = new Partenaires($this->pdo);
+    $partenaireAllArray = $partenaireAll->lister();
+    //$partenaireAllArray = $partenaireAll->listerId($_SESSION['partenaire']);
+
+    /* echo "<pre>",var_dump($_SESSION),"</pre>"; */
+
+    $partenaireToDisplay = $_SESSION['partenaireActuel'] ?? $_SESSION['partenaire'];
+
+    $partenaireActif = $partenaireActif->listerUn($partenaireToDisplay);
+
     require_once('vues/page-reserver-admin.php');
 }
 
