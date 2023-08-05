@@ -54,25 +54,25 @@ class Partenaires
             $actif = 'WHERE actif ='.$actif.' ';
         }
         if (!is_null($this->pdo)) {
-            $stmt = $this->pdo->query('SELECT * FROM partenaire '.$actif.' ORDER BY universenfant');
+            $stmt = $this->pdo->query('SELECT * FROM partenaire '.$actif.' ORDER BY univers, universenfant, nom');
         }
         $tuples = [];
 
-        $tuplesUniversEnfant = [];
-        $indexUniversEnfant = 1;
+        $tuplesUnivers = [];
+        $indexUnivers = 1;
         
         while ($tuple = $stmt->fetchObject('Partenaire', [$this->pdo])) {
-            if($tuple->getUniversEnfant() == $indexUniversEnfant) {
-                $tuplesUniversEnfant[] = $tuple;
+            if($tuple->getUnivers() == $indexUnivers) {
+                $tuplesUnivers[] = $tuple;
             } else {
-                $indexUniversEnfant++;
-                $tuples[] = $tuplesUniversEnfant;
-                $tuplesUniversEnfant = [];
-                $tuplesUniversEnfant[] = $tuple;
+                $indexUnivers++;
+                $tuples[] = $tuplesUnivers;
+                $tuplesUnivers = [];
+                $tuplesUnivers[] = $tuple;
             }
 
         }
-        $tuples[] = $tuplesUniversEnfant;
+        $tuples[] = $tuplesUnivers;
 
         $stmt->closeCursor();
         return $tuples;

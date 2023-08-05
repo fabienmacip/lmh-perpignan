@@ -190,6 +190,8 @@ if(isset($_SESSION['prenom']) && isset($_SESSION['nom']) && isset($_SESSION['rol
                     <a href="#" class="nav-link" id="nos-references-link">Nos r&eacute;f&eacute;rences</a>
                     <!-- <a href="index.php?page=univers" class="nav-link">Nos r&eacute;f&eacute;rences</a> -->
                     <ul id="sub-nav-univers" class="absolute">
+                    <li><a href="index.php?page=univers&univid=all">TOUTES</a></li>
+                    <li class="nav-sub-menu-separator">&nbsp;</li>
                     <?php if(isset($universs)) {
                         foreach ($universs as $univers): ?>
                         <li><a href="index.php?page=univers&univid=<?= $univers->getId() ?>"><?= $univers->getNom() ?></a></li>

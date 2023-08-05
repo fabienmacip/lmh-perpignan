@@ -71,21 +71,21 @@ class Controleur {
         
         $partenaires = $partenaires->listerFromUnivers($univToDisplay);
         $universEnfants = $universEnfants->listerFromUnivers($univToDisplay);
-
+        
         $backToUnivers = $backToUnivers;
         require_once('vues/page-univers.php');
     }
-
+    
     public function pageUniversAll()
     {
         $universs = new Universs($this->pdo);
-        $partenaires = new Partenaires($this->pdo);
-        $universEnfants = new UniversEnfants($this->pdo);
+        $partenairesArray = new Partenaires($this->pdo);
+        $universEnfantsArray = new UniversEnfants($this->pdo);
         
         $universs = $universs->listerOrderById();
-        $universEnfantsArray = $universEnfants->listerOrderByUniversIdUniversEnfantId();
-        $partenairesArray = $partenaires->listerOrderByUniversEnfantId();
-
+        $universEnfantsArray = $universEnfantsArray->listerOrderByUniversIdUniversEnfantId();
+        $partenairesArray = $partenairesArray->listerOrderByUniversEnfantId();
+        
         require_once('vues/page-univers-all.php');
     }
 

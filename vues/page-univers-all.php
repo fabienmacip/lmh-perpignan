@@ -4,9 +4,11 @@ $titre = 'La R&eacute;f&eacuterence - Nos r&eacute;f&eacute;rences';
 ob_start();
 ?>
 
-<div class="container m-0 max-width-100vw univers-back">
-  <div class="row max-width-100percent flex-column">
-    
+<div class="container m-0 max-width-100vw all-univers-back">
+  <div id="page-univers-all" class="row max-width-100percent flex-column">
+    <h1>TOUTES NOS REFERENCES</h1>  
+
+
 <!--     <div 
       id="partenaire-detail" 
       class="col-12 p-1"
@@ -24,8 +26,13 @@ ob_start();
 
         //$univToDisplay = strval($univToDisplayInt);
         $univToDisplay = $univToDisplayInt;
+        $universEnfants = [];
+        $partenaires = [];
         $universEnfants = $universEnfantsArray[$univToDisplay];
         $partenaires = $partenairesArray[$univToDisplay];
+
+        /* echo "<pre>UNIVERS ENFANTS",var_dump($universEnfants),"</pre>";
+        echo "<pre>PARTENAIRES",var_dump($partenaires),"</pre>"; */
 
 /*         $universEnfants = $universEnfantsArray[$indexUnivers];
         $partenaires = $partenairesArray[$indexUnivers];
@@ -47,7 +54,7 @@ ob_start();
       >
         
       
-        <div class="univers-sticker p-1" style="background-image: url(img/univers/<?= $univers->getImage() ?>)">
+        <div class="univers-sticker p-1 mt-5" style="background-image: url(img/univers/<?= $univers->getImage() ?>)">
           <div>
             <h2><?= $univers->getNom() ?></h2>
             <div>
@@ -87,6 +94,10 @@ ob_start();
             $partenairesDeLUniversEnfant = array_filter($partenaires, function($el) use ($universEnfantActuelId) {
               return in_array($universEnfantActuelId,$el->getUniversEnfantArray());
             });
+
+            //var_dump($partenairesDeLUniversEnfant);
+            /* echo "<pre>id universenfant",var_dump($universEnfantActuelId),"</pre>";
+            echo "<pre>Liste Partenaires",var_dump($partenaires),"</pre>"; */
 
             foreach ($partenairesDeLUniversEnfant as $partenaire): 
           ?>

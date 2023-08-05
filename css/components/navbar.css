@@ -36,6 +36,12 @@ nav a:hover {
 
 }
 
+.nav-sub-menu-separator {
+  line-height: 4px;
+  border-bottom: 1px dashed var(--main-color-white);
+  margin-bottom: 4px;
+}
+
 /* * * * * *NOS REFERENCES * * * * * * */
 /* Sous-menu caché / Affiché si survol de "Nos références". */
 

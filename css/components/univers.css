@@ -1,3 +1,19 @@
+/* ************** PAGE UNIVERS : Tous les univers ************** */
+
+.all-univers-back {
+  background: linear-gradient(to bottom, var(--main-color-accent2), var(--main-color-accent2) 60px, #fff 60px, #fff 100%);
+}
+
+#page-univers-all h1 {
+  font-size: 1.9rem;
+  text-align: center;
+  margin: 0 auto;
+  line-height: 60px;
+}
+/* ************** FIN PAGE UNIVERS : Tous les univers ************** */
+
+
+
 /* ********** UNIVERS ************ */
 #tout-afficher{
   display: none;
@@ -129,5 +145,16 @@
 @media screen and (max-width: 480px) {
   .univers-enfant {
     font-size: 1rem;
+  }
+
+  #page-univers-all h1 {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  #page-univers-all h1 {
+    font-size: 16px;
+    padding: 0;
   }
 }

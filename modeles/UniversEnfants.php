@@ -56,7 +56,7 @@ class UniversEnfants
 
     public function listerOrderByUniversIdUniversEnfantId() {
         if (!is_null($this->pdo)) {
-            $stmt = $this->pdo->query('SELECT * FROM universenfant ORDER BY univers, id');
+            $stmt = $this->pdo->query('SELECT * FROM universenfant ORDER BY univers, nom');
         }
         $tuples = [];
         
