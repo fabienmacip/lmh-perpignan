@@ -213,7 +213,7 @@ function displayCalendarBureauDay(dateSQL, idBureau, idPartenaire,heuresParLePar
     //reserve30 = heuresPartenaire.includes(j+":30:00") ? 'heure-modifiable heure-partenaire pointer' : heuresAutrePartenaire.includes(j+":30:00") ? 'heure-non-modifiable' : 'heure-libre pointer'
 
     reserveText = heuresPartenaire.includes(j+":00:00") ? 'r&eacute;serv&eacute; par vous' : 
-                  heuresPartenaireSup.includes(j+":00:00") ? 'r&eacute;serv&eacute; pour vous' :
+                  heuresPartenaireSup.includes(j+":00:00") ? 'r&eacute;serv&eacute; pour vous<br><span>(heure en suppl&eacute;ment)</span>' :
                   heuresAutrePartenaire.includes(j+":00:00") ? 'non-disponible' : 'disponible'
     //reserveText30 = heuresPartenaire.includes(j+":30:00") ? 'r&eacute;serv&eacute; pour vous' : heuresAutrePartenaire.includes(j+":30:00") ? 'non-disponible' : 'disponible'
 
