@@ -45,6 +45,38 @@ class Partenaires
 
     }
 
+    public function listerOrderByUniversEnfantId($actif = 1) 
+    {
+        if($actif == 2){
+            $actif = '';
+        }
+        else {
+            $actif = 'WHERE actif ='.$actif.' ';
+        }
+        if (!is_null($this->pdo)) {
+            $stmt = $this->pdo->query('SELECT * FROM partenaire '.$actif.' ORDER BY universenfant');
+        }
+        $tuples = [];
+
+        $tuplesUniversEnfant = [];
+        $indexUniversEnfant = 1;
+        
+        while ($tuple = $stmt->fetchObject('Partenaire', [$this->pdo])) {
+            if($tuple->getUniversEnfant() == $indexUniversEnfant) {
+                $tuplesUniversEnfant[] = $tuple;
+            } else {
+                $indexUniversEnfant++;
+                $tuples[] = $tuplesUniversEnfant;
+                $tuplesUniversEnfant = [];
+                $tuplesUniversEnfant[] = $tuple;
+            }
+
+        }
+        $tuples[] = $tuplesUniversEnfant;
+
+        $stmt->closeCursor();
+        return $tuples;
+    }
 
     // READ
     public function listerFromUnivers($univers = 0)

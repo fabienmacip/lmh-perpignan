@@ -15,16 +15,23 @@ ob_start();
     <div id="partenaire-detail-texte"></div>
     <span id="croix-close-partenaire" onclick=closePartenaireDetail()>--X--</span>    
     </div> -->
-
-
-
+    
+    
+    
     <?php 
-
+      $univToDisplayInt = 0;
       foreach ($universs as $univers): 
-      
-      // On n'affiche qu'un univers sur cette page.
-      if($univers->getId() == $univToDisplay){
-      
+
+        //$univToDisplay = strval($univToDisplayInt);
+        $univToDisplay = $univToDisplayInt;
+        $universEnfants = $universEnfantsArray[$univToDisplay];
+        $partenaires = $partenairesArray[$univToDisplay];
+
+/*         $universEnfants = $universEnfantsArray[$indexUnivers];
+        $partenaires = $partenairesArray[$indexUnivers];
+ */
+        $univToDisplayInt++;
+        $backToUnivers = 0;
     ?>
 
 
@@ -133,7 +140,6 @@ ob_start();
       <!-- FIN UNIVERS ENFANTS -->
           <?php endforeach; ?>
       <?php 
-      }
     endforeach; ?>
 
   </div>

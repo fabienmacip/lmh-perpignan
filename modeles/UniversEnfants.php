@@ -53,6 +53,36 @@ class UniversEnfants
 
         return $tuples;
     }
+
+    public function listerOrderByUniversIdUniversEnfantId() {
+        if (!is_null($this->pdo)) {
+            $stmt = $this->pdo->query('SELECT * FROM universenfant ORDER BY univers, id');
+        }
+        $tuples = [];
+        
+        $tuplesUnivers = [];
+        $indexUnivers = 1;
+        
+        while ($tuple = $stmt->fetchObject('UniversEnfant', [$this->pdo])) {
+            
+            if($tuple->getUniversId() == $indexUnivers) {
+                $tuplesUnivers[] = $tuple;
+            } else {
+                $indexUnivers++;
+                $tuples[] = $tuplesUnivers;
+                $tuplesUnivers = [];
+                $tuplesUnivers[] = $tuple;
+            }
+        }
+
+        $tuples[] = $tuplesUnivers;
+
+        $stmt->closeCursor();
+
+        return $tuples;
+    }
+
+
     // READ pour listes déroulantes
     public function listerJson()
     {

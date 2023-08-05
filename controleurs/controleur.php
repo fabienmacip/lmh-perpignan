@@ -63,24 +63,31 @@ class Controleur {
     public function pageUnivers($univId, $backToUnivers = 0)
     {
         $universs = new Universs($this->pdo);
-        $universs = $universs->lister();
-        
-        $univToDisplay = $univId;
-
         $partenaires = new Partenaires($this->pdo);
-        $partenaires = $partenaires->listerFromUnivers($univToDisplay);
-
-        /* $partenaires = $partenaires->lister(); */
-
         $universEnfants = new UniversEnfants($this->pdo);
+        
+        $universs = $universs->lister();
+        $univToDisplay = $univId;
+        
+        $partenaires = $partenaires->listerFromUnivers($univToDisplay);
         $universEnfants = $universEnfants->listerFromUnivers($univToDisplay);
 
-        /* $dates = new MyDates($this->pdo);
-        $dates = $dates->listerDate(); */
         $backToUnivers = $backToUnivers;
         require_once('vues/page-univers.php');
     }
 
+    public function pageUniversAll()
+    {
+        $universs = new Universs($this->pdo);
+        $partenaires = new Partenaires($this->pdo);
+        $universEnfants = new UniversEnfants($this->pdo);
+        
+        $universs = $universs->listerOrderById();
+        $universEnfantsArray = $universEnfants->listerOrderByUniversIdUniversEnfantId();
+        $partenairesArray = $partenaires->listerOrderByUniversEnfantId();
+
+        require_once('vues/page-univers-all.php');
+    }
 
     // PROSPECT - CRUD
 

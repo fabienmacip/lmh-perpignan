@@ -106,11 +106,15 @@ elseif (isset($_GET['page']) && 'mentions-legales' === $_GET['page']) {
 }
 
 
-// UNIVERS - Visiteur
+// UNIVERS - Visiteur - 1 seul univers
 elseif (isset($_GET['page']) && 'univers' === $_GET['page'] && isset($_GET['univid']) && $_GET['univid'] >= 1 && $_GET['univid'] < 7) {
     $controleur->pageUnivers(substr($_GET['univid'], 0, 1));
 }
 
+// UNIVERS - Visiteur - tous les univers
+elseif (isset($_GET['page']) && 'univers' === $_GET['page'] && isset($_GET['univid']) && $_GET['univid'] === "all" ) {
+    $controleur->pageUniversAll();
+}
 
 
 

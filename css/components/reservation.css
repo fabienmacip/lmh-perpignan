@@ -87,11 +87,12 @@
 .btn-last-month{
   background-color: var(--main-color-accent-light);
   width: 50px;
+  
   transition: background-color 1s, box-shadow 1s;
-  -webkit-transition: background-color 1s, box-shadow 12s;
-  -moz-transition: background-color 1s, box-shadow 12s;
-  -ms-transition: background-color 1s, box-shadow 12s;
-  -o-transition: background-color 1s, box-shadow 12s;
+  -webkit-transition: background-color 1s, box-shadow 1s;
+  -moz-transition: background-color 1s, box-shadow 1s;
+  -ms-transition: background-color 1s, box-shadow 1s;
+  -o-transition: background-color 1s, box-shadow 1s;
 }
 
 .btn-next-month:hover,
