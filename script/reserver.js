@@ -68,7 +68,10 @@ function toggleHeureCalendar(heure,jour,idBureau,idPartenaire,action,heuresResta
 
   heuresRestantes = parseInt(heuresRestantes)
   if(heuresRestantes == 0 && action === 'add') {
-    alert('Il vous reste 0 heures pour cette semaine.\nVous devez supprimer un créneau horaire pour pouvoir réserver celui-ci.')
+    alert('Il vous reste 0 heures pour cette semaine.\n'+
+           'Vous devez, pour pouvoir réserver ce créneau horaire, soit :\n'+
+           '- Supprimer un créneau horaire,\n'+
+           '- Nous contacter pour demander un supplément d\'heures.')
     return true
   }
 
@@ -169,7 +172,7 @@ function toggleHeureCalendar(heure,jour,idBureau,idPartenaire,action,heuresResta
   req.send(data);
 }
 
-function displayCalendarBureauDay(dateSQL, idBureau, idPartenaire,heuresParLePartenaire,heuresParUnAutrePartenaire, heuresRestantes) {
+function displayCalendarBureauDay(dateSQL, idBureau, idPartenaire,heuresParLePartenaire,heuresPourLePartenaire,heuresParUnAutrePartenaire, heuresRestantes) {
   /* console.log(dateSQL)
   console.log(idBureau)
   console.log(idPartenaire)
@@ -197,21 +200,27 @@ function displayCalendarBureauDay(dateSQL, idBureau, idPartenaire,heuresParLePar
                 <p>Pour cette semaine, il vous reste <span id="heures-restantes-semaine">${heuresRestantes}</span> heure(s).`
 
   heuresPartenaire = heuresParLePartenaire.split('/')
+  heuresPartenaireSup = heuresPourLePartenaire.split('/')
   heuresAutrePartenaire = heuresParUnAutrePartenaire.split('/')
-  /* console.log(heuresPartenaire)
-  console.log(heuresAutrePartenaire)
- */
+
   // Génération des plages horaires par 60mn - De 08h à 20h
   for(i = 8 ; i<20 ; i++) {
     j = i < 10 ? "0"+i : i
 
-    reserve = heuresPartenaire.includes(j+":00:00") ? 'heure-modifiable heure-partenaire pointer' : heuresAutrePartenaire.includes(j+":00:00") ? 'heure-non-modifiable' : 'heure-libre pointer'
+    reserve = heuresPartenaire.includes(j+":00:00") ? 'heure-modifiable heure-partenaire pointer' : 
+              heuresPartenaireSup.includes(j+":00:00") ? 'heure-partenaire-sup' :
+              heuresAutrePartenaire.includes(j+":00:00") ? 'heure-non-modifiable' : 'heure-libre pointer'
     //reserve30 = heuresPartenaire.includes(j+":30:00") ? 'heure-modifiable heure-partenaire pointer' : heuresAutrePartenaire.includes(j+":30:00") ? 'heure-non-modifiable' : 'heure-libre pointer'
 
-    reserveText = heuresPartenaire.includes(j+":00:00") ? 'r&eacute;serv&eacute; pour vous' : heuresAutrePartenaire.includes(j+":00:00") ? 'non-disponible' : 'disponible'
+    reserveText = heuresPartenaire.includes(j+":00:00") ? 'r&eacute;serv&eacute; par vous' : 
+                  heuresPartenaireSup.includes(j+":00:00") ? 'r&eacute;serv&eacute; pour vous' :
+                  heuresAutrePartenaire.includes(j+":00:00") ? 'non-disponible' : 'disponible'
     //reserveText30 = heuresPartenaire.includes(j+":30:00") ? 'r&eacute;serv&eacute; pour vous' : heuresAutrePartenaire.includes(j+":30:00") ? 'non-disponible' : 'disponible'
 
-    reserveClic = heuresPartenaire.includes(j+":00:00") ? `onclick="toggleHeureCalendar(\'${j}:00:00\',\'${dateSQL}\',\'${idBureau}\',\'${idPartenaire}\',\'remove\',\'${heuresRestantes}\')"` : heuresAutrePartenaire.includes(j+":00:00") ? '' : `onclick="toggleHeureCalendar(\'${j}:00:00\',\'${dateSQL}\',\'${idBureau}\',\'${idPartenaire}\',\'add\',\'${heuresRestantes}\')"`
+    reserveClic = heuresPartenaire.includes(j+":00:00") ? 
+                  `onclick="toggleHeureCalendar(\'${j}:00:00\',\'${dateSQL}\',\'${idBureau}\',\'${idPartenaire}\',\'remove\',\'${heuresRestantes}\')"` : 
+                  (heuresAutrePartenaire.includes(j+":00:00") || heuresPartenaireSup.includes(j+":00:00")) ? '' :
+                  `onclick="toggleHeureCalendar(\'${j}:00:00\',\'${dateSQL}\',\'${idBureau}\',\'${idPartenaire}\',\'add\',\'${heuresRestantes}\')"`
     //reserveClic30 = heuresPartenaire.includes(j+":30:00") ? `onclick="toggleHeureCalendar(\'${j}:30:00\',\'${dateSQL}\',\'${idBureau}\',\'${idPartenaire}\',\'remove\')"` : heuresAutrePartenaire.includes(j+":30:00") ? '' : `onclick="toggleHeureCalendar(\'${j}:30:00\',\'${dateSQL}\',\'${idBureau}\',\'${idPartenaire}\',\'add\')"`
 
     leJour += `<div class="flex flew-row jcc aic heure-line"><div class="heure-digitale">${j}:00</div><div id='heure-${j}:00' ${reserveClic} class='heure-contenu tc ${reserve}'>${reserveText}</div></div>`

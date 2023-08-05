@@ -9,6 +9,7 @@ class BureauCalendar
     private $idBureau;
     private $date;
     private $heuredebut;
+    private $isheuresup; // Heure saisie par un ADMIN, car le Partenaire n'avait plus de crédit d'heures.
     /* private $heurefin;
     private $duree; */ 
 
@@ -50,6 +51,11 @@ class BureauCalendar
     public function getHeureDebut() {
       return $this->heuredebut;
     }
+
+    public function getIsHeureSup() {
+      return $this->isheuresup;
+    }
+
 
 /*     public function getHeureFin() {
       return $this->heurefin;

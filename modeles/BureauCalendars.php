@@ -149,7 +149,30 @@ class BureauCalendars
     public function listHoursReservedByPartenaire($dateSQL,$idPartenaire,$idBureau){
         
         if (!is_null($this->pdo)) {
-            $sql = 'SELECT * FROM bureaucalendar WHERE idBureau = :idBureau AND date = :date AND idPartenaire = :idPartenaire';
+            $sql = 'SELECT * FROM bureaucalendar WHERE idBureau = :idBureau AND date = :date AND idPartenaire = :idPartenaire AND isheuresup = 0';
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([":idBureau"=>$idBureau, ":date"=>$dateSQL, ":idPartenaire"=>$idPartenaire]);
+        }
+        $tuples = '';
+        while ($tuple = $stmt->fetchObject('BureauCalendar', [$this->pdo])) {
+            $tuples .= $tuple->getHeureDebut()."/";
+        }
+        
+        $stmt->closeCursor();
+
+        if(strlen($tuples) > 0) {
+            $tuples = substr($tuples,0,-1);
+        }
+        
+        return $tuples;
+
+    }
+
+    // Liste des créneaux horaires pour UN jour donnée, pour LE partenaire, en heures sups
+    public function listHoursReservedForPartenaire($dateSQL,$idPartenaire,$idBureau){
+        
+        if (!is_null($this->pdo)) {
+            $sql = 'SELECT * FROM bureaucalendar WHERE idBureau = :idBureau AND date = :date AND idPartenaire = :idPartenaire AND isheuresup = 1';
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute([":idBureau"=>$idBureau, ":date"=>$dateSQL, ":idPartenaire"=>$idPartenaire]);
         }

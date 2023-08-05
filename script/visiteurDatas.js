@@ -414,14 +414,14 @@ function displayShortMessageBox(titre, partenaireId){
                           </div>
                         <div>
                           <label for="fsm-prenom">Pr&eacute;nom <span class="asterisque"></span><br>
-                          <input type="text" id="fsm-prenom" name="fsm-prenom"  maxlength=10 placeholder="votre pr&eacute;nom" tabindex="2" oninput="checkVisiteurFormField('fsm-prenom')"
+                          <input type="text" id="fsm-prenom" name="fsm-prenom"  maxlength=30 placeholder="votre pr&eacute;nom" tabindex="2" oninput="checkVisiteurFormField('fsm-prenom')"
                           onblur="checkVisiteurFormField('fsm-prenom')">
                           </label><br>
                           <div id="error-fsm-prenom" class="visiteur-form-error">Pr&eacute;nom : minimum 2 caract&egrave;res</div>
                         </div>
                         <div>
                           <label for="fsm-mail">Mail <span class="asterisque"></span><br>
-                          <input type="email" id="fsm-mail" name="fsm-mail" maxlength=50 placeholder="votre mail" tabindex="3" oninput="checkVisiteurFormField('fsm-mail')"
+                          <input type="email" id="fsm-mail" name="fsm-mail" maxlength=60 placeholder="votre mail" tabindex="3" oninput="checkVisiteurFormField('fsm-mail')"
                           onblur="checkVisiteurFormField('fsm-mail')">
                           </label><br>
                           <div id="error-fsm-mail" class="visiteur-form-error">Email invalide ou vide</div>

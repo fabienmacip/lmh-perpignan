@@ -205,6 +205,11 @@
   background-color: rgb(255, 255, 140);
 }
 
+.heure-partenaire-sup {
+  background-color: rgb(205,205,100);
+  cursor: not-allowed;
+}
+
 .heure-non-modifiable {
   background-color: lightcoral;
   cursor: not-allowed;
