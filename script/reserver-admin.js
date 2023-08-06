@@ -4,10 +4,10 @@ function updateCalendarAdmin() {
   let partenaireId = values.val()
   let partenaireName = values.text()
   
-  reloadCalendarAdmin(partenaireId,partenaireName)
+  reloadCalendarsAdmin(partenaireId,partenaireName)
 }
 
-function reloadCalendarAdmin(partenaireId,partenaireName) {
+function reloadCalendarsAdmin(partenaireId,partenaireName) {
   
 /*   let datasObj = {}
 
@@ -103,4 +103,87 @@ function displayCalendarBureauDayAdmin(dateSQL, idBureau, idPartenaire,heuresPar
   //mainReservations.hide();
   //document.body.appendChild
 
+}
+
+// *********************** AFFICHAGE NEXT MONTH et LAST MONTH ***************************************
+
+function loadOneBureauCalendarMonthAdmin(moisan, id) {
+  
+  let datasObj = {}
+
+/*   datasObj.mois = moisan
+  datasObj.bureauId = id
+  datasObj.action = 'display-next-month'
+ */
+  let data = new FormData();
+  for (const key in datasObj) {
+    data.append(key, datasObj[key])
+  }
+  var req = new XMLHttpRequest();
+  req.responseType = 'text';
+
+  req.open('GET', 'controleurs/bureauCalendar.php?moisan=' + moisan + '&id=' + id + '&action=display-bureau-next-month');
+
+  let lemois = '';
+
+  req.onloadstart = function() {}
+  req.onprogress = function() {}
+  req.onload = function() {}
+
+  req.onloadend = function() {
+
+    lemois = this.responseText;
+    bureau = document.getElementById('bureau-corps-'+id)
+    bureau.innerHTML = lemois
+      
+    }
+  req.send();
+  
+}
+
+
+function bureauNextMonthAdmin(mois = '07', an = '2023', id = '1') {
+
+  mois = parseInt(mois);
+  mois = ((mois + 1) % 12);
+  if(mois === 0) { mois = 12; }
+
+  if (mois === 1){
+    an = parseInt(an) + 1;
+  }
+  nextMonth = an+'-'+mois+'-01';
+  newMonth = new Date(nextMonth);
+
+  mois = newMonth.getMonth() + 1;
+  if(mois < 10){
+    mois = "0"+mois;
+  }
+  an = newMonth.getFullYear();
+
+  let moisan = an.toString()+mois.toString();
+
+  loadOneBureauCalendarMonthAdmin(moisan,id);
+}
+
+function bureauLastMonthAdmin(mois = '07', an = '2023', id = '1') {
+
+  mois = parseInt(mois);
+  mois = ((mois - 1) % 12);
+  if(mois === 0) { mois = 12; }
+
+  if (mois === 12){
+    an = parseInt(an) - 1;
+  }
+  lastMonth = an+'-'+mois+'-01';
+  newMonth = new Date(lastMonth);
+
+  mois = newMonth.getMonth() + 1;
+  if(mois < 10){
+    mois = "0"+mois;
+  }
+  an = newMonth.getFullYear();
+
+  let moisan = an.toString()+mois.toString();
+
+  loadOneBureauCalendarMonthAdmin(moisan,id);
 }

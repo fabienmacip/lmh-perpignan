@@ -1,16 +1,16 @@
 <?php
 
-/* echo "<pre>SESSION['partenaireActuel'] => ",var_dump($_SESSION['partenaireActuel']),"</pre>"; */
+/* echo "<pre>SESSION['partenaireActuel'] => ",var_dump($_SESSION['partenaireActuel']),"</pre>";  */
 
 ?>
 
 <table id="table-calendar-<?= $bureau->getId() ?>" class="table-calendar">
   <thead>
-  <th><button id="btn-last-month-<?= $bureau->getId() ?>" class="btn-last-month" onClick="bureauLastMonth('<?=$currentMonth?>','<?=$currentYear?>','<?=$bureau->getId()?>')">
+  <th><button id="btn-last-month-<?= $bureau->getId() ?>" class="btn-last-month" onClick="bureauLastMonthAdmin('<?=$currentMonth?>','<?=$currentYear?>','<?=$bureau->getId()?>')">
         <img src="img/icones/left-arrow-black.png" alt="left arrow black">
       </button></th>
     <th colspan="6"><?= $moisFrancais ?> <?= $currentYear ?></th>
-    <th><button id="btn-next-month-<?= $bureau->getId() ?>" class="btn-next-month" onClick="bureauNextMonth('<?=$currentMonth?>','<?=$currentYear?>','<?=$bureau->getId()?>')">
+    <th><button id="btn-next-month-<?= $bureau->getId() ?>" class="btn-next-month" onClick="bureauNextMonthAdmin('<?=$currentMonth?>','<?=$currentYear?>','<?=$bureau->getId()?>')">
           <img src="img/icones/right-arrow-black.png" alt="right arrow black">
         </button></th>
   </thead>
