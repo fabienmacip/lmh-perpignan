@@ -136,6 +136,7 @@ if(isset($_GET['moisan']) && isset($_GET['id']) && isset($_GET['action']) && 'di
 
 if(isset($_GET['page']) && 'reserveradmin' === $_GET['page'] && isset($_GET['idpartenaire'])) {
   $_SESSION['partenaireActuel'] = $_GET['idpartenaire'];
+  $_SESSION['partenaireActuelNom'] = $_GET['namepartenaire'];
   $controleur4->listeCalendarsAdmin($_GET['idpartenaire']);
 }
 

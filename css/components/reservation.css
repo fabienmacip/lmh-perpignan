@@ -182,6 +182,20 @@
   text-align: center;
 }
 
+#leJour-nomPartenaire-h3 {
+  margin: 20px auto;
+}
+
+#leJour-nomPartenaire-span {
+  background-color: var(--main-color-light);
+  padding: 8px 15px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
 #closeLeJour {
   padding: 0.5rem;
   font-size: 1.5rem;

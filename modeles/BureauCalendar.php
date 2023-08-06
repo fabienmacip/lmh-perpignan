@@ -30,7 +30,25 @@ class BureauCalendar
         return $tuple;
     }
 
-    
+    public function getPartenaireNom($partenaireId)
+    {
+        if (!is_null($this->pdo)) {
+            $stmt = $this->pdo->prepare('SELECT nom FROM partenaire WHERE id = ?');
+        }
+        $tuple = [];//null;
+        
+        if ($stmt->execute([$partenaireId])) {
+            $tuple = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if (!is_array($tuple)) {
+                $tuple = []; //null;
+                return '';
+            }
+        }
+        $stmt->closeCursor();
+        return $tuple[0]["nom"];
+    }
+
     public function getId()
     {
       return $this->id;

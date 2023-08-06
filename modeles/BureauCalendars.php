@@ -222,7 +222,8 @@ class BureauCalendars
         }
         $tuples = '';
         while ($tuple = $stmt->fetchObject('BureauCalendar', [$this->pdo])) {
-            $tuples .= $tuple->getHeureDebut()."-".$tuple->getIdPartenaire()."/";
+
+            $tuples .= $tuple->getHeureDebut()."&-&".$tuple->getIdPartenaire()."&-&".$tuple->getPartenaireNom($tuple->getIdPartenaire())."/";
         }
         
         $stmt->closeCursor();
@@ -299,6 +300,28 @@ class BureauCalendars
         return $duree;
     }
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     // Cette fonction n'est plus utilisée. Elle était utile lorsque on était en créneaux de 30mn.
     function getRemainingMinutesPartenaire($idPartenaire, $datePartenaire) {

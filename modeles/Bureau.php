@@ -26,7 +26,6 @@ class Bureau
         return $tuple;
     }
 
-    
     public function getId()
     {
       return $this->id;

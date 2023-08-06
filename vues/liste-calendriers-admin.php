@@ -2,6 +2,8 @@
                 <?php
 
                     $_SESSION['partenaireActuel'] = isset($_SESSION['partenaireActuel']) ? $_SESSION['partenaireActuel'] : $_SESSION['partenaire'];
+                    $_SESSION['partenaireActuelNom'] = isset($_SESSION['partenaireActuelNom']) ? $_SESSION['partenaireActuelNom'] : $partenaireActif[0]->getNom();
+                    
 
                     // On affecte un tableau (array) par bureau pour avoir un tableau de réservations par bureau
                     $buros = [];

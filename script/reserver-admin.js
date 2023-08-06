@@ -38,7 +38,7 @@ function reloadCalendarsAdmin(partenaireId,partenaireName) {
 
 }
 
-function displayCalendarBureauDayAdmin(dateSQL, idBureau, idPartenaire,heuresParLePartenaire,heuresPourLePartenaire,heuresParUnAutrePartenaire, heuresRestantes) {
+function displayCalendarBureauDayAdmin(dateSQL, idBureau, idPartenaire,nomPartenaire,heuresParLePartenaire,heuresPourLePartenaire,heuresParUnAutrePartenaire, heuresRestantes) {
   /* console.log(dateSQL)
   console.log(idBureau)
   console.log(idPartenaire)
@@ -62,8 +62,7 @@ function displayCalendarBureauDayAdmin(dateSQL, idBureau, idPartenaire,heuresPar
                 <div id="closeLeJour" onclick='displayAnewReservationMain(${idPartenaire},${heightToGoBack})' class="pointer"> X </div>
                 <h2>${datePourJour} ${dateFormatOK}</h2>
                 <h3>Bureau n°${idBureau}</h3>
-                <p>Les cr&eacute;neaux se r&eacute;servent par demi-heure. Le dernier cr&eacute;neau commence à 19h30 et se termine donc à 20h00.</p>
-                <p>Pour cette semaine, il vous reste <span id="heures-restantes-semaine">${heuresRestantes}</span> heure(s).`
+                <h3 id="leJour-nomPartenaire-h3"><span id="leJour-nomPartenaire-span">${nomPartenaire}</span></h3>`
 
   heuresPartenaire = heuresParLePartenaire.split('/')
   heuresPartenaireSup = heuresPourLePartenaire.split('/')
@@ -71,10 +70,17 @@ function displayCalendarBureauDayAdmin(dateSQL, idBureau, idPartenaire,heuresPar
 
   heuresAutrePartenaire = []
   idAutrePartenaire = []
+  nomAutrePartenaire = []
+  tempoArray = []
   heuresAutrePartenaireArray.forEach(element => {
-    heuresAutrePartenaire.push(element.split('-')[0])
-    idAutrePartenaire.push(element.split('-')[1])
+
+    tempoArray = element.split('&-&')
+    heuresAutrePartenaire.push(tempoArray[0])
+    idAutrePartenaire.push(tempoArray[1])
+    nomAutrePartenaire.push(tempoArray[2])
   });
+
+  delete(tempoArray)
 
   // Génération des plages horaires par 60mn - De 08h à 20h
   for(i = 8 ; i<20 ; i++) {
@@ -86,14 +92,16 @@ function displayCalendarBureauDayAdmin(dateSQL, idBureau, idPartenaire,heuresPar
     //reserve30 = heuresPartenaire.includes(j+":30:00") ? 'heure-modifiable heure-partenaire pointer' : heuresAutrePartenaire.includes(j+":30:00") ? 'heure-non-modifiable' : 'heure-libre pointer'
 
     if(heuresAutrePartenaire.includes(j+":00:00")){
-      reserveIdAutrePartenaire = idAutrePartenaire[heuresAutrePartenaire.indexOf(j+":00:00")]
+      lindex = heuresAutrePartenaire.indexOf(j+":00:00")
+      reserveIdAutrePartenaire = idAutrePartenaire[lindex]
+      reserveNomAutrePartenaire = nomAutrePartenaire[lindex]
     } else {
       reserveIdAutrePartenaire = ''
     }
     
-    reserveText = heuresPartenaire.includes(j+":00:00") ? 'r&eacute;serv&eacute; par ce partenaire' : 
-                  heuresPartenaireSup.includes(j+":00:00") ? 'r&eacute;serv&eacute; pour ce partenaire<br><span>(heure en suppl&eacute;ment)</span>' :
-                  heuresAutrePartenaire.includes(j+":00:00") ? 'r&eacute;serv&eacute par n°'+reserveIdAutrePartenaire : 'disponible'
+    reserveText = heuresPartenaire.includes(j+":00:00") ? 'r&eacute;serv&eacute; par '+nomPartenaire : 
+                  heuresPartenaireSup.includes(j+":00:00") ? 'r&eacute;serv&eacute; pour '+nomPartenaire+'<br><span>(heure en suppl&eacute;ment)</span>' :
+                  heuresAutrePartenaire.includes(j+":00:00") ? 'r&eacute;serv&eacute par '+reserveNomAutrePartenaire : 'disponible'
     //reserveText30 = heuresPartenaire.includes(j+":30:00") ? 'r&eacute;serv&eacute; pour vous' : heuresAutrePartenaire.includes(j+":30:00") ? 'non-disponible' : 'disponible'
 
     reserveClic = heuresPartenaireSup.includes(j+":00:00") ? 
@@ -202,7 +210,7 @@ function toggleHeureCalendarAdmin(heure,jour,idBureau,idPartenaire,action) {
         heuresRestantes.innerText = req.response["heures-restantes"]
  */
         creneauToUpdate.classList.remove('heure-partenaire-sup-admin')
-        creneauToUpdate.classList.add('heure-libre')
+        creneauToUpdate.classList.add('heure-libre','pointer')
         creneauToUpdate.innerText = 'disponible'
         creneauToUpdate.setAttribute('onclick','toggleHeureCalendarAdmin(\''+heure+'\',\''+jour+'\',\''+idBureau+'\',\''+idPartenaire+'\',\'add\')')
 
