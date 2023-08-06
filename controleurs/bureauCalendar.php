@@ -18,7 +18,7 @@ session_start();
 
  $controleur4 = new Controleur4($pdo);
 
-if(isset($_POST['action']) && ('add' === $_POST['action'] || 'remove' === $_POST['action'])) {
+if(!isset($_POST['admin']) && isset($_POST['action']) && ('add' === $_POST['action'] || 'remove' === $_POST['action'])) {
   
   $partenaireId = $_POST['partenaireId'] ?? '';
   $bureauId = $_POST['bureauId'] ?? '';
@@ -135,9 +135,59 @@ if(isset($_GET['moisan']) && isset($_GET['id']) && isset($_GET['action']) && 'di
 /* ************** PARTIE CALENDAR ADMIN ***************** */
 
 if(isset($_GET['page']) && 'reserveradmin' === $_GET['page'] && isset($_GET['idpartenaire'])) {
-  
   $_SESSION['partenaireActuel'] = $_GET['idpartenaire'];
   $controleur4->listeCalendarsAdmin($_GET['idpartenaire']);
+}
+
+// Mise à jour d'un créneau horaire
+if(isset($_POST['admin']) && 'yes' === $_POST['admin'] && isset($_POST['action']) && ('add' === $_POST['action'] || 'remove' === $_POST['action'])) {
   
+  $partenaireId = $_POST['partenaireId'] ?? '';
+  $bureauId = $_POST['bureauId'] ?? '';
+  $jour = $_POST['jour'] ?? '';
+  $heure = $_POST['heure'] ?? '';
+  $action = $_POST['action'] ?? '';
+  $isHeureSup = 1;
+
+  if (isset($_POST['partenaireId']) && isset($_POST['bureauId'])) {
+    if($action === 'add'){
+
+      $reponse = $controleur4->addCreneauHoraire($partenaireId,$bureauId,$jour,$heure,$isHeureSup);
+      
+      if($reponse){
+        $res["status"] = "200";
+        $res["data"] = "Créneau horaire réservé avec succès.";
+        $res["requeteok"] = "true";
+      }
+      else {
+        $res['status'] = "404";
+        $res["data"] ="Erreur lors de la réservation du créneau horaire";
+        $res["requeteok"] = "false";
+      }
+
+    } elseif($action === 'remove') {
+
+      $reponse = $controleur4->removeCreneauHoraire($partenaireId,$bureauId,$jour,$heure);
+      
+      if($reponse){
+        $res["status"] = "200";
+        $res["data"] = "Créneau horaire supprimé avec succès.";
+        $res["requeteok"] = "true";
+      }
+      else {
+        $res['status'] = "404";
+        $res["data"] ="Erreur lors de la suppression du créneau horaire";
+        $res["requeteok"] = "false";
+      }
+    }
+
+    //$res["heures-restantes"] = $controleur4->reloadRemainingHours($partenaireId,$jour);
+
+    echo json_encode($res);
+
+    /* else {
+      var_dump("ERREUR lors de la récupération des données PROSPECT et/ou PARTENAIRE.");
+    } */
   
+  }
 }

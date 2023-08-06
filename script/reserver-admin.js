@@ -67,26 +67,39 @@ function displayCalendarBureauDayAdmin(dateSQL, idBureau, idPartenaire,heuresPar
 
   heuresPartenaire = heuresParLePartenaire.split('/')
   heuresPartenaireSup = heuresPourLePartenaire.split('/')
-  heuresAutrePartenaire = heuresParUnAutrePartenaire.split('/')
+  heuresAutrePartenaireArray = heuresParUnAutrePartenaire.split('/')
+
+  heuresAutrePartenaire = []
+  idAutrePartenaire = []
+  heuresAutrePartenaireArray.forEach(element => {
+    heuresAutrePartenaire.push(element.split('-')[0])
+    idAutrePartenaire.push(element.split('-')[1])
+  });
 
   // Génération des plages horaires par 60mn - De 08h à 20h
   for(i = 8 ; i<20 ; i++) {
     j = i < 10 ? "0"+i : i
 
-    reserve = heuresPartenaire.includes(j+":00:00") ? 'heure-modifiable heure-partenaire pointer' : 
-              heuresPartenaireSup.includes(j+":00:00") ? 'heure-partenaire-sup' :
+    reserve = heuresPartenaire.includes(j+":00:00") ? 'heure-modifiable heure-partenaire-admin' : 
+              heuresPartenaireSup.includes(j+":00:00") ? 'heure-partenaire-sup-admin' :
               heuresAutrePartenaire.includes(j+":00:00") ? 'heure-non-modifiable' : 'heure-libre pointer'
     //reserve30 = heuresPartenaire.includes(j+":30:00") ? 'heure-modifiable heure-partenaire pointer' : heuresAutrePartenaire.includes(j+":30:00") ? 'heure-non-modifiable' : 'heure-libre pointer'
 
-    reserveText = heuresPartenaire.includes(j+":00:00") ? 'r&eacute;serv&eacute; par vous' : 
-                  heuresPartenaireSup.includes(j+":00:00") ? 'r&eacute;serv&eacute; pour vous<br><span>(heure en suppl&eacute;ment)</span>' :
-                  heuresAutrePartenaire.includes(j+":00:00") ? 'non-disponible' : 'disponible'
+    if(heuresAutrePartenaire.includes(j+":00:00")){
+      reserveIdAutrePartenaire = idAutrePartenaire[heuresAutrePartenaire.indexOf(j+":00:00")]
+    } else {
+      reserveIdAutrePartenaire = ''
+    }
+    
+    reserveText = heuresPartenaire.includes(j+":00:00") ? 'r&eacute;serv&eacute; par ce partenaire' : 
+                  heuresPartenaireSup.includes(j+":00:00") ? 'r&eacute;serv&eacute; pour ce partenaire<br><span>(heure en suppl&eacute;ment)</span>' :
+                  heuresAutrePartenaire.includes(j+":00:00") ? 'r&eacute;serv&eacute par n°'+reserveIdAutrePartenaire : 'disponible'
     //reserveText30 = heuresPartenaire.includes(j+":30:00") ? 'r&eacute;serv&eacute; pour vous' : heuresAutrePartenaire.includes(j+":30:00") ? 'non-disponible' : 'disponible'
 
-    reserveClic = heuresPartenaire.includes(j+":00:00") ? 
-                  `onclick="toggleHeureCalendar(\'${j}:00:00\',\'${dateSQL}\',\'${idBureau}\',\'${idPartenaire}\',\'remove\',\'${heuresRestantes}\')"` : 
-                  (heuresAutrePartenaire.includes(j+":00:00") || heuresPartenaireSup.includes(j+":00:00")) ? '' :
-                  `onclick="toggleHeureCalendar(\'${j}:00:00\',\'${dateSQL}\',\'${idBureau}\',\'${idPartenaire}\',\'add\',\'${heuresRestantes}\')"`
+    reserveClic = heuresPartenaireSup.includes(j+":00:00") ? 
+                  `onclick="toggleHeureCalendarAdmin(\'${j}:00:00\',\'${dateSQL}\',\'${idBureau}\',\'${idPartenaire}\',\'remove\')"` : 
+                  (heuresAutrePartenaire.includes(j+":00:00") || heuresPartenaire.includes(j+":00:00")) ? '' :
+                  `onclick="toggleHeureCalendarAdmin(\'${j}:00:00\',\'${dateSQL}\',\'${idBureau}\',\'${idPartenaire}\',\'add\')"`
     //reserveClic30 = heuresPartenaire.includes(j+":30:00") ? `onclick="toggleHeureCalendar(\'${j}:30:00\',\'${dateSQL}\',\'${idBureau}\',\'${idPartenaire}\',\'remove\')"` : heuresAutrePartenaire.includes(j+":30:00") ? '' : `onclick="toggleHeureCalendar(\'${j}:30:00\',\'${dateSQL}\',\'${idBureau}\',\'${idPartenaire}\',\'add\')"`
 
     leJour += `<div class="flex flew-row jcc aic heure-line"><div class="heure-digitale">${j}:00</div><div id='heure-${j}:00' ${reserveClic} class='heure-contenu tc ${reserve}'>${reserveText}</div></div>`
@@ -104,6 +117,108 @@ function displayCalendarBureauDayAdmin(dateSQL, idBureau, idPartenaire,heuresPar
   //document.body.appendChild
 
 }
+
+function toggleHeureCalendarAdmin(heure,jour,idBureau,idPartenaire,action) {
+  
+  //console.info(heuresRestantes)
+
+  let now = new Date()
+  let dateToToggle = new Date(jour+" "+heure)
+
+  if(now > dateToToggle) {
+    alert('Ce créneau n\'est plus modifiable.')
+    return true
+  }
+
+  let message = ''
+  if(action == 'add') {
+    message = 'Etes-vous sûr de vouloir réserver ce créneau ?'
+  } else if(action == 'remove') {
+    message = 'Etes-vous sûr de vouloir libérer ce créneau ?'
+  }
+
+  if(!confirm(message)){
+    return true
+  }
+  
+
+  let datasObj = {}
+
+  datasObj.heure = heure
+  datasObj.jour = jour
+  datasObj.bureauId = idBureau
+  datasObj.partenaireId = idPartenaire
+  datasObj.action = action // add ou remove
+  datasObj.admin = "yes"
+
+  let data = new FormData();
+  for (const key in datasObj) {
+    data.append(key, datasObj[key])
+  }
+  var req = new XMLHttpRequest();
+  req.responseType = 'json';
+  req.open('POST', 'controleurs/bureauCalendar.php');
+  //req.open('POST', PHP_AJAX_VISITEUR);
+
+  // SPINNER
+  req.onloadstart = function() {}
+  
+  req.onprogress = function() {}
+
+  req.onload = function() {}
+  
+  // Requête terminée, résultat
+  req.onloadend = function () {
+    
+    let procedureOK = req.response["requeteok"]
+
+    if(action === 'add') {
+      if(procedureOK){
+        let monElement = 'heure-'+heure.substring(0,5)
+        let creneauToUpdate = document.getElementById(monElement)
+
+/*         let heuresRestantes = document.getElementById('heures-restantes-semaine')
+        heuresRestantesInt = parseInt(req.response["heures-restantes"])
+        heuresRestantes.innerText = req.response["heures-restantes"]
+ */
+        creneauToUpdate.classList.remove('heure-libre')
+        creneauToUpdate.classList.add('heure-partenaire-sup-admin')
+        creneauToUpdate.innerHTML = 'réservé pour ce partenaire<br><span>(heure en supplément)</span>'
+        creneauToUpdate.setAttribute('onclick','toggleHeureCalendarAdmin(\''+heure+'\',\''+jour+'\',\''+idBureau+'\',\''+idPartenaire+'\',\'remove\')')
+        
+        //setHeuresRestantesOnClick(heuresRestantesInt)
+      } else {
+        alert('Erreur lors de la réservation de ce créneau horaire. Si cette erreur persiste, vous pouvez contacter directement le webmaster.')
+      }
+    }
+    
+    if(action === 'remove') {
+      if(procedureOK){
+        let monElement = 'heure-'+heure.substring(0,5)
+        let creneauToUpdate = document.getElementById(monElement)
+
+/*         let heuresRestantes = document.getElementById('heures-restantes-semaine')
+        heuresRestantesInt = parseInt(req.response["heures-restantes"])
+        heuresRestantes.innerText = req.response["heures-restantes"]
+ */
+        creneauToUpdate.classList.remove('heure-partenaire-sup-admin')
+        creneauToUpdate.classList.add('heure-libre')
+        creneauToUpdate.innerText = 'disponible'
+        creneauToUpdate.setAttribute('onclick','toggleHeureCalendarAdmin(\''+heure+'\',\''+jour+'\',\''+idBureau+'\',\''+idPartenaire+'\',\'add\')')
+
+        //setHeuresRestantesOnClick(heuresRestantesInt)
+
+        //alert(`Votre créneau horaire a bien été réservé.`)
+      } else {
+        alert('Erreur lors de la suppression de ce créneau horaire. Si cette erreur persiste, vous pouvez contacter directement le webmaster.')
+      }
+    }
+
+  }
+  // Envoie requête
+  req.send(data);
+}
+
 
 // *********************** AFFICHAGE NEXT MONTH et LAST MONTH ***************************************
 

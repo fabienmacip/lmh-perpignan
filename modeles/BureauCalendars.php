@@ -68,14 +68,14 @@ class BureauCalendars
 
 
     // CREATE
-    public function create($partenaireId,$bureauId,$jour,$heure) {
+    public function create($partenaireId,$bureauId,$jour,$heure,$isHeureSup = 0) {
         $tupleCreated = false;
         
         if (!is_null($this->pdo)) {
             try {
                 // Requête mysql pour insérer des données
-                $aInserer = array(":partenaireId"=>$partenaireId, ":bureauId"=>$bureauId, ":jour"=>$jour, ":heure"=>$heure);
-                $sql = "INSERT INTO bureaucalendar (idPartenaire, idBureau, date, heuredebut) VALUES (:partenaireId, :bureauId, :jour, :heure)";
+                $aInserer = array(":partenaireId"=>$partenaireId, ":bureauId"=>$bureauId, ":jour"=>$jour, ":heure"=>$heure, "isheuresup"=>$isHeureSup);
+                $sql = "INSERT INTO bureaucalendar (idPartenaire, idBureau, date, heuredebut, isheuresup) VALUES (:partenaireId, :bureauId, :jour, :heure, :isheuresup)";
                 $res = $this->pdo->prepare($sql);
                 $exec = $res->execute($aInserer);
                 if($exec){
@@ -213,6 +213,28 @@ class BureauCalendars
 
     }
 
+    // Liste des créneaux horaires pour UN jour donnée, avec idPartenaire, pour calendrier en mode ADMIN
+    public function listHoursReservedByAnotherPartenaireAndIdPartenaire($dateSQL,$idPartenaire,$idBureau) {
+        if (!is_null($this->pdo)) {
+            $sql = 'SELECT * FROM bureaucalendar WHERE idBureau = :idBureau AND date = :date AND idPartenaire <> :idPartenaire';
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([":idBureau"=>$idBureau, ":date"=>$dateSQL, ":idPartenaire"=>$idPartenaire]);
+        }
+        $tuples = '';
+        while ($tuple = $stmt->fetchObject('BureauCalendar', [$this->pdo])) {
+            $tuples .= $tuple->getHeureDebut()."-".$tuple->getIdPartenaire()."/";
+        }
+        
+        $stmt->closeCursor();
+
+        if(strlen($tuples) > 0) {
+            $tuples = substr($tuples,0,-1);
+        }
+        
+        return $tuples;
+
+    }
+    
     // $day au format YYYY-MM-JJ
     function getWeekStartDay($day) {
         $day2array = explode("-",$day);
@@ -244,7 +266,7 @@ class BureauCalendars
         $idPartenaire = intval($idPartenaire);
         
         if (!is_null($this->pdo)) {
-            $stmt = $this->pdo->prepare('SELECT * FROM bureaucalendar WHERE idPartenaire = :idPartenaire AND date BETWEEN :week_start AND :week_end');
+            $stmt = $this->pdo->prepare('SELECT * FROM bureaucalendar WHERE idPartenaire = :idPartenaire AND isheuresup = 0 AND date BETWEEN :week_start AND :week_end');
             $stmt->execute([":idPartenaire"=>$idPartenaire, ":week_start"=> $week_start, ":week_end"=>$week_end]);
         }
         $tuples = [];

@@ -226,7 +226,19 @@
   line-height: 12px;
 }
 
-.heure-partenaire-sup span{
+.heure-partenaire-admin {
+  cursor: not-allowed;
+}
+
+.heure-partenaire-sup-admin {
+  background-color: rgb(205,205,100);
+  cursor: pointer;
+  line-height: 12px;
+}
+
+
+.heure-partenaire-sup span,
+.heure-partenaire-sup-admin span{
   font-size: 10px;
 }
 

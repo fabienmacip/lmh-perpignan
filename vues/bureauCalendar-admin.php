@@ -48,7 +48,7 @@
           $dateSQL = $currentYear."-".$currentMonth."-".$dayNumberString;
           $heuresReserveesParLePartenaire = $calendarsObject->listHoursReservedByPartenaire($dateSQL,$_SESSION['partenaireActuel'],$bureau->getId());
           $heuresReserveesPourLePartenaire = $calendarsObject->listHoursReservedForPartenaire($dateSQL,$_SESSION['partenaireActuel'],$bureau->getId());
-          $heuresReserveesParUnAutrePartenaire = $calendarsObject->listHoursReservedByAnotherPartenaire($dateSQL,$_SESSION['partenaireActuel'],$bureau->getId());
+          $heuresReserveesParUnAutrePartenaire = $calendarsObject->listHoursReservedByAnotherPartenaireAndIdPartenaire($dateSQL,$_SESSION['partenaireActuel'],$bureau->getId());
 
 
           // Est-ce que ce partenaire a réservé des créneaux sur ce jour du mois ?
@@ -90,7 +90,7 @@
               $dateSQL = $currentYear."-".$currentMonth."-".$dayNumberString;
               $heuresReserveesParLePartenaire = $calendarsObject->listHoursReservedByPartenaire($dateSQL,$_SESSION['partenaireActuel'],$bureau->getId());
               $heuresReserveesPourLePartenaire = $calendarsObject->listHoursReservedForPartenaire($dateSQL,$_SESSION['partenaireActuel'],$bureau->getId());
-              $heuresReserveesParUnAutrePartenaire = $calendarsObject->listHoursReservedByAnotherPartenaire($dateSQL,$_SESSION['partenaireActuel'],$bureau->getId());
+              $heuresReserveesParUnAutrePartenaire = $calendarsObject->listHoursReservedByAnotherPartenaireAndIdPartenaire($dateSQL,$_SESSION['partenaireActuel'],$bureau->getId());
 
               // Est-ce que ce partenaire a réservé des créneaux sur ce jour du mois ?
               strlen($heuresReserveesParLePartenaire.$heuresReserveesPourLePartenaire) > 0 ? $hasCreneauPartenaire = ' has-creneau-partenaire' : $hasCreneauPartenaire = '';

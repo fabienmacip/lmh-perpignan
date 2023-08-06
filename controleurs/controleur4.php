@@ -4,14 +4,14 @@ require_once(dirname(__FILE__,2).'/modeles/Modele.php');
 class Controleur4 {
      use Modele; 
 
-    public function addCreneauHoraire($partenaireId,$bureauId,$jour,$heure)
+    public function addCreneauHoraire($partenaireId,$bureauId,$jour,$heure,$isHeureSup = 0)
     {
         
         //$pdo = $this->pdo;
         $tuples = new BureauCalendars($this->pdo);
         $dernierTupleConnu = $tuples->listerDernier()[0]->getId();
         
-        $tupleToCreate = $tuples->create($partenaireId,$bureauId,$jour,$heure);
+        $tupleToCreate = $tuples->create($partenaireId,$bureauId,$jour,$heure,$isHeureSup);
         $newTuple = $tuples->listerDernier()[0]->getId();
         
         if($newTuple > $dernierTupleConnu) {
