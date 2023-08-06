@@ -1,0 +1,39 @@
+Date : 2023-08-06 14:43:16
+Directory : c:\xampp-production\htdocs\lmh-perpignan\css
+Total : 12 files,  2245 codes, 127 comments, 719 blanks, all 3091 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| CSS      |         12 |      2,245 |        127 |        719 |      3,091 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++-------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                    | files      | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                       |         12 |      2,245 |        127 |        719 |      3,091 |
+| . (Files)                                                               |          3 |        513 |         61 |        206 |        780 |
+| components                                                              |          8 |        971 |         55 |        273 |      1,299 |
+| framework                                                               |          1 |        761 |         11 |        240 |      1,012 |
++-------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                                | language | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| c:\xampp-production\htdocs\lmh-perpignan\css\color.css                  | CSS      |         47 |          9 |         13 |         69 |
+| c:\xampp-production\htdocs\lmh-perpignan\css\components\connexion.css   | CSS      |         52 |          2 |         17 |         71 |
+| c:\xampp-production\htdocs\lmh-perpignan\css\components\footer.css      | CSS      |        123 |          4 |         37 |        164 |
+| c:\xampp-production\htdocs\lmh-perpignan\css\components\navbar.css      | CSS      |         87 |         13 |         35 |        135 |
+| c:\xampp-production\htdocs\lmh-perpignan\css\components\partenaire.css  | CSS      |         85 |          9 |         18 |        112 |
+| c:\xampp-production\htdocs\lmh-perpignan\css\components\partenaires.css | CSS      |         35 |          5 |          9 |         49 |
+| c:\xampp-production\htdocs\lmh-perpignan\css\components\reservation.css | CSS      |        249 |         13 |         69 |        331 |
+| c:\xampp-production\htdocs\lmh-perpignan\css\components\slider.css      | CSS      |        217 |          5 |         55 |        277 |
+| c:\xampp-production\htdocs\lmh-perpignan\css\components\univers.css     | CSS      |        123 |          4 |         33 |        160 |
+| c:\xampp-production\htdocs\lmh-perpignan\css\framework\utiles.css       | CSS      |        761 |         11 |        240 |      1,012 |
+| c:\xampp-production\htdocs\lmh-perpignan\css\main.css                   | CSS      |         11 |         12 |          1 |         24 |
+| c:\xampp-production\htdocs\lmh-perpignan\css\style.css                  | CSS      |        455 |         40 |        192 |        687 |
+| Total                                                                   |          |      2,245 |        127 |        719 |      3,091 |
++-------------------------------------------------------------------------+----------+------------+------------+------------+------------+

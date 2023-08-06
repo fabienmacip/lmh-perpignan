@@ -1,0 +1,35 @@
+Date : 2023-08-06 14:42:52
+Directory : c:\xampp-production\htdocs\lmh-perpignan\script
+Total : 10 files,  1431 codes, 310 comments, 552 blanks, all 2293 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| JavaScript |          9 |      1,426 |        310 |        549 |      2,285 |
+| PHP        |          1 |          5 |          0 |          3 |          8 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                   |         10 |      1,431 |        310 |        552 |      2,293 |
++---------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                            | language   | code       | comment    | blank      | total      |
++---------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\xampp-production\htdocs\lmh-perpignan\script\ajax.php            | PHP        |          5 |          0 |          3 |          8 |
+| c:\xampp-production\htdocs\lmh-perpignan\script\divers.js           | JavaScript |         14 |          1 |          5 |         20 |
+| c:\xampp-production\htdocs\lmh-perpignan\script\jquery-3.6.0.min.js | JavaScript |          1 |          1 |          0 |          2 |
+| c:\xampp-production\htdocs\lmh-perpignan\script\md5.js              | JavaScript |        183 |         31 |         15 |        229 |
+| c:\xampp-production\htdocs\lmh-perpignan\script\partenaire.js       | JavaScript |         85 |          6 |         27 |        118 |
+| c:\xampp-production\htdocs\lmh-perpignan\script\reserver-admin.js   | JavaScript |        194 |         39 |         80 |        313 |
+| c:\xampp-production\htdocs\lmh-perpignan\script\reserver.js         | JavaScript |        321 |         53 |        165 |        539 |
+| c:\xampp-production\htdocs\lmh-perpignan\script\script.js           | JavaScript |        222 |        123 |        103 |        448 |
+| c:\xampp-production\htdocs\lmh-perpignan\script\test.js             | JavaScript |         41 |          8 |          6 |         55 |
+| c:\xampp-production\htdocs\lmh-perpignan\script\visiteurDatas.js    | JavaScript |        365 |         48 |        148 |        561 |
+| Total                                                               |            |      1,431 |        310 |        552 |      2,293 |
++---------------------------------------------------------------------+------------+------------+------------+------------+------------+

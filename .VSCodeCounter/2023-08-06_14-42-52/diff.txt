@@ -1,0 +1,58 @@
+Date : 2023-08-06 14:42:52
+Directory : c:\xampp-production\htdocs\lmh-perpignan\script
+Total : 30 files,  -489 codes, 112 comments, 122 blanks, all -255 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| JavaScript |          9 |      1,426 |        310 |        549 |      2,285 |
+| PHP        |         21 |     -1,915 |       -198 |       -427 |     -2,540 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                      | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                         |         30 |       -489 |        112 |        122 |       -255 |
+| . (Files)                                                                 |         10 |      1,431 |        310 |        552 |      2,293 |
+| ..                                                                        |         20 |     -1,920 |       -198 |       -430 |     -2,548 |
+| ..\modeles                                                                |         20 |     -1,920 |       -198 |       -430 |     -2,548 |
++---------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                  | language   | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\xampp-production\htdocs\lmh-perpignan\modeles\Administrateur.php       | PHP        |        -70 |         -4 |        -12 |        -86 |
+| c:\xampp-production\htdocs\lmh-perpignan\modeles\Administrateurs.php      | PHP        |       -126 |        -14 |        -17 |       -157 |
+| c:\xampp-production\htdocs\lmh-perpignan\modeles\Bureau.php               | PHP        |        -37 |          0 |        -11 |        -48 |
+| c:\xampp-production\htdocs\lmh-perpignan\modeles\BureauCalendar.php       | PHP        |        -61 |        -32 |        -19 |       -112 |
+| c:\xampp-production\htdocs\lmh-perpignan\modeles\BureauCalendars.php      | PHP        |       -276 |        -24 |       -107 |       -407 |
+| c:\xampp-production\htdocs\lmh-perpignan\modeles\Bureaus.php              | PHP        |        -23 |         -2 |         -4 |        -29 |
+| c:\xampp-production\htdocs\lmh-perpignan\modeles\Modele.php               | PHP        |        -13 |         -2 |         -2 |        -17 |
+| c:\xampp-production\htdocs\lmh-perpignan\modeles\MyDate.php               | PHP        |       -110 |          0 |        -13 |       -123 |
+| c:\xampp-production\htdocs\lmh-perpignan\modeles\MyDates.php              | PHP        |        -72 |        -22 |        -18 |       -112 |
+| c:\xampp-production\htdocs\lmh-perpignan\modeles\Partenaire.php           | PHP        |        -85 |         -1 |        -22 |       -108 |
+| c:\xampp-production\htdocs\lmh-perpignan\modeles\Partenaires.php          | PHP        |       -190 |        -25 |        -43 |       -258 |
+| c:\xampp-production\htdocs\lmh-perpignan\modeles\Prospect.php             | PHP        |        -50 |          0 |        -10 |        -60 |
+| c:\xampp-production\htdocs\lmh-perpignan\modeles\Prospects.php            | PHP        |       -103 |        -10 |        -27 |       -140 |
+| c:\xampp-production\htdocs\lmh-perpignan\modeles\StatPartenaire.php       | PHP        |       -119 |          0 |        -15 |       -134 |
+| c:\xampp-production\htdocs\lmh-perpignan\modeles\StatPartenaireDetail.php | PHP        |       -183 |          0 |        -22 |       -205 |
+| c:\xampp-production\htdocs\lmh-perpignan\modeles\StatPartenaires.php      | PHP        |       -107 |        -17 |        -21 |       -145 |
+| c:\xampp-production\htdocs\lmh-perpignan\modeles\Univers.php              | PHP        |        -41 |          0 |         -8 |        -49 |
+| c:\xampp-production\htdocs\lmh-perpignan\modeles\UniversEnfant.php        | PHP        |        -46 |          0 |         -9 |        -55 |
+| c:\xampp-production\htdocs\lmh-perpignan\modeles\UniversEnfants.php       | PHP        |       -124 |        -23 |        -30 |       -177 |
+| c:\xampp-production\htdocs\lmh-perpignan\modeles\Universs.php             | PHP        |        -84 |        -22 |        -20 |       -126 |
+| c:\xampp-production\htdocs\lmh-perpignan\script\ajax.php                  | PHP        |          5 |          0 |          3 |          8 |
+| c:\xampp-production\htdocs\lmh-perpignan\script\divers.js                 | JavaScript |         14 |          1 |          5 |         20 |
+| c:\xampp-production\htdocs\lmh-perpignan\script\jquery-3.6.0.min.js       | JavaScript |          1 |          1 |          0 |          2 |
+| c:\xampp-production\htdocs\lmh-perpignan\script\md5.js                    | JavaScript |        183 |         31 |         15 |        229 |
+| c:\xampp-production\htdocs\lmh-perpignan\script\partenaire.js             | JavaScript |         85 |          6 |         27 |        118 |
+| c:\xampp-production\htdocs\lmh-perpignan\script\reserver-admin.js         | JavaScript |        194 |         39 |         80 |        313 |
+| c:\xampp-production\htdocs\lmh-perpignan\script\reserver.js               | JavaScript |        321 |         53 |        165 |        539 |
+| c:\xampp-production\htdocs\lmh-perpignan\script\script.js                 | JavaScript |        222 |        123 |        103 |        448 |
+| c:\xampp-production\htdocs\lmh-perpignan\script\test.js                   | JavaScript |         41 |          8 |          6 |         55 |
+| c:\xampp-production\htdocs\lmh-perpignan\script\visiteurDatas.js          | JavaScript |        365 |         48 |        148 |        561 |
+| Total                                                                     |            |       -489 |        112 |        122 |       -255 |
++---------------------------------------------------------------------------+------------+------------+------------+------------+------------+

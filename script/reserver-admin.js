@@ -99,15 +99,15 @@ function displayCalendarBureauDayAdmin(dateSQL, idBureau, idPartenaire,nomParten
       reserveIdAutrePartenaire = ''
     }
     
-    reserveText = heuresPartenaire.includes(j+":00:00") ? 'r&eacute;serv&eacute; par '+nomPartenaire : 
-                  heuresPartenaireSup.includes(j+":00:00") ? 'r&eacute;serv&eacute; pour '+nomPartenaire+'<br><span>(heure en suppl&eacute;ment)</span>' :
-                  heuresAutrePartenaire.includes(j+":00:00") ? 'r&eacute;serv&eacute par '+reserveNomAutrePartenaire : 'disponible'
+    reserveText = heuresPartenaire.includes(j+":00:00") ? nomPartenaire : 
+                  heuresPartenaireSup.includes(j+":00:00") ? nomPartenaire+'<br><span>(heure en suppl&eacute;ment)</span>' :
+                  heuresAutrePartenaire.includes(j+":00:00") ? reserveNomAutrePartenaire : 'disponible'
     //reserveText30 = heuresPartenaire.includes(j+":30:00") ? 'r&eacute;serv&eacute; pour vous' : heuresAutrePartenaire.includes(j+":30:00") ? 'non-disponible' : 'disponible'
 
     reserveClic = heuresPartenaireSup.includes(j+":00:00") ? 
-                  `onclick="toggleHeureCalendarAdmin(\'${j}:00:00\',\'${dateSQL}\',\'${idBureau}\',\'${idPartenaire}\',\'remove\')"` : 
+                  `onclick="toggleHeureCalendarAdmin(\'${j}:00:00\',\'${dateSQL}\',\'${idBureau}\',\'${idPartenaire}\',\'${nomPartenaire}\',\'remove\')"` : 
                   (heuresAutrePartenaire.includes(j+":00:00") || heuresPartenaire.includes(j+":00:00")) ? '' :
-                  `onclick="toggleHeureCalendarAdmin(\'${j}:00:00\',\'${dateSQL}\',\'${idBureau}\',\'${idPartenaire}\',\'add\')"`
+                  `onclick="toggleHeureCalendarAdmin(\'${j}:00:00\',\'${dateSQL}\',\'${idBureau}\',\'${idPartenaire}\',\'${nomPartenaire}\',\'add\')"`
     //reserveClic30 = heuresPartenaire.includes(j+":30:00") ? `onclick="toggleHeureCalendar(\'${j}:30:00\',\'${dateSQL}\',\'${idBureau}\',\'${idPartenaire}\',\'remove\')"` : heuresAutrePartenaire.includes(j+":30:00") ? '' : `onclick="toggleHeureCalendar(\'${j}:30:00\',\'${dateSQL}\',\'${idBureau}\',\'${idPartenaire}\',\'add\')"`
 
     leJour += `<div class="flex flew-row jcc aic heure-line"><div class="heure-digitale">${j}:00</div><div id='heure-${j}:00' ${reserveClic} class='heure-contenu tc ${reserve}'>${reserveText}</div></div>`
@@ -126,7 +126,7 @@ function displayCalendarBureauDayAdmin(dateSQL, idBureau, idPartenaire,nomParten
 
 }
 
-function toggleHeureCalendarAdmin(heure,jour,idBureau,idPartenaire,action) {
+function toggleHeureCalendarAdmin(heure,jour,idBureau,idPartenaire,nomPartenaire,action) {
   
   //console.info(heuresRestantes)
 
@@ -191,8 +191,8 @@ function toggleHeureCalendarAdmin(heure,jour,idBureau,idPartenaire,action) {
  */
         creneauToUpdate.classList.remove('heure-libre')
         creneauToUpdate.classList.add('heure-partenaire-sup-admin')
-        creneauToUpdate.innerHTML = 'réservé pour ce partenaire<br><span>(heure en supplément)</span>'
-        creneauToUpdate.setAttribute('onclick','toggleHeureCalendarAdmin(\''+heure+'\',\''+jour+'\',\''+idBureau+'\',\''+idPartenaire+'\',\'remove\')')
+        creneauToUpdate.innerHTML = nomPartenaire+'<br><span>(heure en supplément)</span>'
+        creneauToUpdate.setAttribute('onclick','toggleHeureCalendarAdmin(\''+heure+'\',\''+jour+'\',\''+idBureau+'\',\''+idPartenaire+'\',\''+nomPartenaire+'\',\'remove\')')
         
         //setHeuresRestantesOnClick(heuresRestantesInt)
       } else {
@@ -212,7 +212,7 @@ function toggleHeureCalendarAdmin(heure,jour,idBureau,idPartenaire,action) {
         creneauToUpdate.classList.remove('heure-partenaire-sup-admin')
         creneauToUpdate.classList.add('heure-libre','pointer')
         creneauToUpdate.innerText = 'disponible'
-        creneauToUpdate.setAttribute('onclick','toggleHeureCalendarAdmin(\''+heure+'\',\''+jour+'\',\''+idBureau+'\',\''+idPartenaire+'\',\'add\')')
+        creneauToUpdate.setAttribute('onclick','toggleHeureCalendarAdmin(\''+heure+'\',\''+jour+'\',\''+idBureau+'\',\''+idPartenaire+'\',\''+nomPartenaire+'\',\'add\')')
 
         //setHeuresRestantesOnClick(heuresRestantesInt)
 
